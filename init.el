@@ -1,4 +1,4 @@
-;; setup straight.el for package management
+;; Setup straight.el for package management
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -12,12 +12,17 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-;; disable the package manager because we use straight.el
+;; Disable package.el in favor of straight
 (setq package-enable-at-startup nil)
 
-;; use-package for package management and configuration
+;; Install use-package
 (straight-use-package 'use-package)
 
 ;; Configure use-package to use straight.el by default
 (use-package straight
          :custom (straight-use-package-by-default t))
+
+(use-package nano-theme
+  :straight (:host github
+		   :repo "rougier/nano-theme")
+  :config (nano-light))
