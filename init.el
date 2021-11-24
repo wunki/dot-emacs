@@ -3,9 +3,9 @@
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
 (require 'config)
+(require 'packages)
 (require 'lib)
 (require 'bindings)
-(require 'packages)
 (require 'navigation)
 (require 'looks)
 (require 'editing)
