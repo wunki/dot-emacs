@@ -26,7 +26,6 @@
   :after tree-sitter)
 
 ;; Magical Git GUI
-
 (use-package magit
   :bind ("C-c g" . magit-status))
 
