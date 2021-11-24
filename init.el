@@ -6,6 +6,7 @@
 (require 'lib)
 (require 'bindings)
 (require 'packages)
+(require 'navigation)
 (require 'looks)
 (require 'editing)
 (require 'notes)
