@@ -8,9 +8,12 @@
   (ivy-mode t)
   (setq ivy-initial-inputs-alist nil))
 
-;; Ivy enhanced versions of emacs commands
+;; Counsel enhanced versions of emacs commands
 (use-package counsel
-  :bind (("M-x" . counsel-M-x)))
+  :bind (("C-x C-m" . counsel-M-x)
+         ("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file)
+         ("C-x t" . wunki/counsel-find-notes)))
 
 ;; Sorts and filters candidates for Ivy
 (use-package prescient)
