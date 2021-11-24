@@ -7,6 +7,15 @@
   :commands er/expand-region
   :bind ("C-c e" . er/expand-region))
 
+;; Easily move to the actual beginning of the line, double-tap moves
+;; to the first character
+(use-package crux
+  :bind (("C-a" . crux-move-beginning-of-line)))
+
+;; Move to the last change in the buffer
+(use-package goto-last-change
+  :bind (("C-;" . goto-last-change)))
+
 ;; Semantic parser for languages, which will give us nicer
 ;; syntax highlighting
 (use-package tree-sitter
