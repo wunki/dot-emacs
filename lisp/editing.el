@@ -25,5 +25,10 @@
                                :files ("langs/*.el" "langs/queries"))
   :after tree-sitter)
 
+;; Magical Git GUI
+
+(use-package magit
+  :bind ("C-c g" . magit-status))
+
 (provide 'editing)
 ;;; editing.el ends here
