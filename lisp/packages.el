@@ -1,4 +1,4 @@
-;;; package.el --- Setup package management -*- lexical-binding: t -*-
+;;; packages.el --- Setup package management -*- lexical-binding: t -*-
 
 ;;; Code:
 
@@ -26,5 +26,5 @@
 (use-package straight
          :custom (straight-use-package-by-default t))
 
-(provide 'package)
-;;; package.el ends here
+(provide 'packages)
+;;; packages.el ends here
