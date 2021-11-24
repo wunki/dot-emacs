@@ -5,7 +5,7 @@
 (use-package nano-theme
   :straight (:host github
 	     :repo "rougier/nano-theme")
-  :config (nano-light))
+  :config (nano-dark))
 
 (use-package nano-modeline
   :straight (:host github
