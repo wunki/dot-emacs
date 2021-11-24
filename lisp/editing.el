@@ -2,6 +2,11 @@
 
 ;;; Code:
 
+;; Easily select larger chunks of text
+(use-package expand-region
+  :commands er/expand-region
+  :bind ("C-c e" . er/expand-region))
+
 ;; Semantic parser for languages, which will give us nicer
 ;; syntax highlighting
 (use-package tree-sitter

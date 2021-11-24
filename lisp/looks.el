@@ -13,7 +13,7 @@
   :config (nano-modeline-mode))
 
 ;; Set the font
-(set-frame-font "Iosevka SS02 10" nil t)
+(set-frame-font "Iosevka SS02 19" nil t)
 
 ;; Get rid of any bars
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
