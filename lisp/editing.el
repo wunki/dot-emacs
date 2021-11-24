@@ -38,5 +38,10 @@
 (use-package magit
   :bind ("C-c g" . magit-status))
 
+;; Show line changes in the gutter
+(use-package git-gutter
+  :config
+  (global-git-gutter-mode 't))
+
 (provide 'editing)
 ;;; editing.el ends here
