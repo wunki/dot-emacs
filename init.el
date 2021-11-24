@@ -1,3 +1,4 @@
+
 ;; Add my configuration directory to the load path
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
@@ -8,3 +9,6 @@
 (require 'looks)
 (require 'editing)
 (require 'notes)
+
+;; Languages
+(require 'clojure)
