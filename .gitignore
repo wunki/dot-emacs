@@ -52,3 +52,4 @@ flycheck_*.el
 
 # gcc emacs cache
 /eln-cache
+/transient/
