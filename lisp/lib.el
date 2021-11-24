@@ -9,5 +9,10 @@
       (kill-region (region-beginning) (region-end))
     (backward-kill-word 1)))
 
+(defun find-config ()
+    "Edit my configuration file"
+    (interactive)
+    (find-file "~/.emacs.d/init.el"))
+
 (provide 'lib)
 ;;; lib.el ends here
