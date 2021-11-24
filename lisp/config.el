@@ -17,6 +17,9 @@
 (setq ispell-program-name "aspell") ; use aspell for spell checking
 (setq sentence-end-double-space nil); double spaces do NOT end a sentence
 
+;; Stop emacs from adding configuration to my setup
+(setq custom-file (make-temp-file "emacs-custom"))
+
 ;; Setup indentation
 (set-default 'indent-tabs-mode nil) ; we don't want to use tabs for indentation
 (setq-default tab-width 2)
