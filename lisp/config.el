@@ -2,11 +2,9 @@
 
 ;;; Code:
 
-;; Update the buffer when a file changes on disk
-(global-auto-revert-mode 1)
-
-;; Delete marked region with input
-(delete-selection-mode 1)
+(setq initial-scratch-message nil)  ; don't show the scratch message
+(global-auto-revert-mode 1)         ; update the buffer when a file changes
+(delete-selection-mode 1)           ; delete marked region 
 
 (provide 'config)
 ;;; config.el ends here
