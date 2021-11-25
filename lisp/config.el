@@ -91,6 +91,9 @@
 ;; Use shift + direction to switch between windows
 (windmove-default-keybindings)
 
+;; highlight the current line
+(global-hl-line-mode)
+
 ;; Stop emacs from adding configuration to my setup
 (setq custom-file (make-temp-file "emacs-custom"))
 
