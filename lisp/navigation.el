@@ -5,8 +5,11 @@
 ;; Generic completion framework for the minibuffer
 (use-package ivy
   :config
-  (ivy-mode t)
-  (setq ivy-initial-inputs-alist nil))
+  (setq ivy-initial-inputs-alist nil)
+  (setq ivy-height 4)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (ivy-mode t))
 
 ;; Counsel enhanced versions of emacs commands
 (use-package counsel
