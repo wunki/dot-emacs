@@ -2,6 +2,8 @@
 
 ;;; Code:
 
+(require 'lib)
+
 (use-package nano-theme
   :straight (:host github
 	     :repo "rougier/nano-theme")
@@ -15,7 +17,9 @@
   :config (nano-modeline-mode))
 
 ;; Set the font
-(set-frame-font "Iosevka SS02 19" nil t)
+(if (is-linux)
+    (set-frame-font "Iosevka SS02 12" nil t)
+  (set-frame-font "Iosevka SS02 18" nil t))
 
 ;; Get rid of any bars
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
