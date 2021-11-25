@@ -13,5 +13,8 @@
 ;; Quickly edit my config
 (global-set-key (kbd "C-c I") 'find-config)
 
+;; Toggle between themes
+(global-set-key (kbd "C-c t") 'nano-theme-toggle)
+
 (provide 'bindings)
 ;;; bindings.el ends here
