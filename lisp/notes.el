@@ -3,7 +3,9 @@
 ;;; Code:
 (setq org-directory (concat (getenv "HOME") "/dropbox/Notes/"))
 
-(use-package org)
+(use-package org
+  :config
+  (setq org-return-follows-link t))
 
 (use-package org-roam
   :after org
