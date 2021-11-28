@@ -10,7 +10,9 @@
 (require 'looks)
 (require 'editing)
 (require 'notes)
-(require 'mail)
+
+(if (is-linux)
+  (require 'mail))
 
 ;; Languages
 (require 'clojure)
