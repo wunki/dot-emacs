@@ -51,5 +51,11 @@
   :bind ("M-TAB" . company-complete)
         ("TAB" . company-indent-or-complete-common))
 
+;; Handle parenthesis
+(use-package lispy
+  :hook
+  ((emacs-lisp-mode . lispy-mode)
+   (lisp-interaction-mode . lispy-mode)))
+
 (provide 'editing)
 ;;; editing.el ends here
