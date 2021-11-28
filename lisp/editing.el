@@ -43,5 +43,13 @@
   :config
   (global-git-gutter-mode 't))
 
+;; Setup auto-completion with company
+(use-package company
+  :config
+  (setq company-idle-delay nil) ; we only start auto-complete on tab
+  (global-company-mode)
+  :bind ("M-TAB" . company-complete)
+        ("TAB" . company-indent-or-complete-common))
+
 (provide 'editing)
 ;;; editing.el ends here
