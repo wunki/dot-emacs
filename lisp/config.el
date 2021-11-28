@@ -94,6 +94,9 @@
 ;; highlight the current line
 (global-hl-line-mode)
 
+;; highlight the matching paren
+(show-paren-mode 1)
+
 ;; Stop emacs from adding configuration to my setup
 (setq custom-file (make-temp-file "emacs-custom"))
 
