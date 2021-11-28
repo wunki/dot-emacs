@@ -39,6 +39,13 @@
 ;; No empty line indicators
 (setq indicate-empty-lines nil)
 
+;; We have enough memory available, let's accumulate
+;; before we assimilate
+(setq gc-cons-threshold (* 100 1024 1024))
+
+;; Set to 1MB, this should help LSP
+(setq read-process-output-max (* 1024 1024))
+
 ;; Text mode is initial mode
 (setq initial-major-mode 'text-mode)
 
