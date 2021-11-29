@@ -10,6 +10,8 @@
 (require 'looks)
 (require 'editing)
 (require 'notes)
+(require 'language-server)
+(require 'languages)
 
 (if (is-linux)
   (require 'mail))
