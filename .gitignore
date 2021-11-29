@@ -55,3 +55,4 @@ flycheck_*.el
 /transient/
 /recentf
 /projects
+/.lsp-session-v1
