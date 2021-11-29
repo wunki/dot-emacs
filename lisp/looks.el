@@ -9,7 +9,7 @@
 	     :repo "rougier/nano-theme")
   :config
   (nano-mode)
-  (nano-dark))
+  (nano-light))
 
 (use-package nano-modeline
   :straight (:host github

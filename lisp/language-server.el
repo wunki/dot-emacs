@@ -4,13 +4,16 @@
 
 (use-package lsp-mode
   :commands lsp
+  :init
+  (setq lsp-keymap-prefix "C-c l")
   :config
   (setq lsp-lens-enable t)
   (setq lsp-signature-auto-activate nil)
   (setq lsp-headerline-breadcrumb-enable nil)
   (setq lsp-semantic-tokens-mode t)
   :hook
-  ((before-save . lsp-format-buffer)
+  ((clojure-mode . lsp)
+   (before-save . lsp-format-buffer)
    (before-save . lsp-organize-imports)
    (lsp-mode . lsp-enable-which-key-integration)))
 
