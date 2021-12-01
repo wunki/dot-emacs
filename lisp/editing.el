@@ -54,7 +54,9 @@
 ;; Handle parenthesis
 (use-package smartparens
   :config
+  (require 'smartparens-config)
+  (sp-use-smartparens-bindings)
   (smartparens-global-strict-mode))
 
-  (provide 'editing)
+(provide 'editing)
 ;;; editing.el ends here
