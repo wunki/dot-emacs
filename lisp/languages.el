@@ -8,7 +8,8 @@
 (use-package cider
   :config
   ;; We use clojure-lsp for showing documentation
-  (setq cider-eldoc-display-for-symbol-at-point nil))
+  (setq cider-eldoc-display-for-symbol-at-point nil)
+  (setq cider-repl-display-help-banner nil))
 
 (provide 'languages)
 ;;; languages.el ends here
