@@ -11,5 +11,11 @@
   (setq cider-eldoc-display-for-symbol-at-point nil)
   (setq cider-repl-display-help-banner nil))
 
+;; Elixir
+(use-package elixir-mode)
+
+;; Fish shell
+(use-package fish-mode)
+
 (provide 'languages)
 ;;; languages.el ends here
