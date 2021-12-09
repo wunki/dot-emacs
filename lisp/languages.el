@@ -14,8 +14,11 @@
 ;; Elixir
 (use-package elixir-mode)
 
-;; Fish shell
+;; Languages which don't require any configuration
 (use-package fish-mode)
+(use-package yaml-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 
 (provide 'languages)
 ;;; languages.el ends here
