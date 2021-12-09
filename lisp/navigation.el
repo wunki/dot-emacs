@@ -47,7 +47,11 @@
     (treemacs-follow-mode t)
     (treemacs-filewatch-mode t)
     (treemacs-fringe-indicator-mode 'always)
-    (treemacs-hide-gitignored-files-mode nil)))
+    (treemacs-hide-gitignored-files-mode nil))
+  :bind
+  (:map global-map
+        ("C-M-t"   . treemacs)
+        ("M-0" . treemacs-select-window)))
 
 (provide 'navigation)
 ;;; navigation.el ends here
