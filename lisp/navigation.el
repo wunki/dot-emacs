@@ -37,5 +37,17 @@
   :config
   (add-hook 'after-init-hook 'which-key-mode))
 
+(use-package treemacs
+  :ensure t
+  :defer t
+  :init
+  :config
+  (progn
+    (treemacs-resize-icons 44)
+    (treemacs-follow-mode t)
+    (treemacs-filewatch-mode t)
+    (treemacs-fringe-indicator-mode 'always)
+    (treemacs-hide-gitignored-files-mode nil)))
+
 (provide 'navigation)
 ;;; navigation.el ends here
