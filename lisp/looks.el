@@ -4,22 +4,18 @@
 
 (require 'lib)
 
-(use-package nano-theme
-  :straight (:host github
-	     :repo "rougier/nano-theme")
-  :config
-  (nano-mode)
-  (nano-light))
+(use-package all-the-icons
+  :if (display-graphic-p))
 
-(use-package nano-modeline
-  :straight (:host github
-	     :repo "rougier/nano-modeline")
-  :config (nano-modeline-mode))
+(use-package kaolin-themes
+  :config
+  (load-theme 'kaolin-mono-dark t)
+  (kaolin-treemacs-theme))
 
 ;; Set the font
 (if (is-linux)
     (set-frame-font "Iosevka SS02 12" nil t)
-  (set-frame-font "Iosevka SS02 18" nil t))
+  (set-frame-font "Jetbrains Mono 17" nil t))
 
 ;; Get rid of any bars
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
