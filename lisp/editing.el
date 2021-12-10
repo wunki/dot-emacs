@@ -40,6 +40,7 @@
 
 ;; Show line changes in the gutter
 (use-package git-gutter
+  :delight
   :config
   (global-git-gutter-mode 't))
 

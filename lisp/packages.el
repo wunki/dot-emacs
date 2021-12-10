@@ -26,5 +26,8 @@
 (use-package straight
          :custom (straight-use-package-by-default t))
 
+;; Clean up the modeline
+(use-package delight)
+
 (provide 'packages)
 ;;; packages.el ends here

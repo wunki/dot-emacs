@@ -4,6 +4,7 @@
 
 ;; Generic completion framework for the minibuffer
 (use-package ivy
+  :delight
   :config
   (setq ivy-initial-inputs-alist nil)
   (setq ivy-height 4)
