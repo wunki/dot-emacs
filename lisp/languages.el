@@ -14,11 +14,19 @@
 ;; Elixir
 (use-package elixir-mode)
 
-;; Languages which don't require any configuration
+;; Languages which don't require much configuration
 (use-package fish-mode)
 (use-package yaml-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
 
 (provide 'languages)
 ;;; languages.el ends here
