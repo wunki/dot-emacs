@@ -2,6 +2,8 @@
 
 ;;; Code:
 
+(require 'lib)
+
 ;; Generic completion framework for the minibuffer
 (use-package ivy
   :delight
@@ -53,6 +55,11 @@
   (:map global-map
         ("C-M-t"   . treemacs)
         ("M-0" . treemacs-select-window)))
+
+;; Swap command and option on a mac
+(when (is-mac)
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier 'super))
 
 (provide 'navigation)
 ;;; navigation.el ends here
