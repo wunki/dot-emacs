@@ -12,6 +12,12 @@
   (load-theme 'kaolin-mono-dark t)
   (kaolin-treemacs-theme))
 
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :config
+  (setq doom-modeline-major-mode-color-icon nil))
+
 ;; Set the font
 (if (is-linux)
     (set-frame-font "Iosevka SS02 12" nil t)
