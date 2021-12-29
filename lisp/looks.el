@@ -15,7 +15,7 @@
 ;; Set the font
 (if (is-linux)
     (set-frame-font "Iosevka SS02 12" nil t)
-  (set-frame-font "Jetbrains Mono 14" nil t))
+  (set-frame-font "Jetbrains Mono 15" nil t))
 
 ;; Get rid of any bars
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
