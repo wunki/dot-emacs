@@ -45,6 +45,7 @@
   :defer t
   :init
   :config
+  (setq treemacs-user-mode-line-format 'none)
   (progn
     (treemacs-resize-icons 44)
     (treemacs-follow-mode t)
