@@ -4,6 +4,15 @@
 
 (require 'lib)
 
+;; Set the font
+(if (is-linux)
+    (set-frame-font "Iosevka SS02 12" nil t)
+  (set-frame-font "Jetbrains Mono 15" nil t))
+
+;; Get rid of any bars
+(dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
+  (when (fboundp mode) (funcall mode -1)))
+
 (use-package all-the-icons
   :if (display-graphic-p))
 
@@ -16,16 +25,8 @@
   :ensure t
   :init (doom-modeline-mode 1)
   :config
-  (setq doom-modeline-major-mode-color-icon nil))
-
-;; Set the font
-(if (is-linux)
-    (set-frame-font "Iosevka SS02 12" nil t)
-  (set-frame-font "Jetbrains Mono 15" nil t))
-
-;; Get rid of any bars
-(dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
-  (when (fboundp mode) (funcall mode -1)))
+  (setq doom-modeline-major-mode-color-icon nil)
+  (setq doom-modeline-buffer-encoding nil))
 
 (provide 'looks)
 ;;; looks.el ends here
