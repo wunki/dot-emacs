@@ -1,7 +1,7 @@
 ;;; notes.el --- Setup org and org-roam for note taking -*- lexical-binding: t -*-
 
 ;;; Code:
-(setq org-directory (concat (getenv "HOME") "/dropbox/Notes/"))
+(setq org-directory (concat (getenv "HOME") "/Notes/"))
 
 (use-package org
   :config
@@ -27,7 +27,7 @@
                 ("C-c n l" . org-roam-buffer-toggle))))
   :config
   (setq org-startup-indented t)
-  (setq org-roam-dailies-directory "Daily/")
+  (setq org-roam-dailies-directory "Dailies/")
   (setq org-roam-dailies-capture-templates
       '(("d" "default" entry
          "* %?"
