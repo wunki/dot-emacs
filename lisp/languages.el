@@ -14,6 +14,11 @@
 ;; Elixir
 (use-package elixir-mode)
 
+;; Zig
+(use-package zig-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.zig\\'" . zig-mode)))
+
 ;; Languages which don't require much configuration
 (use-package fish-mode)
 (use-package yaml-mode
