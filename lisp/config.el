@@ -135,5 +135,13 @@
    browse-url-browser-function (quote browse-url-generic)
    browse-url-generic-program "xdg-open"))
 
+;; Configure shell environment
+(use-package exec-path-from-shell
+  :ensure t
+  :if (memq window-system '(mac ns))
+  :config
+  (exec-path-from-shell-initialize))
+
 (provide 'config)
 ;;; config.el ends here
+
