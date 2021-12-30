@@ -34,6 +34,9 @@
 (setq use-dialog-box nil)
 
 ;; No popup windows
+;; 
+;; TODO: Still undecided if I want to use this or not,
+;; and what keeps me more in the flow of work.
 ;; (setq pop-up-windows nil)
 
 ;; No empty line indicators
@@ -104,7 +107,8 @@
 ;; highlight the matching paren
 (show-paren-mode 1)
 
-;; Stop emacs from adding configuration to my setup
+;; This will stop Emacs from changing my config by
+;; having it write to a temporary file
 (setq custom-file (make-temp-file "emacs-custom"))
 
 ;; Setup indentation
@@ -121,7 +125,7 @@
 ;; Emacs writes backup files to `filename~` by default. This is messy,
 ;; so let's tell it to write them to `~/.emacs.d/backup` instead.
 ;; If you have an accident, check this directory - you might get lucky.
-(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups"))
     backup-by-copying t    ; Don't delink hardlinks
     version-control t      ; Use version numbers on backups
     delete-old-versions t  ; Automatically delete excess backups
@@ -134,6 +138,11 @@
   (setq-default
    browse-url-browser-function (quote browse-url-generic)
    browse-url-generic-program "xdg-open"))
+
+;; Don't show warnings if we have native compilation enabled
+(when (and (fboundp 'native-comp-available-p)
+       (native-comp-available-p)
+       (setq native-comp-async-report-warnings-errors nil))
 
 ;; Configure shell environment
 (use-package exec-path-from-shell
