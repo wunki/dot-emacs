@@ -142,7 +142,7 @@
 ;; Don't show warnings if we have native compilation enabled
 (when (and (fboundp 'native-comp-available-p)
        (native-comp-available-p)
-       (setq native-comp-async-report-warnings-errors nil))
+       (setq native-comp-async-report-warnings-errors nil)))
 
 ;; Configure shell environment
 (use-package exec-path-from-shell
