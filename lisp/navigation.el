@@ -40,6 +40,7 @@
   :config
   (add-hook 'after-init-hook 'which-key-mode))
 
+;; Filebrowser
 (use-package treemacs
   :ensure t
   :defer t
