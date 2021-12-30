@@ -53,10 +53,10 @@
     "Ensures that the commit body does not exceed 72 characters."
     (setq fill-column 72)
     (setq-local comment-auto-fill-only-comments nil))
-  :bind ("C-c g" . magit-status)
-  :hook (git-commit-mode-hook . my/git-commit-auto-fill-everywhere)
   :custom
-  (git-commit-summary-max-length 50))
+  (git-commit-summary-max-length 50)
+  :bind ("C-c g" . magit-status)
+  :hook (git-commit-mode-hook . my/git-commit-auto-fill-everywhere))
 
 ;; Show line changes in the gutter
 (use-package git-gutter
@@ -66,8 +66,9 @@
 
 ;; Setup auto-completion with company
 (use-package company
+  :custom
+  (company-idle-delay nil) ; we only start auto-complete on tab
   :config
-  (setq company-idle-delay nil) ; we only start auto-complete on tab
   (global-company-mode)
   :bind ("M-TAB" . company-complete)
         ("TAB" . company-indent-or-complete-common))

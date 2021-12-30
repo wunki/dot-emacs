@@ -24,9 +24,9 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
-  :config
-  (setq doom-modeline-major-mode-color-icon nil)
-  (setq doom-modeline-buffer-encoding nil))
+  :custom
+  (doom-modeline-major-mode-color-icon nil)
+  (doom-modeline-buffer-encoding nil))
 
 (provide 'looks)
 ;;; looks.el ends here

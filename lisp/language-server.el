@@ -7,14 +7,14 @@
   :init
   (setq lsp-keymap-prefix "C-c l")
   (add-to-list 'exec-path "~/.local/share/elixir-ls/release")
-  :config
-  (setq lsp-lens-enable t)
-  (setq lsp-signature-auto-activate nil)
-  (setq lsp-headerline-breadcrumb-enable nil)
-  (setq lsp-semantic-tokens-mode t)
+  :custom
+  (lsp-lens-enable t)
+  (lsp-signature-auto-activate nil)
+  (lsp-headerline-breadcrumb-enable nil)
+  (lsp-semantic-tokens-mode t)
 
   ;; Elixir specific
-  (setq lsp-elixir-suggest-specs nil)
+  (lsp-elixir-suggest-specs nil)
 
   :hook
   ((clojure-mode . lsp)
