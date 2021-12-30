@@ -26,7 +26,7 @@
 (defun is-mac ()
   "Return non-nil if running on a mac."
   (interactive)
-  (string-equal system-type "darwin"))
+  (memq window-system '(mac ns)))
 
 (defun is-windows ()
   "Returns true if running on Windows WSL"
