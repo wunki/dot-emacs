@@ -19,15 +19,27 @@
 ;; Semantic parser for languages, which will give us nicer
 ;; syntax highlighting
 (use-package tree-sitter
+  :if (executable-find "tree-sitter")
   :straight (tree-sitter :type git
                          :host github
                          :repo "ubolonton/emacs-tree-sitter"
-                         :files ("lisp/*.el"))
-  :config (add-to-list 'tree-sitter-major-mode-language-alist '(rustic-mode . rust))
-  :hook ((python-mode rustic-mode) . tree-sitter-hl-mode))
+                         :files ("lisp/*.el" "src" "Cargo.toml" "Cargo.lock"))
+  :hook (((rustic-mode
+           python-mode
+           css-mode
+           elixir-mode) . tree-sitter-mode)
+         ((rustic-mode
+           python-mode
+           css-mode
+           elixir-mode) . tree-sitter-hl-mode))
+  :config
+  (add-to-list 'tree-sitter-major-mode-language-alist
+               '(rustic-mode . rust))
+  (add-to-list 'tree-sitter-major-mode-language-alist
+               '(elixir-mode . elixir)))
 
-;; Install all languages available
 (use-package tree-sitter-langs
+  :if (executable-find "tree-sitter")
   :straight (tree-sitter-langs :type git
                                :host github
                                :repo "ubolonton/emacs-tree-sitter"
