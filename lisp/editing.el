@@ -48,7 +48,15 @@
 
 ;; Magical Git GUI
 (use-package magit
-  :bind ("C-c g" . magit-status))
+  :preface
+  (defun my/git-commit-auto-fill-everywhere ()
+    "Ensures that the commit body does not exceed 72 characters."
+    (setq fill-column 72)
+    (setq-local comment-auto-fill-only-comments nil))
+  :bind ("C-c g" . magit-status)
+  :hook (git-commit-mode-hook . my/git-commit-auto-fill-everywhere)
+  :custom
+  (git-commit-summary-max-length 50))
 
 ;; Show line changes in the gutter
 (use-package git-gutter
