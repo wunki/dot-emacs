@@ -47,8 +47,8 @@
   :init
   :config
   (setq treemacs-user-mode-line-format 'none)
+  (setq treemacs-no-png-images t)
   (progn
-    (treemacs-resize-icons 44)
     (treemacs-follow-mode t)
     (treemacs-filewatch-mode t)
     (treemacs-fringe-indicator-mode 'always)
