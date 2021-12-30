@@ -52,12 +52,8 @@
   :bind ("M-TAB" . company-complete)
         ("TAB" . company-indent-or-complete-common))
 
-;; Handle parenthesis
-(use-package smartparens
-  :config
-  (require 'smartparens-config)
-  (sp-use-smartparens-bindings)
-  (smartparens-global-strict-mode))
+;; Automatic parens matching
+(electric-pair-mode 1)
 
 (provide 'editing)
 ;;; editing.el ends here
