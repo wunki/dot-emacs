@@ -34,7 +34,7 @@
 (setq use-dialog-box nil)
 
 ;; No popup windows
-(setq pop-up-windows nil)
+;; (setq pop-up-windows nil)
 
 ;; No empty line indicators
 (setq indicate-empty-lines nil)
