@@ -12,6 +12,10 @@
   (setq lsp-signature-auto-activate nil)
   (setq lsp-headerline-breadcrumb-enable nil)
   (setq lsp-semantic-tokens-mode t)
+
+  ;; Elixir specific
+  (setq lsp-elixir-suggest-specs nil)
+
   :hook
   ((clojure-mode . lsp)
    (elixir-mode . lsp)
