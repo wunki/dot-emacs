@@ -2,6 +2,13 @@
 
 ;;; Code:
 
+;; Elisp
+
+;; Overlay evaluation results directly in the buffer
+(use-package eros
+  :config
+  (eros-mode t))
+
 ;; Clojure
 (use-package clojure-mode)
 
