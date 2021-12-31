@@ -13,5 +13,5 @@
 (require 'language-server)
 (require 'languages)
 
-(if (is-linux)
+(if (pet/is-linux)
   (require 'mail))

@@ -5,7 +5,7 @@
 (require 'lib)
 
 ;; Set the font
-(if (is-linux)
+(if (pet/is-linux)
     (set-frame-font "Iosevka SS02 12" nil t)
   (set-frame-font "MonoLisa-14" nil t))
 

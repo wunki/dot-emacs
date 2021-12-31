@@ -59,7 +59,7 @@
         ("M-0" . treemacs-select-window)))
 
 ;; Swap command and option on a mac
-(when (is-mac)
+(when (pet/is-mac)
   (setq mac-command-modifier 'meta)
   (setq mac-option-modifier 'super))
 
