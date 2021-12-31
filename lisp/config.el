@@ -49,12 +49,6 @@
 ;; Set to 1MB, this should help LSP
 (setq read-process-output-max (* 1024 1024))
 
-;; Text mode is initial mode
-(setq initial-major-mode 'text-mode)
-
-;; Text mode is default major mode
-(setq default-major-mode 'text-mode)
-
 ;; No cursor in inactive windows
 (setq cursor-in-non-selected-windows nil)
 

@@ -58,5 +58,3 @@ flycheck_*.el
 /.lsp-session-v1
 /url/
 /bookmarks
-/backups
-/auto-saves
