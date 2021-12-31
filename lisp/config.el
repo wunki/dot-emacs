@@ -135,7 +135,7 @@
 
 ;; Move auto-saved files to their own directory
 (setq auto-save-file-name-transforms
-  `((".*" "~/.emacs.d/saves/" t)))
+  `((".*" "~/.emacs.d/auto-saves/" t)))
 
 ;; If available, use `xdg-open' to open URLs.
 (when (pet/is-exec "xdg-open")
