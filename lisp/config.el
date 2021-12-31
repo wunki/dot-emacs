@@ -123,8 +123,8 @@
 (setq window-min-height 1)
 
 ;; Emacs writes backup files to `filename~` by default. This is messy,
-;; so let's tell it to write them to `~/.emacs.d/backup` instead.
-;; If you have an accident, check this directory - you might get lucky.
+;; so let's tell it to write them to `~/.emacs.d/backups` instead.
+;; If you have an accident, check this directory - you might get lucky
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups"))
     backup-by-copying t    ; Don't delink hardlinks
     version-control t      ; Use version numbers on backups
@@ -132,6 +132,10 @@
     kept-new-versions 20   ; how many of the newest versions to keep
     kept-old-versions 5    ; and how many of the old
     )
+
+;; Move auto-saved files to their own directory
+(setq auto-save-file-name-transforms
+  `((".*" "~/.emacs.d/saves/" t)))
 
 ;; If available, use `xdg-open' to open URLs.
 (when (pet/is-exec "xdg-open")
