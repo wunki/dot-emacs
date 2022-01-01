@@ -1,6 +1,14 @@
-;;; editing.el --- Configure the overall editing experience -*- lexical-binding: t -*-
-
+;;; editing.el --- frictionless text editing -*- lexical-binding: t -*-
+;;
+;;; Commentary:
+;;
+;; Useful packages to make the text editing experience as frictionless
+;; as possible.
+;; 
 ;;; Code:
+;;
+
+(require 'lib)
 
 ;; Easily select larger chunks of text
 (use-package expand-region
@@ -16,36 +24,6 @@
 (use-package goto-last-change
   :bind (("C-;" . goto-last-change)))
 
-;; Semantic parser for languages, which will give us nicer
-;; syntax highlighting
-(use-package tree-sitter
-  :if (executable-find "tree-sitter")
-  :straight (tree-sitter :type git
-                         :host github
-                         :repo "ubolonton/emacs-tree-sitter"
-                         :files ("lisp/*.el" "src" "Cargo.toml" "Cargo.lock"))
-  :hook (((rustic-mode
-           python-mode
-           css-mode
-           elixir-mode) . tree-sitter-mode)
-         ((rustic-mode
-           python-mode
-           css-mode
-           elixir-mode) . tree-sitter-hl-mode))
-  :config
-  (add-to-list 'tree-sitter-major-mode-language-alist
-               '(rustic-mode . rust))
-  (add-to-list 'tree-sitter-major-mode-language-alist
-               '(elixir-mode . elixir)))
-
-(use-package tree-sitter-langs
-  :if (executable-find "tree-sitter")
-  :straight (tree-sitter-langs :type git
-                               :host github
-                               :repo "ubolonton/emacs-tree-sitter"
-                               :files ("langs/*.el" "langs/queries"))
-  :after tree-sitter)
-
 ;; Magical Git GUI
 (use-package magit
   :preface
@@ -53,25 +31,24 @@
     "Ensures that the commit body does not exceed 72 characters."
     (setq fill-column 72)
     (setq-local comment-auto-fill-only-comments nil))
-  :custom
-  (git-commit-summary-max-length 50)
+  :custom (git-commit-summary-max-length 50)
   :bind ("C-c g" . magit-status)
   :hook (git-commit-mode-hook . my/git-commit-auto-fill-everywhere))
 
 ;; Show line changes in the gutter
 (use-package git-gutter
-  :delight
-  :config
-  (global-git-gutter-mode 't))
+  :commands global-git-gutter-mode
+  :config (global-git-gutter-mode 't))
 
 ;; Setup auto-completion with company
 (use-package company
+  :commands global-company-mode
   :custom
   (company-idle-delay nil) ; we only start auto-complete on tab
-  :config
-  (global-company-mode)
-  :bind ("M-TAB" . company-complete)
-        ("TAB" . company-indent-or-complete-common))
+  :config (global-company-mode)
+  :bind
+  ("M-TAB" . company-complete)
+  ("TAB" . company-indent-or-complete-common))
 
 ;; Automatic parens matching
 (electric-pair-mode 1)

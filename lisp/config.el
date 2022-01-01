@@ -1,15 +1,19 @@
-;;; config.el --- Emacs tweaks, not dependant on packages -*- lexical-binding: t -*-
-
+;;; config.el --- emacs internal configuration -*- lexical-binding: t -*-
+;;
+;;; Commentary:
+;;
+;; This sets up sane defaults for our Emacs configuration.
+;; 
 ;;; Code:
-
+;;
 (require 'lib)
 
 ;; Buffer encoding
-(prefer-coding-system       'utf-8)
+(prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-(set-language-environment   'utf-8)
+(set-language-environment 'utf-8)
 
 ;; No startup screen
 (setq inhibit-startup-screen t)
@@ -55,12 +59,6 @@
 ;; Moderate font lock
 (setq font-lock-maximum-decoration nil)
 
-;; No limit on font lock
-(setq font-lock-maximum-size nil)
-
-;; No line break space points
-(setq auto-fill-mode nil)
-
 ;; Fill column at 80
 (setq fill-column 80)
 
@@ -75,10 +73,7 @@
 (setq vc-follow-symlinks t)
 
 ;; Ask for y/n instead of 'yes' or 'no'
-(defalias 'yes-or-no-p 'y-or-n-p)   
-
-;; Use aspell for spell checking
-(setq ispell-program-name "aspell")
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; No load noises please
 (setq ring-bell-function 'ignore)
@@ -119,13 +114,15 @@
 ;; Emacs writes backup files to `filename~` by default. This is messy,
 ;; so let's tell it to write them to `~/.emacs.d/backups` instead.
 ;; If you have an accident, check this directory - you might get lucky
-(setq backup-directory-alist '(("." . "~/.emacs.d/backups"))
-    backup-by-copying t    ; Don't delink hardlinks
-    version-control t      ; Use version numbers on backups
-    delete-old-versions t  ; Automatically delete excess backups
-    kept-new-versions 20   ; how many of the newest versions to keep
-    kept-old-versions 5    ; and how many of the old
-    )
+(setq
+  backup-directory-alist
+  '(("." . "~/.emacs.d/backups"))
+  backup-by-copying t ; Don't delink hardlinks
+  version-control t ; Use version numbers on backups
+  delete-old-versions t ; Automatically delete excess backups
+  kept-new-versions 20 ; how many of the newest versions to keep
+  kept-old-versions 5 ; and how many of the old
+  )
 
 ;; Move auto-saved files to their own directory
 (setq auto-save-file-name-transforms
@@ -134,21 +131,23 @@
 ;; If available, use `xdg-open' to open URLs.
 (when (pet/is-exec "xdg-open")
   (setq-default
-   browse-url-browser-function (quote browse-url-generic)
-   browse-url-generic-program "xdg-open"))
+    browse-url-browser-function
+    (quote browse-url-generic)
+    browse-url-generic-program "xdg-open"))
 
 ;; Don't show warnings if we have native compilation enabled
-(when (and (fboundp 'native-comp-available-p)
-       (native-comp-available-p)
-       (setq native-comp-async-report-warnings-errors nil)))
+(when
+  (and
+    (fboundp 'native-comp-available-p)
+    (native-comp-available-p)
+    (setq native-comp-async-report-warnings-errors nil)))
 
 ;; Configure shell environment
 (use-package exec-path-from-shell
-  :ensure t
   :if (memq window-system '(mac ns))
-  :config
-  (exec-path-from-shell-initialize))
+  :demand
+  :commands exec-path-from-shell-initialize
+  :config (exec-path-from-shell-initialize))
 
 (provide 'config)
 ;;; config.el ends here
-

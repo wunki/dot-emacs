@@ -1,5 +1,14 @@
+;;; init.el --- initialize all modules -*- lexical-binding: t -*-
+;;
+;;; Commentary:
+;;
+;; This is where it all starts, we start by setting up our packages
+;; where we use the excellent straight package manager, combined with
+;; the use-package to declare the packages we want to use.
+;; 
+;;; Code:
+;;
 
-;; Add my configuration directory to the load path
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
 (require 'packages)
@@ -11,12 +20,10 @@
 (require 'editing)
 (require 'notes)
 (require 'language-server)
-
-;; This is where I put the stuff which may not be useful to you directly
-(defvar pet/my-own-dir (expand-file-name "my-own" user-emacs-directory))
-(when (file-exists-p pet/my-own-dir)
-  (message "Loading personal configuration files in %s..." pet/my-own-dir)
-  (mapc 'load (directory-files pet/my-own-dir 't "^[^#\.].*\\.el$")))
+(require 'languages)
 
 (if (pet/is-linux)
   (require 'mail))
+
+(provide 'init)
+;;; init.el ends here

@@ -1,4 +1,13 @@
-;;; bindings.el --- bindings not specific to a mode -*- lexical-binding: t -*-
+;;; bindings.el --- key bindings -*- lexical-binding: t -*-
+;;
+;;; Commentary:
+;;
+;; Setup key bindings for either Emacs or our own functions.
+;; Package specific bindings should be done in `use-package'
+;; declarations.
+;; 
+;;; Code:
+;;
 
 (require 'lib)
 
@@ -12,9 +21,6 @@
 
 ;; Quickly edit my config
 (global-set-key (kbd "C-c I") 'pet/find-config)
-
-;; Toggle between themes
-(global-set-key (kbd "C-c t") 'nano-theme-toggle)
 
 (provide 'bindings)
 ;;; bindings.el ends here

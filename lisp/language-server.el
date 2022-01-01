@@ -1,6 +1,13 @@
-;;; languages-server.el --- Language server are the new way of communicating with the compiler -*- lexical-binding: t -*-
-
+;;; language-server.el --- setup LSP server -*- lexical-binding: t -*-
+;;
+;;; Commentary:
+;;
+;; Setup the `lsp' package to intrude as little as possible
+;; and work with the languages I use.
+;;
 ;;; Code:
+;;
+(require 'lib)
 
 (use-package lsp-mode
   :commands lsp
@@ -18,16 +25,17 @@
 
   :hook
   ((clojure-mode . lsp)
-   (elixir-mode . lsp)
-   (before-save . lsp-format-buffer)
-   (before-save . lsp-organize-imports)
-   (lsp-mode . lsp-enable-which-key-integration)))
+    (elixir-mode . lsp)
+    (before-save . lsp-format-buffer)
+    (before-save . lsp-organize-imports)
+    (lsp-mode . lsp-enable-which-key-integration)))
 
-(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+(use-package lsp-ivy
+  :commands lsp-ivy-workspace-symbol)
+
 (use-package lsp-treemacs
-  :commands lsp-treemacs-errors-list
-  :config
-  (lsp-treemacs-sync-mode 1))
+  :commands lsp-treemacs-sync-mode
+  :config (lsp-treemacs-sync-mode 1))
 
 (provide 'language-server)
 ;;; language-server.el ends here

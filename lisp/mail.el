@@ -16,7 +16,7 @@
         message-send-mail-function 'smtpmail-send-it)
 
 (use-package mu4e
-  :ensure f
+  :ensure nil
   :commands mu4e
   :bind (("C-c m" . mu4e)
          :map mu4e-headers-mode-map
