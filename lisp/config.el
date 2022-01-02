@@ -144,7 +144,7 @@
 
 ;; Configure shell environment
 (use-package exec-path-from-shell
-  :if (memq window-system '(mac ns))
+  :if (pet/is-mac)
   :demand
   :commands exec-path-from-shell-initialize
   :config (exec-path-from-shell-initialize))
