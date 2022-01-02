@@ -1,11 +1,17 @@
-;;; languages.el --- Configure the languages I work in -*- lexical-binding: t -*-
-
+;;; language-server.el --- setup LSP server -*- lexical-binding: t -*-
+;;
+;;; Commentary:
+;;
+;; Setup the `lsp' package to intrude as little as possible
+;; and work with the languages I use.
+;;
 ;;; Code:
+;;
+(require 'lib)
 
-;; Elisp
-
-;; Overlay evaluation results directly in the buffer
 (use-package eros
+  :demand
+  :commands eros-mode
   :config (eros-mode t))
 
 ;; Automatically format Emacs lisp code
