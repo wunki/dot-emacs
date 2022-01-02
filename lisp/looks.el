@@ -10,6 +10,11 @@
 ;;; Code:
 (require 'lib)
 
+(use-package default-text-scale
+  :demand
+  :commands default-text-scale-mode
+  :config (default-text-scale-mode))
+
 (if (pet/is-linux)
   (push '(font . "Iosevka SS02 12") default-frame-alist)
   (push '(font . "MonoLisa-14") default-frame-alist))
