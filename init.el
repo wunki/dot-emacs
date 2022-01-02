@@ -11,6 +11,10 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
 (require 'packages)
 (require 'config)
 (require 'lib)

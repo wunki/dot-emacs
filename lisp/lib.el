@@ -37,7 +37,7 @@
 (defun pet/is-mac ()
   "Return non-nil if running on a mac."
   (interactive)
-  (memq window-system '(mac ns)))
+  (eq system-type 'darwin))
 
 (defun pet/is-windows ()
   "Returns true if running on Windows WSL"

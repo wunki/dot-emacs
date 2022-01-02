@@ -10,15 +10,14 @@
 ;;; Code:
 (require 'lib)
 
-;; Set the font
 (if (pet/is-linux)
-  (set-frame-font "Iosevka SS02 12" nil t)
-  (set-frame-font "MonoLisa-14" nil t))
+  (push '(font . "Iosevka SS02 12") default-frame-alist)
+  (push '(font . "MonoLisa-14") default-frame-alist))
 
 ;; Get rid of any bars
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
   (when (fboundp mode)
-    (funcall mode -1)))
+    (funcall mode 0)))
 
 (use-package all-the-icons
   :if (display-graphic-p))
