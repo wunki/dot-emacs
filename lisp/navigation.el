@@ -42,7 +42,7 @@
 
 ;; Enhanced version of isearch
 (use-package swiper
-  :bind (("M-s" . counsel-grep-or-swiper)))
+  :bind (("C-s" . counsel-grep-or-swiper)))
 
 ;; Presents menus for ivy commands
 (use-package ivy-hydra)
