@@ -1,9 +1,8 @@
-;;; language-server.el --- setup LSP server -*- lexical-binding: t -*-
+;;; languages.el --- setup differeng languages -*- lexical-binding: t -*-
 ;;
 ;;; Commentary:
 ;;
-;; Setup the `lsp' package to intrude as little as possible
-;; and work with the languages I use.
+;; Configuration for the different languages that I may use.
 ;;
 ;;; Code:
 ;;
@@ -28,7 +27,9 @@
 (use-package flycheck
   :hook (prog-mode . flycheck-mode)
   :custom
-  (flycheck-emacs-lisp-load-path 'inherit)
+  (flycheck-emacs-lisp-load-path
+    'inherit
+    "inherit the load path so it can find all libraries")
   (flycheck-check-syntax-automatically
     '(mode-enabled save)
     "only check on save"))
@@ -49,10 +50,12 @@
 (use-package zig-mode
   :config (add-to-list 'auto-mode-alist '("\\.zig\\'" . zig-mode)))
 
-;; Languages which don't require much configuration
 (use-package fish-mode)
 (use-package yaml-mode
   :config (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+
+(use-package lfe-mode
+  :if (executable-find "lfe"))
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
