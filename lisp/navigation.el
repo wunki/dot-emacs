@@ -15,37 +15,36 @@
   (setq mac-command-modifier 'meta)
   (setq mac-option-modifier 'super))
 
-;; Generic completion framework for the minibuffer
-(use-package ivy
-  :commands ivy-mode
-  :custom
-  (ivy-initial-inputs-alist nil)
-  (ivy-height 4)
-  (ivy-use-virtual-buffers t)
-  (enable-recursive-minibuffers t)
-  :config (ivy-mode t))
+;; Emacs completions in the mini buffer
+(use-package vertico
+  :commands vertico-mode
+  :custom (vertico-cycle t)
+  :init (vertico-mode))
 
-;; Counsel enhanced versions of emacs commands
-(use-package counsel
-  :bind
-  (("C-x C-m" . counsel-M-x)
-    ("M-x" . counsel-M-x)
-    ("C-x C-f" . counsel-find-file)
-    ("C-x t" . wunki/counsel-find-notes)))
+;; Store recent commands and completions
+(use-package savehist
+  :init (savehist-mode))
 
-;; Sorts and filters candidates for Ivy
-(use-package prescient)
-(use-package ivy-prescient
-  :requires prescient
-  :commands ivy-prescient-mode
-  :config (ivy-prescient-mode t))
+;; Extra metadata in the minibuffer
+(use-package marginalia
+  :after vertico
+  :commands marginalia-mode
+  :init (marginalia-mode))
+
+;; Improve the completions style by removing any order
+(use-package orderless
+  :init
+  (setq
+    completion-styles
+    '(orderless)
+    completion-category-defaults
+    nil
+    completion-category-overrides
+    '((file (styles partial-completion)))))
 
 ;; Enhanced version of isearch
 (use-package swiper
-  :bind (("C-s" . counsel-grep-or-swiper)))
-
-;; Presents menus for ivy commands
-(use-package ivy-hydra)
+  :bind (("C-s" . swiper)))
 
 ;; Suggests the next key, depending on the pressed key
 (use-package which-key
