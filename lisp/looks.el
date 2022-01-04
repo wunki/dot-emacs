@@ -30,6 +30,9 @@
 (use-package kaolin-themes
   :demand
   :commands kaolin-treemacs-theme
+  :custom
+  (kaolin-themes-italic-comments t)
+  (kaolin-themes-git-gutter-solid t)
   :config
   (load-theme 'kaolin-mono-dark t)
   (kaolin-treemacs-theme))
