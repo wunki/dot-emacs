@@ -48,5 +48,10 @@
         ("C-c n a" . org-roam-alias-add)
         ("C-c n l" . org-roam-buffer-toggle)))))
 
+;; Automatically save my org buffers
+(use-package real-auto-save
+  :custom (real-auto-save-interval 5)
+  :hook (org-mode-hook . real-auto-save-mode))
+
 (provide 'notes)
 ;;; notes.el ends here
