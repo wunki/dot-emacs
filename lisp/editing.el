@@ -38,7 +38,7 @@
 ;; Show line changes in the gutter
 (use-package git-gutter
   :commands global-git-gutter-mode
-  :config (global-git-gutter-mode 't))
+  :init (global-git-gutter-mode))
 
 ;; Setup auto-completion with company
 (use-package company
