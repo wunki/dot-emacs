@@ -32,7 +32,7 @@
   :commands kaolin-treemacs-theme
   :custom
   (kaolin-themes-italic-comments t)
-  (kaolin-themes-git-gutter-solid t)
+  (kaolin-themes-git-gutter-solid nil)
   :config
   (load-theme 'kaolin-mono-dark t)
   (kaolin-treemacs-theme))
