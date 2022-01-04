@@ -51,6 +51,14 @@
   :config
   :hook (after-init . which-key-mode))
 
+;; Quickly move around with Avy
+(use-package avy
+  :custom
+  (avy-keys
+    '(?a ?o ?e ?u ?i ?d ?h ?t ?n ?s)
+    "map the keys to my homerow on dvorak")
+  :bind (("C-c c" . avy-goto-char-2) ("C-c l" . avy-goto-line)))
+
 ;; Filebrowser
 (use-package treemacs
   :defer t
