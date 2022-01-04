@@ -11,9 +11,11 @@
 (require 'lib)
 
 ;; Swap command and option on a mac
-(when (pet/is-mac)
-  (setq mac-command-modifier 'meta)
-  (setq mac-option-modifier 'super))
+(use-package emacs
+  :init
+  (when (pet/is-mac)
+    (setq mac-command-modifier 'meta)
+    (setq mac-option-modifier 'super)))
 
 ;; Emacs completions in the mini buffer
 (use-package vertico
