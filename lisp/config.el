@@ -144,9 +144,8 @@
 
 ;; Configure shell environment
 (use-package exec-path-from-shell
-  :demand
   :commands exec-path-from-shell-initialize
-  :config (exec-path-from-shell-initialize))
+  :init (exec-path-from-shell-initialize))
 
 (provide 'config)
 ;;; config.el ends here
