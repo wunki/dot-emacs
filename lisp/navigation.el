@@ -18,8 +18,32 @@
 ;; Emacs completions in the mini buffer
 (use-package vertico
   :commands vertico-mode
+  :straight
+  (vertico
+    :files (:defaults "extensions/*")
+    :includes
+    (vertico-buffer
+      vertico-directory
+      vertico-flat
+      vertico-indexed
+      vertico-mouse
+      vertico-quick
+      vertico-repeat
+      vertico-reverse))
   :custom (vertico-cycle t)
   :init (vertico-mode))
+
+;; Mimic Ivy for directory completion
+(use-package vertico-directory
+  :after vertico
+  :bind
+  (:map
+    vertico-map
+    ("RET" . vertico-directory-enter)
+    ("DEL" . vertico-directory-delete-char)
+    ("M-DEL" . vertico-directory-delete-word))
+  ;; Tidy shadowed file names
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 
 ;; Store recent commands and completions
 (use-package savehist
