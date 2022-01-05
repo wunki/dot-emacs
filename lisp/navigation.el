@@ -105,7 +105,7 @@
   :bind
   (:map
     global-map
-    ("C-M-t" . treemacs)
+    ("C-c t" . treemacs)
     ("M-0" . treemacs-select-window)))
 
 (provide 'navigation)
