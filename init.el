@@ -22,7 +22,6 @@
 (require 'navigation)
 (require 'looks)
 (require 'editing)
-(require 'notes)
 (require 'language-server)
 (require 'languages)
 
