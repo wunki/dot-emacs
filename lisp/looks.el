@@ -17,7 +17,7 @@
 
 (if (pet/is-linux)
   (push '(font . "Iosevka SS02 12") default-frame-alist)
-  (push '(font . "MonoLisa-14") default-frame-alist))
+  (push '(font . "Iosevka SS02-15") default-frame-alist))
 
 ;; Get rid of any bars
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
@@ -49,12 +49,6 @@
 (use-package tree-sitter
   :if (executable-find "tree-sitter")
   :defines tree-sitter-major-mode-language-alist
-  :straight
-  (tree-sitter
-    :type git
-    :host github
-    :repo "ubolonton/emacs-tree-sitter"
-    :files ("lisp/*.el" "src" "Cargo.toml" "Cargo.lock"))
   :hook
   (
     ((rustic-mode python-mode css-mode elixir-mode)
@@ -71,12 +65,6 @@
 
 (use-package tree-sitter-langs
   :if (executable-find "tree-sitter")
-  :straight
-  (tree-sitter-langs
-    :type git
-    :host github
-    :repo "ubolonton/emacs-tree-sitter"
-    :files ("langs/*.el" "langs/queries"))
   :after tree-sitter)
 
 (provide 'looks)
