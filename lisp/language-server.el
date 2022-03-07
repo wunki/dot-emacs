@@ -15,6 +15,7 @@
   (setq lsp-keymap-prefix "C-c l")
   (add-to-list 'exec-path "~/.local/share/elixir-ls/release")
   :custom
+  (lsp-rust-analyzer-cargo-watch-command "clippy")
   (lsp-lens-enable t)
   (lsp-signature-auto-activate nil)
   (lsp-headerline-breadcrumb-enable nil)
