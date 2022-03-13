@@ -142,6 +142,9 @@
     (native-comp-available-p)
     (setq native-comp-async-report-warnings-errors nil)))
 
+;; Improved scrolling
+(pixel-scroll-precision-mode)
+
 ;; Configure shell environment
 (use-package exec-path-from-shell
   :commands exec-path-from-shell-initialize
