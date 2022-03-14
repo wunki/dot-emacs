@@ -92,5 +92,13 @@
     ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+;;; Common Lisp
+(use-package slime
+  :init (load (expand-file-name "~/.roswell/helper.el"))
+  :config
+  (setq inferior-lisp-program "ros -Q run")
+  (setq slime-net-coding-system 'utf-8-unix)
+  (setq slime-contribs '(slime-fancy slime-cl-indent)))
+
 (provide 'languages)
 ;;; languages.el ends here
