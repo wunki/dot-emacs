@@ -44,8 +44,9 @@
 (use-package company
   :commands global-company-mode
   :custom
-  (company-idle-delay nil) ; we only start auto-complete on tab
-  :init (global-company-mode)
+  (company-idle-delay 0.2) ; change to nil if you want to start auto-complete on tab
+  :init
+  (global-company-mode)
   :bind
   ("M-TAB" . company-complete)
   ("TAB" . company-indent-or-complete-common))
