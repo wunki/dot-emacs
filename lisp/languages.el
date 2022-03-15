@@ -65,8 +65,12 @@
   ;; (setq lsp-enable-symbol-highlighting nil)
   ;; (setq lsp-signature-auto-activate nil)
 
-  ;; comment to disable rustfmt on save
-  (setq rustic-format-on-save t)
+  ;; disable rustfmt on save
+  (setq rustic-format-on-save nil)
+
+  ;; change emacs PATH to include cargo/bin
+  (setenv "PATH" (concat (getenv "PATH") ":~/.cargo/bin"))
+  (setq exec-path (append exec-path '("~/.cargo/bin")))
   (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook))
 
 (defun rk/rustic-mode-hook ()
