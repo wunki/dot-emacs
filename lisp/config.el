@@ -155,5 +155,9 @@
   (global-set-key (kbd "M-h") 'ns-do-hide-emacs)
   (global-set-key (kbd "s-h") 'mark-paragraph))
 
+;; Open files from Finder in the same window
+(when (pet/is-mac)
+  (setq ns-pop-up-frames nil))
+
 (provide 'config)
 ;;; config.el ends here
