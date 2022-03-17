@@ -150,5 +150,10 @@
   :commands exec-path-from-shell-initialize
   :init (exec-path-from-shell-initialize))
 
+;; Ability to hide emacs on the mac
+(when (pet/is-mac)
+  (global-set-key (kbd "M-h") 'ns-do-hide-emacs)
+  (global-set-key (kbd "s-h") 'mark-paragraph))
+
 (provide 'config)
 ;;; config.el ends here
