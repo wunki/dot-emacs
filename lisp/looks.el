@@ -17,7 +17,7 @@
 
 (if (pet/is-linux)
   (push '(font . "Iosevka SS02 12") default-frame-alist)
-  (push '(font . "Dank Mono-16") default-frame-alist))
+  (push '(font . "MonoLisa-15") default-frame-alist))
 
 ;; Get rid of any bars
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
