@@ -2,7 +2,7 @@
 ;;
 ;;; Commentary:
 ;;
-;; Add helpful functions to our Emacs. All functions should start
+;; Add helpful functions to our Emacs.  All functions should start
 ;; with `pet' so we can easily find them.
 ;; 
 ;;; Code:
@@ -18,19 +18,19 @@
   :commands (s-trim s-concat))
 
 (defun pet/kill-region-or-backward-word ()
-  "Kill either the word backwards or the active region"
+  "Kill either the word backwards or the active region."
   (interactive)
   (if (region-active-p)
     (kill-region (region-beginning) (region-end))
     (backward-kill-word 1)))
 
 (defun pet/find-config ()
-  "Edit my configuration file"
+  "Edit my configuration file."
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
 (defun pet/is-exec (command)
-  "Returns true if `command' is an executable on the system search path"
+  "Return non-nil if COMMAND is an executable on the system search path."
   (f-executable?
     (s-trim (shell-command-to-string (s-concat "which " command)))))
 
@@ -40,12 +40,12 @@
   (eq system-type 'darwin))
 
 (defun pet/is-windows ()
-  "Returns true if running on Windows WSL"
+  "Return non-nil if running on Windows WSL."
   (interactive)
   (string-match "-[Mm]icrosoft" operating-system-release))
 
 (defun pet/is-linux ()
-  "Returns true if running on native Linux"
+  "Return non-nil if running on native Linux."
   (interactive)
   (and (not (pet/is-windows)) (string-equal system-type "gnu/linux")))
 
