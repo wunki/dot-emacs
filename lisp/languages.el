@@ -65,7 +65,7 @@
   ;; (setq lsp-enable-symbol-highlighting nil)
   ;; (setq lsp-signature-auto-activate nil)
 
-  ;; disable rustfmt on save
+  ;; disable rustfmt on save because LSP does that for us
   (setq rustic-format-on-save nil)
 
   ;; change emacs PATH to include cargo/bin
