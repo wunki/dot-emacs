@@ -20,7 +20,7 @@
   (lsp-signature-auto-activate nil)
   (lsp-headerline-breadcrumb-enable nil)
   (lsp-semantic-tokens-mode t)
-  (lsp-zig-zls-executable "/usr/bin/zls")
+  (lsp-zig-zls-executable "/usr/local/bin/zls")
 
   ;; Elixir specific
   (lsp-elixir-suggest-specs nil)
