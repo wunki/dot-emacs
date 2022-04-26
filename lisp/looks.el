@@ -16,7 +16,7 @@
   :config (default-text-scale-mode))
 
 (if (pet/is-linux)
-  (push '(font . "JetBrains Mono 10") default-frame-alist)
+  (push '(font . "Cascadia Code 12") default-frame-alist)
   (push '(font . "Dank Mono-15") default-frame-alist))
 
 ;; Get rid of any bars
@@ -34,7 +34,7 @@
   (kaolin-themes-italic-comments t)
   (kaolin-themes-git-gutter-solid nil)
   :config
-  (load-theme 'kaolin-mono-dark t)
+  (load-theme 'kaolin-blossom t)
   (kaolin-treemacs-theme))
 
 (use-package doom-modeline
