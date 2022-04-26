@@ -34,7 +34,7 @@
   (kaolin-themes-italic-comments t)
   (kaolin-themes-git-gutter-solid nil)
   :config
-  (load-theme 'kaolin-blossom t)
+  (load-theme 'kaolin-mono-dark t)
   (kaolin-treemacs-theme))
 
 (use-package doom-modeline
