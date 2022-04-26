@@ -16,7 +16,7 @@
   :config (default-text-scale-mode))
 
 (if (pet/is-linux)
-  (push '(font . "Cascadia Code 12") default-frame-alist)
+  (push '(font . "MonoLisa 12") default-frame-alist)
   (push '(font . "Dank Mono-15") default-frame-alist))
 
 ;; Get rid of any bars
