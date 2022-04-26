@@ -20,6 +20,7 @@
   (lsp-signature-auto-activate nil)
   (lsp-headerline-breadcrumb-enable nil)
   (lsp-semantic-tokens-mode t)
+  (lsp-zig-zls-executable "/usr/bin/zls")
 
   ;; Elixir specific
   (lsp-elixir-suggest-specs nil)
@@ -27,6 +28,7 @@
   :hook
   ((clojure-mode . lsp)
     (elixir-mode . lsp)
+    (zig-mode . lsp)
     (before-save . lsp-format-buffer)
     (before-save . lsp-organize-imports)
     (lsp-mode . lsp-enable-which-key-integration)))

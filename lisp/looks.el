@@ -67,5 +67,10 @@
   :if (executable-find "tree-sitter")
   :after tree-sitter)
 
+(use-package rainbow-mode
+  :commands rainbow-mode
+  :diminish
+  :hook ((web-mode . rainbow-mode) (css-mode . rainbow-mode)))
+
 (provide 'looks)
 ;;; looks.el ends here
