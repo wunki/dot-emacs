@@ -51,6 +51,18 @@
   ("M-TAB" . company-complete)
   ("TAB" . company-indent-or-complete-common))
 
+;; Balance and manipulate those parenthesis
+(use-package paredit
+  :commands paredit-mode
+  :config
+  (add-hook 'emacs-lisp-mode-hook #'paredit-mode)
+
+  ;; enable in the *scratch* buffer
+  (add-hook 'lisp-interaction-mode-hook #'paredit-mode)
+  (add-hook 'ielm-mode-hook #'paredit-mode)
+  (add-hook 'lisp-mode-hook #'paredit-mode)
+  (add-hook 'eval-expression-minibuffer-setup-hook #'paredit-mode))
+
 ;; Automatic parens matching
 (electric-pair-mode 1)
 
