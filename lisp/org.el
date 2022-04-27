@@ -43,7 +43,8 @@
     ("C-c n i" . org-roam-node-insert)
     ("C-c n c" . org-roam-capture)
     ("C-c n o" . org-id-get-create)
-    ("C-c n t" . org-roam-tag-add)))
+    ("C-c n t" . org-roam-tag-add)
+    ("C-c n l" . org-roam-buffer-toggle)))
 
 ;; Automatically save my org buffers
 (use-package real-auto-save
