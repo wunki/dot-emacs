@@ -30,7 +30,6 @@
     (elixir-mode . lsp)
     (zig-mode . lsp)
     (before-save . lsp-format-buffer)
-    (before-save . lsp-organize-imports)
     (lsp-mode . lsp-enable-which-key-integration)))
 
 (use-package lsp-ivy
