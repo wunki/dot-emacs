@@ -15,9 +15,11 @@
   :commands default-text-scale-mode
   :config (default-text-scale-mode))
 
-(if (pet/is-linux)
-  (push '(font . "MonoLisa 12") default-frame-alist)
-  (push '(font . "Dank Mono-16") default-frame-alist))
+;; Set the font, depending on the system
+(cond
+ ((pet/is-linux) (set-frame-font "Cascadia Code 28"))
+ ((pet/is-wsl) (set-frame-font "Cascadia Code 29"))
+ ((pet/is-mac) (set-frame-font "Dank Mono 18")))
 
 ;; Get rid of any bars
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
@@ -51,15 +53,17 @@
   :defines tree-sitter-major-mode-language-alist
   :hook
   (
-    ((rustic-mode python-mode css-mode elixir-mode)
+    ((rustic-mode python-mode css-mode elixir-mode zig-mode)
       .
       tree-sitter-mode)
-    ((rustic-mode python-mode css-mode elixir-mode)
+    ((rustic-mode python-mode css-mode elixir-mode zig-mode)
       .
       tree-sitter-hl-mode))
   :config
   (add-to-list 'tree-sitter-major-mode-language-alist
     '(rustic-mode . rust))
+  (add-to-list 'tree-sitter-major-mode-language-alist
+    '(zig-mode . zig))
   (add-to-list 'tree-sitter-major-mode-language-alist
     '(elixir-mode . elixir)))
 

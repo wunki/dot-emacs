@@ -39,15 +39,15 @@
   (interactive)
   (eq system-type 'darwin))
 
-(defun pet/is-windows ()
+(defun pet/is-wsl ()
   "Return non-nil if running on Windows WSL."
   (interactive)
-  (string-match "-[Mm]icrosoft" operating-system-release))
+  (and (string-equal system-type 'gnu/linux) (getenv "WSLENV")))
 
 (defun pet/is-linux ()
-  "Return non-nil if running on native Linux."
+  "Return non-nil if running on Linux."
   (interactive)
-  (and (not (pet/is-windows)) (string-equal system-type "gnu/linux")))
+  (and (not (pet/is-wsl)) (string-equal system-type "gnu/linux")))
 
 (defun pet/delete-file-and-buffer ()
   "Kill the current buffer and deletes the file it is visiting."
