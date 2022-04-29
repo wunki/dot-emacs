@@ -26,9 +26,9 @@
   (lsp-elixir-suggest-specs nil)
 
   :hook
-  ((clojure-mode . lsp)
-    (elixir-mode . lsp)
-    (zig-mode . lsp)
+  ((clojure-mode . lsp-deferred)
+    (elixir-mode . lsp-deferred)
+    (zig-mode . lsp-deferred)
     (before-save . lsp-format-buffer)
     (lsp-mode . lsp-enable-which-key-integration)))
 
