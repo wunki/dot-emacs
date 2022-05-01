@@ -19,7 +19,7 @@
 (cond
  ((pet/is-linux) (set-frame-font "Cascadia Code 28"))
  ((pet/is-wsl) (set-frame-font "Iosevka SS02 20"))
- ((pet/is-mac) (set-frame-font "Dank Mono 18")))
+ ((pet/is-mac) (set-frame-font "Dank Mono 16")))
 
 ;; Get rid of any bars
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
