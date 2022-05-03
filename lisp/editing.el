@@ -47,9 +47,8 @@
   (company-idle-delay 0.2) ; change to nil if you want to start auto-complete on tab
   :init
   (global-company-mode)
-  :bind
-  ("M-TAB" . company-complete)
-  ("TAB" . company-indent-or-complete-common))
+  :hook
+  (company-mode . company-tng-mode))
 
 ;; Balance and mold those parenthesis
 (use-package paredit
