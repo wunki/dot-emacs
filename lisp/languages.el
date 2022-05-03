@@ -13,17 +13,6 @@
   :commands eros-mode
   :config (eros-mode t))
 
-;; Automatically format Emacs lisp code
-(use-package elisp-autofmt
-  :commands (elisp-autofmt-save-hook-for-this-buffer)
-  :straight
-  (elisp-autofmt
-    :type git
-    :host gitlab
-    :files (:defaults "elisp-autofmt")
-    :repo "ideasman42/emacs-elisp-autofmt")
-  :hook (emacs-lisp-mode . elisp-autofmt-save-hook-for-this-buffer))
-
 (use-package flycheck
   :hook (prog-mode . flycheck-mode)
   :custom
