@@ -21,7 +21,7 @@
  ((pet/is-wsl) (set-frame-font "Cascadia Code 18"))
  ((pet/is-mac) (set-frame-font "Iosevka SS15 16")))
 
-;; Get rid of any bars
+;; Don't show any bars or toolbars
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
   (when (fboundp mode)
     (funcall mode 0)))
