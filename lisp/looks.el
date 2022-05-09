@@ -18,7 +18,7 @@
 ;; Set the font, depending on the system
 (cond
  ((pet/is-linux) (set-frame-font "Cascadia Code 11"))
- ((pet/is-wsl) (set-frame-font "Iosevka SS15 21"))
+ ((pet/is-wsl) (set-frame-font "Cascadia Code 18"))
  ((pet/is-mac) (set-frame-font "Iosevka SS15 16")))
 
 ;; Get rid of any bars
