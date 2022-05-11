@@ -55,6 +55,27 @@
   :commands paredit-mode
   :hook ((emacs-lisp-mode lisp-interaction-mode ielm-mode lisp-mode eval-expression-minibuffer-setup slime-repl-mode) . paredit-mode))
 
+;; Distraction-free screen for writing
+(use-package olivetti
+  :init
+  (setq olivetti-body-width .4)
+  :config
+  (defun pet/writing-mode ()
+    "Distraction-free writing environment"
+    (interactive)
+    (if (equal olivetti-mode nil)
+        (progn
+          (window-configuration-to-register 1)
+          (delete-other-windows)
+          (text-scale-increase 2)
+          (olivetti-mode t))
+      (progn
+        (jump-to-register 1)
+        (olivetti-mode 0)
+        (text-scale-decrease 2))))
+  :bind
+  (("<f9>" . pet/writing-mode)))
+
 ;; Automatic parens matching
 (electric-pair-mode 1)
 
