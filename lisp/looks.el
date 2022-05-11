@@ -17,7 +17,7 @@
 
 ;; Set the font, depending on the system
 (cond
- ((pet/is-linux) (set-frame-font "Cascadia Code 11"))
+ ((pet/is-linux) (set-frame-font "Iosevka SS15 13"))
  ((pet/is-wsl) (set-frame-font "Cascadia Code 18"))
  ((pet/is-mac) (set-frame-font "Iosevka SS15 16")))
 
