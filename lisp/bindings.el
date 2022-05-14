@@ -25,5 +25,8 @@
 ;; Quickly edit my config
 (global-set-key (kbd "C-c I") 'pet/find-config)
 
+;; Rename file and buffer
+(global-set-key (kbd "C-c r") 'pet/rename-file-and-buffer)
+
 (provide 'bindings)
 ;;; bindings.el ends here

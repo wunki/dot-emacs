@@ -61,6 +61,19 @@
           (message "Deleted file %s" filename)
           (kill-buffer))))))
 
+(defun pet/rename-file-and-buffer ()
+  "Rename the current buffer and file it is visiting."
+  (interactive)
+  (let ((filename (buffer-file-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (message "Buffer is not visiting a file!")
+      (let ((new-name (read-file-name "New name: " filename)))
+        (cond
+         ((vc-backend filename) (vc-rename-file filename new-name))
+         (t
+          (rename-file filename new-name t)
+          (set-visited-file-name new-name t t)))))))
+
 (defun pet/eshell-here ()
   "Opens up a new shell in the directory associated with the current buffer's file.
 The eshell is renamed to match that directory to make multiple eshell
