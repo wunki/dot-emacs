@@ -39,5 +39,11 @@
   :commands lsp-treemacs-sync-mode
   :config (lsp-treemacs-sync-mode 1))
 
+(use-package lsp-grammarly
+  :ensure t
+  :hook (markdown-mode . (lambda ()
+                           (require 'lsp-grammarly)
+                           (lsp-deferred))))
+
 (provide 'language-server)
 ;;; language-server.el ends here
