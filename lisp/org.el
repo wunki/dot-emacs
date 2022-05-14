@@ -8,9 +8,7 @@
 ;;
 (require 'lib)
 
-(if (pet/is-linux)
-  (defvar org-directory (expand-file-name "~/notes"))
-  (defvar org-directory (expand-file-name "~/Notes")))
+(defvar org-directory (expand-file-name "~/Notes"))
 
 (use-package org
   :custom (org-return-follows-link t))
