@@ -6,8 +6,6 @@
 
 ;;; Code:
 
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-
 ;; Emacs email configuration
 (setq mail-user-agent 'mu4e-user-agent
         ;; don't keep message buffers around
@@ -17,6 +15,11 @@
 
 (use-package mu4e
   :ensure nil
+  :straight (:host github
+             :files ("build/mu4e/*.el")
+             :repo "djcb/mu"
+             :pre-build (("./autogen.sh")
+                         ("ninja" "-C" "build")))
   :commands mu4e
   :bind (("C-c m" . mu4e)
          :map mu4e-headers-mode-map
