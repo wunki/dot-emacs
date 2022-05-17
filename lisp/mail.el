@@ -1,9 +1,9 @@
-;;; -*- lexical-binding: t -*-
-;;; mail.el --- Mu4e setup
+;;; mail.el --- sending mail with emacs and Mu4e -*- lexical-binding: t -*-
 ;;;
-;;; To be able to use the library, you need to install mu through
-;;; your package manager.
-
+;;; Commentary:
+;;
+;;; To be able to use the library, you need to have the mu command available.
+;;;
 ;;; Code:
 
 ;; Emacs email configuration
