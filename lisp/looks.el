@@ -16,10 +16,13 @@
   :config (default-text-scale-mode))
 
 ;; Set the font, depending on the system
-(cond
- ((pet/is-linux) (set-frame-font "Iosevka SS15 13"))
- ((pet/is-wsl) (set-frame-font "Cascadia Code 18"))
- ((pet/is-mac) (set-frame-font "Iosevka SS15 16")))
+(defvar petars-font
+  (cond
+   ((pet/is-linux) "Iosevka SS15 13")
+   ((pet/is-wsl) "Cascadia Code 18")
+   ((pet/is-mac) "Iosevka SS15 16")))
+
+(pet/set-font petars-font)
 
 ;; Don't show any bars or toolbars
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
