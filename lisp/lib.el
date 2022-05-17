@@ -27,7 +27,7 @@
 (defun pet/find-config ()
   "Edit my configuration file."
   (interactive)
-  (find-file "~/.emacs.d/init.el"))
+  (find-file "~/.config/emacs/init.el"))
 
 (defun pet/is-exec (command)
   "Return non-nil if COMMAND is an executable on the system search path."
@@ -93,10 +93,32 @@ windows easier."
     (rename-buffer (concat "*eshell: " name "*"))))
 (global-set-key (kbd "C-c s") 'pet/eshell-here)
 
+(defun pet/url-get-title (url &optional descr)
+  "Takes a URL and returns the value of the <title> HTML tag"
+  (let ((buffer (url-retrieve-synchronously url))
+        (title nil))
+    (save-excursion
+      (set-buffer buffer)
+      (goto-char (point-min))
+      (search-forward-regexp "<title>\\([^<]+?\\)</title>")	
+      (setq title (match-string 1 ) )
+      (kill-buffer (current-buffer)))
+    title))
+(setq org-make-link-description-function 'pet/url-get-title)
+
 (defun eshell/q ()
   (insert "exit")
   (eshell-send-input)
   (delete-window))
+
+(defun pet/set-font (font)
+  "Take a FONT and set it.
+If the window-system is active, it directly changes the font.
+Otherwise it adds it to the so it works with the Emacs daemon."
+  (interactive "sFont: ")
+  (if (window-system)
+      (set-frame-font font)
+    (add-to-list 'default-frame-alist `(font . ,font))))
 
 (provide 'lib)
 ;;; lib.el ends here
