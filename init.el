@@ -24,10 +24,6 @@
 (require 'editing)
 (require 'language-server)
 (require 'languages)
-(require 'org)
-
-;; (if (pet/is-linux)
-;;   (require 'mail))
 
 (provide 'init)
 ;;; init.el ends here
