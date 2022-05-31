@@ -2,48 +2,16 @@
 ;;
 ;;; Commentary:
 ;;
-;; Setup the `lsp' package to intrude as little as possible
+;; Setup the `eglot' package to intrude as little as possible
 ;; and work with the languages I use.
 ;;
 ;;; Code:
 ;;
 (require 'lib)
 
-(use-package lsp-mode
-  :commands lsp
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  (add-to-list 'exec-path "~/.local/share/elixir-ls/release")
-  :custom
-  (lsp-rust-analyzer-cargo-watch-command "clippy")
-  (lsp-lens-enable t)
-  (lsp-signature-auto-activate nil)
-  (lsp-headerline-breadcrumb-enable nil)
-  (lsp-semantic-tokens-mode t)
-  (lsp-zig-zls-executable "/usr/local/bin/zls")
-
-  ;; Elixir specific
-  (lsp-elixir-suggest-specs nil)
-
-  :hook
-  ((clojure-mode . lsp-deferred)
-    (elixir-mode . lsp-deferred)
-    (zig-mode . lsp-deferred)
-    (before-save . lsp-format-buffer)
-    (lsp-mode . lsp-enable-which-key-integration)))
-
-(use-package lsp-ivy
-  :commands lsp-ivy-workspace-symbol)
-
-(use-package lsp-treemacs
-  :commands lsp-treemacs-sync-mode
-  :config (lsp-treemacs-sync-mode 1))
-
-(use-package lsp-grammarly
-  :ensure t
-  :hook (markdown-mode . (lambda ()
-                           (require 'lsp-grammarly)
-                           (lsp-deferred))))
+(use-package eglot
+  :config
+  (add-to-list 'eglot-server-programs '(elixir-mode "~/.local/share/elixir-ls/release/language_server.sh")))
 
 (provide 'language-server)
 ;;; language-server.el ends here
