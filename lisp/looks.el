@@ -19,7 +19,7 @@
 (defvar petars-font
   (cond
    ((pet/is-linux) "Iosevka SS15 13")
-   ((pet/is-wsl) "Iosevka SS02 19")
+   ((pet/is-wsl) "Iosevka SS15 18")
    ((pet/is-mac) "Iosevka SS15 16")))
 
 (pet/set-font petars-font)
