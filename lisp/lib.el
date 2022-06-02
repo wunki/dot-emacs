@@ -29,6 +29,10 @@
   (interactive)
   (find-file "~/.config/emacs/init.el"))
 
+(defun pet/reload-config ()
+  (interactive)
+  (load-file user-init-file))
+
 (defun pet/is-exec (command)
   "Return non-nil if COMMAND is an executable on the system search path."
   (f-executable?
