@@ -88,7 +88,7 @@
 ;; Common Lisp
 (use-package sly
   :custom
-  (inferior-lisp-program "ros -Q run"))
+  (inferior-lisp-program "sbcl"))
 
 (provide 'languages)
 ;;; languages.el ends here
