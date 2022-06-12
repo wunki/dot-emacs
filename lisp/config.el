@@ -90,8 +90,8 @@
 ;; Use shift + direction to switch between windows
 (windmove-default-keybindings)
 
-;; highlight the current line
-(global-hl-line-mode)
+;; highlight the current line, turned off for now
+(global-hl-line-mode 0)
 
 ;; highlight the matching paren
 (show-paren-mode 1)

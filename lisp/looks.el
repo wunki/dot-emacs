@@ -18,7 +18,7 @@
 ;; Set the font, depending on the system
 (defvar petars-font
   (cond
-   ((pet/is-linux) "Iosevka SS15 13")
+   ((pet/is-linux) "Iosevka SS08 11")
    ((pet/is-wsl) "Iosevka SS15 18")
    ((pet/is-mac) "Iosevka SS15 16")))
 
