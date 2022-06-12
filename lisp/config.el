@@ -93,6 +93,9 @@
 ;; highlight the current line, turned off for now
 (global-hl-line-mode 0)
 
+;; change the default cursor
+(setq-default cursor-type '(hbar . 2))
+
 ;; highlight the matching paren
 (show-paren-mode 1)
 
