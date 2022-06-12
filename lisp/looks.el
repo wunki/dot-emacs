@@ -39,10 +39,11 @@
   (kaolin-themes-italic-comments t)
   (kaolin-themes-git-gutter-solid nil)
   :config
-  (load-theme 'kaolin-mono-dark t)
+  (load-theme 'kaolin-aurora t)
   (kaolin-treemacs-theme))
 
 (use-package lambda-line
+  :demand
   :commands (lambda-line-mode)
   :straight (:type git :host github :repo "lambda-emacs/lambda-line")
   :custom
