@@ -4,7 +4,6 @@
 /.emacs.desktop
 /.emacs.desktop.lock
 *.elc
-auto-save-list
 tramp
 .\#*
 
@@ -26,17 +25,17 @@ tramp
 *.rel
 
 # AUCTeX auto folder
-/auto/
+/auto
 
 # cask packages
-.cask/
-dist/
+.cask
+dist
 
 # Flycheck
 flycheck_*.el
 
 # server auth directory
-/server/
+/server
 
 # projectiles files
 .projectile
@@ -52,12 +51,17 @@ flycheck_*.el
 
 # gcc emacs cache
 /eln-cache
-/transient/
+/transient
 /recentf
 /projects
 /.lsp-session-v1
-/url/
+/url
 /bookmarks
 /history
-/org-persist/
+/org-persist
 /org-roam.db
+/.cache
+
+# auto saving
+/auto-saves
+/auto-save-list
