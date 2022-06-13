@@ -21,7 +21,7 @@
   :custom
   (org-roam-directory (file-truename org-directory))
   (org-startup-indented t)
-  (org-roam-dailies-directory "dailies/")
+  (org-roam-dailies-directory "Dailies/")
   (org-roam-dailies-capture-templates
     '
     (
