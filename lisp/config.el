@@ -153,6 +153,20 @@
   :commands exec-path-from-shell-initialize
   :init (exec-path-from-shell-initialize))
 
+(use-package vterm
+  :config
+  (defun turn-off-chrome ()
+    (hl-line-mode -1)
+    (display-line-numbers-mode -1))
+  :hook (vterm-mode . turn-off-chrome))
+
+(use-package vterm-toggle
+  :commands (vterm-toggle)
+  :custom
+  (vterm-toggle-fullscreen-p nil "Open a vterm in another window.")
+  (vterm-toggle-scope 'project)
+  :bind (("C-c t" . #'vterm-toggle)))
+
 ;; Ability to hide emacs on the mac
 (when (pet/is-mac)
   (global-set-key (kbd "M-h") 'ns-do-hide-emacs)
