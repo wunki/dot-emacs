@@ -30,6 +30,7 @@
   (find-file "~/.config/emacs/init.el"))
 
 (defun pet/reload-config ()
+  "Reloads all Emacs configuration."
   (interactive)
   (load-file user-init-file))
 
@@ -97,8 +98,8 @@ windows easier."
     (rename-buffer (concat "*eshell: " name "*"))))
 (global-set-key (kbd "C-c s") 'pet/eshell-here)
 
-(defun pet/url-get-title (url &optional descr)
-  "Takes a URL and returns the value of the <title> HTML tag"
+(defun pet/url-get-title (url &optional)
+  "Takes a URL and returns the value of the <title> HTML tag."
   (let ((buffer (url-retrieve-synchronously url))
         (title nil))
     (save-excursion
