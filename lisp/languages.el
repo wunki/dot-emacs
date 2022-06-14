@@ -35,6 +35,18 @@
 ;; Elixir
 (use-package elixir-mode)
 
+(use-package eldoc
+  :straight nil
+  :hook (prog-mode-hook . eldoc-mode)
+  :init
+  (global-eldoc-mode 1))
+
+(use-package eldoc-box
+  :hook (eldoc-mode-hook . eldoc-box-hover-mode)
+  :init
+  (setq eldoc-box-position-function #'eldoc-box--default-upper-corner-position-function
+        eldoc-box-clear-with-C-g t))
+
 ;; Rust
 (use-package rustic
   :mode ("\\.rs\\'" . rustic-mode)
@@ -55,6 +67,10 @@
   (rustic-analyzer-command '("~/.local/bin/rust-analyzer"))
 
   :config
+  ;; if we don't delete rust-mode, after saving, the buffer will
+  ;; jump to rust-mode instead of rustic-mode. Which we do not want.
+  (setq auto-mode-alist (rassq-delete-all 'rust-mode auto-mode-alist))
+
   ;; change emacs PATH to include cargo/bin
   (setenv "PATH" (concat (getenv "PATH") ":~/.cargo/bin"))
   (setq exec-path (append exec-path '("~/.cargo/bin")))
