@@ -48,15 +48,11 @@
     ("C-c C-c q" . lsp-workspace-restart)
     ("C-c C-c Q" . lsp-workspace-shutdown)
     ("C-c C-c s" . lsp-rust-analyzer-status))
+  :custom
+  (rustic-lsp-client 'eglot)
+  (rustic-format-on-save t)
+
   :config
-  ;; uncomment for less flashiness
-  ;; (setq lsp-eldoc-hook nil)
-  ;; (setq lsp-enable-symbol-highlighting nil)
-  ;; (setq lsp-signature-auto-activate nil)
-
-  ;; disable rustfmt on save because LSP does that for us
-  (setq rustic-format-on-save nil)
-
   ;; change emacs PATH to include cargo/bin
   (setenv "PATH" (concat (getenv "PATH") ":~/.cargo/bin"))
   (setq exec-path (append exec-path '("~/.cargo/bin")))
