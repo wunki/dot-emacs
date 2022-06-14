@@ -165,8 +165,7 @@
   :custom
   (vterm-toggle-fullscreen-p nil "Open a vterm in another window.")
   (vterm-toggle-scope 'project)
-  :bind (("C-c t" . #'vterm-toggle)))
-
+  :bind (("C-c C-t" . #'vterm-toggle)))
 ;; Ability to hide emacs on the mac
 (when (pet/is-mac)
   (global-set-key (kbd "M-h") 'ns-do-hide-emacs)
