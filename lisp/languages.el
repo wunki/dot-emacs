@@ -37,6 +37,7 @@
 
 ;; Rust
 (use-package rustic
+  :mode ("\\.rs\\'" . rustic-mode)
   :bind
   (:map
     rustic-mode-map
@@ -51,6 +52,7 @@
   :custom
   (rustic-lsp-client 'eglot)
   (rustic-format-on-save t)
+  (rustic-analyzer-command '("~/.local/bin/rust-analyzer"))
 
   :config
   ;; change emacs PATH to include cargo/bin
