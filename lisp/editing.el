@@ -18,7 +18,8 @@
 ;; Easily move to the actual beginning of the line, double-tap moves
 ;; to the first character
 (use-package crux
-  :bind (("C-a" . crux-move-beginning-of-line)))
+  :bind (("C-a" . crux-move-beginning-of-line)
+         ("C-c f" . crux-recentf-find-file)))
 
 ;; Move to the last change in the buffer
 (use-package goto-last-change

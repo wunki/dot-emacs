@@ -51,6 +51,13 @@
 (use-package savehist
   :init (savehist-mode))
 
+;; Jump to recent files
+(use-package recentf
+  :custom
+  (recentf-max-menu-items 15)
+  (recentf-max-saved-items 100)
+  :hook (after-init . recentf-mode))
+
 ;; Extra metadata in the minibuffer
 (use-package marginalia
   :after vertico
