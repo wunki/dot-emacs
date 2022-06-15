@@ -11,7 +11,9 @@
 (defvar org-directory (expand-file-name "~/Notes"))
 
 (use-package org
-  :custom (org-return-follows-link t))
+  :custom (org-return-follows-link t)
+  :config
+  (require 'org-tempo))
 
 (use-package org-roam
   :after org
