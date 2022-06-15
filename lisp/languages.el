@@ -8,6 +8,7 @@
 ;;
 (require 'lib)
 
+;; Display Emacs lisp results inline.
 (use-package eros
   :demand
   :commands eros-mode
@@ -35,6 +36,7 @@
 ;; Elixir
 (use-package elixir-mode)
 
+;; Documentation
 (use-package eldoc
   :straight nil
   :hook (prog-mode-hook . eldoc-mode)
@@ -84,10 +86,14 @@
 (use-package zig-mode
   :mode ("\\.zig\\'" . zig-mode))
 
+;; Fish, my shell of choice
 (use-package fish-mode)
+
+;; Yaml, yaml
 (use-package yaml-mode
   :config (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 
+;; Lisp on the Erlang beam
 (use-package lfe-mode
   :if (executable-find "lfe"))
 
