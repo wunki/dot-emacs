@@ -10,6 +10,7 @@
 (require 'lib)
 
 (use-package eglot
+  :hook ((zig-mode elixir-mode) . eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs '(elixir-mode "~/.local/share/elixir-ls/release/language_server.sh")))
 
