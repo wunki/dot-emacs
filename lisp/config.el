@@ -132,7 +132,7 @@
   `((".*" "~/.config/emacs/auto-saves/" t)))
 
 ;; If available, use `xdg-open' to open URLs.
-(when (pet/is-exec "xdg-open")
+(when (executable-find "xdg-open")
   (setq-default
     browse-url-browser-function
     (quote browse-url-generic)
@@ -165,7 +165,8 @@
   :custom
   (vterm-toggle-fullscreen-p nil "Open a vterm in another window.")
   (vterm-toggle-scope 'project)
-  :bind (("C-c C-t" . #'vterm-toggle)))
+  :bind (("C-c T" . #'vterm-toggle)))
+
 ;; Ability to hide emacs on the mac
 (when (pet/is-mac)
   (global-set-key (kbd "M-h") 'ns-do-hide-emacs)

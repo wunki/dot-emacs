@@ -82,7 +82,7 @@
 
 ;; Zig
 (use-package zig-mode
-  :config (add-to-list 'auto-mode-alist '("\\.zig\\'" . zig-mode)))
+  :mode ("\\.zig\\'" . zig-mode))
 
 (use-package fish-mode)
 (use-package yaml-mode

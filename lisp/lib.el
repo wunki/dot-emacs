@@ -10,10 +10,6 @@
 
 (require 'packages)
 
-;; Modern API for working with files
-(use-package f
-  :commands f-executable?)
-
 (use-package s
   :commands (s-trim s-concat))
 
@@ -33,11 +29,6 @@
   "Reloads all Emacs configuration."
   (interactive)
   (load-file user-init-file))
-
-(defun pet/is-exec (command)
-  "Return non-nil if COMMAND is an executable on the system search path."
-  (f-executable?
-    (s-trim (shell-command-to-string (s-concat "which " command)))))
 
 (defun pet/is-mac ()
   "Return non-nil if running on a mac."
