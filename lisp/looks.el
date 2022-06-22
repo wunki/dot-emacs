@@ -85,5 +85,9 @@
   :diminish
   :hook ((web-mode . rainbow-mode) (css-mode . rainbow-mode)))
 
+(use-package emojify
+  :hook (erc-mode . emojify-mode)
+  :commands emojify-mode)
+
 (provide 'looks)
 ;;; looks.el ends here
