@@ -65,3 +65,6 @@ flycheck_*.el
 # auto saving
 /auto-saves
 /auto-save-list
+
+# emojis
+/emojis
