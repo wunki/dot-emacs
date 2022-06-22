@@ -91,6 +91,11 @@
     "map the keys to my homerow on dvorak")
   :bind (("C-c c" . avy-goto-char-2) ("C-c l" . avy-goto-line)))
 
+(use-package ace-window
+  :custom
+  (aw-keys '(?a ?o ?e ?u ?h ?t ?t ?n ?l))
+  :bind (("M-o" . ace-window)))
+
 ;; Filebrowser
 (use-package treemacs
   :defer t
