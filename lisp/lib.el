@@ -87,7 +87,6 @@ windows easier."
     (other-window 1)
     (eshell "new")
     (rename-buffer (concat "*eshell: " name "*"))))
-(global-set-key (kbd "C-c s") 'pet/eshell-here)
 
 (defun pet/url-get-title (url &optional)
   "Takes a URL and returns the value of the <title> HTML tag."
