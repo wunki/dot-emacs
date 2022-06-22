@@ -110,5 +110,13 @@
   :custom
   (inferior-lisp-program "sbcl"))
 
+;; Highlight TODO keywords in source code
+(use-package hl-todo
+  :ensure t
+  :custom-face
+  (hl-todo ((t (:inherit hl-todo :italic t))))
+  :hook ((prog-mode . hl-todo-mode)
+         (yaml-mode . hl-todo-mode)))
+
 (provide 'languages)
 ;;; languages.el ends here
