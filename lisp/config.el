@@ -100,7 +100,7 @@
 (global-hl-line-mode 0)
 
 ;; change the default cursor
-(setq-default cursor-type '(hbar . 2))
+(setq-default cursor-type 'box)
 
 ;; highlight the matching paren
 (show-paren-mode 1)
