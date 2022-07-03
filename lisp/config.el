@@ -78,8 +78,14 @@
 ;; No load noises please
 (setq ring-bell-function 'ignore)
 
-;; Let lines wrap
-(global-visual-line-mode 1)
+;; Enable visual-line-mode. Change auto-fill-mode to AF and swap
+;; remove visual-line-mode
+(use-package emacs
+  :init
+  (global-visual-line-mode 1)
+  :delight
+  (auto-fill-function " AF")
+  (visual-line-mode))
 
 ;; Update the buffer when a file changes
 (global-auto-revert-mode 1)
