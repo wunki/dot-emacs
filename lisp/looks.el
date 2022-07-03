@@ -32,20 +32,14 @@
 (use-package all-the-icons
   :if (display-graphic-p))
 
-(use-package kaolin-themes
-  :demand
-  :commands kaolin-treemacs-theme
-  :custom
-  (kaolin-themes-italic-comments t)
-  (kaolin-themes-git-gutter-solid nil)
+(use-package modus-themes
+  :init
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs t
+        modus-themes-region '(bg-only no-extend))
   :config
-  (load-theme 'kaolin-aurora t)
-  (kaolin-treemacs-theme))
-
-(use-package doom-modeline
-  :ensure t
-  :commands (doom-modeline-mode)
-  :init (doom-modeline-mode 1))
+  (load-theme 'modus-operandi t)
+  :bind ("<f5>" . modus-themes-toggle))
 
 (use-package fontset
   :straight (:type built-in) ;; only include this if you use straight
@@ -56,7 +50,7 @@
      t 'symbol "Symbola" nil)))
 
 ;; Semantic parser for languages, which will give us nicer
-;; syntax highlighting
+;; syntax highlighting.
 (use-package tree-sitter
   :if (executable-find "tree-sitter")
   :defines tree-sitter-major-mode-language-alist
