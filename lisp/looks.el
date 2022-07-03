@@ -35,7 +35,7 @@
 (use-package modus-themes
   :commands (modus-themes-load-themes modus-themes-load-operandi)
   :init
-  (setq modus-themes-mode-line '(accented borderless)
+  (setq modus-themes-mode-line '(accented borderless (padding . 4))
         modus-themes-italic-constructs t
         modus-themes-bold-constructs t
         modus-themes-region '(bg-only no-extend)
