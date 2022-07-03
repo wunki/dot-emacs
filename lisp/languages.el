@@ -39,6 +39,7 @@
 ;; Documentation
 (use-package eldoc
   :straight nil
+  :delight
   :hook (prog-mode-hook . eldoc-mode)
   :init
   (global-eldoc-mode 1))
