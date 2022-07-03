@@ -33,12 +33,20 @@
   :if (display-graphic-p))
 
 (use-package modus-themes
+  :commands (modus-themes-load-themes modus-themes-load-operandi)
   :init
-  (setq modus-themes-italic-constructs t
+  (setq modus-themes-mode-line '(accented borderless)
+        modus-themes-italic-constructs t
         modus-themes-bold-constructs t
-        modus-themes-region '(bg-only no-extend))
+        modus-themes-region '(bg-only no-extend)
+        modus-themes-fringes 'subtle
+        modus-themes-tabs-accented t
+        modus-themes-paren-match '(bold intense)
+        modus-themes-org-blocks 'tinted-background
+        modus-themes-region '(bg-only))
+  (modus-themes-load-themes)
   :config
-  (load-theme 'modus-operandi t)
+  (modus-themes-load-operandi)
   :bind ("<f5>" . modus-themes-toggle))
 
 (use-package fontset
