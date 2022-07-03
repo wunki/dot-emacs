@@ -38,12 +38,14 @@
 
 ;; Show line changes in the gutter
 (use-package git-gutter
+  :delight
   :commands global-git-gutter-mode
   :init (global-git-gutter-mode))
 
 ;; Setup auto-completion with company
 (use-package company
   :commands global-company-mode
+  :delight
   :custom
   (company-idle-delay 0.2) ; change to nil if you want to start auto-complete on tab
   :init

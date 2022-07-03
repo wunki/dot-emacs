@@ -81,6 +81,7 @@
 
 ;; Suggests the next key, depending on the pressed key
 (use-package which-key
+  :delight
   :hook (after-init . which-key-mode))
 
 ;; Quickly move around with Avy
