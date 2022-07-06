@@ -37,7 +37,7 @@
   :init
   (setq modus-themes-mode-line '(accented borderless (padding . 4))
         modus-themes-italic-constructs t
-        modus-themes-bold-constructs t
+        modus-themes-bold-constructs nil
         modus-themes-region '(bg-only no-extend)
         modus-themes-fringes 'subtle
         modus-themes-tabs-accented t
