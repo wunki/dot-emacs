@@ -10,7 +10,8 @@
 (require 'lib)
 
 (use-package eglot
-  :hook ((zig-mode elixir-mode) . eglot-ensure)
+  :hook (((zig-mode elixir-mode) . eglot-ensure)
+         (before-save . eglot-format-buffer))
   :config
   (add-to-list 'eglot-server-programs '(elixir-mode "~/.local/share/elixir-ls/release/language_server.sh")))
 
