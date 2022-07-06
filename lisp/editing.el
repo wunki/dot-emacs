@@ -39,8 +39,9 @@
 ;; Show line changes in the gutter
 (use-package git-gutter
   :delight
-  :commands global-git-gutter-mode
-  :init (global-git-gutter-mode))
+  :hook (prog-mode . git-gutter-mode)
+  :config
+  (setq git-gutter:update-interval 0.2))
 
 ;; Setup auto-completion with company
 (use-package company
