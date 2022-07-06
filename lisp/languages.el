@@ -111,6 +111,10 @@
   :custom
   (inferior-lisp-program "sbcl"))
 
+;; Docker
+(use-package dockerfile-mode
+  :mode ("Dockerfile\\'" . dockerfile-mode))
+
 ;; Highlight TODO keywords in source code
 (use-package hl-todo
   :ensure t
