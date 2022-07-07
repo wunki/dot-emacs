@@ -18,7 +18,7 @@
 ;; Set the font, depending on the system
 (defvar petars-font
   (cond
-   ((pet/is-linux) "Iosevka SS08 11")
+   ((pet/is-linux) "JetBrains Mono 9")
    ((pet/is-wsl) "Iosevka SS15 18")
    ((pet/is-mac) "Iosevka SS15 16")))
 
@@ -50,7 +50,7 @@
   :bind ("<f5>" . modus-themes-toggle))
 
 (use-package fontset
-  :straight (:type built-in) ;; only include this if you use straight
+  :straight (:type built-in)
   :config
   ;; Use symbola for proper unicode
   (when (member "Symbola" (font-family-list))
@@ -85,7 +85,8 @@
 (use-package rainbow-mode
   :commands rainbow-mode
   :diminish
-  :hook ((web-mode . rainbow-mode) (css-mode . rainbow-mode)))
+  :hook ((web-mode . rainbow-mode)
+         (css-mode . rainbow-mode)))
 
 (use-package emojify
   :hook (erc-mode . emojify-mode)
