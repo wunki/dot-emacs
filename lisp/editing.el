@@ -47,6 +47,8 @@
 (use-package company
   :commands global-company-mode
   :delight
+  :bind (:map company-active-map
+              ("C-w" . pet/kill-region-or-backward-word))
   :custom
   (company-idle-delay 0.2) ; change to nil if you want to start auto-complete on tab
   :init
