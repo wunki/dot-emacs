@@ -20,7 +20,7 @@
   (cond
    ((pet/is-linux) "JetBrains Mono 9")
    ((pet/is-wsl) "Iosevka SS15 18")
-   ((pet/is-mac) "Iosevka SS15 16")))
+   ((pet/is-mac) "M PLUS 1 Code 16")))
 
 (pet/set-font petars-font)
 
@@ -32,39 +32,11 @@
 (use-package all-the-icons
   :if (display-graphic-p))
 
-(use-package modus-themes
-  :commands (modus-themes-load-themes modus-themes-load-operandi)
-  :init
-  (setq modus-themes-mode-line '(accented borderless (padding . 4))
-        modus-themes-italic-constructs t
-        modus-themes-bold-constructs nil
-        modus-themes-region '(bg-only no-extend)
-        modus-themes-fringes 'subtle
-        modus-themes-tabs-accented t
-        modus-themes-paren-match '(bold intense)
-        modus-themes-org-blocks 'tinted-background
-        modus-themes-region '(bg-only))
-  (modus-themes-load-themes)
-  :config
-  ;; (modus-themes-load-operandi)
-  :bind ("<f5>" . modus-themes-toggle))
-
-(use-package mindre-theme
-    :ensure t
-    :straight (:host github :repo "erikbackman/mindre-theme")
-    :custom
-    (mindre-use-more-bold nil)
-    (mindre-use-faded-lisp-parens t)
-    :config
-    (load-theme 'mindre t))
-
-(use-package fontset
-  :straight (:type built-in)
-  :config
-  ;; Use symbola for proper unicode
-  (when (member "Symbola" (font-family-list))
-    (set-fontset-font
-     t 'symbol "Symbola" nil)))
+(use-package stimmung-themes
+  :straight (stimmung-themes :host github :repo "motform/stimmung-themes")
+  :demand t
+  :ensure t
+  :config (stimmung-themes-load-light))
 
 ;; Semantic parser for languages, which will give us nicer
 ;; syntax highlighting.
