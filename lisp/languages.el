@@ -111,6 +111,9 @@
   :custom
   (inferior-lisp-program "sbcl"))
 
+;; Go
+(use-package go-mode)
+
 ;; Docker
 (use-package dockerfile-mode
   :mode ("Dockerfile\\'" . dockerfile-mode))
