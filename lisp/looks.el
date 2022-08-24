@@ -20,7 +20,7 @@
   (cond
    ((pet/is-linux) "JetBrains Mono 9")
    ((pet/is-wsl) "Iosevka SS15 18")
-   ((pet/is-mac) "M PLUS 1 Code 14")))
+   ((pet/is-mac) "Triplicate T4 13")))
 
 (pet/set-font petars-font)
 
@@ -28,6 +28,14 @@
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
   (when (fboundp mode)
     (funcall mode 0)))
+
+;; Add some spacing
+(setq frame-resize-pixelwise t
+      default-frame-alist    (append (list
+                                      '(vertical-scroll-bars . nil)
+                                      '(internal-border-width . 18)
+                                      '(right-fringe   . 0)
+                                      '(tool-bar-lines . 0))))
 
 (use-package all-the-icons
   :if (display-graphic-p))
