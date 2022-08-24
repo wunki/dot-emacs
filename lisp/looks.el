@@ -10,6 +10,7 @@
 ;;; Code:
 (require 'lib)
 
+;; Easily scale the font size up and down
 (use-package default-text-scale
   :demand
   :commands default-text-scale-mode

@@ -101,13 +101,16 @@
 ;; Use shift + direction to switch between windows
 (windmove-default-keybindings)
 
-;; highlight the current line, turned off for now
+;; Highlight the current line, turned off for now
 (global-hl-line-mode 0)
 
-;; change the default cursor
+;; Change the default cursor
 (setq-default cursor-type 'box)
 
-;; highlight the matching paren
+;; Let's see who blinks first
+(blink-cursor-mode 0)
+
+;; Highlight the matching paren
 (show-paren-mode 1)
 
 ;; This will stop Emacs from changing my config by
