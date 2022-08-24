@@ -46,6 +46,11 @@
 ;; No empty line indicators
 (setq indicate-empty-lines nil)
 
+;; Improve the performance for loading themes
+(defadvice load-theme (before clear-previous-themes activate)
+  "Clear existing theme settings instead of layering them."
+  (mapc #'disable-theme custom-enabled-themes))
+
 ;; We have enough memory available, let's accumulate
 ;; before we assimilate
 (setq gc-cons-threshold (* 100 1024 1024))

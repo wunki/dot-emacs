@@ -20,7 +20,7 @@
   (cond
    ((pet/is-linux) "JetBrains Mono 9")
    ((pet/is-wsl) "Iosevka SS15 18")
-   ((pet/is-mac) "M PLUS 1 Code 16")))
+   ((pet/is-mac) "M PLUS 1 Code 14")))
 
 (pet/set-font petars-font)
 
@@ -34,6 +34,7 @@
 
 (use-package stimmung-themes
   :straight (stimmung-themes :host github :repo "motform/stimmung-themes")
+  :commands stimmung-themes-load-light
   :demand t
   :ensure t
   :config (stimmung-themes-load-light))
