@@ -19,7 +19,7 @@
 ;; Set the font, depending on the system
 (defvar petars-font
   (cond
-   ((pet/is-linux) "JetBrains Mono 9")
+   ((pet/is-linux) "Triplicate T4 12")
    ((pet/is-wsl) "Iosevka SS15 18")
    ((pet/is-mac) "Triplicate T4 13")))
 
