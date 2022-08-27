@@ -11,8 +11,14 @@
 (defvar org-directory (expand-file-name "~/Notes"))
 
 (use-package org
-  :custom (org-return-follows-link t)
+  :custom
+  (org-return-follows-link t)
+  (org-babel-lisp-eval-fn #'sly-eval)
   :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (lisp . t)))
   (require 'org-tempo))
 
 (use-package org-roam
