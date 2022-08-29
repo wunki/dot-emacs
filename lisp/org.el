@@ -13,13 +13,13 @@
 (use-package org
   :custom
   (org-return-follows-link t)
-  (org-babel-lisp-eval-fn #'sly-eval)
   :config
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp . t)
-     (lisp . t)))
   (require 'org-tempo))
+
+(custom-set-variables
+ '(org-babel-load-languages (quote ((emacs-lisp . t) (lisp . t))))
+ '(org-confirm-babel-evaluate nil))
+(setq org-babel-lisp-eval-fn #'sly-eval)
 
 (use-package org-roam
   :after org
