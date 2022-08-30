@@ -164,6 +164,7 @@
 
 ;; Configure shell environment
 (use-package exec-path-from-shell
+  :if (pet/is-mac)
   :commands (exec-path-from-shell-initialize exec-path-from-shell-copy-env)
   :init
   (exec-path-from-shell-initialize)

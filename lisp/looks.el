@@ -19,6 +19,7 @@
 ;; Set the font, depending on the system
 (defvar petars-font
   (cond
+   ((pet/is-bsd) "Triplicate T4 10")
    ((pet/is-linux) "Triplicate T4 12")
    ((pet/is-wsl) "Iosevka SS15 18")
    ((pet/is-mac) "Triplicate T4 15")))
@@ -47,12 +48,6 @@
   :demand t
   :ensure t
   :config (stimmung-themes-load-light))
-
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1)
-  :config
-  (setq doom-modeline-icon nil))
 
 ;; Semantic parser for languages, which will give us nicer
 ;; syntax highlighting.

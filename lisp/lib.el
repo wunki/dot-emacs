@@ -35,6 +35,11 @@
   (interactive)
   (eq system-type 'darwin))
 
+(defun pet/is-bsd ()
+  "Return non-nil if running on FreeBSD."
+  (interactive)
+  (eq system-type 'berkeley-unix))
+
 (defun pet/is-wsl ()
   "Return non-nil if running on Windows WSL."
   (interactive)
