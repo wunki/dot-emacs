@@ -22,7 +22,7 @@
    ((pet/is-bsd) "Triplicate T4 10")
    ((pet/is-linux) "Triplicate T4 12")
    ((pet/is-wsl) "Iosevka SS15 18")
-   ((pet/is-mac) "Triplicate T4 15")))
+   ((pet/is-mac) "Triplicate T4 14")))
 
 (pet/set-font petars-font)
 
@@ -35,7 +35,7 @@
 (setq frame-resize-pixelwise t
       default-frame-alist    (append (list
                                       '(vertical-scroll-bars . nil)
-                                      '(internal-border-width . 12)
+                                      '(internal-border-width . 14)
                                       '(right-fringe   . 0)
                                       '(tool-bar-lines . 0))))
 

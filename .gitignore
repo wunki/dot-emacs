@@ -68,3 +68,4 @@ flycheck_*.el
 
 # emojis
 /emojis
+/.stignore
