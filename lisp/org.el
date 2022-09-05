@@ -8,7 +8,10 @@
 ;;
 (require 'lib)
 
-(defvar org-directory (expand-file-name "~/Notes"))
+(defvar org-directory
+  (if (pet/is-bsd)
+      (expand-file-name "~/notes")
+    (expand-file-name "~/notes")))
 
 (use-package org
   :custom
