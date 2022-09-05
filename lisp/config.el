@@ -102,7 +102,7 @@
 (windmove-default-keybindings)
 
 ;; Highlight the current line, turned off for now
-(global-hl-line-mode 0)
+(global-hl-line-mode 1)
 
 ;; Change the default cursor
 (setq-default cursor-type 'box)
