@@ -36,6 +36,12 @@
   :bind ("C-c g" . magit-status)
   :hook (git-commit-mode-hook . my/git-commit-auto-fill-everywhere))
 
+;; Show git changes in the gutter
+(use-package git-gutter
+  :hook (prog-mode . git-gutter-mode)
+  :config
+  (setq git-gutter:update-interval 0.02))
+
 ;; Setup auto-completion with company
 (use-package company
   :commands global-company-mode
