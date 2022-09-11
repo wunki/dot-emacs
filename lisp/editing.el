@@ -62,6 +62,7 @@
 
 ;; Distraction-free screen for writing
 (use-package olivetti
+  :commands (olivetti-mode)
   :init
   (setq olivetti-body-width .4)
   :config
