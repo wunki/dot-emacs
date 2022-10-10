@@ -85,6 +85,7 @@
 
 ;; Zig
 (use-package zig-mode
+  :disabled
   :mode ("\\.zig\\'" . zig-mode))
 
 ;; Fish, my shell of choice
@@ -93,10 +94,6 @@
 ;; Yaml, yaml
 (use-package yaml-mode
   :config (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
-
-;; Lisp on the Erlang beam
-(use-package lfe-mode
-  :if (executable-find "lfe"))
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
@@ -112,7 +109,8 @@
   (inferior-lisp-program "sbcl"))
 
 ;; Go
-(use-package go-mode)
+(use-package go-mode
+  :disabled)
 
 ;; Docker
 (use-package dockerfile-mode
