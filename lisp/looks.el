@@ -21,7 +21,7 @@
   (cond
    ((pet/is-bsd) "Triplicate T4 10")
    ((pet/is-linux) "Triplicate T4 12")
-   ((pet/is-wsl) "Triplicate T4 16")
+   ((pet/is-wsl) "Triplicate T4 17")
    ((pet/is-mac) "Triplicate T4 14")))
 
 (pet/set-font petars-font)
