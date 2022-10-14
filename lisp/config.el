@@ -159,9 +159,8 @@
     (native-comp-available-p)
     (setq native-comp-async-report-warnings-errors nil)))
 
-;; Improved scrolling
-(when (not (pet/is-mac))
-  (pixel-scroll-precision-mode))
+;; Improved, buttery smooth scrolling
+(pixel-scroll-precision-mode)
 
 ;; Configure shell environment
 (use-package exec-path-from-shell
