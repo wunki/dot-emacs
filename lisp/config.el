@@ -160,7 +160,8 @@
     (setq native-comp-async-report-warnings-errors nil)))
 
 ;; Improved scrolling
-(pixel-scroll-precision-mode)
+(when (not (pet/is-mac))
+  (pixel-scroll-precision-mode))
 
 ;; Configure shell environment
 (use-package exec-path-from-shell
