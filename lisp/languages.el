@@ -61,7 +61,9 @@
 
   ;; don't prompt for symbols, try to use the one currently at prompt
   (cider-prompt-for-symbol nil)
-  
+
+  ;; clean up the buffer before saving
+  :hook (before-save . cider-format-buffer)
   :bind (:map cider-mode-map
          ("C-c C-l" . cider-find-and-clear-repl-output)
          :map cider-repl-mode-map
