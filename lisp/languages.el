@@ -85,7 +85,6 @@
 
 ;; Zig
 (use-package zig-mode
-  :disabled
   :mode ("\\.zig\\'" . zig-mode))
 
 ;; Fish, my shell of choice
