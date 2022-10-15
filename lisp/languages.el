@@ -27,11 +27,45 @@
 ;; Clojure
 (use-package clojure-mode)
 
-(use-package cider
+(use-package clj-refactor
+  :after clojure-mode
+  :command (cljr-add-keybindings-with-prefix)
+  :hook clojure-mode
+  :custom
+  (cljr-assume-language-context "clj")
   :config
+  (cljr-add-keybindings-with-prefix "C-c C-m"))
+
+(use-package cider
+  :custom
   ;; We use clojure-lsp for showing documentation
-  (setq cider-eldoc-display-for-symbol-at-point nil)
-  (setq cider-repl-display-help-banner nil))
+  (cider-eldoc-display-for-symbol-at-point nil)
+
+  ;; we don't need the help banner anymore
+  (cider-repl-display-help-banner nil)
+
+  ;; save files when evaluating them
+  (cider-save-file-on-load t)
+
+  ;; specify the history file
+  (cider-history-file "~/.config/emacs/nrepl-history")
+
+  ;; auto-select the error buffer when it's displayed
+  (cider-auto-select-error-buffer t)
+
+  ;; pretty print results in repl
+  (cider-repl-use-pretty-printing t)
+
+  ;; hide nrepl buffers when switching between buffers
+  (nrepl-hide-special-buffers t)
+
+  ;; don't prompt for symbols, try to use the one currently at prompt
+  (cider-prompt-for-symbol nil)
+  
+  :bind (:map cider-mode-map
+         ("C-c C-l" . cider-find-and-clear-repl-output)
+         :map cider-repl-mode-map
+         ("C-c C-l" . cider-repl-clear-buffer)))
 
 ;; Elixir
 (use-package elixir-mode)
