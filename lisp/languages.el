@@ -29,7 +29,7 @@
 
 (use-package clj-refactor
   :after clojure-mode
-  :command (cljr-add-keybindings-with-prefix)
+  :commands cljr-add-keybindings-with-prefix
   :hook clojure-mode
   :custom
   (cljr-assume-language-context "clj")
