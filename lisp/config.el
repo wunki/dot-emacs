@@ -104,6 +104,9 @@
 ;; Highlight the current line, turned off for now
 (global-hl-line-mode nil)
 
+;; Show the current column
+(column-number-mode t)
+
 ;; Change the default cursor
 (setq-default cursor-type 'box)
 
