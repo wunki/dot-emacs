@@ -46,8 +46,19 @@
   :straight (stimmung-themes :host github :repo "motform/stimmung-themes")
   :commands stimmung-themes-load-light
   :demand t
-  :ensure t
-  :config (stimmung-themes-load-light))
+  :ensure t)
+
+(use-package modus-themes
+  :ensure
+  :init
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs t
+        modus-themes-region '(bg-only no-extend))
+
+  (modus-themes-load-themes)
+  :config
+  (modus-themes-load-operandi)
+  :bind ("C-c C-l" . modus-themes-toggle))
 
 ;; Semantic parser for languages, which will give us nicer
 ;; syntax highlighting.
