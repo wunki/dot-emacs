@@ -50,14 +50,18 @@
 
 (use-package modus-themes
   :ensure
+  :commands (modus-themes-load-themes modus-themes-load-vivendi)
+  :custom
+  (modus-themes-italic-constructs t)
+  (modus-themes-bold-constructs t)
+  (modus-themes-region '(bg-only no-extend))
+  (modus-themes-syntax '(faint yellow-comments))
+  (modus-themes-mode-line '(accented borderless (padding . 4) (height . 0.9)))
+  (modus-themes-paren-match '(bold))
   :init
-  (setq modus-themes-italic-constructs t
-        modus-themes-bold-constructs t
-        modus-themes-region '(bg-only no-extend))
-
   (modus-themes-load-themes)
   :config
-  (modus-themes-load-operandi)
+  (modus-themes-load-vivendi)
   :bind ("C-c C-l" . modus-themes-toggle))
 
 ;; Semantic parser for languages, which will give us nicer
