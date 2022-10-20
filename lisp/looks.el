@@ -62,7 +62,7 @@
   (modus-themes-load-themes)
   :config
   (modus-themes-load-vivendi)
-  :bind ("C-c C-l" . modus-themes-toggle))
+  :bind ("C-c C-t" . modus-themes-toggle))
 
 ;; Semantic parser for languages, which will give us nicer
 ;; syntax highlighting.
