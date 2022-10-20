@@ -97,28 +97,5 @@
   (aw-keys '(?a ?o ?e ?u ?h ?t ?t ?n ?l))
   :bind (("M-o" . ace-window)))
 
-;; File tree
-(use-package treemacs
-  :defer t
-  :commands
-  (treemacs-follow-mode
-   treemacs-filewatch-mode
-   treemacs-fringe-indicator-mode
-   treemacs-hide-gitignored-files-mode)
-  :hook (treemacs-mode . hl-line-mode)
-  :custom
-  (treemacs-user-mode-line-format 'none)
-  (treemacs-no-png-images t "png images don't display nicely on hidpi displays")
-  (progn
-    (treemacs-follow-mode t)
-    (treemacs-filewatch-mode t)
-    (treemacs-fringe-indicator-mode 'only-when-focused)
-    (treemacs-hide-gitignored-files-mode t))
-  :bind
-  (:map
-    global-map
-    ("C-c t" . treemacs)
-    ("C-c T" . treemacs-select-window)))
-
 (provide 'navigation)
 ;;; navigation.el ends here
