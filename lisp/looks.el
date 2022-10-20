@@ -64,6 +64,9 @@
   (modus-themes-load-vivendi)
   :bind ("C-c C-t" . modus-themes-toggle))
 
+(use-package ef-themes
+  :ensure)
+
 ;; Semantic parser for languages, which will give us nicer
 ;; syntax highlighting.
 (use-package tree-sitter
