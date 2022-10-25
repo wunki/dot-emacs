@@ -25,7 +25,11 @@
     "only check on save"))
 
 ;; Clojure
-(use-package clojure-mode)
+(use-package flycheck-clj-kondo)
+(use-package clojure-mode
+  :after (flycheck-clj-kondo)
+  :config
+  (require 'flycheck-clj-kondo))
 
 (use-package clj-refactor
   :after clojure-mode
