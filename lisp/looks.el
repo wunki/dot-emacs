@@ -22,7 +22,7 @@
    ((pet/is-bsd) "Triplicate T4 10")
    ((pet/is-linux) "Triplicate T4 12")
    ((pet/is-wsl) "Triplicate T4 17")
-   ((pet/is-mac) "IBM Plex Mono 14")))
+   ((pet/is-mac) "IBM Plex Mono 13")))
 
 (pet/set-font petars-font)
 
@@ -40,7 +40,31 @@
                                       '(tool-bar-lines . 0))))
 
 (use-package all-the-icons
+  :ensure t
   :if (display-graphic-p))
+
+(use-package doom-themes
+  :ensure t
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+
+  (load-theme 'doom-homage-white t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+  (doom-themes-treemacs-config)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
+
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
 
 (use-package stimmung-themes
   :straight (stimmung-themes :host github :repo "motform/stimmung-themes")
@@ -48,7 +72,8 @@
   :demand t
   :ensure t
   :config
-  (load-theme 'stimmung-themes-light t))
+  ; (load-theme 'stimmung-themes-light t)
+  )
 
 (use-package modus-themes
   :ensure
