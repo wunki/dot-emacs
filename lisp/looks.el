@@ -22,7 +22,7 @@
    ((pet/is-bsd) "Triplicate T4 10")
    ((pet/is-linux) "Triplicate T4 12")
    ((pet/is-wsl) "Triplicate T4 17")
-   ((pet/is-mac) "Triplicate T4 14")))
+   ((pet/is-mac) "IBM Plex Mono 14")))
 
 (pet/set-font petars-font)
 
@@ -46,7 +46,9 @@
   :straight (stimmung-themes :host github :repo "motform/stimmung-themes")
   :commands stimmung-themes-load-light
   :demand t
-  :ensure t)
+  :ensure t
+  :config
+  (load-theme 'stimmung-themes-light t))
 
 (use-package modus-themes
   :ensure
@@ -59,9 +61,9 @@
   (modus-themes-mode-line '(accented borderless (padding . 4) (height . 0.9)))
   (modus-themes-paren-match '(bold))
   :init
-  (modus-themes-load-themes)
+  ;; (modus-themes-load-themes)
   :config
-  (modus-themes-load-vivendi)
+  ;; (modus-themes-load-vivendi)
   :bind ("C-c C-t" . modus-themes-toggle))
 
 (use-package ef-themes
