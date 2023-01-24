@@ -102,7 +102,8 @@
 (windmove-default-keybindings)
 
 ;; Highlight the current line, turned off for now
-(global-hl-line-mode nil)
+(global-hl-line-mode -1)
+(hl-line-mode -1)
 
 ;; Show the current column
 (column-number-mode t)
