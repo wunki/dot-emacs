@@ -106,7 +106,10 @@
 (hl-line-mode -1)
 
 ;; Show the current column
-(column-number-mode t)
+(column-number-mode -1)
+
+;; Show the current line
+(line-number-mode -1)
 
 ;; Change the default cursor
 (setq-default cursor-type 'box)

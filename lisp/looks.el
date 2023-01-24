@@ -45,6 +45,10 @@
 
 (use-package doom-modeline
   :ensure t
+  :custom
+  (doom-modeline-icon nil)
+  (doom-modeline-buffer-encoding nil)
+  (doom-modeline-height 25)
   :hook (after-init . doom-modeline-mode))
 
 (use-package stimmung-themes
