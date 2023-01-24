@@ -36,6 +36,9 @@
   :bind ("C-c g" . magit-status)
   :hook (git-commit-mode-hook . my/git-commit-auto-fill-everywhere))
 
+(use-package forge
+  :after magit)
+
 ;; Show git changes in the gutter
 (use-package git-gutter
   :hook (prog-mode . git-gutter-mode)
