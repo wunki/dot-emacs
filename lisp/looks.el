@@ -53,8 +53,7 @@
   :demand t
   :ensure t
   :config
-  (load-theme 'stimmung-themes-light t)
-  )
+  (load-theme 'stimmung-themes-light t))
 
 (use-package modus-themes
   :ensure
