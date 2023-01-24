@@ -37,7 +37,8 @@
   :hook (git-commit-mode-hook . my/git-commit-auto-fill-everywhere))
 
 (use-package forge
-  :after magit)
+  :after magit
+  :bind ("C-c C-g" . forge-dispatch))
 
 ;; Show git changes in the gutter
 (use-package git-gutter
