@@ -112,7 +112,7 @@
 (setq-default cursor-type 'box)
 
 ;; Let's see who blinks first
-(blink-cursor-mode 0)
+(blink-cursor-mode t)
 
 ;; Highlight the matching paren
 (show-paren-mode 1)
