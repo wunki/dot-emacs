@@ -24,6 +24,10 @@
     '(mode-enabled save)
     "only check on save"))
 
+;; Tree-sitter
+(require 'treesit)
+(setq treesit-extra-load-path '("~/.local/lib"))
+
 ;; Clojure
 (use-package flycheck-clj-kondo)
 (use-package clojure-mode

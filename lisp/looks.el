@@ -23,7 +23,6 @@
    ((pet/is-linux) "Triplicate T4 12")
    ((pet/is-wsl) "Triplicate T4 17")
    ((pet/is-mac) "IBM Plex Mono 13")))
-
 (pet/set-font petars-font)
 
 ;; Don't show any bars or toolbars
@@ -33,11 +32,15 @@
 
 ;; Add some spacing
 (setq frame-resize-pixelwise t
-      default-frame-alist    (append (list
-                                      '(vertical-scroll-bars . nil)
-                                      '(internal-border-width . 14)
-                                      '(right-fringe   . 0)
-                                      '(tool-bar-lines . 0))))
+      default-frame-alist (append (list
+                                   '(vertical-scroll-bars . nil)
+                                   '(internal-border-width . 14)
+                                   '(right-fringe   . 0)
+                                   '(tool-bar-lines . 0))))
+
+(when (memq window-system '(mac ns))
+  (add-to-list 'default-frame-alist '(ns-appearance . nil))
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
 
 (use-package all-the-icons
   :ensure t
@@ -77,31 +80,6 @@
 
 (use-package ef-themes
   :ensure)
-
-;; Semantic parser for languages, which will give us nicer
-;; syntax highlighting.
-(use-package tree-sitter
-  :if (executable-find "tree-sitter")
-  :defines tree-sitter-major-mode-language-alist
-  :hook
-  (
-    ((rustic-mode python-mode css-mode elixir-mode zig-mode)
-      .
-      tree-sitter-mode)
-    ((rustic-mode python-mode css-mode elixir-mode zig-mode)
-      .
-      tree-sitter-hl-mode))
-  :config
-  (add-to-list 'tree-sitter-major-mode-language-alist
-    '(rustic-mode . rust))
-  (add-to-list 'tree-sitter-major-mode-language-alist
-    '(zig-mode . zig))
-  (add-to-list 'tree-sitter-major-mode-language-alist
-    '(elixir-mode . elixir)))
-
-(use-package tree-sitter-langs
-  :if (executable-find "tree-sitter")
-  :after tree-sitter)
 
 (use-package rainbow-mode
   :commands rainbow-mode

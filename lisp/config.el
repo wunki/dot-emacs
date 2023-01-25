@@ -167,7 +167,7 @@
     (setq native-comp-async-report-warnings-errors nil)))
 
 ;; Improved, buttery smooth scrolling, only available on Emacs 29
-;; (pixel-scroll-precision-mode)
+(pixel-scroll-precision-mode)
 
 ;; Configure shell environment
 (use-package exec-path-from-shell
