@@ -88,6 +88,8 @@
 (use-package emacs
   :init
   (global-visual-line-mode 1)
+  (setq completion-cycle-threshold 3)
+  (setq tab-always-indent 'complete)
   :delight
   (auto-fill-function " AF")
   (visual-line-mode))

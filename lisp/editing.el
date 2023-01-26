@@ -46,18 +46,20 @@
   :config
   (setq git-gutter:update-interval 0.02))
 
-;; Setup auto-completion with company
-(use-package company
-  :commands global-company-mode
-  :delight
-  :bind (:map company-active-map
-              ("C-w" . pet/kill-region-or-backward-word))
+(use-package corfu
+  :commands global-corfu-mode
   :custom
-  (company-idle-delay 0.2) ; change to nil if you want to start auto-complete on tab
+  (corfu-cycle t)                   ;; Enable cycling for `corfu-next/previous'
+  ;; (corfu-auto t)                 ;; Enable auto completion
+  ;; (corfu-separator ?\s)          ;; Orderless field separator
+  ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+  ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+  ;; (corfu-preview-current nil)    ;; Disable current candidate preview
+  ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
+  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+  ;; (corfu-scroll-margin 5)        ;; Use scroll margin
   :init
-  (global-company-mode)
-  :hook
-  (company-mode . company-tng-mode))
+  (global-corfu-mode))
 
 ;; Balance and mold those parenthesis
 (use-package paredit
