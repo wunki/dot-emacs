@@ -22,7 +22,7 @@
    ((pet/is-bsd) "Triplicate T4 10")
    ((pet/is-linux) "Triplicate T4 12")
    ((pet/is-wsl) "Triplicate T4 17")
-   ((pet/is-mac) "MonoLisa 13")))
+   ((pet/is-mac) "JetBrains Mono 14")))
 (pet/set-font petars-font)
 
 ;; Don't show any bars or toolbars
@@ -58,7 +58,7 @@
   :ensure
   :commands ef-themes-select
   :bind ("C-c C-t" . ef-themes-load-random)
-  :config
+  :init
   (ef-themes-select 'ef-tritanopia-dark))
 
 (use-package rainbow-mode
