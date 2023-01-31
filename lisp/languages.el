@@ -25,8 +25,20 @@
     "only check on save"))
 
 ;; Tree-sitter
-(require 'treesit)
-(setq treesit-extra-load-path '("~/.local/lib"))
+;; TODO: couldn't I simply use `use-package treesit'?
+(use-package emacs
+  :demand t
+  :init
+  (require 'treesit)
+  (push '(css-mode . css-ts-mode) major-mode-remap-alist)
+  (push '(sh-mode . bash-ts-mode) major-mode-remap-alist)
+  (push '(python-mode . python-ts-mode) major-mode-remap-alist)
+  (push '(javascript-mode . js-ts-mode) major-mode-remap-alist)
+  (push '(js-json-mode . json-ts-mode) major-mode-remap-alist)
+  (push '(typescript-mode . typescript-ts-mode) major-mode-remap-alist)
+  (push '(c-mode . c-ts-mode) major-mode-remap-alist)
+  (push '(c++-mode . c++-ts-mode) major-mode-remap-alist)
+  (setq treesit-extra-load-path '("~/.local/lib")))
 
 ;; Clojure
 (use-package flycheck-clj-kondo)
