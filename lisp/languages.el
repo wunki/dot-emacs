@@ -25,20 +25,46 @@
     "only check on save"))
 
 ;; Tree-sitter
-;; TODO: couldn't I simply use `use-package treesit'?
-(use-package emacs
-  :demand t
-  :init
-  (require 'treesit)
-  (push '(css-mode . css-ts-mode) major-mode-remap-alist)
-  (push '(sh-mode . bash-ts-mode) major-mode-remap-alist)
-  (push '(python-mode . python-ts-mode) major-mode-remap-alist)
-  (push '(javascript-mode . js-ts-mode) major-mode-remap-alist)
-  (push '(js-json-mode . json-ts-mode) major-mode-remap-alist)
-  (push '(typescript-mode . typescript-ts-mode) major-mode-remap-alist)
-  (push '(c-mode . c-ts-mode) major-mode-remap-alist)
-  (push '(c++-mode . c++-ts-mode) major-mode-remap-alist)
-  (setq treesit-extra-load-path '("~/.local/lib")))
+(use-package treesit
+  :straight (:type built-in)
+  :preface
+  (defun pet/setup-install-grammars ()
+    "Install Tree-sitter grammars if they are absent."
+    (interactive)
+    (dolist (grammar
+             '((css "https://github.com/tree-sitter/tree-sitter-css")
+               (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "master" "src"))
+               (python "https://github.com/tree-sitter/tree-sitter-python")
+               (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
+               (yaml "https://github.com/ikatyang/tree-sitter-yaml")
+               (elixir "https://github.com/elixir-lang/tree-sitter-elixir.")
+               (zig "https://github.com/GrayJack/tree-sitter-zig")))
+      (add-to-list 'treesit-language-source-alist grammar)
+      (unless (treesit-language-available-p (car grammar))
+        (treesit-install-language-grammar (car grammar)))))
+
+  (dolist (mapping '((python-mode . python-ts-mode)
+                     (css-mode . css-ts-mode)
+                     (typescript-mode . tsx-ts-mode)
+                     (js-mode . js-ts-mode)
+                     (css-mode . css-ts-mode)
+                     (yaml-mode . yaml-ts-mode)))
+    (add-to-list 'major-mode-remap-alist mapping))
+
+  :config
+  (pet/setup-install-grammars)
+
+  ;; `M-x combobulate' (or `C-c o o') to start using Combobulate
+  (use-package combobulate
+    :straight (combulate :type git
+                         :host github
+                         :repo "mickeynp/combobulate")
+    :hook ((python-ts-mode . combobulate-mode)
+           (js-ts-mode . combobulate-mode)
+           (css-ts-mode . combobulate-mode)
+           (yaml-ts-mode . combobulate-mode)
+           (typescript-ts-mode . combobulate-mode)
+           (tsx-ts-mode . combobulate-mode))))
 
 ;; Clojure
 (use-package flycheck-clj-kondo)
@@ -90,7 +116,7 @@
          ("C-c C-l" . cider-repl-clear-buffer)))
 
 ;; Elixir
-(use-package elixir-mode)
+(use-package elixir-ts-mode)
 
 ;; Documentation
 (use-package eldoc
