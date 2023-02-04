@@ -94,13 +94,13 @@ windows easier."
     (rename-buffer (concat "*eshell: " name "*"))))
 
 (defun pet/url-get-title (url &optional)
-  "Takes a URL and returns the value of the <title> HTML tag."
+  "Takes a URL and return the value of the <title> HTML tag."
   (let ((buffer (url-retrieve-synchronously url))
         (title nil))
     (save-excursion
       (set-buffer buffer)
       (goto-char (point-min))
-      (search-forward-regexp "<title>\\([^<]+?\\)</title>")	
+      (search-forward-regexp "<title>\\([^<]+?\\)</title>")
       (setq title (match-string 1 ) )
       (kill-buffer (current-buffer)))
     title))
