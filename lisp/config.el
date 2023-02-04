@@ -181,11 +181,14 @@
   (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
 
 (use-package vterm
-  :config
-  (defun turn-off-chrome ()
+  :preface
+  (defun enable-boring ()
+    "Make the shell as boring as possible"
     (hl-line-mode -1)
     (display-line-numbers-mode -1))
-  :hook (vterm-mode . turn-off-chrome))
+  :custom
+  (vterm-shell "/opt/homebrew/bin/fish")
+  :hook (vterm-mode . enable-boring))
 
 (use-package vterm-toggle
   :commands (vterm-toggle)
