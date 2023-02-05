@@ -38,7 +38,8 @@
                (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
                (yaml "https://github.com/ikatyang/tree-sitter-yaml")
                (elixir "https://github.com/elixir-lang/tree-sitter-elixir.")
-               (zig "https://github.com/GrayJack/tree-sitter-zig")))
+               (zig "https://github.com/GrayJack/tree-sitter-zig")
+               (clojure "https://github.com/sogaiu/tree-sitter-clojure")))
       (add-to-list 'treesit-language-source-alist grammar)
       (unless (treesit-language-available-p (car grammar))
         (treesit-install-language-grammar (car grammar)))))
@@ -64,19 +65,21 @@
            (css-ts-mode . combobulate-mode)
            (yaml-ts-mode . combobulate-mode)
            (typescript-ts-mode . combobulate-mode)
+           (elixir-ts-mode . combulate-mode)
+           (clojure-ts-mode . combulate-mode)
            (tsx-ts-mode . combobulate-mode))))
 
 ;; Clojure
 (use-package flycheck-clj-kondo)
-(use-package clojure-mode
-  :after (flycheck-clj-kondo)
-  :config
-  (require 'flycheck-clj-kondo))
+(use-package clojure-ts-mode
+  :straight (clojure-ts-mode :type git
+                             :host github
+                             :repo "clojure-emacs/clojure-ts-mode"))
 
 (use-package clj-refactor
-  :after clojure-mode
+  :after clojure-ts-mode
   :commands cljr-add-keybindings-with-prefix
-  :hook clojure-mode
+  :hook clojure-ts-mode
   :custom
   (cljr-assume-language-context "clj")
   :config
