@@ -37,7 +37,7 @@
                (python "https://github.com/tree-sitter/tree-sitter-python")
                (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
                (yaml "https://github.com/ikatyang/tree-sitter-yaml")
-               (elixir "https://github.com/elixir-lang/tree-sitter-elixir.")
+               (elixir "https://github.com/elixir-lang/tree-sitter-elixir")
                (zig "https://github.com/GrayJack/tree-sitter-zig")
                (clojure "https://github.com/sogaiu/tree-sitter-clojure")))
       (add-to-list 'treesit-language-source-alist grammar)
@@ -57,16 +57,16 @@
 
   ;; `M-x combobulate' (or `C-c o o') to start using Combobulate
   (use-package combobulate
-    :straight (combulate :type git
-                         :host github
-                         :repo "mickeynp/combobulate")
+    :straight (combobulate :type git
+                           :host github
+                           :repo "mickeynp/combobulate")
     :hook ((python-ts-mode . combobulate-mode)
            (js-ts-mode . combobulate-mode)
            (css-ts-mode . combobulate-mode)
            (yaml-ts-mode . combobulate-mode)
            (typescript-ts-mode . combobulate-mode)
-           (elixir-ts-mode . combulate-mode)
-           (clojure-ts-mode . combulate-mode)
+           (elixir-ts-mode . combobulate-mode)
+           (clojure-ts-mode . combobulate-mode)
            (tsx-ts-mode . combobulate-mode))))
 
 ;; Clojure
