@@ -6,8 +6,6 @@
 ;; 
 ;;; Code:
 ;;
-
-;;; Code:
 (require 'lib)
 
 ;; Easily scale the font size up and down
