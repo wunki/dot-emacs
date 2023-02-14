@@ -152,7 +152,7 @@
   :custom
   (rustic-lsp-client 'eglot)
   (rustic-format-on-save t)
-  (rustic-analyzer-command '("~/.cargo/bin/rust-analyzer"))
+  (rustic-analyzer-command '("~/.local/bin/rust-analyzer"))
 
   :config
   ;; if we don't delete rust-mode, after saving, the buffer will
