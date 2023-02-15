@@ -8,10 +8,7 @@
 ;;
 (require 'lib)
 
-(defvar org-directory
-  (if (pet/is-mac)
-      (expand-file-name "~/Library/Mobile Documents/com~apple~CloudDocs/Notes")
-    (expand-file-name "~/notes")))
+(defvar org-directory (expand-file-name "~/Notes"))
 
 (use-package org
   :custom
