@@ -186,7 +186,7 @@
     (hl-line-mode -1)
     (display-line-numbers-mode -1))
   :custom
-  (vterm-shell "/opt/homebrew/bin/fish")
+  (vterm-shell "fish")
   :hook (vterm-mode . enable-boring))
 
 (use-package vterm-toggle
