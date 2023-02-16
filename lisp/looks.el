@@ -52,12 +52,22 @@
   (doom-modeline-height 25)
   :hook (after-init . doom-modeline-mode))
 
+(use-package doom-themes
+  :ensure t
+  :config
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-moonlight t)
+  (doom-themes-visual-bell-config)
+  (doom-themes-org-config))
+
 (use-package ef-themes
   :ensure
   :commands ef-themes-select
   :bind ("C-c C-t" . ef-themes-load-random)
   :init
-  (ef-themes-select 'ef-tritanopia-dark))
+  ;(ef-themes-select 'ef-tritanopia-dark)
+  )
 
 (use-package rainbow-mode
   :commands rainbow-mode
