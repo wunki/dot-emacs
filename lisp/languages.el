@@ -139,6 +139,10 @@
 ;; Rust
 (use-package rustic
   :mode ("\\.rs\\'" . rustic-mode)
+  :preface
+  (defun pet/rustic-mode-hook ()
+    (when buffer-file-name
+      (setq-local buffer-save-without-query t)))
   :bind
   (:map
     rustic-mode-map
@@ -157,11 +161,7 @@
   ;; change emacs PATH to include cargo/bin
   (setenv "PATH" (concat (getenv "PATH") ":~/.cargo/bin"))
   (setq exec-path (append exec-path '("~/.cargo/bin")))
-  (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook))
-
-(defun rk/rustic-mode-hook ()
-  (when buffer-file-name
-    (setq-local buffer-save-without-query t)))
+  (add-hook 'rustic-mode-hook 'pet/rustic-mode-hook))
 
 ;; Zig
 (use-package zig-mode
