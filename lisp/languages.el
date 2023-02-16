@@ -39,6 +39,7 @@
                (yaml "https://github.com/ikatyang/tree-sitter-yaml")
                (elixir "https://github.com/elixir-lang/tree-sitter-elixir")
                (zig "https://github.com/GrayJack/tree-sitter-zig")
+               (rust "https://github.com/tree-sitter/tree-sitter-rust")
                (clojure "https://github.com/sogaiu/tree-sitter-clojure")))
       (add-to-list 'treesit-language-source-alist grammar)
       (unless (treesit-language-available-p (car grammar))
