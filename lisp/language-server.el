@@ -13,8 +13,17 @@
   :hook (((zig-mode elixir-mode c-mode) . eglot-ensure)
          (before-save . eglot-format-buffer))
   :config
+  (setq eglot-autoshutdown t
+        eglot-autoreconnect t
+        eglot-extend-to-xref t
+        eglot-events-buffer-size nil
+        eglot-send-changes-idle-time 0.5
+        eglot-ignored-server-capabilities '(:hoverProvider))
   (add-to-list 'eglot-server-programs '(elixir-mode "~/.local/share/elixir-ls/release/language_server.sh"))
   (add-to-list 'eglot-server-programs '(c-mode "clangd")))
+
+(use-package flycheck-eglot
+  :hook ((zig-mode elixir-mode c-mode) . flycheck-eglot-mode))
 
 (provide 'language-server)
 ;;; language-server.el ends here
