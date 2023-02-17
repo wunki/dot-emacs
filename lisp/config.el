@@ -196,6 +196,9 @@
   (vterm-toggle-scope 'project)
   :bind (("C-c s" . #'vterm-toggle)))
 
+(use-package restart-emacs
+  :commands restart-emacs)
+
 ;; Ability to hide emacs on the mac
 (when (pet/is-mac)
   (global-set-key (kbd "M-h") 'ns-do-hide-emacs)

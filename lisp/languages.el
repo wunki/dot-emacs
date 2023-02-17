@@ -18,8 +18,8 @@
   :hook (prog-mode . flycheck-mode)
   :custom
   (flycheck-emacs-lisp-load-path
-    'inherit
-    "inherit the load path so it can find all libraries")
+   'inherit
+   "inherit the load path so it can find all libraries")
   (flycheck-check-syntax-automatically
     '(mode-enabled save)
     "only check on save"))
