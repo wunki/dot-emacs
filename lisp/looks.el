@@ -64,7 +64,8 @@
   :commands ef-themes-select
   :bind ("C-c C-t" . ef-themes-load-random)
   :init
-  (ef-themes-select 'ef-cherie))
+  ;(ef-themes-select 'ef-cherie)
+  )
 
 (use-package rainbow-mode
   :commands rainbow-mode
