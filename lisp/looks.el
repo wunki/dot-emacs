@@ -40,6 +40,13 @@
   (add-to-list 'default-frame-alist '(ns-appearance . nil))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
 
+;; load my own themes
+(use-package autothemer
+  :init
+  (add-to-list 'custom-theme-load-path (concat user-emacs-directory "themes/"))
+  :config
+  (load-theme 'kanagawa t))
+
 (use-package all-the-icons
   :ensure t
   :if (display-graphic-p))
@@ -57,7 +64,7 @@
   :commands ef-themes-select
   :bind ("C-c C-t" . ef-themes-load-random)
   :init
-  (ef-themes-select 'ef-night))
+  (ef-themes-select 'ef-cherie))
 
 (use-package rainbow-mode
   :commands rainbow-mode
