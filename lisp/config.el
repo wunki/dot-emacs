@@ -142,7 +142,7 @@
 ;; If you have an accident, check this directory - you might get lucky
 (setq
   backup-directory-alist
-  '(("." . (concat user-emacs-directory "backups/")))
+  `(("." . ,(concat user-emacs-directory "backups/")))
   backup-by-copying t ; Don't delink hardlinks
   version-control t ; Use version numbers on backups
   delete-old-versions t ; Automatically delete excess backups
@@ -152,7 +152,7 @@
 
 ;; Move auto-saved files to their own directory
 (setq auto-save-file-name-transforms
-      `((".*" (concat user-emacs-directory "auto-saves/") t)))
+      `((".*" ,(concat user-emacs-directory "auto-saves/") t)))
 
 ;; If available, use `xdg-open' to open URLs.
 (when (executable-find "xdg-open")
