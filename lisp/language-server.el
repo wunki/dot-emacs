@@ -22,8 +22,5 @@
   (add-to-list 'eglot-server-programs '(elixir-mode "~/.local/share/elixir-ls/release/language_server.sh"))
   (add-to-list 'eglot-server-programs '(c-mode "clangd")))
 
-(use-package flycheck-eglot
-  :hook ((zig-mode elixir-mode c-mode) . flycheck-eglot-mode))
-
 (provide 'language-server)
 ;;; language-server.el ends here
