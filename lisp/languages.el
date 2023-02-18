@@ -37,6 +37,7 @@
                (python "https://github.com/tree-sitter/tree-sitter-python")
                (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
                (yaml "https://github.com/ikatyang/tree-sitter-yaml")
+               (java "https://github.com/tree-sitter/tree-sitter-java")
                (elixir "https://github.com/elixir-lang/tree-sitter-elixir")
                (zig "https://github.com/GrayJack/tree-sitter-zig")
                (rust "https://github.com/tree-sitter/tree-sitter-rust")
@@ -46,6 +47,7 @@
         (treesit-install-language-grammar (car grammar)))))
 
   (dolist (mapping '((python-mode . python-ts-mode)
+                     (java-mode . java-ts-mode)
                      (css-mode . css-ts-mode)
                      (typescript-mode . tsx-ts-mode)
                      (js-mode . js-ts-mode)
@@ -178,7 +180,7 @@
   :commands (markdown-mode gfm-mode)
   :mode
   (("README\\.md\\'" . gfm-mode)
-    ("\\.md\\'" . markdown-mode)
+    ("\\.md\\'" . gfm-mode)
     ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
