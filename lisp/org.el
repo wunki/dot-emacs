@@ -27,6 +27,7 @@
   :defines org-roam-v2-ack
   :init (setq org-roam-v2-ack t)
   :custom
+  (org-roam-file-exclude-regexp '(".sync/"))
   (org-roam-directory (file-truename org-directory))
   (org-startup-indented t)
   (org-roam-dailies-directory "Dailies/")
