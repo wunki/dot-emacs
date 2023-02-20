@@ -90,6 +90,8 @@
   (global-visual-line-mode 1)
   (setq completion-cycle-threshold 3)
   (setq tab-always-indent 'complete)
+  :hook
+  (dired-mode . (lambda () (dired-hide-details-mode 1)))
   :delight
   (auto-fill-function " AF")
   (visual-line-mode))
