@@ -61,6 +61,7 @@
   :hook (after-init . doom-modeline-mode))
 
 (use-package modus-themes
+  :disabled
   :ensure t
   :bind ("C-c C-t" . modus-themes-toggle)
   :config
@@ -71,11 +72,10 @@
 
 (use-package ef-themes
   :ensure t
-  :disabled t
   :commands ef-themes-select
   :bind ("C-c C-t" . ef-themes-load-random)
   :init
-  (ef-themes-select 'ef-cherie))
+  (ef-themes-select 'ef-day))
 
 (use-package rainbow-mode
   :commands rainbow-mode
