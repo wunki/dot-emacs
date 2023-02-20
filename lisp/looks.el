@@ -42,11 +42,11 @@
 
 ;; load my own themes
 (use-package autothemer
+  :disabled t
   :init
   (add-to-list 'custom-theme-load-path (concat user-emacs-directory "themes/"))
   :config
-  ;(load-theme 'kanagawa t)
-  )
+  (load-theme 'kanagawa t))
 
 (use-package all-the-icons
   :ensure t
@@ -60,17 +60,22 @@
   (doom-modeline-height 25)
   :hook (after-init . doom-modeline-mode))
 
-(use-package almost-mono-themes
+(use-package modus-themes
+  :ensure t
+  :bind ("C-c C-t" . modus-themes-toggle)
   :config
-  (load-theme 'almost-mono-cream t))
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs t)
+  :init
+  (load-theme 'modus-vivendi-tinted t))
 
 (use-package ef-themes
-  :ensure
+  :ensure t
+  :disabled t
   :commands ef-themes-select
   :bind ("C-c C-t" . ef-themes-load-random)
   :init
-  ;(ef-themes-select 'ef-cherie)
-  )
+  (ef-themes-select 'ef-cherie))
 
 (use-package rainbow-mode
   :commands rainbow-mode
