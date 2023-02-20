@@ -60,9 +60,9 @@
   (doom-modeline-height 25)
   :hook (after-init . doom-modeline-mode))
 
-(use-package poet-theme
+(use-package almost-mono-themes
   :config
-  (load-theme 'poet-dark-monochrome t))
+  (load-theme 'almost-mono-cream t))
 
 (use-package ef-themes
   :ensure
