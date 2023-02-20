@@ -45,7 +45,8 @@
   :init
   (add-to-list 'custom-theme-load-path (concat user-emacs-directory "themes/"))
   :config
-  (load-theme 'kanagawa t))
+  ;(load-theme 'kanagawa t)
+  )
 
 (use-package all-the-icons
   :ensure t
@@ -58,6 +59,10 @@
   (doom-modeline-buffer-encoding nil)
   (doom-modeline-height 25)
   :hook (after-init . doom-modeline-mode))
+
+(use-package poet-theme
+  :config
+  (load-theme 'poet-dark-monochrome t))
 
 (use-package ef-themes
   :ensure
