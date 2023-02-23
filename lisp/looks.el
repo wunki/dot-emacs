@@ -42,9 +42,10 @@
 
 ;; load my own themes
 (use-package autothemer
-  :disabled t
   :init
-  (add-to-list 'custom-theme-load-path (concat user-emacs-directory "themes/"))
+  (add-to-list
+   'custom-theme-load-path
+   (concat user-emacs-directory "themes/"))
   :config
   (load-theme 'kanagawa t))
 
@@ -71,6 +72,7 @@
   (load-theme 'modus-vivendi-tinted t))
 
 (use-package ef-themes
+  :disabled
   :ensure t
   :commands ef-themes-select
   :bind ("C-c C-t" . ef-themes-load-random)
