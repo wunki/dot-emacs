@@ -26,7 +26,7 @@
 ;; TODO: move this to the right location.
 (defun pet/let-text-breath ()
   "Let the text breath a little bit more."
-  (setq-local default-text-properties '(line-spacing 0.25 line-height 1.25)))
+  (setq-local default-text-properties '(line-spacing 0.25 line-height 1)))
 (add-hook 'text-mode-hook 'pet/let-text-breath)
 (add-hook 'prog-mode-hook 'pet/let-text-breath)
 
