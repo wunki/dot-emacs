@@ -20,13 +20,13 @@
    ((pet/is-bsd) "Triplicate T4 10")
    ((pet/is-linux) "Berkeley Mono 9")
    ((pet/is-wsl) "Triplicate T4 17")
-   ((pet/is-mac) "Berkeley Mono 13")))
+   ((pet/is-mac) "Berkeley Mono 14")))
 (pet/set-font petars-font)
 
 ;; TODO: move this to the right location.
 (defun pet/let-text-breath ()
   "Let the text breath a little bit more."
-  (setq-local default-text-properties '(line-spacing 0.25 line-height 1.25)))
+  (setq-local default-text-properties '(line-spacing 0.20 line-height 1.20)))
 (add-hook 'text-mode-hook 'pet/let-text-breath)
 (add-hook 'prog-mode-hook 'pet/let-text-breath)
 
