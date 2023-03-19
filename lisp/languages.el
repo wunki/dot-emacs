@@ -39,6 +39,7 @@
                (yaml "https://github.com/ikatyang/tree-sitter-yaml")
                (java "https://github.com/tree-sitter/tree-sitter-java")
                (elixir "https://github.com/elixir-lang/tree-sitter-elixir")
+               (heex "https://github.com/phoenixframework/tree-sitter-heex")
                (zig "https://github.com/GrayJack/tree-sitter-zig")
                (rust "https://github.com/tree-sitter/tree-sitter-rust")
                (clojure "https://github.com/sogaiu/tree-sitter-clojure")))
