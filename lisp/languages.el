@@ -74,20 +74,27 @@
            (tsx-ts-mode . combobulate-mode))))
 
 ;; Clojure
+
+;; (use-package clojure-ts-mode
+;;   :straight (clojure-ts-mode :type git
+;;                              :host github
+;;                              :repo "clojure-emacs/clojure-ts-mode"))
+
 (use-package flycheck-clj-kondo)
-(use-package clojure-ts-mode
-  :straight (clojure-ts-mode :type git
-                             :host github
-                             :repo "clojure-emacs/clojure-ts-mode"))
+
+(use-package clojure-mode
+  :config
+  (require 'flycheck-clj-kondo)
+  :hook (clojure-mode . paredit-mode))
 
 (use-package clj-refactor
-  :after clojure-ts-mode
+  :after clojure-mode
   :commands cljr-add-keybindings-with-prefix
-  :hook clojure-ts-mode
+  :hook (clojure-mode . clj-refactor-mode)
   :custom
   (cljr-assume-language-context "clj")
   :config
-  (cljr-add-keybindings-with-prefix "C-c C-m"))
+  (cljr-add-keybindings-with-prefix "C-c C-r"))
 
 (use-package cider
   :custom
