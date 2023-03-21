@@ -81,20 +81,19 @@
 ;;                              :repo "clojure-emacs/clojure-ts-mode"))
 
 (use-package rainbow-delimiters
-  :hook ((clojure-mode . rainbow-delimiters-mode)
-         (elisp-mode . rainbow-delimiters-mode)))
+  :hook (clojure-mode elisp-mode lisp-mode))
 
 (use-package flycheck-clj-kondo)
 
 (use-package clojure-mode
   :config
   (require 'flycheck-clj-kondo)
-  :hook (clojure-mode . paredit-mode))
+  :hook paredit-mode)
 
 (use-package clj-refactor
   :after clojure-mode
   :commands cljr-add-keybindings-with-prefix
-  :hook (clojure-mode . clj-refactor-mode)
+  :hook clojure-mode
   :custom
   (cljr-assume-language-context "clj")
   :config
