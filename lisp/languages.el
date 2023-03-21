@@ -80,6 +80,10 @@
 ;;                              :host github
 ;;                              :repo "clojure-emacs/clojure-ts-mode"))
 
+(use-package rainbow-delimiters
+  :hook ((clojure-mode . rainbow-delimiters-mode)
+         (elisp-mode . rainbow-delimiters-mode)))
+
 (use-package flycheck-clj-kondo)
 
 (use-package clojure-mode
