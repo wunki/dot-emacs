@@ -81,14 +81,13 @@
 ;;                              :repo "clojure-emacs/clojure-ts-mode"))
 
 (use-package rainbow-delimiters
-  :hook (clojure-mode elisp-mode lisp-mode))
+  :hook ((emacs-lisp-mode lisp-interaction-mode ielm-mode lisp-mode eval-expression-minibuffer-setup slime-repl-mode clojure-mode)))
 
 (use-package flycheck-clj-kondo)
 
 (use-package clojure-mode
   :config
-  (require 'flycheck-clj-kondo)
-  :hook paredit-mode)
+  (require 'flycheck-clj-kondo))
 
 (use-package clj-refactor
   :after clojure-mode
