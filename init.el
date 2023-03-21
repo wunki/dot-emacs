@@ -27,7 +27,6 @@
 (require 'editing)
 (require 'language-server)
 (require 'languages)
-(require 'org)
 
 (provide 'init)
 ;;; init.el ends here
