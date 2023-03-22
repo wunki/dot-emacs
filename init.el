@@ -13,6 +13,7 @@
 
 ;; required so straight can build
 (defvar comp-deferred-compilation-deny-list ())
+(defvar native-comp-deferred-compilation-deny-list ())
 
 (require 'server)
 (unless (server-running-p)
@@ -27,6 +28,7 @@
 (require 'editing)
 (require 'language-server)
 (require 'languages)
+(require 'notes)
 
 (provide 'init)
 ;;; init.el ends here
