@@ -14,6 +14,11 @@
   :commands eros-mode
   :config (eros-mode t))
 
+(use-package elisp-autofmt
+  :commands (elisp-autofmt-mode elisp-autofmt-buffer)
+  :custom
+  (elisp-autofmt-python-bin "python3"))
+
 (use-package flycheck
   :hook (prog-mode . flycheck-mode)
   :custom
@@ -21,8 +26,8 @@
    'inherit
    "inherit the load path so it can find all libraries")
   (flycheck-check-syntax-automatically
-    '(mode-enabled save)
-    "only check on save"))
+   '(mode-enabled save)
+   "only check on save"))
 
 ;; Tree-sitter
 (use-package treesit

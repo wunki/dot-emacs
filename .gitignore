@@ -71,3 +71,4 @@ flycheck_*.el
 /.stignore
 /forge-database.sqlite
 /tree-sitter/
+/elisp-autofmt-cache/
