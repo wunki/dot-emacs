@@ -9,6 +9,7 @@
 ;;
 
 (require 'packages)
+(require 'ert)
 
 (use-package s
   :commands (s-trim s-concat))
@@ -119,6 +120,13 @@ Otherwise it adds it to the so it works with the Emacs daemon."
   (if (window-system)
       (set-frame-font font nil t)
     (add-to-list 'default-frame-alist `(font . ,font))))
+
+(defun pet/eval-and-run-all-tests-in-buffer ()
+  "Clear and run all tests in the current buffer."
+  (interactive)
+  (ert-delete-all-tests)
+  (eval-buffer)
+  (ert 't))
 
 (provide 'lib)
 ;;; lib.el ends here
