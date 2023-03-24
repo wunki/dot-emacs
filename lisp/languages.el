@@ -149,6 +149,7 @@
 
 (use-package eldoc-box
   :hook (eldoc-mode-hook . eldoc-box-hover-mode)
+  :command eldoc-box--default-upper-corner-position-function
   :init
   (setq eldoc-box-position-function #'eldoc-box--default-upper-corner-position-function
         eldoc-box-clear-with-C-g t))
@@ -168,7 +169,6 @@
   :custom
   (rustic-lsp-client 'eglot)
   (rustic-format-on-save t)
-  (rustic-analyzer-command '("~/.local/bin/rust-analyzer"))
 
   :config
   ;; if we don't delete rust-mode, after saving, the buffer will
