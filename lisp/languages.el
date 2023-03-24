@@ -189,7 +189,7 @@
 
 ;; Yaml, yaml
 (use-package yaml-mode
-  :config (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+  :mode ("\\.yml\\'" . yaml-mode))
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
@@ -204,17 +204,12 @@
   :custom
   (inferior-lisp-program "sbcl"))
 
-;; Go
-(use-package go-mode
-  :disabled)
-
 ;; Docker
 (use-package dockerfile-mode
   :mode ("Dockerfile\\'" . dockerfile-mode))
 
 ;; Highlight TODO keywords in source code
 (use-package hl-todo
-  :ensure t
   :custom-face
   (hl-todo ((t (:inherit hl-todo :italic t))))
   :hook ((prog-mode . hl-todo-mode)
