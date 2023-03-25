@@ -12,8 +12,8 @@
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
 ;; required so straight can build
-(defvar comp-deferred-compilation-deny-list ())
-(defvar native-comp-deferred-compilation-deny-list ())
+;(defvar comp-deferred-compilation-deny-list ())
+;(defvar native-comp-deferred-compilation-deny-list ())
 
 (require 'server)
 (unless (server-running-p)

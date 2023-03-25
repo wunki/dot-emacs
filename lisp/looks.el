@@ -23,13 +23,6 @@
    ((pet/is-mac) "MonoLisa 12")))
 (pet/set-font petars-font)
 
-;; TODO: move this to the right location.
-(defun pet/let-text-breath ()
-  "Let the text breath a little bit more."
-  (setq-local default-text-properties '(line-spacing 0.20 line-height 1.20)))
-;; (add-hook 'text-mode-hook 'pet/let-text-breath)
-;; (add-hook 'prog-mode-hook 'pet/let-text-breath)
-
 ;; Don't show any bars or toolbars
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
   (when (fboundp mode)

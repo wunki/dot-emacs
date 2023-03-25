@@ -21,6 +21,8 @@
 ;; No startup message
 (setq inhibit-startup-message t)
 (setq inhibit-startup-echo-area-message t)
+(defun display-startup-echo-area-message ()
+  (message "Home is where your REPL is."))
 
 ;; No message in scratch buffer
 (setq initial-scratch-message nil)
@@ -83,15 +85,24 @@
 ;; No load noises please
 (setq ring-bell-function 'ignore)
 
+(use-package dired
+  :straight (:type built-in)
+  :commands (dired-omit-mode dired-hide-details-mode)
+  :hook (dired-mode . (lambda ()
+                        (dired-omit-mode 1)
+                        (dired-hide-details-mode 1)))
+  :custom
+  (dired-omit-files "^\.?#\|\.DS_Store")
+  (dired-omit-verbose nil))
+
 ;; Enable visual-line-mode. Change auto-fill-mode to AF and swap
 ;; remove visual-line-mode
 (use-package emacs
+  :straight (:type built-in)
   :init
   (global-visual-line-mode 1)
   (setq completion-cycle-threshold 3)
   (setq tab-always-indent 'complete)
-  :hook
-  (dired-mode . (lambda () (dired-hide-details-mode 1)))
   :delight
   (auto-fill-function " AF")
   (visual-line-mode))
