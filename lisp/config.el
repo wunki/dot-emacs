@@ -21,7 +21,9 @@
 ;; No startup message
 (setq inhibit-startup-message t)
 (setq inhibit-startup-echo-area-message t)
+
 (defun display-startup-echo-area-message ()
+  "Replace the original message with a custom one."
   (message "Home is where your REPL is."))
 
 ;; No message in scratch buffer
