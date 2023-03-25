@@ -57,9 +57,6 @@
 ;; No cursor in inactive windows
 (setq cursor-in-non-selected-windows nil)
 
-;; Moderate font lock
-(setq font-lock-maximum-decoration nil)
-
 ;; Fill column at 80
 (setq fill-column 80)
 
