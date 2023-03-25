@@ -39,12 +39,6 @@
 ;; No dialog box
 (setq use-dialog-box nil)
 
-;; No popup windows
-;; 
-;; TODO: Still undecided if I want to use this or not,
-;; and what keeps me more in the flow of work.
-;; (setq pop-up-windows nil)
-
 ;; No empty line indicators
 (setq indicate-empty-lines nil)
 
