@@ -20,7 +20,7 @@
    ((pet/is-bsd) "Triplicate T4 10")
    ((pet/is-linux) "MonoLisa 9")
    ((pet/is-wsl) "MonoLisa 16")
-   ((pet/is-mac) "MonoLisa 12")))
+   ((pet/is-mac) "MonoLisa 13")))
 (pet/set-font petars-font)
 
 ;; Don't show any bars or toolbars
@@ -42,6 +42,7 @@
 
 ;; load my own themes
 (use-package autothemer
+  :disabled
   :init
   (add-to-list
    'custom-theme-load-path
@@ -72,12 +73,13 @@
   (load-theme 'modus-vivendi-tinted t))
 
 (use-package ef-themes
-  :disabled
   :ensure t
   :commands ef-themes-select
   :bind ("C-c C-t" . ef-themes-load-random)
   :init
-  (ef-themes-select 'ef-day))
+  (ef-themes-select 'ef-deuteranopia-dark)
+  :custom
+  (ef-themes-region '(intense no-extend neutral)))
 
 (use-package rainbow-mode
   :commands rainbow-mode
