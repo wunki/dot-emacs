@@ -18,7 +18,7 @@
 (defvar petars-font
   (cond
    ((pet/is-bsd) "Triplicate T4 10")
-   ((pet/is-linux) "MonoLisa 9")
+   ((pet/is-linux) "MonoLisa 8")
    ((pet/is-wsl) "MonoLisa 16")
    ((pet/is-mac) "MonoLisa 13")))
 (pet/set-font petars-font)
