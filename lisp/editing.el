@@ -74,7 +74,7 @@
 ;; Balance and mold those parenthesis
 (use-package paredit
   :commands paredit-mode
-  :hook ((emacs-lisp-mode lisp-interaction-mode ielm-mode lisp-mode eval-expression-minibuffer-setup slime-repl-mode clojure-mode) . paredit-mode))
+  :hook ((emacs-lisp-mode lisp-interaction-mode ielm-mode lisp-mode eval-expression-minibuffer-setup slime-repl-mode clojure-mode racket-mode) . paredit-mode))
 
 ;; Distraction-free screen for writing
 (use-package olivetti

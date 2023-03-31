@@ -86,7 +86,7 @@
 ;;                              :repo "clojure-emacs/clojure-ts-mode"))
 
 (use-package rainbow-delimiters
-  :hook ((emacs-lisp-mode lisp-interaction-mode ielm-mode lisp-mode eval-expression-minibuffer-setup slime-repl-mode clojure-mode)))
+  :hook ((emacs-lisp-mode lisp-interaction-mode ielm-mode lisp-mode eval-expression-minibuffer-setup slime-repl-mode clojure-mode racket-mode)))
 
 (use-package flycheck-clj-kondo)
 
@@ -203,6 +203,10 @@
 (use-package sly
   :custom
   (inferior-lisp-program "sbcl"))
+
+;; Racket
+(use-package racket-mode
+  :hook (racket-mode . racket-xp-mode))
 
 ;; Docker
 (use-package dockerfile-mode
