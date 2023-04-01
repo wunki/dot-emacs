@@ -72,3 +72,4 @@ flycheck_*.el
 /forge-database.sqlite
 /tree-sitter/
 /elisp-autofmt-cache/
+/racket-mode/
