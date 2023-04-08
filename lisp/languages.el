@@ -62,21 +62,7 @@
     (add-to-list 'major-mode-remap-alist mapping))
 
   :config
-  (pet/setup-install-grammars)
-
-  ;; `M-x combobulate' (or `C-c o o') to start using Combobulate
-  (use-package combobulate
-    :straight (combobulate :type git
-                           :host github
-                           :repo "mickeynp/combobulate")
-    :hook ((python-ts-mode . combobulate-mode)
-           (js-ts-mode . combobulate-mode)
-           (css-ts-mode . combobulate-mode)
-           (yaml-ts-mode . combobulate-mode)
-           (typescript-ts-mode . combobulate-mode)
-           (elixir-ts-mode . combobulate-mode)
-           (clojure-ts-mode . combobulate-mode)
-           (tsx-ts-mode . combobulate-mode))))
+  (pet/setup-install-grammars))
 
 ;; Clojure
 
