@@ -195,6 +195,17 @@
   (vterm-shell "fish")
   :hook (vterm-mode . enable-boring))
 
+(use-package goto-addr
+  :after vterm
+  :straight (:type built-in)
+  :bind (:map goto-address-highlight-keymap
+              ("C-c C-o" . goto-address-at-point))
+  :hook (((magit-process-mode vterm-mode) . goto-address-mode))
+  :config
+  (progn
+    (setq goto-address-mail-face 'link)
+    (setq goto-address-mail-mouse-face 'highlight)))
+
 (use-package vterm-toggle
   :commands (vterm-toggle)
   :custom
