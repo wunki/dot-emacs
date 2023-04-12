@@ -90,6 +90,9 @@
   (cljr-add-keybindings-with-prefix "C-c C-r"))
 
 (use-package cider
+  ;; clean up the buffer before saving
+  :config
+  (add-hook 'before-save-hook #'cider-format-buffer nil t)
   :custom
   ;; We use clojure-lsp for showing documentation
   (cider-eldoc-display-for-symbol-at-point nil)
@@ -115,12 +118,10 @@
   ;; don't prompt for symbols, try to use the one currently at prompt
   (cider-prompt-for-symbol nil)
 
-  ;; clean up the buffer before saving
-  :hook (before-save . cider-format-buffer)
   :bind (:map cider-mode-map
-         ("C-c C-l" . cider-find-and-clear-repl-output)
-         :map cider-repl-mode-map
-         ("C-c C-l" . cider-repl-clear-buffer)))
+              ("C-c C-l" . cider-find-and-clear-repl-output)
+              :map cider-repl-mode-map
+              ("C-c C-l" . cider-repl-clear-buffer)))
 
 ;; Elixir
 (use-package elixir-ts-mode)
