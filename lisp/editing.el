@@ -56,10 +56,11 @@
   :config
   (setq git-gutter:update-interval 0.02))
 
+;; auto-complete
 (use-package corfu
   :commands global-corfu-mode
   :custom
-  (corfu-cycle t)                   ;; Enable cycling for `corfu-next/previous'
+  (corfu-cycle t) ;; Enable cycling for `corfu-next/previous'
   ;; (corfu-auto t)                 ;; Enable auto completion
   ;; (corfu-separator ?\s)          ;; Orderless field separator
   ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
@@ -70,6 +71,20 @@
   ;; (corfu-scroll-margin 5)        ;; Use scroll margin
   :init
   (global-corfu-mode))
+
+(use-package copilot
+  :preface
+  (defun pet/copilot-tab ()
+    (interactive)
+    (or (copilot-accept-completion)
+	(indent-for-tab-command)))
+
+
+  :straight (:host github :repo "zerolfx/copilot.el"
+                   :files ("dist" "copilot.el"))
+  :config
+  (with-eval-after-load 'copilot
+    (define-key copilot-mode-map (kbd "TAB") #'pet/copilot-tab)))
 
 ;; Balance and mold those parenthesis
 (use-package paredit
