@@ -19,7 +19,7 @@
   (cond
    ((pet/is-bsd) "Triplicate T4 10")
    ((pet/is-linux) "IBM Plex Mono 9")
-   ((pet/is-wsl) "MonoLisa 16")
+   ((pet/is-wsl) "IBM Plex Mono 15")
    ((pet/is-mac) "IBM Plex Mono 14")))
 (pet/set-font petars-font)
 

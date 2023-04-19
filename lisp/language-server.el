@@ -22,7 +22,11 @@
         eglot-ignored-server-capabilities '(:hoverProvider))
   (add-to-list 'eglot-server-programs '(elixir-ts-mode "~/.local/share/elixir-ls/release/language_server.sh"))
   (add-to-list 'eglot-server-programs '(c-mode "clangd"))
-  :hook ((zig-mode elixir-ts-mode c-mode) . eglot-ensure))
+  :hook ((zig-mode elixir-ts-mode c-mode) . eglot-ensure)
+  :bind (:map eglot-mode-map
+              ("C-c C-f" . #'eglot-format-buffer)
+              ("C-c a r" . #'eglot-rename)
+              ("C-c C-c" . #'eglot-code-actions)))
 
 (provide 'language-server)
 ;;; language-server.el ends here
