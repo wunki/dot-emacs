@@ -71,8 +71,8 @@
 ;;                              :host github
 ;;                              :repo "clojure-emacs/clojure-ts-mode"))
 
-(use-package rainbow-delimiters
-  :hook ((emacs-lisp-mode lisp-interaction-mode ielm-mode lisp-mode eval-expression-minibuffer-setup slime-repl-mode clojure-mode racket-mode)))
+;; (use-package rainbow-delimiters
+;;   :hook ((emacs-lisp-mode lisp-interaction-mode ielm-mode lisp-mode eval-expression-minibuffer-setup slime-repl-mode clojure-mode racket-mode)))
 
 (use-package flycheck-clj-kondo)
 
