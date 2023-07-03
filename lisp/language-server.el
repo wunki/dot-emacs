@@ -19,7 +19,7 @@
         eglot-extend-to-xref t
         eglot-events-buffer-size nil
         eglot-send-changes-idle-time 0.5
-        eglot-ignored-server-capabilities '(:hoverProvider))
+        eglot-ignored-server-capabilities '(:hoverProvider :inlayHintProvider))
   (add-to-list 'eglot-server-programs '(elixir-ts-mode "~/.local/share/elixir-ls/release/language_server.sh"))
   (add-to-list 'eglot-server-programs '(c-mode "clangd"))
   :hook ((zig-mode elixir-ts-mode c-mode) . eglot-ensure)
