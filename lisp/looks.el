@@ -20,7 +20,7 @@
    ((pet/is-bsd) "Triplicate T4 10")
    ((pet/is-linux) "IBM Plex Mono 9")
    ((pet/is-wsl) "IBM Plex Mono 15")
-   ((pet/is-mac) "Berkeley Mono 14")))
+   ((pet/is-mac) "Berkeley Mono 17")))
 (pet/set-font petars-font)
 
 ;; Don't show any bars or toolbars
@@ -54,6 +54,15 @@
   :ensure t
   :if (display-graphic-p))
 
+(use-package doom-themes
+  :config
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t)   ; if nil, italics is universally disabled
+  (load-theme 'doom-meltbus t)
+  (setq doom-themes-treemacs-theme "doom-atom")
+  (doom-themes-treemacs-config)
+  (doom-themes-org-config))
+
 (use-package doom-modeline
   :ensure t
   :custom
@@ -68,11 +77,12 @@
   :bind ("C-c C-t" . modus-themes-toggle)
   :config
   (setq modus-themes-italic-constructs t
-        modus-themes-bold-constructs t)
+        modus-themes-bold-constructs nil)
   :init
   (load-theme 'modus-vivendi-tinted t))
 
 (use-package ef-themes
+  :disabled
   :ensure t
   :commands ef-themes-select
   :bind ("C-c C-t" . ef-themes-load-random)
