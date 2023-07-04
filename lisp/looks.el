@@ -13,7 +13,7 @@
   '(nano-emacs :type git :host github :repo "rougier/nano-emacs"))
 
 (setq nano-font-family-monospaced "Berkeley Mono")
-(setq nano-font-size 14)
+(setq nano-font-size 12)
 (require 'nano)
 
 ;; Easily scale the font size up and down
