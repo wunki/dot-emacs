@@ -52,9 +52,10 @@
 
 ;; Show git changes in the gutter
 (use-package git-gutter
+  :disabled
   :hook (prog-mode . git-gutter-mode)
   :config
-  (setq git-gutter:update-interval 0.02))
+  (setq git-gutter:update-interval 1))
 
 ;; auto-complete
 (use-package corfu
