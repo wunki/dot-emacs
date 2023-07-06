@@ -9,12 +9,16 @@
 ;;
 (require 'lib)
 
-(straight-use-package
-  '(nano-emacs :type git :host github :repo "rougier/nano-emacs"))
-
-(setq nano-font-family-monospaced "Berkeley Mono")
-(setq nano-font-size 12)
-(require 'nano)
+(use-package nano-emacs
+  :no-require t
+  :straight (:host github :repo "rougier/nano-emacs")
+  :defines (nano-font-family-monospaced nano-font-size)
+  :functions (nano-toggle-theme)
+  :bind (("C-c C-n" . nano-toggle-theme))
+  :config
+  (setq nano-font-family-monospaced "Berkeley Mono")
+  (setq nano-font-size 15)
+  (require 'nano))
 
 ;; Easily scale the font size up and down
 (use-package default-text-scale
