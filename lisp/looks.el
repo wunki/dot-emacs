@@ -9,16 +9,51 @@
 ;;
 (require 'lib)
 
-(use-package nano-emacs
-  :no-require t
-  :straight (:host github :repo "rougier/nano-emacs")
-  :defines (nano-font-family-monospaced nano-font-size)
-  :functions (nano-toggle-theme)
-  :bind (("C-c C-n" . nano-toggle-theme))
+;; Set the font, depending on the system
+(defvar petars-font
+  (cond
+   ((pet/is-bsd) "Triplicate T4 10")
+   ((pet/is-linux) "IBM Plex Mono 9")
+   ((pet/is-wsl) "IBM Plex Mono 15")
+   ((pet/is-mac) "IBM Plex Mono 13")))
+(pet/set-font petars-font)
+
+;; Don't show any bars or toolbars
+(dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
+  (when (fboundp mode)
+    (funcall mode 0)))
+
+;; Add some spacing
+(setq frame-resize-pixelwise t
+      default-frame-alist (append (list
+                                   '(vertical-scroll-bars . nil)
+                                   '(internal-border-width . 14)
+                                   '(right-fringe   . 0)
+                                   '(tool-bar-lines . 0))))
+
+(when (memq window-system '(mac ns))
+  (add-to-list 'default-frame-alist '(ns-appearance . nil))
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
+
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+(use-package doom-themes
   :config
-  (setq nano-font-family-monospaced "Berkeley Mono")
-  (setq nano-font-size 15)
-  (require 'nano))
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t)   ; if nil, italics is universally disabled
+  (load-theme 'doom-homage-white t)
+  (setq doom-themes-treemacs-theme "doom-atom")
+  (doom-themes-treemacs-config)
+  (doom-themes-org-config))
+
+(use-package doom-modeline
+  :ensure t
+  :custom
+  (doom-modeline-icon nil)
+  (doom-modeline-buffer-encoding nil)
+  (doom-modeline-height 25)
+  :hook (after-init . doom-modeline-mode))
 
 ;; Easily scale the font size up and down
 (use-package default-text-scale
