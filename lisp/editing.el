@@ -74,8 +74,9 @@
   (global-corfu-mode))
 
 (use-package copilot
-  :straight (:host github :repo "zerolfx/copilot.el"
-                   :files ("dist" "copilot.el"))
+  :straight (:host github
+             :repo "zerolfx/copilot.el"
+             :files ("dist" "*.el"))
   
   :preface
   (defun pet/copilot-tab ()
