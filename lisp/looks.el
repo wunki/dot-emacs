@@ -15,7 +15,7 @@
    ((pet/is-bsd) "Triplicate T4 10")
    ((pet/is-linux) "IBM Plex Mono 9")
    ((pet/is-wsl) "IBM Plex Mono 15")
-   ((pet/is-mac) "IBM Plex Mono 13")))
+   ((pet/is-mac) "Triplicate T4 14")))
 (pet/set-font petars-font)
 
 ;; Don't show any bars or toolbars
@@ -39,13 +39,18 @@
   :if (display-graphic-p))
 
 (use-package doom-themes
+  :functions (doom-themes-treemacs-config doom-themes-org-config)
+  :custom
+  (doom-themes-enable-bold t)
+  (doom-themes-enable-italic t)
+  (doom-themes-treemacs-theme "doom-atom")
   :config
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t)   ; if nil, italics is universally disabled
-  (load-theme 'doom-homage-white t)
-  (setq doom-themes-treemacs-theme "doom-atom")
   (doom-themes-treemacs-config)
-  (doom-themes-org-config))
+  (doom-themes-org-config)
+  (load-theme 'doom-meltbus t))
+
+(use-package theme-looper
+  :bind ("C-c t" . theme-looper-select-theme))
 
 (use-package doom-modeline
   :ensure t
