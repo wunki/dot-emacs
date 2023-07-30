@@ -30,39 +30,15 @@
    "only check on save"))
 
 ;; Tree-sitter
-(use-package treesit
-  :straight (:type built-in)
-  :preface
-  (defun pet/setup-install-grammars ()
-    "Install Tree-sitter grammars if they are absent."
-    (interactive)
-    (dolist (grammar
-             '((css "https://github.com/tree-sitter/tree-sitter-css")
-               (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "master" "src"))
-               (python "https://github.com/tree-sitter/tree-sitter-python")
-               (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
-               (yaml "https://github.com/ikatyang/tree-sitter-yaml")
-               (java "https://github.com/tree-sitter/tree-sitter-java")
-               (elixir "https://github.com/elixir-lang/tree-sitter-elixir")
-               (heex "https://github.com/phoenixframework/tree-sitter-heex")
-               (zig "https://github.com/GrayJack/tree-sitter-zig")
-               (rust "https://github.com/tree-sitter/tree-sitter-rust")
-               (clojure "https://github.com/sogaiu/tree-sitter-clojure")))
-      (add-to-list 'treesit-language-source-alist grammar)
-      (unless (treesit-language-available-p (car grammar))
-        (treesit-install-language-grammar (car grammar)))))
+(use-package tree-sitter
+  :hook ((zig-mode
+          elixir-mode
+          css-mode
+          html-mode
+          markdown-mode) . tree-sitter-mode))
 
-  (dolist (mapping '((python-mode . python-ts-mode)
-                     (java-mode . java-ts-mode)
-                     (css-mode . css-ts-mode)
-                     (typescript-mode . tsx-ts-mode)
-                     (js-mode . js-ts-mode)
-                     (css-mode . css-ts-mode)
-                     (yaml-mode . yaml-ts-mode)))
-    (add-to-list 'major-mode-remap-alist mapping))
-
-  :config
-  (pet/setup-install-grammars))
+(use-package tree-sitter-langs
+  :after tree-sitter)
 
 ;; Clojure
 
@@ -91,6 +67,7 @@
 
 (use-package cider
   ;; clean up the buffer before saving
+  :functions cider-format-buffer
   :config
   (add-hook 'before-save-hook #'cider-format-buffer nil t)
   :custom
