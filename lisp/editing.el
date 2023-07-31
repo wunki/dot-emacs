@@ -46,6 +46,15 @@
   (custom-set-variables
    '(magit-todos-keywords (list "TODO" "FIXME" "HACK"))))
 
+(use-package git-gutter-fringe
+  :hook (prog-mode . git-gutter-mode)
+  :custom
+  (git-gutter:update-interval 0.02)
+  :config
+  (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
+
 (use-package forge
   :after magit
   :bind ("C-c C-g" . forge-dispatch))
