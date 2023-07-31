@@ -10,13 +10,13 @@
 (require 'lib)
 
 ;; Set the font, depending on the system
-(defvar petars-font
+(defvar pet/var-my-font
   (cond
    ((pet/is-bsd) "Triplicate T4 10")
    ((pet/is-linux) "IBM Plex Mono 9")
    ((pet/is-wsl) "IBM Plex Mono 15")
-   ((pet/is-mac) "Triplicate T4 14")))
-(pet/set-font petars-font)
+   ((pet/is-mac) "Triplicate T4 13")) "The font used across Emacs.")
+(pet/set-font pet/var-my-font)
 
 ;; Don't show any bars or toolbars
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
@@ -27,7 +27,7 @@
 (setq frame-resize-pixelwise t
       default-frame-alist (append (list
                                    '(vertical-scroll-bars . nil)
-                                   '(internal-border-width . 14)
+                                   '(internal-border-width . 16)
                                    '(right-fringe   . 0)
                                    '(tool-bar-lines . 0))))
 
