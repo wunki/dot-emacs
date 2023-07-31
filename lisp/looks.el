@@ -12,9 +12,9 @@
 ;; Set the font, depending on the system
 (defvar pet/var-my-font
   (cond
-   ((pet/is-bsd) "Triplicate T4 10")
-   ((pet/is-linux) "IBM Plex Mono 9")
-   ((pet/is-wsl) "IBM Plex Mono 15")
+   ((pet/is-bsd) "Triplicate A Code 10")
+   ((pet/is-linux) "Triplicate A Code 9")
+   ((pet/is-wsl) "Triplicate A Code 15")
    ((pet/is-mac) "Triplicate A Code 13")) "The font used across Emacs.")
 (pet/set-font pet/var-my-font)
 
