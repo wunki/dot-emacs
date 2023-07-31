@@ -26,11 +26,6 @@
   (interactive)
   (find-file "~/.config/emacs/init.el"))
 
-(defun pet/reload-config ()
-  "Reloads all Emacs configuration."
-  (interactive)
-  (load-file user-init-file))
-
 (defun pet/is-mac ()
   "Return non-nil if running on a mac."
   (interactive)
@@ -135,6 +130,13 @@ Otherwise it adds it to the so it works with the Emacs daemon."
   (ert-delete-all-tests)
   (eval-buffer)
   (ert 't))
+
+(defun pet/reload-emacs ()
+  "Reset Emacs to a clean state."
+  (interactive)
+  (setq custom-file (concat user-emacs-directory "custom.el"))
+  (delete-other-windows)
+  (load-file user-init-file))
 
 (provide 'lib)
 ;;; lib.el ends here
