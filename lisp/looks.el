@@ -48,7 +48,11 @@
   :config
   (doom-themes-treemacs-config)
   (doom-themes-org-config)
-  (load-theme 'doom-meltbus t))
+  (load-theme 'doom-meltbus t)
+  ;; change comments to italic
+  (advice-add #'load-theme :after (lambda (&rest _)
+                                    (set-face-italic 'font-lock-comment-face t)
+                                    (set-face-italic 'font-lock-doc-face t))))
 
 (use-package theme-looper
   :bind ("C-c t" . theme-looper-select-theme))
