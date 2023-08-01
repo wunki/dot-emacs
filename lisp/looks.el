@@ -15,7 +15,8 @@
    ((pet/is-bsd) "Triplicate A Code 10")
    ((pet/is-linux) "Triplicate A Code 9")
    ((pet/is-wsl) "Triplicate A Code 15")
-   ((pet/is-mac) "Triplicate A Code 13")) "The font used across Emacs.")
+   ((pet/is-mac) "Triplicate A Code 14"))
+  "My font used across Emacs.")
 (pet/set-font pet/var-my-font)
 
 ;; Don't show any bars or toolbars
