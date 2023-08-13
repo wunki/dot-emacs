@@ -169,8 +169,7 @@
   (inferior-lisp-program "sbcl"))
 
 ;; Racket
-(use-package racket-mode
-  :hook (racket-mode . racket-xp-mode))
+(use-package racket-mode)
 
 ;; Docker
 (use-package dockerfile-mode
