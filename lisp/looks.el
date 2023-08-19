@@ -15,7 +15,7 @@
    ((pet/is-bsd)
     "Triplicate A Code 10")
    ((pet/is-linux)
-    "Triplicate A Code 9")
+    "Triplicate A Code 11")
    ((pet/is-wsl)
     "Triplicate A Code 15")
    ((pet/is-mac)
