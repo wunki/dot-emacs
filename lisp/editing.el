@@ -36,16 +36,6 @@
   :bind ("C-c g" . magit-status)
   :hook (git-commit-mode-hook . my/git-commit-auto-fill-everywhere))
 
-(use-package magit-todos
-  :commands (magit-todos-mode)
-  :hook (magit-mode . magit-todos-mode)
-  :config
-  (setq magit-todos-recursive t
-        magit-todos-depth 10
-        magit-todos-exclude-globs '(".git/" "*elpa*" "*var/lsp/*"))
-  (custom-set-variables
-   '(magit-todos-keywords (list "TODO" "FIXME" "HACK"))))
-
 (use-package git-gutter-fringe
   :hook (prog-mode . git-gutter-mode)
   :custom
