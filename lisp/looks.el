@@ -69,6 +69,10 @@
   (doom-modeline-height 25)
   :hook (after-init . doom-modeline-mode))
 
+;; Toggle the modeline on and off
+(use-package hide-mode-line
+  :bind ("C-c m" . global-hide-mode-line-mode))
+
 ;; Easily scale the font size up and down
 (use-package default-text-scale
   :demand

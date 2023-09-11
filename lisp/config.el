@@ -32,8 +32,8 @@
 ;; Initial buffer
 (setq initial-buffer-choice nil)
 
-;; No frame title
-(setq frame-title-format nil)
+;; Only show filename in the frame title
+(setq frame-title-format "%b")
 
 ;; No file dialog
 (setq use-file-dialog nil)
