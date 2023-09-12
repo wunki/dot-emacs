@@ -30,10 +30,9 @@
 
 (use-package eglot-grammarly
   :straight (:host github :repo "emacs-grammarly/eglot-grammarly")
-  :defer t  ; defer package loading
-  :hook ((text-mode markdown-mode org-mode) . (lambda ()
-                                                (require 'eglot-grammarly)
-                                                (eglot-ensure))))
+  :hook ((markdown-mode org-mode) . (lambda ()
+                                      (require 'eglot-grammarly)
+                                      (eglot-ensure))))
 
 (provide 'language-server)
 ;;; language-server.el ends here
