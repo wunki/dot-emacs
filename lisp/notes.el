@@ -12,7 +12,8 @@
   :custom
   (denote-directory "~/Notes")
   (denote-known-keywords '("journal" "projects" "ideas" "people"))
-  :bind (("C-c n" . denote)))
+  :bind (("C-c N" . denote-create-note)
+         ("C-c n" . denote-open-or-create)))
 
 (provide 'notes)
 ;;; notes.el ends here

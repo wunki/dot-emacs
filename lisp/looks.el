@@ -19,7 +19,7 @@
    ((pet/is-wsl)
     "MonoLisa 14")
    ((pet/is-mac)
-    "Triplicate A Code 14"))
+    "MonoLisa 12"))
   "My font used across Emacs.")
 (pet/set-font pet/var-my-font)
 
