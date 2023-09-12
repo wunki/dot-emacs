@@ -28,5 +28,12 @@
               ("C-c a r" . #'eglot-rename)
               ("C-c C-c" . #'eglot-code-actions)))
 
+(use-package eglot-grammarly
+  :straight (:host github :repo "emacs-grammarly/eglot-grammarly")
+  :defer t  ; defer package loading
+  :hook ((text-mode markdown-mode org-mode) . (lambda ()
+                                                (require 'eglot-grammarly)
+                                                (eglot-ensure))))
+
 (provide 'language-server)
 ;;; language-server.el ends here
