@@ -21,6 +21,7 @@
 (require 'bindings)
 (require 'navigation)
 (require 'looks)
+(require 'completion)
 (require 'editing)
 (require 'language-server)
 (require 'languages)
