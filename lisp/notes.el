@@ -8,9 +8,14 @@
 ;;
 (require 'lib)
 
+(defvar pet/notes-directory
+  (if (pet/is-mac)
+      "~/Notes"
+    "~/notes"))
+
 (use-package denote
   :custom
-  (denote-directory "~/Notes")
+  (denote-directory pet/notes-directory)
   (denote-known-keywords '("journal" "projects" "ideas" "people"))
   :bind (("C-c N" . denote-create-note)
          ("C-c n" . denote-open-or-create)))
