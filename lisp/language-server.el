@@ -35,7 +35,8 @@
   (add-to-list 'eglot-server-programs '(c-mode "clangd"))
   :hook (((zig-mode elixir-ts-mode go-mode c-mode) . eglot-ensure)
          (go-mode . pet/eglot-format-buffer-on-save)
-         (go-mode . pet/eglot-organize-imports-on-save))
+         (go-mode . pet/eglot-organize-imports-on-save)
+         (elixir-ts-mode . pet/eglot-format-buffer-on-save))
   :bind (:map eglot-mode-map
               ("C-c C-f" . #'eglot-format-buffer)
               ("C-c a r" . #'eglot-rename)
