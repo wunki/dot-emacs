@@ -15,7 +15,7 @@
    ((pet/is-bsd)
     "Triplicate A Code 10")
    ((pet/is-linux)
-    "Triplicate A Code 11")
+    "IBM Plex Mono 10")
    ((pet/is-wsl)
     "BlexMono Nerd Font 15")
    ((pet/is-mac)

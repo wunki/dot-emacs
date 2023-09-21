@@ -32,10 +32,14 @@
 ;; Tree-sitter
 (use-package tree-sitter
   :hook ((zig-mode
+          go-mode
           elixir-mode
           css-mode
           html-mode
-          markdown-mode) . tree-sitter-mode))
+          markdown-mode) . tree-sitter-mode)
+  :config
+  (setq major-mode-remap-alist
+        '((go-mode . go-ts-mode))))
 
 (use-package tree-sitter-langs
   :after tree-sitter)
@@ -170,6 +174,10 @@
 
 ;; Racket
 (use-package racket-mode)
+
+;; Go
+(use-package go-mode
+  :mode "\\.go\\'")
 
 ;; Docker
 (use-package dockerfile-mode

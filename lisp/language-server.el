@@ -8,12 +8,23 @@
 ;;; Code:
 ;;
 (require 'lib)
+(require 'project)
+(require 'eglot)
+
+(defun pet/eglot-organize-imports ()
+  (interactive)
+  (eglot-code-actions nil nil "source.organizeImports" t))
+
+(defun pet/eglot-format-buffer-on-save ()
+  (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
+
+(defun pet/eglot-organize-imports-on-save ()
+  (add-hook 'before-save-hook #'pet/eglot-organize-imports nil t))
 
 (use-package eglot
   :config
   ;; we can't add this to :hook because we want it to be
-  ;; buffer local
-  (add-hook 'before-save-hook #'eglot-format-buffer nil t)
+  ;; buffer local.
   (setq eglot-autoshutdown t
         eglot-autoreconnect t
         eglot-extend-to-xref t
@@ -22,7 +33,9 @@
         eglot-ignored-server-capabilities '(:hoverProvider :inlayHintProvider))
   (add-to-list 'eglot-server-programs '(elixir-ts-mode "~/.local/share/elixir-ls/release/language_server.sh"))
   (add-to-list 'eglot-server-programs '(c-mode "clangd"))
-  :hook ((zig-mode elixir-ts-mode c-mode) . eglot-ensure)
+  :hook (((zig-mode elixir-ts-mode go-mode c-mode) . eglot-ensure)
+         (go-mode . pet/eglot-format-buffer-on-save)
+         (go-mode . pet/eglot-organize-imports-on-save))
   :bind (:map eglot-mode-map
               ("C-c C-f" . #'eglot-format-buffer)
               ("C-c a r" . #'eglot-rename)
@@ -33,6 +46,17 @@
   :hook ((markdown-mode org-mode) . (lambda ()
                                       (require 'eglot-grammarly)
                                       (eglot-ensure))))
+
+;; Setup Go, which needs to look for the go module.
+(defun project-find-go-module (dir)
+  (when-let ((root (locate-dominating-file dir "go.mod")))
+    (cons 'go-module root)))
+
+(cl-defmethod project-root ((project (head go-module)))
+  (cdr project))
+
+(add-hook 'project-find-functions #'project-find-go-module)
+
 
 (provide 'language-server)
 ;;; language-server.el ends here
