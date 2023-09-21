@@ -167,11 +167,21 @@
     (quote browse-url-generic)
     browse-url-generic-program "xdg-open"))
 
+;; When on WSL
+(when (pet/is-wsl)
+  (let ((cmd-exe "/mnt/c/Windows/System32/cmd.exe")
+        (cmd-args '("/c" "start")))
+    (when (file-exists-p cmd-exe)
+      (setq browse-url-generic-program  cmd-exe
+            browse-url-generic-args     cmd-args
+            browse-url-browser-function 'browse-url-generic
+            search-web-default-browser 'browse-url-generic))))
+
 ;; Don't show warnings if we have native compilation enabled
 (when
-  (and
-    (fboundp 'native-comp-available-p)
-    (native-comp-available-p))
+    (and
+     (fboundp 'native-comp-available-p)
+     (native-comp-available-p))
   (setq native-comp-async-report-warnings-errors nil))
 
 ;; Improved, buttery smooth scrolling, only available on Emacs 29

@@ -17,7 +17,7 @@
    ((pet/is-linux)
     "Triplicate A Code 11")
    ((pet/is-wsl)
-    "MonoLisa 14")
+    "BlexMono Nerd Font 15")
    ((pet/is-mac)
     "MonoLisa 12"))
   "My font used across Emacs.")
