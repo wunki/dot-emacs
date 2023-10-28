@@ -12,13 +12,16 @@
 (require 'eglot)
 
 (defun pet/eglot-organize-imports ()
+  "Organizes the imports."
   (interactive)
   (eglot-code-actions nil nil "source.organizeImports" t))
 
 (defun pet/eglot-format-buffer-on-save ()
+  "Format's the buffer on save."
   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
 
 (defun pet/eglot-organize-imports-on-save ()
+  "Organizes the imports on save."
   (add-hook 'before-save-hook #'pet/eglot-organize-imports nil t))
 
 (use-package eglot
@@ -31,9 +34,9 @@
         eglot-events-buffer-size nil
         eglot-send-changes-idle-time 0.5
         eglot-ignored-server-capabilities '(:hoverProvider :inlayHintProvider))
-  (add-to-list 'eglot-server-programs '(elixir-ts-mode "~/.local/share/elixir-ls/release/language_server.sh"))
+  (add-to-list 'eglot-server-programs '(elixir-ts-mode "nextls" "--stdio=true"))
   (add-to-list 'eglot-server-programs '(c-mode "clangd"))
-  :hook (((zig-mode elixir-ts-mode go-mode c-mode) . eglot-ensure)
+  :hook (((zig-mode elixir-ts-mode heex-ts-mode go-mode c-mode) . eglot-ensure)
          (go-mode . pet/eglot-format-buffer-on-save)
          (go-mode . pet/eglot-organize-imports-on-save)
          (elixir-ts-mode . pet/eglot-format-buffer-on-save))
@@ -50,10 +53,12 @@
 
 ;; Setup Go, which needs to look for the go module.
 (defun project-find-go-module (dir)
+  "Find the root of the project by finding go.mod file in DIR."
   (when-let ((root (locate-dominating-file dir "go.mod")))
     (cons 'go-module root)))
 
 (cl-defmethod project-root ((project (head go-module)))
+  "I have no idea what this does with PROJECT."
   (cdr project))
 
 (add-hook 'project-find-functions #'project-find-go-module)
