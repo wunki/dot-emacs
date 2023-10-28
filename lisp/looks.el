@@ -43,31 +43,14 @@
 (use-package all-the-icons
   :if (display-graphic-p))
 
-(use-package doom-themes
-  :functions (doom-themes-treemacs-config doom-themes-org-config)
-  :custom
-  (doom-themes-enable-bold t)
-  (doom-themes-enable-italic t)
-  (doom-themes-treemacs-theme "doom-atom")
+(use-package catppuccin-theme
   :config
-  (doom-themes-treemacs-config)
-  (doom-themes-org-config)
-  (load-theme 'doom-ayu-mirage t)
-  ;; change comments to italic
-  (advice-add #'load-theme :after (lambda (&rest _)
-                                    (set-face-italic 'font-lock-comment-face t)
-                                    (set-face-italic 'font-lock-doc-face t))))
+  (load-theme 'catppuccin :no-confirm))
 
-(use-package theme-looper
-  :bind ("C-c t" . theme-looper-select-theme))
-
-(use-package doom-modeline
-  :ensure t
-  :custom
-  (doom-modeline-icon nil)
-  (doom-modeline-buffer-encoding nil)
-  (doom-modeline-height 25)
-  :hook (after-init . doom-modeline-mode))
+(use-package mood-line
+  :commands mood-line-mode
+  :config
+  (mood-line-mode))
 
 ;; Toggle the modeline on and off
 (use-package hide-mode-line
