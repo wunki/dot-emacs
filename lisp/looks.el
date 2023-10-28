@@ -19,7 +19,7 @@
    ((pet/is-wsl)
     "BlexMono Nerd Font 15")
    ((pet/is-mac)
-    "JetBrainsMono Nerd Font Mono 13"))
+    "MonoLisa 13"))
   "My font used across Emacs.")
 (pet/set-font pet/var-my-font)
 
@@ -52,7 +52,7 @@
   :config
   (doom-themes-treemacs-config)
   (doom-themes-org-config)
-  (load-theme 'doom-ayu-dark t)
+  (load-theme 'doom-ayu-mirage t)
   ;; change comments to italic
   (advice-add #'load-theme :after (lambda (&rest _)
                                     (set-face-italic 'font-lock-comment-face t)
