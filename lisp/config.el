@@ -106,11 +106,11 @@
 ;; Delete a marked region
 (delete-selection-mode 1)
 
-;; Use shift + direction to switch between windows
+;; Use shift + direction to switch between windows.
 (windmove-default-keybindings)
 
-;; Highlight the current line, turned off for now
-(global-hl-line-mode -1)
+;; Highlight the current line.
+(global-hl-line-mode 1)
 (hl-line-mode -1)
 
 ;; Show the current column
@@ -122,8 +122,8 @@
 ;; Change the default cursor
 (setq-default cursor-type 'box)
 
-;; Let's see who blinks first
-(blink-cursor-mode t)
+;; Blink the cursor
+(blink-cursor-mode -1)
 
 ;; Highlight the matching paren
 (show-paren-mode 1)
