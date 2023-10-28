@@ -19,7 +19,7 @@
    ((pet/is-wsl)
     "BlexMono Nerd Font 15")
    ((pet/is-mac)
-    "MonoLisa 12"))
+    "MonoLisa 11"))
   "My font used across Emacs.")
 (pet/set-font pet/var-my-font)
 
