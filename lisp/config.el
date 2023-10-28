@@ -32,8 +32,9 @@
 ;; Initial buffer
 (setq initial-buffer-choice nil)
 
-;; Only show filename in the frame title
-(setq frame-title-format "%b")
+;; Show nothing in the title
+(setq frame-title-format nil)
+(setq ns-use-proxy-icon nil)
 
 ;; No file dialog
 (setq use-file-dialog nil)
@@ -111,7 +112,7 @@
 
 ;; Highlight the current line.
 (global-hl-line-mode 1)
-(hl-line-mode -1)
+(hl-line-mode 1)
 
 ;; Show the current column
 (column-number-mode -1)
