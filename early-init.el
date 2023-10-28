@@ -7,15 +7,5 @@
 ;;; Code:
 ;;
 
-(when (file-directory-p "/opt/homebrew")
-   (setenv
-    "LIBRARY_PATH"
-    (string-join
-     '
-     ("/opt/homebrew/opt/gcc/lib/gcc/current"
-      "/opt/homebrew/opt/libgccjit/lib/gcc/current"
-      "/opt/homebrew/opt/gcc/lib/gcc/current/gcc/aarch64-apple-darwin22/12")
-     ":")))
-
 (provide 'early-init)
 ;;; early-init.el ends here
