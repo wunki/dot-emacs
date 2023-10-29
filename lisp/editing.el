@@ -36,25 +36,9 @@
   :bind ("C-c g" . magit-status)
   :hook (git-commit-mode-hook . my/git-commit-auto-fill-everywhere))
 
-(use-package git-gutter-fringe
-  :hook (prog-mode . git-gutter-mode)
-  :custom
-  (git-gutter:update-interval 0.02)
-  :config
-  (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
-  (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
-  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
-
 (use-package forge
   :after magit
   :bind ("C-c C-g" . forge-dispatch))
-
-;; Show git changes in the gutter
-(use-package git-gutter
-  :disabled
-  :hook (prog-mode . git-gutter-mode)
-  :config
-  (setq git-gutter:update-interval 1))
 
 (use-package copilot
   :straight (:host github
@@ -76,6 +60,7 @@
 
 ;; Balance and mold those parenthesis
 (use-package paredit
+  :delight paredit-mode
   :commands paredit-mode
   :hook ((emacs-lisp-mode lisp-interaction-mode ielm-mode lisp-mode eval-expression-minibuffer-setup slime-repl-mode clojure-mode racket-mode) . paredit-mode))
 
