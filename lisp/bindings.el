@@ -23,7 +23,7 @@
 (define-key global-map (kbd "C-x C-m") 'execute-extended-command)
 
 ;; Quickly edit my config
-(global-set-key (kbd "C-c I") 'pet/find-config)
+(global-set-key (kbd "C-c I") 'pet/edit-emacs-configuration)
 
 ;; Rename file and buffer
 (global-set-key (kbd "C-c r") 'pet/rename-file-and-buffer)

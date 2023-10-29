@@ -21,10 +21,14 @@
     (kill-region (region-beginning) (region-end))
     (backward-kill-word 1)))
 
-(defun pet/find-config ()
-  "Edit my configuration file."
+(defun pet/edit-emacs-configuration ()
+  "Edit a file in my Emacs configuration."
   (interactive)
-  (find-file "~/.config/emacs/init.el"))
+  (let ((project-root "~/.config/emacs"))
+    (if (and project-root (file-directory-p project-root))
+        (let ((default-directory project-root))
+          (call-interactively 'project-find-file))
+      (message "Emacs configuration not found at: %s" project-root))))
 
 (defun pet/is-mac ()
   "Return non-nil if running on a mac."
