@@ -3,7 +3,6 @@
 ;;; Commentary:
 ;;
 ;; We want Emacs to look nice, with as minimal distraction as possible.
-;; That's why we use the Nano theme from rougier.
 ;; 
 ;;; Code:
 ;;
@@ -46,6 +45,11 @@
 (use-package catppuccin-theme
   :config
   (load-theme 'catppuccin :no-confirm))
+
+;; give a darker color to non text buffers
+(use-package solaire-mode
+  :config
+  (solaire-global-mode +1))
 
 (use-package mood-line
   :config

@@ -32,22 +32,18 @@
 
 (defun pet/is-mac ()
   "Return non-nil if running on a mac."
-  (interactive)
   (eq system-type 'darwin))
 
 (defun pet/is-bsd ()
   "Return non-nil if running on FreeBSD."
-  (interactive)
   (eq system-type 'berkeley-unix))
 
 (defun pet/is-wsl ()
   "Return non-nil if running on Windows WSL."
-  (interactive)
   (and (string-equal system-type 'gnu/linux) (getenv "WSLENV")))
 
 (defun pet/is-linux ()
   "Return non-nil if running on Linux."
-  (interactive)
   (and (not (pet/is-wsl)) (string-equal system-type "gnu/linux")))
 
 (defun pet/delete-file-and-buffer ()

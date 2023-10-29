@@ -202,7 +202,7 @@
   (defun pet/enable-boring ()
     "Don't show line numbers and line highligthing."
     (progn
-      (setq-local global-hl-line-mode nil)
+      (setq-local hl-line-mode nil)
       (display-line-numbers-mode -1)
       (message "The shell is ready.")))
   :custom
