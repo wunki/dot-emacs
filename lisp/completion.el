@@ -29,14 +29,14 @@
 
 ;; Pretty icons for corfu
 (use-package kind-icon
-  :if (display-graphic-p)
+  :if window-system
+  :defines kind-icon-margin-formatter
   :after corfu
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 ;; Orderless: powerful completion style
 (use-package orderless
-  :ensure t
   :config
   (setq completion-styles '(orderless)))
 

@@ -41,14 +41,13 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
 
 (use-package all-the-icons
-  :if (display-graphic-p))
+  :if window-system)
 
 (use-package catppuccin-theme
   :config
   (load-theme 'catppuccin :no-confirm))
 
 (use-package mood-line
-  :commands mood-line-mode
   :config
   (mood-line-mode 1))
 
@@ -64,7 +63,7 @@
 
 (use-package rainbow-mode
   :commands rainbow-mode
-  :diminish
+  :delight
   :hook ((web-mode . rainbow-mode)
          (css-mode . rainbow-mode)))
 
