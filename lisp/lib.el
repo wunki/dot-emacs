@@ -62,14 +62,6 @@
           (message "Deleted file %s" filename)
           (kill-buffer))))))
 
-(defun pet/random-theme ()
-  "Randomly change the theme."
-  (interactive)
-  (let* ((themes (custom-available-themes))
-         (random-theme (nth (random (length themes)) themes)))
-    (message "Current theme: %s" random-theme)
-    (load-theme random-theme t)))
-
 (defun pet/rename-file-and-buffer ()
   "Rename the current buffer and file it is visiting."
   (interactive)
@@ -82,6 +74,14 @@
          (t
           (rename-file filename new-name t)
           (set-visited-file-name new-name t t)))))))
+
+(defun pet/random-theme ()
+  "Randomly change the theme."
+  (interactive)
+  (let* ((themes (custom-available-themes))
+         (random-theme (nth (random (length themes)) themes)))
+    (message "Current theme: %s" random-theme)
+    (load-theme random-theme t)))
 
 (defun pet/eshell-here ()
   "Opens up a new shell in the directory associated with the current buffer's file.
