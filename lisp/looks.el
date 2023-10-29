@@ -50,7 +50,7 @@
 (use-package mood-line
   :commands mood-line-mode
   :config
-  (mood-line-mode))
+  (mood-line-mode 1))
 
 ;; Toggle the modeline on and off
 (use-package hide-mode-line
