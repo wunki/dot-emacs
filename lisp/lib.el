@@ -15,7 +15,7 @@
   :commands (s-trim s-concat))
 
 (defun pet/kill-region-or-backward-word ()
-  "Kill either the word backwards or the active region."
+  "Kill the active region if it exists, otherwise kill the word backwards."
   (interactive)
   (if (region-active-p)
     (kill-region (region-beginning) (region-end))

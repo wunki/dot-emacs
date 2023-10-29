@@ -110,9 +110,10 @@
 ;; Use shift + direction to switch between windows.
 (windmove-default-keybindings)
 
-;; Highlight the current line.
-(global-hl-line-mode 1)
-(hl-line-mode 1)
+;; Highlight the current line only for program and text.
+;; Previously I had it global, but that was a tad bit too much.
+(add-hook 'prog-mode-hook #'hl-line-mode)
+(add-hook 'text-mode-hook #'hl-line-mode)
 
 ;; Show the current column
 (column-number-mode -1)
@@ -198,13 +199,15 @@
 
 (use-package vterm
   :preface
-  (defun enable-boring ()
-    "Make the shell as boring as possible"
-    (hl-line-mode -1)
-    (display-line-numbers-mode -1))
+  (defun pet/enable-boring ()
+    "Don't show line numbers and line highligthing."
+    (progn
+      (setq-local global-hl-line-mode nil)
+      (display-line-numbers-mode -1)
+      (message "The shell is ready.")))
   :custom
   (vterm-shell "fish")
-  :hook (vterm-mode . enable-boring))
+  :hook (vterm-mode . pet/enable-boring))
 
 (use-package goto-addr
   :after vterm
