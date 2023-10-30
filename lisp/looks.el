@@ -36,7 +36,7 @@
                                    '(tool-bar-lines . 0))))
 
 (when (memq window-system '(mac ns))
-  (add-to-list 'default-frame-alist '(ns-appearance . nil))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
 
 (use-package all-the-icons
