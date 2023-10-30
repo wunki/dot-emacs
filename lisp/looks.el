@@ -31,7 +31,7 @@
 (setq frame-resize-pixelwise t
       default-frame-alist (append (list
                                    '(vertical-scroll-bars . nil)
-                                   '(internal-border-width . 16)
+                                   '(internal-border-width . 7)
                                    '(right-fringe   . 0)
                                    '(tool-bar-lines . 0))))
 
