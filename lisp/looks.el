@@ -43,6 +43,10 @@
   :if window-system)
 
 (use-package catppuccin-theme
+  :custom
+  (catppuccin-height-title-1 1.0)
+  (catppuccin-height-title-2 1.0)
+  (catppuccin-height-title-3 1.0)
   :config
   (load-theme 'catppuccin :no-confirm))
 
