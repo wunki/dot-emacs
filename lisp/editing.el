@@ -40,24 +40,6 @@
   :after magit
   :bind ("C-c C-g" . forge-dispatch))
 
-(use-package copilot
-  :straight (:host github
-             :repo "zerolfx/copilot.el"
-             :files ("dist" "*.el"))
-  
-  :preface
-  (defun pet/copilot-tab ()
-    (interactive)
-    (or (copilot-accept-completion)
-	    (indent-for-tab-command)))
-
-  :bind (:map copilot-mode-map
-              ("<tab>" . pet/copilot-tab)
-              ("s-n" . copilot-next-completion)
-              ("s-p" . copilot-previous-completion)
-              ("s-w" . copilot-accept-completion-by-word)
-              ("s-l" . copilot-accept-completion-by-line)))
-
 ;; Balance and mold those parenthesis
 (use-package paredit
   :delight paredit-mode

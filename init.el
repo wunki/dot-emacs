@@ -25,6 +25,7 @@
 (require 'editing)
 (require 'language-server)
 (require 'languages)
+(require 'ai)
 (require 'notes)
 
 (provide 'init)
