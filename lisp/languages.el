@@ -122,9 +122,7 @@
 (use-package eldoc
   :straight nil
   :delight
-  :hook (prog-mode-hook . eldoc-mode)
-  :init
-  (global-eldoc-mode 1))
+  :hook (prog-mode-hook . eldoc-mode))
 
 (use-package eldoc-box
   :hook (eldoc-mode-hook . eldoc-box-hover-mode)
@@ -170,14 +168,15 @@
 (use-package yaml-mode
   :mode ("\\.yml\\'" . yaml-mode))
 
+;; TODO: switch to gfm-mode and make it work with tree-sitter.
 (use-package
- markdown-mode
- :commands (markdown-mode gfm-mode)
- :mode
- (("README\\.md\\'" . markdown-mode)
-  ("\\.md\\'" . markdown-mode)
-  ("\\.markdown\\'" . markdown-mode))
- :init (setq markdown-command "multimarkdown"))
+  markdown-mode
+  :commands (markdown-mode gfm-mode)
+  :mode
+  (("README\\.md\\'" . markdown-mode)
+   ("\\.md\\'" . markdown-mode)
+   ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
 
 ;; Common Lisp
 (use-package sly
