@@ -27,8 +27,7 @@
 
 (use-package gptel
   :custom
-  ;; we don't stream as it seems to break on my machine.
-  (gptel-stream nil)
+  (gptel-stream t)
   (gptel-default-mode 'org-mode))
 
 (provide 'ai)
