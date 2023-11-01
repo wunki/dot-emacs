@@ -14,6 +14,7 @@
   :commands eros-mode
   :config (eros-mode t))
 
+;; Formatter for elisp code.
 (use-package elisp-autofmt
   :commands (elisp-autofmt-mode elisp-autofmt-buffer)
   :custom
