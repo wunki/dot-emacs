@@ -28,7 +28,9 @@
 (use-package gptel
   :custom
   (gptel-stream t)
-  (gptel-default-mode 'org-mode))
+  (gptel-default-mode 'org-mode)
+  :bind
+  ("C-c a" . gptel))
 
 (provide 'ai)
 ;;; ai.el ends here
