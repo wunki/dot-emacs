@@ -40,6 +40,9 @@
   :after magit
   :bind ("C-c C-g" . forge-dispatch))
 
+;; Easy copy links to open files
+(use-package git-link)
+
 ;; Balance and mold those parenthesis
 (use-package paredit
   :delight paredit-mode
