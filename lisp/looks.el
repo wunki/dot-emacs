@@ -27,7 +27,8 @@
   (when (fboundp mode)
     (funcall mode 0)))
 
-;; Add some spacing
+;; Add some spacing, let it breath
+(setq-default line-spacing 0) ;; increase this for fonts like Berkeley
 (setq frame-resize-pixelwise t
       default-frame-alist (append (list
                                    '(vertical-scroll-bars . nil)
