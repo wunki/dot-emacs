@@ -230,6 +230,18 @@
   (vterm-toggle-scope 'project)
   :bind (("C-c s" . #'vterm-toggle)))
 
+(use-package eat
+  :straight (:type git
+             :host codeberg
+             :repo "akib/emacs-eat"
+             :files ("*.el" ("term" "term/*.el") "*.texi"
+                     "*.ti" ("terminfo/e" "terminfo/e/*")
+                     ("terminfo/65" "terminfo/65/*")
+                     ("integration" "integration/*")
+                     (:exclude ".dir-locals.el" "*-tests.el")))
+  :config
+  (setq eat-kill-buffer-on-exit t))
+
 (use-package restart-emacs
   :commands restart-emacs)
 
