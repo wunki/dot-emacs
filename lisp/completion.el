@@ -19,6 +19,7 @@
   :custom
   (corfu-popupinfo-delay '(0.25 . 0.1))
   (corfu-popupinfo-hide nil)
+  (corfu-auto t)
   :config
   (corfu-popupinfo-mode)
   :bind
