@@ -43,14 +43,20 @@
 (use-package all-the-icons
   :if window-system)
 
-(use-package catppuccin-theme
+(use-package modus-themes
   :custom
-  (catppuccin-height-doc-title 1.1)
-  (catppuccin-height-title-1 1.0)
-  (catppuccin-height-title-2 1.0)
-  (catppuccin-height-title-3 1.0)
+  (modus-themes-italic-constructs t)
+  (modus-themes-bold-constructs t)
   :config
-  (load-theme 'catppuccin :no-confirm))
+  ; (load-theme 'modus-vivendi-tinted :no-confirm)
+  )
+
+(use-package ef-themes
+    :custom
+    (ef-themes-italic-constructs t)
+    (ef-themes-bold-constructs t)
+    :config
+    (load-theme 'ef-tritanopia-dark :no-confirm))
 
 ;; give a darker color to non text buffers
 (use-package solaire-mode
