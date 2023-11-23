@@ -43,20 +43,21 @@
 (use-package all-the-icons
   :if window-system)
 
-(use-package modus-themes
-  :custom
-  (modus-themes-italic-constructs t)
-  (modus-themes-bold-constructs t)
-  :config
-  ; (load-theme 'modus-vivendi-tinted :no-confirm)
-  )
+(use-package
+ modus-themes
+ :custom
+ (modus-themes-italic-constructs t)
+ (modus-themes-bold-constructs t)
+ :config
+ ; (load-theme 'modus-vivendi-tinted :no-confirm)
+ )
 
-(use-package ef-themes
-    :custom
-    (ef-themes-italic-constructs t)
-    (ef-themes-bold-constructs t)
-    :config
-    (load-theme 'ef-tritanopia-dark :no-confirm))
+(use-package
+ ef-themes
+ :custom
+ (ef-themes-italic-constructs t)
+ (ef-themes-bold-constructs t)
+ :config (load-theme 'ef-tritanopia-dark :no-confirm))
 
 ;; give a darker color to non text buffers
 (use-package solaire-mode
