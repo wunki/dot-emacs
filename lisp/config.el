@@ -239,6 +239,9 @@
                      ("terminfo/65" "terminfo/65/*")
                      ("integration" "integration/*")
                      (:exclude ".dir-locals.el" "*-tests.el")))
+  :bind (("C-x T" . eat)
+         :map project-prefix-map
+         ("t" . eat-project))
   :config
   (setq eat-kill-buffer-on-exit t))
 
