@@ -57,7 +57,7 @@
  :custom
  (ef-themes-italic-constructs t)
  (ef-themes-bold-constructs t)
- :config (load-theme 'ef-tritanopia-dark :no-confirm))
+ :config (load-theme 'ef-trio-dark :no-confirm))
 
 ;; give a darker color to non text buffers
 (use-package solaire-mode
