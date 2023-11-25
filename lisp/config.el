@@ -115,8 +115,8 @@
 
 ;; Highlight the current line only for program and text.
 ;; Previously I had it global, but that was a tad bit too much.
-(add-hook 'prog-mode-hook #'hl-line-mode)
-(add-hook 'text-mode-hook #'hl-line-mode)
+;; (add-hook 'prog-mode-hook #'hl-line-mode)
+;; (add-hook 'text-mode-hook #'hl-line-mode)
 
 ;; Show the current column
 (column-number-mode -1)
