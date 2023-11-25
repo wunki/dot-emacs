@@ -25,6 +25,10 @@
   (add-hook 'before-save-hook #'pet/eglot-organize-imports nil t))
 
 (use-package eglot
+  :straight (eglot :type git
+                   :host nil
+                   :repo "git://git.sv.gnu.org/emacs.git"
+                   :files ("lisp/progmodes/eglot.el")
   :config
   ;; we can't add this to :hook because we want it to be
   ;; buffer local.
@@ -43,7 +47,7 @@
   :bind (:map eglot-mode-map
               ("C-c C-f" . #'eglot-format-buffer)
               ("C-c a r" . #'eglot-rename)
-              ("C-c C-c" . #'eglot-code-actions)))
+              ("C-c C-c" . #'eglot-code-actions))))
 
 (use-package eglot-grammarly
   :straight (:host github :repo "emacs-grammarly/eglot-grammarly")
