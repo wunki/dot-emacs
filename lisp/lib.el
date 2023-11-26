@@ -1,4 +1,4 @@
-;;; lib.el --- my utulity functions -*- lexical-binding: t -*-
+;;; lib.el --- my utility functions -*- lexical-binding: t -*-
 ;;
 ;;; Commentary:
 ;;
@@ -10,6 +10,7 @@
 
 (require 'packages)
 (require 'ert)
+(require 'org)
 
 (use-package s
   :commands (s-trim s-concat))
