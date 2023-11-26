@@ -138,5 +138,27 @@ Otherwise it adds it to the so it works with the Emacs daemon."
   (delete-other-windows)
   (load-file user-init-file))
 
+(defun pet/current-project-root ()
+  "Return the root directory of the current project."
+  (when-let ((project (project-current)))
+    (nth 2 project)))
+
+(defun pet/insert-project-note ()
+  "Insert a note for the current project."
+  (interactive)
+  (let* ((project-root (pet/current-project-root))
+         (notes-file (concat project-root "NOTES.org"))
+         (today (format-time-string "%Y-%m-%d %a"))
+         (today-header (concat "** <" today ">")))
+    (find-file notes-file)
+    (goto-char (point-min))
+    (if (search-forward today-header nil t)
+        (progn
+          (org-end-of-subtree)
+          (newline))
+      (progn
+        (goto-char (point-max))
+        (insert (concat "\n" today-header "\n"))))))
+
 (provide 'lib)
 ;;; lib.el ends here
