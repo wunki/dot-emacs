@@ -1,0 +1,18 @@
+* .emacs
+
+Hi! Are you ready to embrace the power of Emacs? This is my Emacs configuration which makes
+heavy use of =use-package=. It's also highly opinionated and you may find enjoy yourself using
+it if you appreciate the same things as me:
+
+- Minimal, have as little distraction as possible.
+- Beautiful, I care about aesthetics.
+
+** Setup
+
+If you want to use this configuration, all you have to do is clone the repository and symlink it:
+
+#+begin_src shell
+  ln -fns <repository> ~/.config/emacs
+#+end_src
+    
+When you start Emacs it will bootstrap itself, have some patience, it will be rewarded.

@@ -145,7 +145,7 @@ Otherwise it adds it to the so it works with the Emacs daemon."
     (nth 2 project)))
 
 (defun pet/insert-project-note ()
-  "Insert a note for the current project."
+  "Insert a note for the current project in the NOTES.org file."
   (interactive)
   (let* ((project-root (pet/current-project-root))
          (notes-file (concat project-root "NOTES.org"))
