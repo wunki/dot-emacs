@@ -59,13 +59,6 @@
  (ef-themes-bold-constructs t)
  :config (load-theme 'ef-trio-dark :no-confirm))
 
-;; give a darker color to non text buffers
-(use-package solaire-mode
-  :demand
-  :commands solaire-global-mode
-  :config
-  (solaire-global-mode +1))
-
 (use-package mood-line
   :demand
   :commands mood-line-mode
