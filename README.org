@@ -7,7 +7,7 @@ it if you appreciate the same things as me:
 - Minimal, have as little distraction as possible, as little packages as possible.
 - Beautiful, I care about aesthetics.
 
-** Setup
+** Getting Started
 
 If you want to use this configuration, all you have to do is clone the repository and symlink it:
 
@@ -16,3 +16,11 @@ If you want to use this configuration, all you have to do is clone the repositor
 #+end_src
     
 When you start Emacs it will bootstrap itself, have some patience for it will be rewarded.
+
+** Author
+
+- Petar Radosevic <petar@petar.dev>
+
+** License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
