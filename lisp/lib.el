@@ -150,16 +150,19 @@ Otherwise it adds it to the so it works with the Emacs daemon."
   (let* ((project-root (pet/current-project-root))
          (notes-file (concat project-root "NOTES.org"))
          (today (format-time-string "%Y-%m-%d %a"))
-         (today-header (concat "** <" today ">")))
+         (today-header (concat "<" today ">")))
     (find-file notes-file)
     (goto-char (point-min))
     (if (search-forward today-header nil t)
         (progn
           (org-end-of-subtree)
-          (newline))
+          (org-end-of-item))
       (progn
-        (goto-char (point-max))
-        (insert (concat "\n" today-header "\n"))))))
+        (goto-char (point-min))
+        (search-forward-regexp "^\\*\\* ")
+        (beginning-of-line)
+        (org-insert-heading)
+        (insert today-header)))))
 
 (provide 'lib)
 ;;; lib.el ends here
