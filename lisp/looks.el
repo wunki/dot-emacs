@@ -57,7 +57,21 @@
  :custom
  (ef-themes-italic-constructs t)
  (ef-themes-bold-constructs t)
- :config (load-theme 'ef-trio-dark :no-confirm))
+ :config
+ ;(load-theme 'ef-trio-dark :no-confirm)
+ )
+
+(use-package almost-mono-themes
+  :config
+  ;(load-theme 'almost-mono-black :no-confirm)
+  )
+
+(use-package stimmung-themes
+  :straight (stimmung-themes :host github :repo "motform/stimmung-themes")
+  :demand t
+  :ensure t
+  :config
+  (stimmung-themes-load-dark))
 
 (use-package mood-line
   :demand
