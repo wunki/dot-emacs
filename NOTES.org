@@ -1,3 +1,5 @@
-* Emacs Notes
+* Emacs
 
 ** <2023-11-26 Sun>
+
+Let the journaling begin. At some point, I should write a post on how powerful Emacs is combined with LLMs. In an environment that is completely malleable, the only difficulty was in knowing how to do it. Now we can use LLMs to help.
