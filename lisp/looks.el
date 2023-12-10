@@ -58,8 +58,7 @@
  (ef-themes-italic-constructs t)
  (ef-themes-bold-constructs t)
  :config
- ;(load-theme 'ef-trio-dark :no-confirm)
- )
+ (load-theme 'ef-duo-dark :no-confirm))
 
 (use-package almost-mono-themes
   :config
@@ -71,7 +70,8 @@
   :demand t
   :ensure t
   :config
-  (stimmung-themes-load-dark))
+  ;(stimmung-themes-load-dark)
+  )
 
 (use-package mood-line
   :demand
