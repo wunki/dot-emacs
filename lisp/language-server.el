@@ -39,7 +39,7 @@
         eglot-send-changes-idle-time 0.5
         eglot-ignored-server-capabilities '(:hoverProvider :inlayHintProvider))
   (add-to-list 'eglot-server-programs '(elixir-ts-mode "nextls" "--stdio=true"))
-  (add-to-list 'eglot-server-programs '(c-mode "clangd"))
+  (add-to-list 'eglot-server-programs '(c-ts-mode "clangd"))
   :hook (((zig-mode elixir-ts-mode heex-ts-mode go-mode c-ts-mode) . eglot-ensure)
          (go-mode . pet/eglot-format-buffer-on-save)
          (go-mode . pet/eglot-organize-imports-on-save)
