@@ -10,7 +10,6 @@
 
 (require 'packages)
 (require 'ert)
-(require 'org)
 
 (use-package s
   :commands (s-trim s-concat))
@@ -98,19 +97,6 @@ windows easier."
     (eshell "new")
     (rename-buffer (concat "*eshell: " name "*"))))
 
-(defun pet/url-get-title (url &optional)
-  "Takes a URL and return the value of the <title> HTML tag."
-  (let ((buffer (url-retrieve-synchronously url))
-        (title nil))
-    (save-excursion
-      (set-buffer buffer)
-      (goto-char (point-min))
-      (search-forward-regexp "<title>\\([^<]+?\\)</title>")
-      (setq title (match-string 1 ) )
-      (kill-buffer (current-buffer)))
-    title))
-(setq org-make-link-description-function 'pet/url-get-title)
-
 (defun eshell/q ()
   (insert "exit")
   (eshell-send-input)
@@ -138,31 +124,6 @@ Otherwise it adds it to the so it works with the Emacs daemon."
   (setq custom-file (concat user-emacs-directory "custom.el"))
   (delete-other-windows)
   (load-file user-init-file))
-
-(defun pet/current-project-root ()
-  "Return the root directory of the current project."
-  (when-let ((project (project-current)))
-    (nth 2 project)))
-
-(defun pet/insert-project-note ()
-  "Insert a note for the current project in the NOTES.org file."
-  (interactive)
-  (let* ((project-root (pet/current-project-root))
-         (notes-file (concat project-root "NOTES.org"))
-         (today (format-time-string "%Y-%m-%d %a"))
-         (today-header (concat "<" today ">")))
-    (find-file notes-file)
-    (goto-char (point-min))
-    (if (search-forward today-header nil t)
-        (progn
-          (org-end-of-subtree)
-          (org-end-of-item))
-      (progn
-        (goto-char (point-min))
-        (search-forward-regexp "^\\*\\* ")
-        (beginning-of-line)
-        (org-insert-heading)
-        (insert today-header)))))
 
 (provide 'lib)
 ;;; lib.el ends here
