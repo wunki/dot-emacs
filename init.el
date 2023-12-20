@@ -23,6 +23,7 @@
 (require 'looks)
 (require 'completion)
 (require 'editing)
+(require 'notes)
 (require 'language-server)
 (require 'languages)
 (require 'ai)
