@@ -38,6 +38,11 @@
         (org-insert-heading)
         (insert today-header)))))
 
+(use-package org
+  :custom
+  (org-startup-indented t)
+  (org-pretty-entities t))
+
 (use-package denote
   :custom
   (denote-directory pet/notes-directory)
@@ -45,13 +50,9 @@
   :bind (("C-c N" . denote-create-note)
          ("C-c n" . denote-open-or-create)))
 
-(use-package org
-  :custom
-  (org-hide-leading-stars t))
-
 ;; Distraction-free screen for writing
 (use-package olivetti
-  :commands (olivetti-mode)
+  :demand
   :preface
   (defun pet/writing-mode ()
     "Distraction-free writing environment"
