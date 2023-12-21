@@ -8,19 +8,15 @@
 ;;
 (require 'lib)
 
-;; Set the font, depending on the system
-(defvar pet/var-my-font
-  (cond
-   ((pet/is-bsd)
-    "Triplicate A Code 10")
-   ((pet/is-linux)
-    "IBM Plex Mono 10")
-   ((pet/is-wsl)
-    "BlexMono Nerd Font 15")
-   ((pet/is-mac)
-    "MonoLisa 12"))
-  "My font used across Emacs.")
-(pet/set-font pet/var-my-font)
+(use-package faces
+  :straight (:type built-in)
+  :custom
+  (face-font-family-alternatives
+   '(("MonoLisa" "Consolas" "Monaco" "Monospace")))
+  :custom-face
+  (variable-pitch ((t (:family "Gill Sans"))))
+  (fixed-pitch ((t (:family "MonoLisa"))))
+  (default ((t (:family "MonoLisa" :height 120)))))
 
 ;; Don't show any bars or toolbars
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
@@ -44,40 +40,25 @@
   :if window-system)
 
 (use-package
- modus-themes
- :custom
- (modus-themes-italic-constructs t)
- (modus-themes-bold-constructs t)
- :config
- ; (load-theme 'modus-vivendi-tinted :no-confirm)
- )
-
-(use-package
  ef-themes
  :custom
  (ef-themes-italic-constructs t)
  (ef-themes-bold-constructs t)
  :config
- (load-theme 'ef-duo-dark :no-confirm))
+ ;(load-theme 'ef-duo-dark :no-confirm)
+ )
 
 (use-package almost-mono-themes
   :config
-  ;(load-theme 'almost-mono-black :no-confirm)
-  )
+  (load-theme 'almost-mono-black :no-confirm))
 
-(use-package stimmung-themes
-  :straight (stimmung-themes :host github :repo "motform/stimmung-themes")
-  :demand t
-  :ensure t
+(use-package lambda-line
+  :straight (:type git :host github :repo "lambda-emacs/lambda-line") 
   :config
-  ;(stimmung-themes-load-dark)
-  )
-
-(use-package mood-line
-  :demand
-  :commands mood-line-mode
-  :config
-  (mood-line-mode 1))
+  (lambda-line-mode) 
+  (when (eq lambda-line-position 'top)
+    (setq-default mode-line-format (list "%_"))
+    (setq mode-line-format (list "%_"))))
 
 ;; Toggle the modeline on and off
 (use-package hide-mode-line

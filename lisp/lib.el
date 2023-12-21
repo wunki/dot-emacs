@@ -102,15 +102,6 @@ windows easier."
   (eshell-send-input)
   (delete-window))
 
-(defun pet/set-font (font)
-  "Take a FONT and set it.
-If the window-system is active, it directly changes the font.
-Otherwise it adds it to the so it works with the Emacs daemon."
-  (interactive "sFont: ")
-  (if (window-system)
-      (set-frame-font font nil t)
-    (add-to-list 'default-frame-alist `(font . ,font))))
-
 (defun pet/eval-and-run-all-tests-in-buffer ()
   "Clear and run all test in the current buffer."
   (interactive)
