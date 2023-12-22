@@ -15,6 +15,18 @@
   :commands er/expand-region
   :bind ("C-c e" . er/expand-region))
 
+;; Go to the last place I visited the file.
+(use-package saveplace
+  :custom
+  (save-place-file "~/.cache/emacs/saveplace")
+  :config
+  (save-place-mode +1))
+
+;; Auto-saves buffers when I switch between buffers.
+(use-package super-save
+  :config
+  (super-save-mode +1))
+
 ;; Easily move to the actual beginning of the line, double-tap moves
 ;; to the first character
 (use-package crux
@@ -43,11 +55,21 @@
 ;; Easy copy links to open files
 (use-package git-link)
 
-;; Balance and mold those parenthesis
-(use-package paredit
-  :delight paredit-mode
-  :commands paredit-mode
-  :hook ((emacs-lisp-mode lisp-interaction-mode ielm-mode lisp-mode eval-expression-minibuffer-setup slime-repl-mode clojure-mode racket-mode mrepl-mode) . paredit-mode))
+;; Use smartparens like paredit
+(use-package smartparens
+  :config
+  (require 'smartparens-config)
+  (setq sp-base-key-bindings 'paredit
+        sp-autoskip-closing-pair 'always
+        sp-hybrid-kill-entire-symbol nil)
+  (sp-use-paredit-bindings)
+  (show-smartparens-global-mode +1)
+  :hook ((emacs-lisp-mode
+          lisp-mode
+          lisp-interaction-mode
+          ielm-mode
+          clojure-mode
+          cider-repl-mode) . smartparens-strict-mode))
 
 ;; Automatic parens matching
 (electric-pair-mode 1)

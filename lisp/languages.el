@@ -56,8 +56,9 @@
 (use-package flycheck-clj-kondo)
 
 (use-package clojure-mode
+  :hook ((clojure-mode . subword-mode))
   :config
-  (require 'flycheck-clj-kondo))
+  (setq clojure-indent-style 'align-arguments))
 
 (use-package
  rainbow-delimiters
@@ -202,6 +203,12 @@
   (hl-todo ((t (:inherit hl-todo :italic t))))
   :hook ((prog-mode . hl-todo-mode)
          (yaml-mode . hl-todo-mode)))
+
+(use-package sqlformat
+  :hook (sql-mode . sqlformat-on-save-mode)
+  :config
+  (setq sqlformat-command 'sqlfluff)
+  (setq sqlformat-args '("--dialect" "postgres")))
 
 (provide 'languages)
 ;;; languages.el ends here

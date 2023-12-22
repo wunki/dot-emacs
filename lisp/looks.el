@@ -18,6 +18,10 @@
   (fixed-pitch ((t (:family "MonoLisa"))))
   (default ((t (:family "MonoLisa" :height 120)))))
 
+(use-package nerd-icons
+  :custom
+  (nerd-icons-color-icons nil))
+
 ;; Don't show any bars or toolbars
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
   (when (fboundp mode)
@@ -45,20 +49,16 @@
  (ef-themes-italic-constructs t)
  (ef-themes-bold-constructs t)
  :config
- ;(load-theme 'ef-duo-dark :no-confirm)
- )
+ (load-theme 'ef-duo-dark :no-confirm))
 
-(use-package almost-mono-themes
-  :config
-  (load-theme 'almost-mono-black :no-confirm))
-
-(use-package lambda-line
-  :straight (:type git :host github :repo "lambda-emacs/lambda-line") 
-  :config
-  (lambda-line-mode) 
-  (when (eq lambda-line-position 'top)
-    (setq-default mode-line-format (list "%_"))
-    (setq mode-line-format (list "%_"))))
+(use-package doom-modeline
+  :commands (doom-modeline-mode)
+  :custom
+  (doom-modeline-height 30)
+  (doom-modeline-major-mode-color-icon nil)
+  (doom-modeline-buffer-encoding nil)
+  (doom-modeline-major-mode-icon nil)
+  :init (doom-modeline-mode 1))
 
 ;; Toggle the modeline on and off
 (use-package hide-mode-line

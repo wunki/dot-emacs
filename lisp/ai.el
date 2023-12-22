@@ -29,6 +29,7 @@
   :custom
   (gptel-stream t)
   (gptel-default-mode 'org-mode)
+  (gptel-model "gpt-4")
   :bind
   ("C-c a" . gptel))
 

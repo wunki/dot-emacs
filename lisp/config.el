@@ -60,6 +60,9 @@
 ;; Set to 1MB, this should help LSP
 (setq read-process-output-max (* 1024 1024))
 
+;; Always load the newer byte code
+(setq load-prefer-newer t)
+
 ;; No cursor in inactive windows
 (setq cursor-in-non-selected-windows nil)
 
@@ -81,6 +84,9 @@
 
 ;; No load noises please
 (setq ring-bell-function 'ignore)
+
+;; Don't create lockfiles, the files starting with .#
+(setq create-lockfiles nil)
 
 (use-package dired
   :straight (:type built-in)
@@ -191,6 +197,18 @@
 
 ;; Improved, buttery smooth scrolling, only available on Emacs 29
 (pixel-scroll-precision-mode)
+
+(use-package helpful
+  :config
+  (setq helpful-max-buffers 1) ; but actually we want it to reuse buffer
+  :bind (("C-h f" . #'helpful-callable)
+         ("C-h F" . #'helpful-function) ; exclude macros
+         ("C-h v" . #'helpful-variable)
+         ("C-h k" . #'helpful-key)
+         ("C-h x" . #'helpful-command)
+         ;; Lookup the current symbol at point. C-c C-d is
+         ;; a common keybinding for this in lisp modes.
+         ("C-c C-d" . #'helpful-at-point)))
 
 ;; Configure shell environment
 (use-package exec-path-from-shell
