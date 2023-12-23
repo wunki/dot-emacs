@@ -54,7 +54,7 @@
 (use-package doom-modeline
   :commands (doom-modeline-mode)
   :custom
-  (doom-modeline-height 30)
+  (doom-modeline-height 24)
   (doom-modeline-major-mode-color-icon nil)
   (doom-modeline-buffer-encoding nil)
   (doom-modeline-major-mode-icon nil)
