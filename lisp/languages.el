@@ -38,21 +38,31 @@
           css-mode
           html-mode
           markdown-mode
-          c-mode) . tree-sitter-mode)
+          c-ts-mode) . tree-sitter-mode)
   :config
   (setq major-mode-remap-alist
-        '((go-mode . go-ts-mode))))
+        '((go-mode . go-ts-mode)
+          (c-mode . c-ts-mode))))
 
 (use-package tree-sitter-langs
   :after tree-sitter)
 
+;; Colorful parethesis
+(use-package
+  rainbow-delimiters
+  :commands rainbow-delimiters-mode
+  :hook
+  ((emacs-lisp-mode
+    lisp-interaction-mode
+    ielm-mode
+    lisp-mode
+    eval-expression-minibuffer-setup
+    slime-repl-mode
+    clojure-mode
+    racket-mode)
+   . rainbow-delimiters-mode))
+
 ;; Clojure
-
-;; (use-package clojure-ts-mode
-;;   :straight (clojure-ts-mode :type git
-;;                              :host github
-;;                              :repo "clojure-emacs/clojure-ts-mode"))
-
 (use-package flycheck-clj-kondo)
 
 (use-package clojure-mode
@@ -74,10 +84,17 @@
    racket-mode)
   . rainbow-delimiters-mode))
 
+(use-package clojure-ts-mode
+   :straight (clojure-ts-mode :type git
+                              :host github
+                              :repo "clojure-emacs/clojure-ts-mode")
+   :hook ((clojure-mode . subword-mode))
+   :config
+   (setq clojure-indent-style 'align-arguments)
+   (require 'flycheck-clj-kondo))
+
 (use-package clj-refactor
-  :after clojure-mode
   :commands cljr-add-keybindings-with-prefix
-  :hook clojure-mode
   :custom
   (cljr-assume-language-context "clj")
   :config

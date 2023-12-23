@@ -43,8 +43,8 @@
   :hook (((zig-mode elixir-ts-mode heex-ts-mode go-mode c-ts-mode) . eglot-ensure)
          (go-mode . pet/eglot-format-buffer-on-save)
          (go-mode . pet/eglot-organize-imports-on-save)
-         (c-ts-mode . pet/eglot-format-buffer-on-save)
-         (elixir-ts-mode . pet/eglot-format-buffer-on-save))
+         (elixir-ts-mode . pet/eglot-format-buffer-on-save)
+         (c-ts-mode . pet/eglot-format-buffer-on-save))
   :bind (:map eglot-mode-map
               ("C-c C-f" . #'eglot-format-buffer)
               ("C-c a r" . #'eglot-rename)
