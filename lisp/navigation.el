@@ -116,5 +116,15 @@
   (aw-keys '(?a ?o ?e ?u ?h ?t ?t ?n ?l))
   :bind (("M-o" . ace-window)))
 
+;; Helper functions to manage projects.
+(use-package project-x
+  :straight (:host github
+             :repo "karthink/project-x"
+             :files ("*.el"))
+  :after project
+  :config
+  (setq project-x-save-interval 600)
+  (project-x-mode 1))
+
 (provide 'navigation)
 ;;; navigation.el ends here
