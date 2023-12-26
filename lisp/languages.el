@@ -47,7 +47,7 @@
 (use-package tree-sitter-langs
   :after tree-sitter)
 
-;; Colorful parethesis
+;; Colorful parenthesis
 (use-package
   rainbow-delimiters
   :commands rainbow-delimiters-mode
@@ -63,26 +63,8 @@
    . rainbow-delimiters-mode))
 
 ;; Clojure
+;; Requires clojure kondo: brew install borkdude/brew/clj-kondo
 (use-package flycheck-clj-kondo)
-
-(use-package clojure-mode
-  :hook ((clojure-mode . subword-mode))
-  :config
-  (setq clojure-indent-style 'align-arguments))
-
-(use-package
- rainbow-delimiters
- :commands rainbow-delimiters-mode
- :hook
- ((emacs-lisp-mode
-   lisp-interaction-mode
-   ielm-mode
-   lisp-mode
-   eval-expression-minibuffer-setup
-   slime-repl-mode
-   clojure-mode
-   racket-mode)
-  . rainbow-delimiters-mode))
 
 (use-package clojure-ts-mode
    :straight (clojure-ts-mode :type git
@@ -92,13 +74,6 @@
    :config
    (setq clojure-indent-style 'align-arguments)
    (require 'flycheck-clj-kondo))
-
-(use-package clj-refactor
-  :commands cljr-add-keybindings-with-prefix
-  :custom
-  (cljr-assume-language-context "clj")
-  :config
-  (cljr-add-keybindings-with-prefix "C-c C-r"))
 
 (use-package cider
   ;; clean up the buffer before saving

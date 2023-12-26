@@ -73,3 +73,4 @@ flycheck_*.el
 /tree-sitter/
 /elisp-autofmt-cache/
 /racket-mode/
+/project-window-list

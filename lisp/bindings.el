@@ -28,8 +28,5 @@
 ;; Rename file and buffer
 (global-set-key (kbd "C-c r") 'pet/rename-file-and-buffer)
 
-;; Insert a project note.
-(global-set-key (kbd "C-c n") 'pet/insert-project-note)
-
 (provide 'bindings)
 ;;; bindings.el ends here

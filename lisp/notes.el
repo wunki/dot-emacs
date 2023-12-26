@@ -7,6 +7,7 @@
 ;;; Code:
 ;;
 (require 'lib)
+(require 'org)
 
 (defvar pet/notes-directory
   (if (pet/is-mac)
@@ -39,9 +40,11 @@
         (insert today-header)))))
 
 (use-package org
-  :custom
-  (org-startup-indented t)
-  (org-pretty-entities t))
+ :custom
+ (org-startup-indented t)
+ (org-pretty-entities t)
+ :bind
+ (:map project-prefix-map ("n" . pet/insert-project-note)))
 
 (use-package denote
   :custom
