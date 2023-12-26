@@ -74,3 +74,4 @@ flycheck_*.el
 /elisp-autofmt-cache/
 /racket-mode/
 /project-window-list
+/*.sqlite
