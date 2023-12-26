@@ -7,19 +7,18 @@
 ;;; Code:
 ;;
 (require 'lib)
-(require 'org)
 
 (defvar pet/notes-directory
-  (if (pet/is-mac)
-      "~/Notes"
-    "~/notes"))
+  (if (pet/is-mac) "~/Notes" "~/notes"))
 
 (defun pet/current-project-root ()
   "Return the root directory of the current project."
   (when-let ((project (project-current)))
     (nth 2 project)))
 
-(defun pet/insert-project-note ()
+(use-package org
+  :preface
+  (defun pet/insert-project-note ()
   "Insert a note for the current project in the NOTES.org file."
   (interactive)
   (let* ((project-root (pet/current-project-root))
@@ -38,13 +37,11 @@
         (beginning-of-line)
         (org-insert-heading)
         (insert today-header)))))
-
-(use-package org
- :custom
- (org-startup-indented t)
- (org-pretty-entities t)
- :bind
- (:map project-prefix-map ("n" . pet/insert-project-note)))
+  :custom
+  (org-startup-indented t)
+  (org-pretty-entities t)
+  :bind
+  (:map project-prefix-map ("n" . pet/insert-project-note)))
 
 (use-package denote
   :custom
