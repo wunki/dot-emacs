@@ -12,11 +12,11 @@
   :straight (:type built-in)
   :custom
   (face-font-family-alternatives
-   '(("MonoLisa" "Consolas" "Monaco" "Monospace")))
+   '(("Anonymous Pro" "Consolas" "Monaco" "Monospace")))
   :custom-face
   (variable-pitch ((t (:family "Gill Sans"))))
-  (fixed-pitch ((t (:family "MonoLisa"))))
-  (default ((t (:family "MonoLisa" :height 120)))))
+  (fixed-pitch ((t (:family "Anonymous Pro"))))
+  (default ((t (:family "Anonymous Pro" :height 150)))))
 
 (use-package nerd-icons
   :custom
@@ -45,9 +45,6 @@
 
 (use-package
  ef-themes
- :custom
- (ef-themes-italic-constructs t)
- (ef-themes-bold-constructs t)
  :config
  (load-theme 'ef-duo-dark :no-confirm))
 
