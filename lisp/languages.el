@@ -154,7 +154,8 @@
 
 ;; Zig
 (use-package zig-mode
-  :mode ("\\.zig\\'" . zig-mode))
+  :mode ("\\.zig\\'" . zig-mode)
+  :hook (zig-mode . auto-fill-mode))
 
 ;; Fish, my shell of choice
 (use-package fish-mode)
