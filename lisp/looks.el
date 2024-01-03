@@ -12,11 +12,11 @@
   :straight (:type built-in)
   :custom
   (face-font-family-alternatives
-   '(("Dank Mono" "Consolas" "Monaco" "Monospace")))
+   '(("MonoLisa" "Consolas" "Monaco" "Monospace")))
   :custom-face
   (variable-pitch ((t (:family "Gill Sans"))))
-  (fixed-pitch ((t (:family "Dank Mono"))))
-  (default ((t (:family "Dank Mono" :height 150)))))
+  (fixed-pitch ((t (:family "MonoLisa"))))
+  (default ((t (:family "MonoLisa" :height 120)))))
 
 (use-package nerd-icons
   :custom
