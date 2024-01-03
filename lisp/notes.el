@@ -46,8 +46,8 @@
 (use-package denote
   :custom
   (denote-directory pet/notes-directory)
-  (denote-known-keywords '("journal" "projects" "ideas" "people"))
-  :bind (("C-c N" . denote-create-note)
+  (denote-known-keywords '("journal" "projects" "ideas" "people" "posts" "interviews"))
+  :bind (("C-c C-n" . denote-create-note)
          ("C-c n" . denote-open-or-create)))
 
 ;; Distraction-free screen for writing
