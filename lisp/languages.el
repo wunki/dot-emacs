@@ -23,6 +23,40 @@
 
 (use-package flycheck
   :hook (prog-mode . flycheck-mode)
+  :config
+  (define-fringe-bitmap 'flycheck-fringe-bitmap-ball
+      (vector #b00000000
+              #b00000000
+              #b00000000
+              #b00000000
+              #b00000000
+              #b00000000
+              #b00000000
+              #b00011100
+              #b00111110
+              #b00111110
+              #b00111110
+              #b00011100
+              #b00000000
+              #b00000000
+              #b00000000
+              #b00000000
+              #b00000000))
+    (flycheck-define-error-level 'error
+      :severity 2
+      :overlay-category 'flycheck-error-overlay
+      :fringe-bitmap 'flycheck-fringe-bitmap-ball
+      :fringe-face 'flycheck-fringe-error)
+    (flycheck-define-error-level 'warning
+      :severity 1
+      :overlay-category 'flycheck-warning-overlay
+      :fringe-bitmap 'flycheck-fringe-bitmap-ball
+      :fringe-face 'flycheck-fringe-warning)
+    (flycheck-define-error-level 'info
+      :severity 0
+      :overlay-category 'flycheck-info-overlay
+      :fringe-bitmap 'flycheck-fringe-bitmap-ball
+      :fringe-face 'flycheck-fringe-info)
   :custom
   (flycheck-emacs-lisp-load-path
    'inherit
@@ -34,7 +68,6 @@
 ;; Tree-sitter
 (use-package tree-sitter
   :hook ((zig-mode
-          go-mode
           elixir-mode
           css-mode
           html-mode
@@ -42,11 +75,14 @@
           c-ts-mode) . tree-sitter-mode)
   :config
   (setq major-mode-remap-alist
-        '((go-mode . go-ts-mode)
-          (c-mode . c-ts-mode))))
+        '((c-mode . c-ts-mode))))
 
-(use-package tree-sitter-langs
-  :after tree-sitter)
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
 
 ;; Colorful parenthesis
 (use-package
@@ -184,10 +220,11 @@
 (use-package racket-mode)
 
 ;; Go
-(use-package go-mode
-  :mode "\\.go\\'")
+(use-package go-ts-mode
+  :mode
+  ("\\.go\\'" . go-ts-mode)
+  ("/go\\.mod\\'" . go-mod-ts-mode))
 
-;; Setup Go, which needs to look for the go module.
 (defun pet/project-find-go-module (dir)
   "Find the root of the project by finding go.mod file in DIR."
   (when-let ((root (locate-dominating-file dir "go.mod")))
