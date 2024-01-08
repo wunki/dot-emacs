@@ -7,6 +7,7 @@
 ;;; Code:
 ;;
 (require 'lib)
+(require 'project)
 
 ;; Display Emacs lisp results inline.
 (use-package eros
@@ -185,6 +186,18 @@
 ;; Go
 (use-package go-mode
   :mode "\\.go\\'")
+
+;; Setup Go, which needs to look for the go module.
+(defun pet/project-find-go-module (dir)
+  "Find the root of the project by finding go.mod file in DIR."
+  (when-let ((root (locate-dominating-file dir "go.mod")))
+    (cons 'go-module root)))
+
+(cl-defmethod project-root ((project (head go-module)))
+  "I have no idea what this does with PROJECT."
+  (cdr project))
+
+(add-hook 'project-find-functions #'pet/project-find-go-module)
 
 ;; Docker
 (use-package dockerfile-mode
