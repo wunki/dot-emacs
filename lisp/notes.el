@@ -17,6 +17,7 @@
     (nth 2 project)))
 
 (use-package org
+  :straight (:type built-in)
   :preface
   (defun pet/insert-project-note ()
   "Insert a note for the current project in the NOTES.org file."
