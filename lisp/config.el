@@ -218,20 +218,7 @@
   :config
   (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
 
-(use-package vterm
-  :preface
-  (defun pet/enable-boring ()
-    "Don't show line numbers and line highligthing."
-    (progn
-      (setq-local hl-line-mode nil)
-      (display-line-numbers-mode -1)
-      (message "The shell is ready.")))
-  :custom
-  (vterm-shell "fish")
-  :hook (vterm-mode . pet/enable-boring))
-
 (use-package goto-addr
-  :after vterm
   :straight (:type built-in)
   :bind (:map goto-address-highlight-keymap
               ("C-c C-o" . goto-address-at-point))
