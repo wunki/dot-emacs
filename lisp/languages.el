@@ -107,7 +107,7 @@
    :straight (clojure-ts-mode :type git
                               :host github
                               :repo "clojure-emacs/clojure-ts-mode")
-   :hook ((clojure-mode . subword-mode))
+   :hook ((clojure-ts-mode . subword-mode))
    :config
    (setq clojure-indent-style 'align-arguments)
    (require 'flycheck-clj-kondo))
@@ -117,6 +117,7 @@
   :functions cider-format-buffer
   :config
   (add-hook 'before-save-hook #'cider-format-buffer nil t)
+  :hook (clojure-ts-mode . cider-mode)
   :custom
   ;; We use clojure-lsp for showing documentation
   (cider-eldoc-display-for-symbol-at-point nil)
