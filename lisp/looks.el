@@ -8,15 +8,18 @@
 ;;
 (require 'lib)
 
+;; My current font of choice, this changes by the day. Ouch.
+(defvar pet/pref-font "Iosevka SS02")
+
 (use-package faces
   :straight (:type built-in)
   :custom
   (face-font-family-alternatives
-   '(("MonoLisa" "Consolas" "Monaco" "Monospace")))
+   '((,pet/pref-font "Consolas" "Monaco" "Monospace")))
   :custom-face
   (variable-pitch ((t (:family "Gill Sans"))))
   (fixed-pitch ((t (:family "MonoLisa"))))
-  (default ((t (:family "MonoLisa" :height 120)))))
+  (default ((t (:family ,pet/pref-font :height 130)))))
 
 (use-package nerd-icons
   :custom
