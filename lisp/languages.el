@@ -95,7 +95,7 @@
     lisp-mode
     eval-expression-minibuffer-setup
     slime-repl-mode
-    clojure-mode
+    clojure-ts-mode
     racket-mode)
    . rainbow-delimiters-mode))
 
