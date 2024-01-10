@@ -9,7 +9,7 @@
 (require 'lib)
 
 ;; My current font of choice, this changes by the day. Ouch.
-(defvar pet/pref-font "Iosevka SS02")
+(defvar pet/pref-font "IBM Plex Mono")
 
 (use-package faces
   :straight (:type built-in)
@@ -49,7 +49,7 @@
 (use-package
  ef-themes
  :config
- (load-theme 'ef-duo-dark :no-confirm))
+ (load-theme 'ef-maris-dark :no-confirm))
 
 (use-package doom-modeline
   :commands (doom-modeline-mode)
