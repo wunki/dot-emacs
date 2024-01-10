@@ -15,10 +15,10 @@
   :straight (:type built-in)
   :custom
   (face-font-family-alternatives
-   '((,pet/pref-font "Consolas" "Monaco" "Monospace")))
+   '(("Consolas" "Monaco" "Monospace")))
   :custom-face
   (variable-pitch ((t (:family "Gill Sans"))))
-  (fixed-pitch ((t (:family "MonoLisa"))))
+  (fixed-pitch ((t (:family ,pet/pref-font))))
   (default ((t (:family ,pet/pref-font :height 130)))))
 
 (use-package nerd-icons
