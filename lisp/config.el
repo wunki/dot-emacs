@@ -3,7 +3,7 @@
 ;;; Commentary:
 ;;
 ;; This sets up sane defaults for our Emacs configuration.
-;; 
+;;
 ;;; Code:
 ;;
 (require 'lib)
@@ -87,6 +87,32 @@
 
 ;; Don't create lockfiles, the files starting with .#
 (setq create-lockfiles nil)
+
+;; Whitespace mode
+;; When we run the `whitespace-cleanup' command
+(setq-default whitespace-action
+              '(cleanup auto-cleanup))
+(setq-default whitespace-style
+              '(face
+                spaces
+                empty
+                tabs
+                newline
+                trailing
+                space-mark
+                tab-mark
+                newline-mark))
+
+(setq-default whitespace-display-mappings
+              '(
+                ;; space -> · else .
+                (space-mark 32 [183] [46])
+                ;; new line -> ¬ else $
+                (newline-mark ?\n [172 ?\n] [36 ?\n])
+                ;; carriage return (Windows) -> ¶ else #
+                (newline-mark ?\r [182] [35])
+                ;; tabs -> » else >
+                (tab-mark ?\t [187 ?\t] [62 ?\t])))
 
 (use-package dired
   :straight (:type built-in)
