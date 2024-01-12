@@ -4,7 +4,7 @@
 ;;
 ;; Useful packages to make the text editing experience as frictionless
 ;; as possible.
-;; 
+;;
 ;;; Code:
 ;;
 
@@ -24,6 +24,7 @@
 
 ;; Auto-saves buffers when I switch between buffers.
 (use-package super-save
+  :commands super-save-mode
   :config
   (super-save-mode +1))
 
@@ -40,13 +41,19 @@
 ;; Magical Git GUI
 (use-package magit
   :preface
-  (defun my/git-commit-auto-fill-everywhere ()
+  (defun pet/git-commit-auto-fill-everywhere ()
     "Ensures that the commit body does not exceed 72 characters."
     (setq fill-column 72)
     (setq-local comment-auto-fill-only-comments nil))
+
+  (defun pet/turn-off-whitespace-mode ()
+    "Disable the whitespace in Magit buffers"
+    (setq-local whitespace-style nil))
+
   :custom (git-commit-summary-max-length 50)
   :bind ("C-c g" . magit-status)
-  :hook (git-commit-mode-hook . my/git-commit-auto-fill-everywhere))
+  :hook ((git-commit-mode . pet/git-commit-auto-fill-everywhere)
+         (magit-section-mode . pet/turn-off-whitespace-mode)))
 
 (use-package forge
   :after magit
