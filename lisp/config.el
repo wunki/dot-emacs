@@ -88,12 +88,12 @@
 ;; Don't create lockfiles, the files starting with .#
 (setq create-lockfiles nil)
 
-;; Whitespace mode
-;; When we run the `whitespace-cleanup' command
+;; Whitespace mode, only enabled manually when needed.
 (use-package whitespace
   :straight (:type built-in)
-  :hook (prog-mode . whitespace-mode)
+  :commands whitespace-mode
   :config
+  ; When we run the `whitespace-cleanup' command
   (setq-default whitespace-action
                 '(cleanup auto-cleanup))
   (setq-default whitespace-style
