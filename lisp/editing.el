@@ -46,14 +46,9 @@
     (setq fill-column 72)
     (setq-local comment-auto-fill-only-comments nil))
 
-  (defun pet/turn-off-whitespace-mode ()
-    "Disable the whitespace in Magit buffers"
-    (setq-local whitespace-style nil))
-
   :custom (git-commit-summary-max-length 50)
   :bind ("C-c g" . magit-status)
-  :hook ((git-commit-mode . pet/git-commit-auto-fill-everywhere)
-         (magit-section-mode . pet/turn-off-whitespace-mode)))
+  :hook (git-commit-mode . pet/git-commit-auto-fill-everywhere))
 
 (use-package forge
   :after magit
