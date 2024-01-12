@@ -19,7 +19,7 @@
   :custom-face
   (variable-pitch ((t (:family "Gill Sans"))))
   (fixed-pitch ((t (:family ,pet/pref-font))))
-  (default ((t (:family ,pet/pref-font :height 130)))))
+  (default ((t (:family ,pet/pref-font :height 120)))))
 
 (use-package nerd-icons
   :custom
@@ -46,11 +46,20 @@
 (use-package all-the-icons
   :if window-system)
 
-(use-package
- ef-themes
+(use-package ef-themes
  :config
- (load-theme 'ef-winter :no-confirm)
- (set-face-attribute 'bold nil :weight 'medium))
+ ;(load-theme 'ef-maris-dark :no-confirm)
+ (set-face-attribute 'bold nil :weight 'semibold))
+
+(use-package modus-themes
+  :config
+  (load-theme 'modus-vivendi-tritanopia :no-confirm)
+  (set-face-attribute 'bold nil :weight 'semibold))
+
+(use-package doom-themes
+  :config
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
 
 (use-package doom-modeline
   :commands (doom-modeline-mode)
