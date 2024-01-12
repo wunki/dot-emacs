@@ -56,11 +56,6 @@
   (load-theme 'modus-vivendi-tritanopia :no-confirm)
   (set-face-attribute 'bold nil :weight 'semibold))
 
-(use-package doom-themes
-  :config
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t))
-
 (use-package doom-modeline
   :commands (doom-modeline-mode)
   :custom
