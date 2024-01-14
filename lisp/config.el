@@ -151,10 +151,10 @@
 ;; (add-hook 'prog-mode-hook #'hl-line-mode)
 ;; (add-hook 'text-mode-hook #'hl-line-mode)
 
-;; Show the current column
+;; Show the current column in the modeline
 (column-number-mode -1)
 
-;; Show the current line
+;; Show the current line in the modeline
 (line-number-mode -1)
 
 ;; Change the default cursor
@@ -265,7 +265,7 @@
                      ("terminfo/65" "terminfo/65/*")
                      ("integration" "integration/*")
                      (:exclude ".dir-locals.el" "*-tests.el")))
-  :bind (("C-x T" . eat)
+  :bind (("C-c t" . eat)
          :map project-prefix-map
          ("t" . eat-project))
   :custom
