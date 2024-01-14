@@ -266,6 +266,7 @@
   :bind (("C-c s" . #'vterm-toggle)))
 
 (use-package eat
+  :commands eat
   :straight (:type git
              :host codeberg
              :repo "akib/emacs-eat"
