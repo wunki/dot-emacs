@@ -9,7 +9,7 @@
 (require 'lib)
 
 ;; My current font of choice, this changes by the day. Ouch.
-(defvar pet/pref-font "Monaspace Neon")
+(defvar pet/pref-font "GeistMono Nerd Font Mono")
 
 (use-package faces
   :straight (:type built-in)
@@ -17,9 +17,9 @@
   (face-font-family-alternatives
    '(("Consolas" "Monaco" "Monospace")))
   :custom-face
-  (variable-pitch ((t (:family "Gill Sans"))))
+  (variable-pitch ((t (:family "Geist"))))
   (fixed-pitch ((t (:family ,pet/pref-font))))
-  (default ((t (:family ,pet/pref-font :height 140)))))
+  (default ((t (:family ,pet/pref-font :height 130)))))
 
 (use-package nerd-icons
   :custom
@@ -31,7 +31,7 @@
     (funcall mode 0)))
 
 ;; Add some spacing, let it breath
-(setq-default line-spacing 0) ;; increase this for fonts like Berkeley
+(setq-default line-spacing 2) ;; increase this for fonts like Berkeley
 (setq frame-resize-pixelwise t
       default-frame-alist (append (list
                                    '(vertical-scroll-bars . nil)
