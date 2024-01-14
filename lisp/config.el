@@ -26,9 +26,6 @@
   "Replace the original message with a custom one."
   (message "Home is where your REPL is."))
 
-;; No need to help me with server client stuff.
-(setq server-client-instructions nil)
-
 ;; No message in scratch buffer
 (setq initial-scratch-message nil)
 
@@ -257,13 +254,6 @@
   (progn
     (setq goto-address-mail-face 'link)
     (setq goto-address-mail-mouse-face 'highlight)))
-
-(use-package vterm-toggle
-  :commands (vterm-toggle)
-  :custom
-  (vterm-toggle-fullscreen-p nil "Open a vterm in another window.")
-  (vterm-toggle-scope 'project)
-  :bind (("C-c s" . #'vterm-toggle)))
 
 (use-package eat
   :commands eat
