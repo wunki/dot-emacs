@@ -9,7 +9,7 @@
 (require 'lib)
 
 ;; My current font of choice, this changes by the day. Ouch.
-(defvar pet/pref-font "MonoLisa")
+(defvar pet/pref-font "Monaspace Neon")
 
 (use-package faces
   :straight (:type built-in)
@@ -19,7 +19,7 @@
   :custom-face
   (variable-pitch ((t (:family "Gill Sans"))))
   (fixed-pitch ((t (:family ,pet/pref-font))))
-  (default ((t (:family ,pet/pref-font :height 120)))))
+  (default ((t (:family ,pet/pref-font :height 140)))))
 
 (use-package nerd-icons
   :custom
@@ -48,12 +48,12 @@
 
 (use-package ef-themes
  :config
- ;(load-theme 'ef-maris-dark :no-confirm)
- (set-face-attribute 'bold nil :weight 'semibold))
+ (load-theme 'ef-melissa-light :no-confirm)
+ ;(set-face-attribute 'bold nil :weight 'semibold))
 
 (use-package modus-themes
   :config
-  (load-theme 'modus-vivendi-tritanopia :no-confirm)
+  (load-theme 'modus-vivendi-tinted :no-confirm)
   (set-face-attribute 'bold nil :weight 'semibold))
 
 (use-package doom-modeline
