@@ -59,6 +59,7 @@
 
 ;; Use smartparens like paredit
 (use-package smartparens
+  :delight
   :config
   (require 'smartparens-config)
   (setq sp-base-key-bindings 'paredit

@@ -35,13 +35,20 @@
 (setq frame-resize-pixelwise t
       default-frame-alist (append (list
                                    '(vertical-scroll-bars . nil)
-                                   '(internal-border-width . 7)
+                                   '(internal-border-width . 0)
                                    '(right-fringe   . 0)
                                    '(tool-bar-lines . 0))))
 
+;; Dark mode and hide the top bar
 (when (memq window-system '(mac ns))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
-  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
+  (add-to-list 'default-frame-alist '(undecorated-round . t)))
+
+;; Add some more padding
+(use-package spacious-padding
+  :if (pet/is-mac)
+  :config
+  (spacious-padding-mode))
 
 (use-package all-the-icons
   :if window-system)
@@ -54,17 +61,9 @@
 
 (use-package modus-themes
   :config
+  (setq modus-themes-bold-constructs t)
   (load-theme 'modus-vivendi-tinted :no-confirm)
   (set-face-attribute 'bold nil :weight 'semibold))
-
-(use-package doom-modeline
-  :commands (doom-modeline-mode)
-  :custom
-  (doom-modeline-height 24)
-  (doom-modeline-major-mode-color-icon nil)
-  (doom-modeline-buffer-encoding nil)
-  (doom-modeline-major-mode-icon nil)
-  :init (doom-modeline-mode 1))
 
 ;; Toggle the modeline on and off
 (use-package hide-mode-line

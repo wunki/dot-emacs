@@ -97,6 +97,7 @@
 
 ;; Automatically size the working window
 (use-package golden-ratio
+  :delight
   :config
   (golden-ratio-mode +1)
   (setq golden-ratio-auto-scale nil)
