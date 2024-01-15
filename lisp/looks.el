@@ -31,7 +31,7 @@
     (funcall mode 0)))
 
 ;; Add some spacing, let it breath
-(setq-default line-spacing 2) ;; increase this for fonts like Berkeley
+(setq-default line-spacing 2)
 (setq frame-resize-pixelwise t
       default-frame-alist (append (list
                                    '(vertical-scroll-bars . nil)
@@ -48,8 +48,9 @@
 
 (use-package ef-themes
  :config
- (load-theme 'ef-melissa-light :no-confirm)
- ;(set-face-attribute 'bold nil :weight 'semibold))
+ (load-theme 'ef-winter :no-confirm)
+ ;(set-face-attribute 'bold nil :weight 'semibold)
+ )
 
 (use-package modus-themes
   :config
