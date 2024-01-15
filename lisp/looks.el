@@ -50,9 +50,7 @@
   :config
   (spacious-padding-mode))
 
-(use-package all-the-icons
-  :if window-system)
-
+;; Theme of choice
 (use-package modus-themes
   :init
   (setq modus-themes-to-toggle '(modus-vivendi-tinted modus-operandi-tinted))
@@ -76,6 +74,7 @@
   :commands default-text-scale-mode
   :config (default-text-scale-mode))
 
+;; Color hex codes
 (use-package rainbow-mode
   :commands rainbow-mode
   :delight
