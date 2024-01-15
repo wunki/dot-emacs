@@ -54,6 +54,9 @@
   :if window-system)
 
 (use-package modus-themes
+  :init
+  (setq modus-themes-to-toggle '(modus-vivendi-tinted modus-operandi-tinted))
+  :bind ("<f5>" . modus-themes-toggle)
   :config
   (setq modus-themes-bold-constructs t
         modus-themes-italic-constructs t
