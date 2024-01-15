@@ -11,6 +11,7 @@
 ;; My current font of choice, this changes by the day. Ouch.
 (defvar pet/pref-font "GeistMono Nerd Font Mono")
 
+;; Set the font
 (use-package faces
   :straight (:type built-in)
   :custom
@@ -21,16 +22,12 @@
   (fixed-pitch ((t (:family ,pet/pref-font))))
   (default ((t (:family ,pet/pref-font :height 130)))))
 
-(use-package nerd-icons
-  :custom
-  (nerd-icons-color-icons nil))
-
 ;; Don't show any bars or toolbars
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
   (when (fboundp mode)
     (funcall mode 0)))
 
-;; Add some spacing, let it breath
+;; Add some spacing for those fonts which need it.
 (setq-default line-spacing 2)
 (setq frame-resize-pixelwise t
       default-frame-alist (append (list
@@ -39,7 +36,7 @@
                                    '(right-fringe   . 0)
                                    '(tool-bar-lines . 0))))
 
-;; Dark mode and hide the top bar
+;; On the Mac, use dark mode and hide the top bar.
 (when (memq window-system '(mac ns))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (add-to-list 'default-frame-alist '(undecorated-round . t)))
