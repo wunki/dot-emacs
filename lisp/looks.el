@@ -79,5 +79,22 @@
   :hook ((web-mode . rainbow-mode)
          (css-mode . rainbow-mode)))
 
+;; Automatically size the working window
+(use-package golden-ratio
+  :delight
+  :config
+  (golden-ratio-mode +1)
+  (setq golden-ratio-auto-scale nil)
+  ;; Make golden ratio play nice with other modes
+  (dolist (cmd '(ace-window
+                 magit-status
+                 avy-goto-char
+                 avy-goto-char-2
+                 avy-goto-word-0
+                 avy-goto-word-1
+                 avy-goto-line))
+    (add-to-list 'golden-ratio-extra-commands
+                 cmd)))
+
 (provide 'looks)
 ;;; looks.el ends here

@@ -93,25 +93,10 @@
   (avy-keys
     '(?a ?o ?e ?u ?i ?d ?h ?t ?n ?s)
     "map the keys to my homerow on dvorak")
-  :bind (("C-c c" . avy-goto-char-2) ("C-c l" . avy-goto-line)))
+  :bind (("C-c c" . avy-goto-char-2)
+         ("C-c l" . avy-goto-line)))
 
-;; Automatically size the working window
-(use-package golden-ratio
-  :delight
-  :config
-  (golden-ratio-mode +1)
-  (setq golden-ratio-auto-scale nil)
-  ;; Make golden ratio play nice with other modes
-  (dolist (cmd '(ace-window
-                 magit-status
-                 avy-goto-char
-                 avy-goto-char-2
-                 avy-goto-word-0
-                 avy-goto-word-1
-                 avy-goto-line))
-    (add-to-list 'golden-ratio-extra-commands
-                 cmd)))
-
+;; Easily move between windows
 (use-package ace-window
   :custom
   (aw-keys '(?a ?o ?e ?u ?h ?t ?t ?n ?l))
