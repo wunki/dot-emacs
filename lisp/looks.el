@@ -53,15 +53,13 @@
 (use-package all-the-icons
   :if window-system)
 
-(use-package ef-themes
- :config
- (load-theme 'ef-winter :no-confirm)
- ;(set-face-attribute 'bold nil :weight 'semibold)
- )
-
 (use-package modus-themes
   :config
-  (setq modus-themes-bold-constructs t)
+  (setq modus-themes-bold-constructs t
+        modus-themes-italic-constructs t
+        modus-themes-variable-pitch-ui t
+        modus-themes-mixed-fonts t
+        modus-themes-prompts '(bold))
   (load-theme 'modus-vivendi-tinted :no-confirm)
   (set-face-attribute 'bold nil :weight 'semibold))
 
