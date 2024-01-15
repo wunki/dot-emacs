@@ -52,6 +52,7 @@
 
 ;; Theme of choice
 (use-package modus-themes
+  :demand ;; the `bind' below lazy loads the pkg, which we don't want.
   :init
   (setq modus-themes-to-toggle '(modus-vivendi-tinted modus-operandi-tinted))
   :bind ("<f5>" . modus-themes-toggle)
