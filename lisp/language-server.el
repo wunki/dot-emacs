@@ -46,9 +46,7 @@
           :foldingRangeProvider))
   (add-to-list 'eglot-server-programs '(elixir-ts-mode "nextls" "--stdio=true"))
   (add-to-list 'eglot-server-programs '(c-ts-mode "clangd"))
-  :hook (((elixir-ts-mode heex-ts-mode go-ts-mode c-ts-mode) . eglot-ensure)
-         (go-ts-mode . pet/eglot-format-buffer-on-save)
-         (go-ts-mode . pet/eglot-organize-imports-on-save)
+  :hook (((elixir-ts-mode heex-ts-mode c-ts-mode) . eglot-ensure)
          (elixir-ts-mode . pet/eglot-format-buffer-on-save)
          (c-ts-mode . pet/eglot-format-buffer-on-save))
   :bind (:map eglot-mode-map
@@ -70,23 +68,23 @@
   (defun pet/lsp-mode-setup-completion ()
     (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
           '(orderless)))
-  ;; Set up before-save hooks to format buffer and add/delete imports.
-  ;; Make sure you don't have other gofmt/goimports hooks enabled.
-  (defun pet/clojure-install-save-hooks ()
+  ;; Set up before-save hooks to format and clean imports.
+  (defun pet/format-and-clean-imports-save-hooks ()
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
-    (add-hook 'before-save-hook #'lsp-organize-imports t t)
-    ;; Use LSP completion.
-    (remove-hook 'completion-at-point-functions #'cider-complete-at-point t))
-  :hook (((clojure-ts-mode clojurescript-mode clojurec-mode zig-mode) . lsp)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+  (defun pet/lsp-mode-setup-clojure ()
+    (remove-hook 'completion-at-point-functions #'cider-complete-at-point t)
+    (setq-local lsp-eldoc-enable-hover nil))
+  :hook (((clojure-ts-mode clojurescript-mode clojurec-mode zig-mode go-ts-mode) . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration)
-         (clojure-ts-mode . pet/clojure-install-save-hooks)
-         (lsp-completion-mode . pet/lsp-mode-setup-completion))
+         (lsp-completion-mode . pet/lsp-mode-setup-completion)
+         (clojure-ts-mode . pet/format-and-clean-imports-save-hooks)
+         (go-ts-mode . pet/format-and-clean-imports-save-hooks))
   :init
   (setq lsp-completion-provider :none) ;; we use Corfu for completions
   (setq lsp-headerline-breadcrumb-enable nil) ;; Don't need file path in my buffer
   (setq lsp-lens-enable nil) ;; Hide clutter (reference and test counts)
   (setq lsp-enable-indentation nil) ;; use indentation from the mode itself.
-  (setq lsp-eldoc-enable-hover nil) ;; use CIDER eldoc
   ;; Don't clutter modeline...
   (setq lsp-modeline-code-actions-enable nil
         lsp-modeline-diagnostics-enable nil)
