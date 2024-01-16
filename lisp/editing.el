@@ -57,25 +57,38 @@
 ;; Easy copy links to open files
 (use-package git-link)
 
-;; Use smartparens like paredit
-(use-package smartparens
-  :delight
-  :config
-  (require 'smartparens-config)
-  (setq sp-base-key-bindings 'paredit
-        sp-autoskip-closing-pair 'always
-        sp-hybrid-kill-entire-symbol nil)
-  (sp-use-paredit-bindings)
-  (show-smartparens-global-mode +1)
-  :hook ((emacs-lisp-mode
-          lisp-mode
-          lisp-interaction-mode
-          ielm-mode
-          clojure-mode
-          cider-repl-mode) . smartparens-strict-mode))
+;; Structural editing
+(use-package paredit
+  :diminish
+  :hook ((clojure-ts-mode . paredit-mode)
+         (cider-repl-mode . paredit-mode)
+         (emacs-lisp-mode . paredit-mode)
+         (lisp-data-mode . paredit-mode)))
 
-;; Automatic parens matching
-(electric-pair-mode 1)
+;; Easy snippets
+(use-package yasnippet
+  :diminish yas-minor-mode
+  :defer t
+  :bind ((:map yas-keymap
+               ("<return>" . yas-exit-all-snippets)
+               ("C-e" . yas/goto-end-of-active-field)
+               ("C-a" . yas/goto-start-of-active-field)))
+
+  :config
+  ;; Use only own snippets, do not use bundled ones
+  (setq yas-snippet-dirs '("~/.config/emacs/snippets"))
+
+  ;; No dropdowns please, yas
+  (setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
+
+  ;; No need to be so verbose
+  (setq yas-verbosity 1)
+
+  ;; Wrap around region
+  (setq yas-wrap-around-region t)
+
+  ;; Use yasnippet everywhere
+  (yas-global-mode 1))
 
 (provide 'editing)
 ;;; editing.el ends here

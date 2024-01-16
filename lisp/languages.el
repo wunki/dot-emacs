@@ -65,18 +65,6 @@
    '(mode-enabled save)
    "only check on save"))
 
-;; Tree-sitter
-(use-package tree-sitter
-  :hook ((zig-mode
-          elixir-mode
-          css-mode
-          html-mode
-          markdown-mode
-          c-ts-mode) . tree-sitter-mode)
-  :config
-  (setq major-mode-remap-alist
-        '((c-mode . c-ts-mode))))
-
 (use-package treesit-auto
   :custom
   (treesit-auto-install 'prompt)
@@ -100,23 +88,23 @@
    . rainbow-delimiters-mode))
 
 ;; Clojure
-;; Requires clojure kondo: brew install borkdude/brew/clj-kondo
-(use-package flycheck-clj-kondo)
-
 (use-package clojure-ts-mode
    :straight (clojure-ts-mode :type git
                               :host github
                               :repo "clojure-emacs/clojure-ts-mode")
+   :custom
+   (clojure-toplevel-inside-comment-form t)
+   (clojure-ident-style 'align-arguments)
    :hook ((clojure-ts-mode . subword-mode))
-   :config
-   (setq clojure-indent-style 'align-arguments)
-   (require 'flycheck-clj-kondo))
+   :bind (:map clojure-mode-map
+              ([remap paredit-forward] . clojure-forward-logical-sexp)
+              ([remap paredit-backward] . clojure-backward-logical-sexp)))
 
 (use-package cider
   ;; clean up the buffer before saving
   :functions cider-format-buffer
-  :config
-  (add-hook 'before-save-hook #'cider-format-buffer nil t)
+  :init
+  (add-to-list 'safe-local-variable-values '(cider-clojure-cli-aliases . ":dev"))
   :hook (clojure-ts-mode . cider-mode)
   :custom
   ;; We use clojure-lsp for showing documentation
@@ -139,6 +127,9 @@
 
   ;; hide nrepl buffers when switching between buffers
   (nrepl-hide-special-buffers t)
+
+  ;; always scroll output from interactive evaluations into view
+  (cider-repl-display-output-before-window-boundaries t)
 
   ;; don't prompt for symbols, try to use the one currently at prompt
   (cider-prompt-for-symbol nil)

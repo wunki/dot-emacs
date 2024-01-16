@@ -62,14 +62,14 @@
         (progn
           (window-configuration-to-register 1)
           (delete-other-windows)
-          (text-scale-increase 2)
+          (text-scale-increase 1)
           (olivetti-mode t))
       (progn
         (jump-to-register 1)
         (olivetti-mode 0)
-        (text-scale-decrease 2))))
+        (text-scale-decrease 1))))
   :init
-  (setq olivetti-body-width .4)
+  (setq olivetti-body-width .6)
   :hook (org-mode . pet/writing-mode)
   :bind
   (("<f9>" . pet/writing-mode)))

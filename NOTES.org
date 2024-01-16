@@ -1,5 +1,11 @@
 * Emacs
 
+** <2024-01-16 Tue>
+Lots of Emacs changes and really happy the way Emacs looks right now. Only thing that still needs work is the modeline.
+
 ** <2023-11-26 Sun>
 
 Let the journaling begin. At some point, I should write a post on how powerful Emacs is combined with LLMs. In an environment that is completely malleable, the only difficulty was in knowing how to do it. Now we can use LLMs to help.
+
+** Tasks
+*** TODO Change LSP in Markdown and Org-mode from eglot to LSP, because eglot does not work with code actions.

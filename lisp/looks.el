@@ -9,7 +9,7 @@
 (require 'lib)
 
 ;; My current font of choice, this changes by the day. Ouch.
-(defvar pet/pref-font "GeistMono Nerd Font Mono")
+(defvar pet/pref-font "MonoLisa")
 
 ;; Set the font
 (use-package faces
@@ -20,7 +20,7 @@
   :custom-face
   (variable-pitch ((t (:family "Geist"))))
   (fixed-pitch ((t (:family ,pet/pref-font))))
-  (default ((t (:family ,pet/pref-font :height 130)))))
+  (default ((t (:family ,pet/pref-font :height 120)))))
 
 ;; Don't show any bars or toolbars
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
@@ -39,13 +39,13 @@
 ;; On the Mac, use dark mode and hide the top bar.
 (when (memq window-system '(mac ns))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
-  (add-to-list 'default-frame-alist '(undecorated-round . t)))
+  ;; Enable this to remove the top bar.
+  ;(add-to-list 'default-frame-alist '(undecorated-round . t))
+  )
 
 ;; Add some more padding
 (use-package spacious-padding
-  :if (pet/is-mac)
-  :config
-  (spacious-padding-mode))
+  :if (pet/is-mac))
 
 ;; Theme of choice
 (use-package modus-themes
@@ -54,6 +54,10 @@
   (setq modus-themes-to-toggle '(modus-vivendi-tinted modus-operandi-tinted))
   :bind ("<f5>" . modus-themes-toggle)
   :config
+  (customize-set-variable 'modus-themes-common-palette-overrides
+        '((bg-region bg-lavender)
+          (fg-region unspecified)
+          ,@modus-themes-preset-overrides-faint))
   (setq modus-themes-bold-constructs t
         modus-themes-italic-constructs t
         modus-themes-variable-pitch-ui t

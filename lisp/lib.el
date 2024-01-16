@@ -116,5 +116,11 @@ windows easier."
   (delete-other-windows)
   (load-file user-init-file))
 
+(defun pet/reload-dir-locals-for-current-buffer ()
+  "Reload dir locals for the current buffer."
+  (interactive)
+  (let ((enable-local-variables :all))
+    (hack-dir-local-variables-non-file-buffer)))
+
 (provide 'lib)
 ;;; lib.el ends here
