@@ -151,6 +151,9 @@
 ;; (add-hook 'prog-mode-hook #'hl-line-mode)
 ;; (add-hook 'text-mode-hook #'hl-line-mode)
 
+;; When writing text, use variable pitch.
+(add-hook 'text-mode-hook #'variable-pitch-mode)
+
 ;; Show the current column in the modeline
 (column-number-mode -1)
 

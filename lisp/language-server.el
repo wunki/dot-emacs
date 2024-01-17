@@ -64,17 +64,21 @@
 ;; Use LSP mode for Clojure because it works a bit better than eglot.
 (use-package lsp-mode
   :preface
-  ;; Set up Corfu and orderless for completions
   (defun pet/lsp-mode-setup-completion ()
+    "Set up Corfu and orderless for completions."
     (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
           '(orderless)))
-  ;; Set up before-save hooks to format and clean imports.
+  
   (defun pet/format-and-clean-imports-save-hooks ()
+    "Set up before-save hooks to format and clean imports."
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
     (add-hook 'before-save-hook #'lsp-organize-imports t t))
+
   (defun pet/lsp-mode-setup-clojure ()
+    "Set up Clojure, removing Cider for completions, but enabling it for eldoc."
     (remove-hook 'completion-at-point-functions #'cider-complete-at-point t)
     (setq-local lsp-eldoc-enable-hover nil))
+  
   :hook (((clojure-ts-mode clojurescript-mode clojurec-mode zig-mode go-ts-mode) . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration)
          (lsp-completion-mode . pet/lsp-mode-setup-completion)
@@ -91,10 +95,12 @@
   (setq lsp-enable-symbol-highlighting nil) ;; Don't highlight current symbol
 )
 
+;; Spell checking with the help of Grammarly
 (use-package lsp-grammarly
+  :after lsp-mode
   :hook (org-mode . (lambda ()
                       (require 'lsp-grammarly)
-                      (lsp))))
+                      (lsp-deferred))))
 
 (provide 'language-server)
 ;;; language-server.el ends here

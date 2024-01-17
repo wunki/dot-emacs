@@ -11,18 +11,38 @@
 ;; My current font of choice, this changes by the day. Ouch.
 (defvar pet/pref-font "MonoLisa")
 
-;; Set the font
-(use-package faces
-  :straight (:type built-in)
-  :custom
-  (face-font-family-alternatives
-   '(("Consolas" "Monaco" "Monospace")))
-  :custom-face
-  (variable-pitch ((t (:family "Geist"))))
-  (fixed-pitch ((t (:family ,pet/pref-font))))
-  (default ((t (:family ,pet/pref-font :height 120)))))
+;; Set the font.
+(use-package fontaine
+  :demand
+  :config
+  (setq-default text-scale-remap-header-line t)
+  (setq fontaine-presets
+        '((regular)
+          (lisp
+           :default-family "Triplicate A Code"
+           :default-height 140)
+          (big
+           :default-height 160)
+          (t
+           :default-family "MonoLisa"
+           :default-weight regular
+           :default-height 130
+           ;; nil means it falls back to the default value above
+           :fixed-pitch-family nil
+           :fixed-pitch-weight nil
+           :fixed-pitch-height 1.0
+           :fixed-pitch-serif-family nil
+           :variable-pitch-family "iA Writer Duo S"
+           :variable-pitch-weight nil,
+           :variable-pitch-height 1.0
+           :bold-family nil
+           :bold-weight medium
+           :italic-family nil
+           :italic-slant italic
+           :line-spacing nil)))
+  (fontaine-set-preset 'regular))
 
-;; Don't show any bars or toolbars
+;; Don't show any bars or toolbars.
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
   (when (fboundp mode)
     (funcall mode 0)))
