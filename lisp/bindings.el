@@ -28,5 +28,11 @@
 ;; Rename file and buffer
 (global-set-key (kbd "C-c r") 'pet/rename-file-and-buffer)
 
+;; I want my text size to be global, not local, so changing the default
+(global-set-key (kbd "C-x C-=") 'global-text-scale-adjust)
+(global-set-key (kbd "C-x C-+") 'global-text-scale-adjust)
+(global-set-key (kbd "C-x C-0") 'global-text-scale-adjust)
+(global-set-key (kbd "C-x C--") 'global-text-scale-adjust)
+
 (provide 'bindings)
 ;;; bindings.el ends here

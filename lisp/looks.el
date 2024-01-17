@@ -21,7 +21,7 @@
           (lisp
            :default-family "Triplicate A Code"
            :default-height 140)
-          (big
+          (presentation
            :default-height 160)
           (t
            :default-family "MonoLisa"
@@ -89,12 +89,6 @@
 ;; Toggle the modeline on and off
 (use-package hide-mode-line
   :bind ("C-c m" . global-hide-mode-line-mode))
-
-;; Easily scale the font size up and down
-(use-package default-text-scale
-  :demand
-  :commands default-text-scale-mode
-  :config (default-text-scale-mode))
 
 ;; Color hex codes
 (use-package rainbow-mode
