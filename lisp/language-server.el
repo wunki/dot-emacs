@@ -10,10 +10,7 @@
 (require 'lib)
 
 (use-package eglot
-  :straight (eglot :type git
-                   :host nil
-                   :repo "git://git.sv.gnu.org/emacs.git"
-                   :files ("lisp/progmodes/eglot.el"))
+  :straight (:type builtin)
   :preface
   (defun pet/eglot-organize-imports ()
     "Organizes the imports."
