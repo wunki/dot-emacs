@@ -169,10 +169,6 @@
 ;; Highlight the matching paren
 (show-paren-mode 1)
 
-;; This will stop Emacs from changing my config by
-;; having it write to a temporary file
-(setq custom-file (make-temp-file "emacs-custom"))
-
 ;; Setup indentation
 (set-default 'indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -184,22 +180,18 @@
 ;; Minimum window height
 (setq window-min-height 1)
 
-;; Emacs writes backup files to `filename~` by default. This is messy,
-;; so let's tell it to write them to `~/.config/emacs/backups` instead.
-;; If you have an accident, check this directory - you might get lucky
-(setq
-  backup-directory-alist
-  `(("." . ,(concat user-emacs-directory "backups/")))
-  backup-by-copying t ; Don't delink hardlinks
-  version-control t ; Use version numbers on backups
-  delete-old-versions t ; Automatically delete excess backups
-  kept-new-versions 20 ; how many of the newest versions to keep
-  kept-old-versions 5 ; and how many of the old
-  )
+(use-package no-littering
+  :init
+  (require 'no-littering)
+  (setq custom-file (no-littering-expand-etc-file-name "custom.el")))
 
-;; Move auto-saved files to their own directory
-(setq auto-save-file-name-transforms
-      `((".*" ,(concat user-emacs-directory "auto-saves/") t)))
+;; Configure backups
+(setq backup-by-copying t         ; Don't delink hardlinks
+      version-control t           ; Use version numbers on backups
+      delete-old-versions t       ; Automatically delete excess backups
+      kept-new-versions 20        ; how many of the newest versions to keep
+      kept-old-versions 5         ; and how many of the old
+ )
 
 ;; If available, use `xdg-open' to open URLs.
 (when (executable-find "xdg-open")

@@ -85,6 +85,7 @@
          (clojure-ts-mode . pet/format-and-clean-imports-save-hooks)
          (go-ts-mode . pet/format-and-clean-imports-save-hooks))
   :init
+  (setq lsp-keymap-prefix "C-c C-l")
   (setq lsp-completion-provider :none) ;; we use Corfu for completions
   (setq lsp-headerline-breadcrumb-enable nil) ;; Don't need file path in my buffer
   (setq lsp-lens-enable nil) ;; Hide clutter (reference and test counts)

@@ -18,9 +18,6 @@ tramp
 /eshell/history
 /eshell/lastdir
 
-# elpa packages
-/elpa/
-
 # reftex files
 *.rel
 
@@ -50,28 +47,18 @@ flycheck_*.el
 /straight
 
 # gcc emacs cache
-/eln-cache
-/transient
-/recentf
-/projects
 /.lsp-session-v1
 /url
 /bookmarks
-/history
 /org-persist
 /org-roam.db
-/.cache
-
-# auto saving
-/auto-saves
-/auto-save-list
 
 # emojis
 /emojis
 /.stignore
 /forge-database.sqlite
-/tree-sitter/
 /elisp-autofmt-cache/
 /racket-mode/
 /project-window-list
 /*.sqlite
+/var/
