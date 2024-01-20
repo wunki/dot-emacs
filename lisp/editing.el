@@ -75,9 +75,6 @@
                ("C-a" . yas/goto-start-of-active-field)))
 
   :config
-  ;; Use only own snippets, do not use bundled ones
-  (setq yas-snippet-dirs '("~/.config/emacs/snippets"))
-
   ;; No dropdowns please, yas
   (setq yas-prompt-functions '(yas-ido-prompt yas-completing-prompt))
 
