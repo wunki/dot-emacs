@@ -102,6 +102,7 @@
 
 (use-package cider
   ;; clean up the buffer before saving
+  :after clojure-mode
   :functions cider-format-buffer
   :init
   (add-to-list 'safe-local-variable-values '(cider-clojure-cli-aliases . ":dev"))
@@ -134,9 +135,20 @@
   ;; don't prompt for symbols, try to use the one currently at prompt
   (cider-prompt-for-symbol nil)
 
-  :bind (:map cider-mode-map
-              ("C-c C-l" . cider-find-and-clear-repl-output)
-              :map cider-repl-mode-map
+  ;; use lsp
+  (cider-use-xref nil)
+
+  ;; use lsp for semantic tokens
+  (cider-font-lock-dynamically nil)
+
+  ;; use lsp
+  (cider-prompt-for-symbol nil)
+
+  ;; clean the output
+  (nrepl-log-messages nil)
+
+  ;; clear the buffer
+  :bind (:map cider-repl-mode-map
               ("C-c C-l" . cider-repl-clear-buffer)))
 
 ;; Elixir
