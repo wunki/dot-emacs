@@ -63,3 +63,4 @@ flycheck_*.el
 /*.sqlite
 /var/
 /eln-cache/
+/tree-sitter/
