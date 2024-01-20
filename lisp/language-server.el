@@ -10,7 +10,7 @@
 (require 'lib)
 
 (use-package eglot
-  :straight (:type builtin)
+  :straight (:type built-in)
   :preface
   (defun pet/eglot-organize-imports ()
     "Organizes the imports."
