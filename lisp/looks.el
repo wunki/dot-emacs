@@ -26,7 +26,7 @@
           (t
            :default-family "MonoLisa"
            :default-weight regular
-           :default-height 130
+           :default-height 140
            ;; nil means it falls back to the default value above
            :fixed-pitch-family nil
            :fixed-pitch-weight nil

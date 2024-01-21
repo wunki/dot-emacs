@@ -16,7 +16,7 @@
   :bind ("C-c e" . er/expand-region))
 
 ;; Go to the last place I visited the file.
-(use-package saveplace
+(use-feature saveplace
   :custom
   (save-place-file "~/.cache/emacs/saveplace")
   :config

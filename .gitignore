@@ -43,9 +43,6 @@ flycheck_*.el
 # network security
 /network-security.data
 
-# straight package manager
-/straight
-
 # gcc emacs cache
 /.lsp-session-v1
 /url

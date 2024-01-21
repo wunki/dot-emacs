@@ -87,7 +87,7 @@
 
 ;; Whitespace mode, only enabled manually when needed.
 (use-package whitespace
-  :straight (:type built-in)
+  :elpaca nil
   :commands whitespace-mode
   :config
   ; When we run the `whitespace-cleanup' command
@@ -115,8 +115,7 @@
                   ;; tabs -> » else >
                   (tab-mark ?\t [187 ?\t] [62 ?\t]))))
 
-(use-package dired
-  :straight (:type built-in)
+(use-feature dired
   :commands (dired-omit-mode dired-hide-details-mode)
   :hook (dired-mode . (lambda ()
                         (dired-omit-mode 1)
@@ -124,18 +123,6 @@
   :custom
   (dired-omit-files "^\.?#\|\.DS_Store")
   (dired-omit-verbose nil))
-
-;; Enable visual-line-mode. Change auto-fill-mode to AF and swap
-;; remove visual-line-mode
-(use-package emacs
-  :straight (:type built-in)
-  :init
-  (global-visual-line-mode 1)
-  (setq completion-cycle-threshold 3)
-  (setq tab-always-indent 'complete)
-  :delight
-  (auto-fill-function " AF")
-  (visual-line-mode))
 
 ;; Update the buffer when a file changes
 (global-auto-revert-mode 1)
@@ -241,7 +228,7 @@
   (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
 
 (use-package goto-addr
-  :straight (:type built-in)
+  :elpaca nil
   :bind (:map goto-address-highlight-keymap
               ("C-c C-o" . goto-address-at-point))
   :hook (((magit-process-mode vterm-mode) . goto-address-mode))
@@ -252,14 +239,15 @@
 
 (use-package eat
   :commands eat
-  :straight (:type git
-             :host codeberg
-             :repo "akib/emacs-eat"
-             :files ("*.el" ("term" "term/*.el") "*.texi"
-                     "*.ti" ("terminfo/e" "terminfo/e/*")
-                     ("terminfo/65" "terminfo/65/*")
-                     ("integration" "integration/*")
-                     (:exclude ".dir-locals.el" "*-tests.el")))
+  :elpaca (eat
+           :type git
+           :host codeberg
+           :repo "akib/emacs-eat"
+           :files ("*.el" ("term" "term/*.el") "*.texi"
+                   "*.ti" ("terminfo/e" "terminfo/e/*")
+                   ("terminfo/65" "terminfo/65/*")
+                   ("integration" "integration/*")
+                   (:exclude ".dir-locals.el" "*-tests.el")))
   :bind (("C-c t" . eat)
          :map project-prefix-map
          ("t" . eat-project))

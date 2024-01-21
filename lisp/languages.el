@@ -89,9 +89,10 @@
 
 ;; Clojure
 (use-package clojure-ts-mode
-   :straight (clojure-ts-mode :type git
-                              :host github
-                              :repo "clojure-emacs/clojure-ts-mode")
+   :elpaca (clojure-ts-mode
+            :type git
+            :host github
+            :repo "clojure-emacs/clojure-ts-mode")
    :custom
    (clojure-toplevel-inside-comment-form t)
    (clojure-ident-style 'align-arguments)
@@ -156,7 +157,7 @@
 
 ;; Documentation
 (use-package eldoc
-  :straight nil
+  :elpaca nil
   :delight
   :hook (prog-mode-hook . eldoc-mode))
 
@@ -224,7 +225,7 @@
 (use-package racket-mode)
 
 ;; Go
-(use-package go-ts-mode
+(use-feature go-ts-mode
  :mode
  ("\\.go\\'" . go-ts-mode)
  ("/go\\.mod\\'" . go-mod-ts-mode)

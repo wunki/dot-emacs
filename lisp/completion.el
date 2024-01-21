@@ -10,9 +10,10 @@
 
 ;; Popup completion-at-point
 (use-package corfu
-  :straight '(corfu :host github
-                    :repo "minad/corfu"
-                    :files ("*" "extensions/*.el" (:exclude ".git")))
+  :elpaca '(corfu
+            :host github
+            :repo "minad/corfu"
+            :files ("*" "extensions/*.el" (:exclude ".git")))
   :init
   (global-corfu-mode)
   :hook (corfu-mode . corfu-popupinfo-mode)
@@ -28,6 +29,17 @@
         ("C-n" . corfu-next)
         ("C-p" . corfu-previous)))
 
+;; Improve the completions by removing order?
+(use-package orderless
+  :init
+  (setq
+    completion-styles
+    '(orderless)
+    completion-category-defaults
+    nil
+    completion-category-overrides
+    '((file (styles partial-completion)))))
+
 ;; Pretty icons for corfu
 (use-package kind-icon
   :if window-system
@@ -36,10 +48,7 @@
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
-;; Orderless: powerful completion style
-(use-package orderless
-  :config
-  (setq completion-styles '(orderless)))
+
 
 (provide 'completion)
 ;;; completion.el ends here

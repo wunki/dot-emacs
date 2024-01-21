@@ -14,7 +14,10 @@
    (convert-standard-filename
     (expand-file-name  "var/eln-cache/" user-emacs-directory))))
 
-;; Fix compilation issues.
+;; Fix byte compilation issues on Mac.
 (setenv "LIBRARY_PATH" "/opt/homebrew/opt/gcc/lib/gcc/13:/opt/homebrew/opt/libgccjit/lib/gcc/13:/opt/homebrew/opt/gcc/lib/gcc/13/gcc/aarch64-apple-darwin23/13")
+
+;; We use elpaca for our packages.
+(setq package-enable-at-startup nil)
 
 ;;; early-init.el ends here

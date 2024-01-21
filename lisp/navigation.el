@@ -11,7 +11,7 @@
 (require 'lib)
 
 ;; Swap command and option on a mac
-(use-package emacs
+(use-feature emacs
   :init
   (when (pet/is-mac)
     (setq mac-command-modifier 'meta)
@@ -20,23 +20,12 @@
 ;; Emacs completions in the mini buffer
 (use-package vertico
   :commands vertico-mode
-  :straight
-  (vertico
-    :files (:defaults "extensions/*")
-    :includes
-    (vertico-buffer
-      vertico-directory
-      vertico-flat
-      vertico-indexed
-      vertico-mouse
-      vertico-quick
-      vertico-repeat
-      vertico-reverse))
   :custom (vertico-cycle t)
   :init (vertico-mode))
 
 ;; Mimic Ivy for directory completion
 (use-package vertico-directory
+  :elpaca nil
   :after vertico
   :bind
   (:map
@@ -48,11 +37,11 @@
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 
 ;; Store recent commands and completions
-(use-package savehist
+(use-feature savehist
   :init (savehist-mode))
 
 ;; Jump to recent files
-(use-package recentf
+(use-feature recentf
   :custom
   (recentf-max-menu-items 15)
   (recentf-max-saved-items 100)
@@ -63,17 +52,6 @@
   :after vertico
   :commands marginalia-mode
   :init (marginalia-mode))
-
-;; Improve the completions style by removing any order
-(use-package orderless
-  :init
-  (setq
-    completion-styles
-    '(orderless)
-    completion-category-defaults
-    nil
-    completion-category-overrides
-    '((file (styles partial-completion)))))
 
 ;; Enhanced version of isearch
 (use-package swiper
@@ -104,9 +82,10 @@
 
 ;; Helper functions to manage projects.
 (use-package project-x
-  :straight (:host github
-             :repo "karthink/project-x"
-             :files ("*.el"))
+  :elpaca (project-x
+           :host github
+           :repo "karthink/project-x"
+           :files ("*.el"))
   :after project
   :config
   (setq project-x-save-interval 600)

@@ -7,10 +7,14 @@
 ;;; Code:
 ;;
 
+;; An up-to-date required for copilot.
+(use-package jsonrpc)
+
 (use-package copilot
-  :straight (:host github
-             :repo "zerolfx/copilot.el"
-             :files ("dist" "*.el"))
+  :after jsonrpc
+  :elpaca (:host github
+                 :repo "copilot-emacs/copilot.el"
+                 :files ("dist" "*.el"))
   
   :preface
   (defun pet/copilot-tab ()
