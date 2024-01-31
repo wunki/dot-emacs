@@ -54,6 +54,11 @@
 ;; before we assimilate
 (setq gc-cons-threshold (* 100 1024 1024))
 
+;; But let's assimilate, once we no longer focus on Emacs
+(add-function :after
+              after-focus-change-function
+              (lambda () (unless (frame-focus-state) (garbage-collect))))
+
 ;; Set to 1MB, this should help LSP
 (setq read-process-output-max (* 1024 1024))
 
