@@ -222,6 +222,8 @@
 ;; Configure shell environment
 (use-package exec-path-from-shell
   :commands (exec-path-from-shell-initialize exec-path-from-shell-copy-env)
+  :custom
+  (exec-path-from-shell-shell-name "/opt/homebrew/bin/fish")
   :init
   (exec-path-from-shell-initialize)
   :config

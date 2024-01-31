@@ -16,7 +16,7 @@
   :demand
   :config
   (setq-default text-scale-remap-header-line t)
-  (setq fontaine-presets
+  (setq-default fontaine-presets
         '((regular)
           (lisp
            :default-family "Triplicate A Code"
@@ -26,7 +26,7 @@
           (t
            :default-family "MonoLisa"
            :default-weight regular
-           :default-height 140
+           :default-height 130
            ;; nil means it falls back to the default value above
            :fixed-pitch-family nil
            :fixed-pitch-weight nil

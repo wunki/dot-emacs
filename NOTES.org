@@ -1,9 +1,5 @@
 * Emacs
 
-** <2024-01-20 Sat>
-
-** <2024-01-19 Fri>
-
 ** <2024-01-17 Wed>
 Used the fontaine package today to set the fonts. Much better if you ask me. Also switched to the iA Writer fonts for note-taking. Beautiful!
 

@@ -19,36 +19,46 @@
 (use-package org
   :elpaca nil
   :preface
+
+  (defun pet/find-project-note ()
+    "Find and open the current project note"
+    (interactive)
+    (let* ((project-root (pet/current-project-root))
+           (notes-file (concat project-root "NOTES.org")))
+      (find-file notes-file)
+      (goto-char (point-min))))
+  
   (defun pet/insert-project-note ()
-  "Insert a note for the current project in the NOTES.org file."
-  (interactive)
-  (let* ((project-root (pet/current-project-root))
-         (notes-file (concat project-root "NOTES.org"))
-         (today (format-time-string "%Y-%m-%d %a"))
-         (today-header (concat "<" today ">")))
-    (find-file notes-file)
-    (goto-char (point-min))
-    (if (search-forward today-header nil t)
+    "Insert a note for the current project in the NOTES.org file."
+    (interactive)
+    (let* ((project-root (pet/current-project-root))
+           (notes-file (concat project-root "NOTES.org"))
+           (today (format-time-string "%Y-%m-%d %a"))
+           (today-header (concat "<" today ">")))
+      (find-file notes-file)
+      (goto-char (point-min))
+      (if (search-forward today-header nil t)
+          (progn
+            (org-end-of-subtree)
+            (org-end-of-item))
         (progn
-          (org-end-of-subtree)
-          (org-end-of-item))
-      (progn
-        (goto-char (point-min))
-        (search-forward-regexp "^\\*\\* ")
-        (beginning-of-line)
-        (org-insert-heading)
-        (insert today-header)))))
+          (goto-char (point-min))
+          (search-forward-regexp "^\\*\\* ")
+          (beginning-of-line)
+          (org-insert-heading)
+          (insert today-header)))))
   :custom
   (org-startup-indented t)
   (org-pretty-entities t)
   :bind
-  (:map project-prefix-map ("n" . pet/insert-project-note)))
+  (:map project-prefix-map (("N" . pet/insert-project-note)
+                            ("n" . pet/find-project-note))))
 
 (use-package denote
   :custom
   (denote-directory pet/notes-directory)
   (denote-known-keywords '("journal" "projects" "ideas" "people" "posts" "interviews"))
-  :bind (("C-c C-n" . denote-create-note)
+  :bind (("C-c N" . denote-create-note)
          ("C-c n" . denote-open-or-create)))
 
 ;; Distraction-free screen for writing
