@@ -219,7 +219,8 @@
 ;; Common Lisp
 (use-package sly
   :custom
-  (inferior-lisp-program "sbcl"))
+  (inferior-lisp-program "sbcl")
+  :hook (sly-mrepl-mode . electric-pair-mode))
 
 ;; Racket
 (use-package racket-mode)
