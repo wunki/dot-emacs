@@ -173,6 +173,7 @@
 (setq window-min-height 1)
 
 (use-package no-littering
+  :demand t
   :init
   (require 'no-littering)
   (setq custom-file (no-littering-expand-etc-file-name "custom.el")))
