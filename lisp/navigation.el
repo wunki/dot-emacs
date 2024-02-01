@@ -59,11 +59,13 @@
 
 ;; Suggests the next key, depending on the pressed key
 (use-package which-key
+  :demand t
   :delight
   :custom
   (which-key-idle-delay 0.5)
   (which-key-sort-order 'which-key-description-order)
-  :hook (after-init . which-key-mode))
+  :config
+  (which-key-mode))
 
 ;; Quickly move around with Avy
 (use-package avy
