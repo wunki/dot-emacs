@@ -54,6 +54,11 @@
   :after magit
   :bind ("C-c C-g" . forge-dispatch))
 
+;; Create .gitignore files
+(use-package gitignore-templates
+  :commands (gitignore-templates-insert
+             gitignore-templates-new-file))
+
 ;; Easy copy links to open files
 (use-package git-link)
 
