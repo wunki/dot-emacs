@@ -176,7 +176,9 @@
   :demand t
   :init
   (require 'no-littering)
-  (setq custom-file (no-littering-expand-etc-file-name "custom.el")))
+  (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
+  ;; also theme backup files
+  (no-littering-theme-backups))
 
 ;; Configure backups
 (setq backup-by-copying t         ; Don't delink hardlinks
