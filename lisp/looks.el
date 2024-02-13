@@ -56,16 +56,25 @@
                                    '(right-fringe   . 0)
                                    '(tool-bar-lines . 0))))
 
+;; show the column at line 100
+(setq fill-column 100)
+(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
+
 ;; On the Mac, use dark mode and hide the top bar.
 (when (memq window-system '(mac ns))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   ;; Enable this to remove the top bar.
-  ;(add-to-list 'default-frame-alist '(undecorated-round . t))
+                                        ;(add-to-list 'default-frame-alist '(undecorated-round . t))
   )
 
 ;; Add some more padding
 (use-package spacious-padding
-  :if (pet/is-mac))
+  :if (pet/is-mac)
+  :custom
+  (spacious-padding-subtle-mode-line
+   '(:mode-line-active success :mode-line-inactive shadow))
+  :config
+  (spacious-padding-mode 1))
 
 ;; Theme of choice
 (use-package modus-themes
@@ -96,23 +105,6 @@
   :delight
   :hook ((web-mode . rainbow-mode)
          (css-mode . rainbow-mode)))
-
-;; Automatically size the working window
-(use-package golden-ratio
-  :delight
-  :config
-  (golden-ratio-mode +1)
-  (setq golden-ratio-auto-scale nil)
-  ;; Make golden ratio play nice with other modes
-  (dolist (cmd '(ace-window
-                 magit-status
-                 avy-goto-char
-                 avy-goto-char-2
-                 avy-goto-word-0
-                 avy-goto-word-1
-                 avy-goto-line))
-    (add-to-list 'golden-ratio-extra-commands
-                 cmd)))
 
 (provide 'looks)
 ;;; looks.el ends here
