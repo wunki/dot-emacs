@@ -87,17 +87,23 @@
     racket-mode)
    . rainbow-delimiters-mode))
 
+;; The web
+(use-package web-mode
+  :mode (".html?$")
+  :custom
+  (web-mode-engines-alist '(("django" . "\\.djhtml\\'"))))
+
 ;; Clojure
 (use-package clojure-ts-mode
-   :elpaca (clojure-ts-mode
-            :type git
-            :host github
-            :repo "clojure-emacs/clojure-ts-mode")
-   :custom
-   (clojure-toplevel-inside-comment-form t)
-   (clojure-ident-style 'align-arguments)
-   :hook ((clojure-ts-mode . subword-mode))
-   :bind (:map clojure-mode-map
+  :elpaca (clojure-ts-mode
+           :type git
+           :host github
+           :repo "clojure-emacs/clojure-ts-mode")
+  :custom
+  (clojure-toplevel-inside-comment-form t)
+  (clojure-ident-style 'align-arguments)
+  :hook ((clojure-ts-mode . subword-mode))
+  :bind (:map clojure-mode-map
               ([remap paredit-forward] . clojure-forward-logical-sexp)
               ([remap paredit-backward] . clojure-backward-logical-sexp)))
 
@@ -220,6 +226,7 @@
 (use-package sly
   :custom
   (inferior-lisp-program "sbcl")
+  (sly-symbol-completion-mode nil)
   :hook (sly-mrepl-mode . electric-pair-mode))
 
 ;; Racket
