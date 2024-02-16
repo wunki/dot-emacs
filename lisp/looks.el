@@ -72,7 +72,7 @@
   :if (pet/is-mac)
   :custom
   (spacious-padding-subtle-mode-line
-   '(:mode-line-active success :mode-line-inactive shadow))
+   '(:mode-line-active link :mode-line-inactive shadow))
   :config
   (spacious-padding-mode 1))
 
