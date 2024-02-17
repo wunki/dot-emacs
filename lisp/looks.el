@@ -24,9 +24,9 @@
           (presentation
            :default-height 160)
           (t
-           :default-family "MonoLisa"
+           :default-family "IBM Plex Mono"
            :default-weight regular
-           :default-height 130
+           :default-height 140
            ;; nil means it falls back to the default value above
            :fixed-pitch-family nil
            :fixed-pitch-weight nil
@@ -92,7 +92,7 @@
         modus-themes-variable-pitch-ui t
         modus-themes-mixed-fonts t
         modus-themes-prompts '(bold))
-  (load-theme 'modus-vivendi-tinted :no-confirm)
+  (load-theme 'modus-vivendi-tritanopia :no-confirm)
   (set-face-attribute 'bold nil :weight 'semibold))
 
 ;; Toggle the modeline on and off
