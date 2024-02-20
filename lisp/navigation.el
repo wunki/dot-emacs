@@ -24,8 +24,7 @@
   :init (vertico-mode))
 
 ;; Mimic Ivy for directory completion
-(use-package vertico-directory
-  :elpaca nil
+(use-feature vertico-directory
   :after vertico
   :bind
   (:map
@@ -84,7 +83,7 @@
 
 ;; Helper functions to manage projects.
 (use-package project-x
-  :elpaca (project-x
+  :ensure (project-x
            :host github
            :repo "karthink/project-x"
            :files ("*.el"))

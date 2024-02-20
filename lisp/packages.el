@@ -51,7 +51,7 @@
   ;; Enable :elpaca use-package keyword.
   (elpaca-use-package-mode)
   ;; Assume :elpaca t unless otherwise specified.
-  (setq elpaca-use-package-by-default t))
+  (setq use-package-always-ensure t))
 
 ;; Block to make sure use-package is available.
 (elpaca-wait)
@@ -62,7 +62,7 @@
   NAME and ARGS are in `use-package'."
   (declare (indent defun))
   `(use-package ,name
-     :elpaca nil
+     :ensure nil
      ,@args))
 
 ;; Clean up the modeline

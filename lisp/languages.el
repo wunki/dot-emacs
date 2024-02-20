@@ -95,7 +95,7 @@
 
 ;; Clojure
 (use-package clojure-ts-mode
-  :elpaca (clojure-ts-mode
+  :ensure (clojure-ts-mode
            :type git
            :host github
            :repo "clojure-emacs/clojure-ts-mode")
@@ -162,8 +162,7 @@
 (use-package elixir-ts-mode)
 
 ;; Documentation
-(use-package eldoc
-  :elpaca nil
+(use-feature eldoc
   :delight
   :hook (prog-mode-hook . eldoc-mode))
 

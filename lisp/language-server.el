@@ -9,8 +9,7 @@
 ;;
 (require 'lib)
 
-(use-package eglot
-  :elpaca nil
+(use-feature eglot
   :preface
   (defun pet/eglot-organize-imports ()
     "Organizes the imports."

@@ -24,7 +24,7 @@
           (presentation
            :default-height 160)
           (t
-           :default-family "IBM Plex Mono"
+           :default-family "Dank Mono"
            :default-weight regular
            :default-height 140
            ;; nil means it falls back to the default value above
@@ -70,9 +70,6 @@
 ;; Add some more padding
 (use-package spacious-padding
   :if (pet/is-mac)
-  :custom
-  (spacious-padding-subtle-mode-line
-   '(:mode-line-active link :mode-line-inactive shadow))
   :config
   (spacious-padding-mode 1))
 

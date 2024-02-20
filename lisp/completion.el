@@ -11,7 +11,7 @@
 ;; Popup completion-at-point
 (use-package corfu
   :demand t
-  :elpaca '(corfu
+  :ensure '(corfu
             :host github
             :repo "minad/corfu"
             :files ("*" "extensions/*.el" (:exclude ".git")))

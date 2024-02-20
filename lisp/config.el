@@ -91,8 +91,7 @@
 (setq create-lockfiles nil)
 
 ;; Whitespace mode, only enabled manually when needed.
-(use-package whitespace
-  :elpaca nil
+(use-feature whitespace
   :commands whitespace-mode
   :config
   ; When we run the `whitespace-cleanup' command
@@ -237,8 +236,7 @@
   :config
   (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
 
-(use-package goto-addr
-  :elpaca nil
+(use-feature goto-addr
   :bind (:map goto-address-highlight-keymap
               ("C-c C-o" . goto-address-at-point))
   :hook (((magit-process-mode vterm-mode) . goto-address-mode))
@@ -249,7 +247,7 @@
 
 (use-package eat
   :commands eat
-  :elpaca (eat
+  :ensure (eat
            :type git
            :host codeberg
            :repo "akib/emacs-eat"

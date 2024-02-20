@@ -16,8 +16,7 @@
   (when-let ((project (project-current)))
     (nth 2 project)))
 
-(use-package org
-  :elpaca nil
+(use-feature org
   :preface
 
   (defun pet/find-project-note ()

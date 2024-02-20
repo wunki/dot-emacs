@@ -12,9 +12,9 @@
 
 (use-package copilot
   :after jsonrpc
-  :elpaca (:host github
-                 :repo "copilot-emacs/copilot.el"
-                 :files ("dist" "*.el"))
+  :ensure (:host github
+           :repo "copilot-emacs/copilot.el"
+           :files ("dist" "*.el"))
   
   :preface
   (defun pet/copilot-tab ()
