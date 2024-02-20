@@ -69,9 +69,7 @@
 
 ;; Add some more padding
 (use-package spacious-padding
-  :if (pet/is-mac)
-  :config
-  (spacious-padding-mode 1))
+  :if (pet/is-mac))
 
 ;; Theme of choice
 (use-package modus-themes
@@ -91,6 +89,17 @@
         modus-themes-prompts '(bold))
   (load-theme 'modus-vivendi-tritanopia :no-confirm)
   (set-face-attribute 'bold nil :weight 'semibold))
+
+(use-package ef-themes
+  :demand
+  :config
+  ;(load-theme 'ef-deuteranopia-dark :no-confirm)
+  )
+
+(use-package catppuccin-theme
+  :config
+  (setq catppuccin-flavor 'mocha)
+  (load-theme 'catppuccin :no-confirm))
 
 ;; Toggle the modeline on and off
 (use-package hide-mode-line

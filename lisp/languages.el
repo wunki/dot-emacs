@@ -163,7 +163,7 @@
 
 ;; Documentation
 (use-feature eldoc
-  :delight
+  :diminish eldoc-mode
   :hook (prog-mode-hook . eldoc-mode))
 
 (use-package eldoc-box

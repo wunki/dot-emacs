@@ -59,7 +59,7 @@
 ;; Suggests the next key, depending on the pressed key
 (use-package which-key
   :demand t
-  :delight
+  :diminish which-key-mode
   :custom
   (which-key-idle-delay 0.5)
   (which-key-sort-order 'which-key-description-order)

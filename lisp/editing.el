@@ -64,7 +64,7 @@
 
 ;; Structural editing
 (use-package paredit
-  :diminish
+  :diminish " ()"
   :hook ((clojure-ts-mode . paredit-mode)
          (cider-repl-mode . paredit-mode)
          (emacs-lisp-mode . paredit-mode)

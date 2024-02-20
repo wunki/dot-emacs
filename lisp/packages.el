@@ -67,6 +67,7 @@
 
 ;; Clean up the modeline
 (use-package delight)
+(use-package diminish)
 
 (provide 'packages)
 ;;; packages.el ends here
