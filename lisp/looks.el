@@ -18,6 +18,12 @@
   (setq-default text-scale-remap-header-line t)
   (setq-default fontaine-presets
         '((regular)
+          (geist
+           :default-family "Geist Mono"
+           :default-height 130)
+          (lisa
+           :default-family "MonoLisa"
+           :default-height 130)
           (lisp
            :default-family "Triplicate A Code"
            :default-height 140)
@@ -40,7 +46,7 @@
            :italic-family nil
            :italic-slant italic
            :line-spacing nil)))
-  (fontaine-set-preset 'regular))
+  (fontaine-set-preset 'geist))
 
 ;; Don't show any bars or toolbars.
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
@@ -55,10 +61,6 @@
                                    '(internal-border-width . 0)
                                    '(right-fringe   . 0)
                                    '(tool-bar-lines . 0))))
-
-;; show the column at line 100
-(setq fill-column 100)
-(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 
 ;; On the Mac, use dark mode and hide the top bar.
 (when (memq window-system '(mac ns))
@@ -90,16 +92,14 @@
   (load-theme 'modus-vivendi-tritanopia :no-confirm)
   (set-face-attribute 'bold nil :weight 'semibold))
 
-(use-package ef-themes
-  :demand
-  :config
-  ;(load-theme 'ef-deuteranopia-dark :no-confirm)
-  )
-
-(use-package catppuccin-theme
-  :config
-  (setq catppuccin-flavor 'mocha)
-  (load-theme 'catppuccin :no-confirm))
+(use-package doom-modeline
+  :commands (doom-modeline-mode)
+  :custom
+  (doom-modeline-height 24)
+  (doom-modeline-major-mode-color-icon nil)
+  (doom-modeline-buffer-encoding nil)
+  (doom-modeline-major-mode-icon nil)
+  :init (doom-modeline-mode 1))
 
 ;; Toggle the modeline on and off
 (use-package hide-mode-line

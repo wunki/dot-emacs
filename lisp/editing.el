@@ -38,8 +38,12 @@
 (use-package goto-last-change
   :bind (("C-;" . goto-last-change)))
 
+;; Required for Magit menu's
+(use-package transient)
+
 ;; Magical Git GUI
 (use-package magit
+  :after transient
   :preface
   (defun pet/git-commit-auto-fill-everywhere ()
     "Ensures that the commit body does not exceed 72 characters."
