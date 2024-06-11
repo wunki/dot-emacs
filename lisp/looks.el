@@ -98,6 +98,7 @@
   :after nerd-icons
   :commands (doom-modeline-mode)
   :custom
+  (doom-modeline-icon nil)
   (doom-modeline-height 24)
   (doom-modeline-major-mode-color-icon nil)
   (doom-modeline-buffer-encoding nil)
