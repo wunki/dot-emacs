@@ -89,10 +89,13 @@
         modus-themes-variable-pitch-ui t
         modus-themes-mixed-fonts t
         modus-themes-prompts '(bold))
-  (load-theme 'modus-vivendi-tritanopia :no-confirm)
+  (load-theme 'modus-vivendi-tinted :no-confirm)
   (set-face-attribute 'bold nil :weight 'semibold))
 
+(use-package nerd-icons)
+
 (use-package doom-modeline
+  :after nerd-icons
   :commands (doom-modeline-mode)
   :custom
   (doom-modeline-height 24)
