@@ -46,7 +46,7 @@
            :italic-family nil
            :italic-slant italic
            :line-spacing nil)))
-  (fontaine-set-preset 'geist))
+  (fontaine-set-preset 'regular))
 
 ;; Don't show any bars or toolbars.
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
@@ -81,9 +81,9 @@
   :bind ("<f5>" . modus-themes-toggle)
   :config
   (customize-set-variable 'modus-themes-common-palette-overrides
-        '((bg-region bg-lavender)
-          (fg-region unspecified)
-          ,@modus-themes-preset-overrides-faint))
+                          '((bg-region bg-lavender)
+                            (fg-region unspecified)
+                            ,@modus-themes-preset-overrides-faint))
   (setq modus-themes-bold-constructs t
         modus-themes-italic-constructs t
         modus-themes-variable-pitch-ui t
@@ -92,18 +92,8 @@
   (load-theme 'modus-vivendi-tinted :no-confirm)
   (set-face-attribute 'bold nil :weight 'semibold))
 
-(use-package nerd-icons)
-
-(use-package doom-modeline
-  :after nerd-icons
-  :commands (doom-modeline-mode)
-  :custom
-  (doom-modeline-icon nil)
-  (doom-modeline-height 24)
-  (doom-modeline-major-mode-color-icon nil)
-  (doom-modeline-buffer-encoding nil)
-  (doom-modeline-major-mode-icon nil)
-  :init (doom-modeline-mode 1))
+(use-package ef-themes
+  :demand)
 
 ;; Toggle the modeline on and off
 (use-package hide-mode-line
