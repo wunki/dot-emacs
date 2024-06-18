@@ -24,6 +24,9 @@
           (lisa
            :default-family "MonoLisa"
            :default-height 130)
+          (iosevka
+           :default-family "Iosevka Comfy Wide"
+           :default-height 130)
           (lisp
            :default-family "Triplicate A Code"
            :default-height 140)
@@ -46,7 +49,7 @@
            :italic-family nil
            :italic-slant italic
            :line-spacing nil)))
-  (fontaine-set-preset 'regular))
+  (fontaine-set-preset 'iosevka))
 
 ;; Don't show any bars or toolbars.
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))

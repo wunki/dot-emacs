@@ -260,7 +260,7 @@
          :map project-prefix-map
          ("t" . eat-project))
   :custom
-  (eat-shell "/opt/homebrew/bin/fish")
+  (eat-shell "/opt/homebrew/bin/zsh")
   (eat-kill-buffer-on-exit t))
 
 (use-package restart-emacs
