@@ -76,6 +76,9 @@
 (use-package spacious-padding
   :if (pet/is-mac))
 
+(use-package standard-themes
+  :demand)
+
 ;; Theme of choice
 (use-package modus-themes
   :demand ;; the `bind' below lazy loads the pkg, which we don't want.
@@ -94,9 +97,6 @@
         modus-themes-prompts '(bold))
   (load-theme 'modus-vivendi-tinted :no-confirm)
   (set-face-attribute 'bold nil :weight 'semibold))
-
-(use-package ef-themes
-  :demand)
 
 ;; Toggle the modeline on and off
 (use-package hide-mode-line
