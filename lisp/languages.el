@@ -58,12 +58,8 @@
       :fringe-bitmap 'flycheck-fringe-bitmap-ball
       :fringe-face 'flycheck-fringe-info)
   :custom
-  (flycheck-emacs-lisp-load-path
-   'inherit
-   "inherit the load path so it can find all libraries")
-  (flycheck-check-syntax-automatically
-   '(mode-enabled save)
-   "only check on save"))
+  (flycheck-emacs-lisp-load-path 'inherit "inherit the load path so it can find all libraries")
+  (flycheck-check-syntax-automatically '(mode-enabled save) "only check on save"))
 
 (use-package treesit-auto
   :custom

@@ -40,8 +40,8 @@
  (setq gptel-backend (gptel-make-anthropic "Claude"
                        :stream t
                        :key #'get-anthropic-api-key))
-  :bind
-  ("C-c a" . gptel))
+ :bind
+ ("C-c a" . gptel))
 
 (provide 'ai)
 ;;; ai.el ends here
