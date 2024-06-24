@@ -8,9 +8,6 @@
 ;;
 (require 'lib)
 
-;; My current font of choice, this changes by the day. Ouch.
-(defvar pet/pref-font "MonoLisa")
-
 ;; Set the font.
 (use-package fontaine
   :demand
