@@ -79,7 +79,9 @@
         (text-scale-decrease 1))))
   :init
   (setq olivetti-body-width .6)
-  :hook (org-mode . pet/writing-mode)
+  :hook
+  (org-mode . visual-line-mode)
+  ;; (org-mode . pet/writing-mode)
   :bind
   (("<f9>" . pet/writing-mode)))
 
