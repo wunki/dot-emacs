@@ -79,42 +79,12 @@
     (message "Current theme: %s" random-theme)
     (load-theme random-theme t)))
 
-(defun pet/eshell-here ()
-  "Opens up a new shell in the directory associated with the current buffer's file.
-The eshell is renamed to match that directory to make multiple eshell
-windows easier."
-  (interactive)
-  (let*
-    (
-      (parent
-        (if (buffer-file-name)
-          (file-name-directory (buffer-file-name))
-          default-directory))
-      (height (/ (window-total-height) 3))
-      (name (car (last (split-string parent "/" t)))))
-    (split-window-vertically (- height))
-    (other-window 1)
-    (eshell "new")
-    (rename-buffer (concat "*eshell: " name "*"))))
-
-(defun eshell/q ()
-  (insert "exit")
-  (eshell-send-input)
-  (delete-window))
-
 (defun pet/eval-and-run-all-tests-in-buffer ()
   "Clear and run all test in the current buffer."
   (interactive)
   (ert-delete-all-tests)
   (eval-buffer)
   (ert 't))
-
-(defun pet/reload-emacs ()
-  "Reset Emacs to a clean state."
-  (interactive)
-  (setq custom-file (concat user-emacs-directory "custom.el"))
-  (delete-other-windows)
-  (load-file user-init-file))
 
 (defun pet/reload-dir-locals-for-current-buffer ()
   "Reload dir locals for the current buffer."
