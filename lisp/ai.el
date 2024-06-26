@@ -8,7 +8,7 @@
 ;;
 
 ;; An up-to-date required for copilot.
-(require 'secrets)
+(load-library "~/.config/emacs/lisp/secrets.el.gpg")
 
 (use-package jsonrpc)
 
@@ -40,6 +40,9 @@
  (setq gptel-backend (gptel-make-anthropic "Claude"
                        :stream t
                        :key #'get-anthropic-api-key))
+ :hook
+ (gptel-post-stream . gptel-auto-scroll)
+ (gptel-post-response-functions . gptel-end-of-response)
  :bind
  ("C-c a" . gptel))
 
