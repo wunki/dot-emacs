@@ -27,7 +27,7 @@
   (message "Home is where your REPL is."))
 
 ;; No message in scratch buffer
-(setq initial-scratch-message nil)
+(setq initial-scratch-message ";;;  -*- lexical-binding: t; -*-\n")
 
 ;; Initial buffer
 (setq initial-buffer-choice nil)
@@ -170,6 +170,13 @@
 
 ;; Minimum window height
 (setq window-min-height 1)
+
+;; Setup PGP which I use for secrets
+(require 'epa-file)
+(setenv "GPG_AGENT_INFO" nil)
+
+(custom-set-variables '(epg-gpg-program  "/opt/homebrew/bin/gpg"))
+(epa-file-enable)
 
 (use-package no-littering
   :demand t
