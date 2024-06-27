@@ -85,5 +85,50 @@
   :bind
   (("<f9>" . pet/writing-mode)))
 
+
+;;; BLOGGING
+(defvar pet/blog-directory "~/Developer/Petar/blog")
+(defvar pet/blog-template
+  "---
+title: \"${title}\"
+description:\"\"
+date: ${date}
+template: \"${type}.html\"
+draft: true
+taxonomies:
+  ${taxonomies}
+---
+
+")
+
+(defun pet/slugify (s)
+  "Create a slug from string S."
+  (let ((str (downcase s)))
+    (setq str (replace-regexp-in-string "[^a-z0-9]+" "-" str))
+    (setq str (replace-regexp-in-string "^-\\|-$" "" str))
+    str))
+
+(defun pet/write-on-blog ()
+  "Create a new blog note or post."
+  (interactive)
+  (let* ((is-note (y-or-n-p "Do you want to write a note? "))
+         (title (read-string "What is the title? "))
+         (filename (concat (pet/slugify title) ".md"))
+         (path (concat
+                (if is-note "/content/notes/" "/content/posts/")
+                filename))
+         (absolute-path (expand-file-name (concat pet/blog-directory path)))
+         (date (format-time-string "%Y-%m-%d")))
+    (find-file absolute-path)
+    (insert pet/blog-template) ;; insert template
+    (goto-char (point-min)) ;; beginning of buffer, so we can replace the title
+    (perform-replace "${title}" title nil t nil)
+    (perform-replace "${date}" date nil t nil)
+    (perform-replace "${type}" (if is-note "note" "post") nil t nil)
+    (perform-replace "${taxonomies}" (if is-note
+                                         "tags: []"
+                                         "categories: []") nil t nil)
+    (goto-char (point-max))))
+
 (provide 'notes)
 ;;; notes.el ends here
