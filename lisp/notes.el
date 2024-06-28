@@ -108,26 +108,33 @@ taxonomies:
     (setq str (replace-regexp-in-string "^-\\|-$" "" str))
     str))
 
-(defun pet/write-on-blog ()
+(defun pet--replace-strings (replacement-list)
+  "Replace multiple strings in the current buffer.
+
+REPLACEMENT-LIST is an alist where each element is a cons cell (SEARCH
+. REPLACE).  For each pair, all occurrences of SEARCH are replaced with
+REPLACE."
+  (dolist (rep replacement-list)
+    (while (search-forward (car rep) nil t)
+      (replace-match (cdr rep) t t))))
+
+(defun pet/write-blog ()
   "Create a new blog note or post."
   (interactive)
   (let* ((is-note (y-or-n-p "Do you want to write a note? "))
          (title (read-string "What is the title? "))
          (filename (concat (pet/slugify title) ".md"))
-         (path (concat
-                (if is-note "/content/notes/" "/content/posts/")
-                filename))
-         (absolute-path (expand-file-name (concat pet/blog-directory path)))
-         (date (format-time-string "%Y-%m-%d")))
-    (find-file absolute-path)
+         (dir-type (if is-note "notes" "posts"))
+         (path (expand-file-name filename (expand-file-name (concat "content/" dir-type) pet/blog-directory)))
+         (date (format-time-string "%Y-%m-%d"))
+         (replacements `(("${title}" . ,title)
+                         ("${date}" . ,date)
+                         ("${type}" . ,dir-type)
+                         ("${taxonomies}" . ,(if is-note "tags: []" "categories: []")))))
+    (find-file path)
     (insert pet/blog-template) ;; insert template
     (goto-char (point-min)) ;; beginning of buffer, so we can replace the title
-    (perform-replace "${title}" title nil t nil)
-    (perform-replace "${date}" date nil t nil)
-    (perform-replace "${type}" (if is-note "note" "post") nil t nil)
-    (perform-replace "${taxonomies}" (if is-note
-                                         "tags: []"
-                                         "categories: []") nil t nil)
+    (pet--replace-strings replacements)
     (goto-char (point-max))))
 
 (provide 'notes)
