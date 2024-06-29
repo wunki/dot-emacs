@@ -31,14 +31,10 @@
 
 ;; Improve the completions by removing order?
 (use-package orderless
-  :init
-  (setq
-   completion-styles
-   '(orderless)
-   completion-category-defaults
-   nil
-   completion-category-overrides
-   '((file (styles partial-completion)))))
+  :defer 1
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles partial-completion)))))
 
 ;; Pretty icons for corfu
 (use-package kind-icon
@@ -47,8 +43,6 @@
   :after corfu
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
-
-
 
 (provide 'completion)
 ;;; completion.el ends here

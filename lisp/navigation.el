@@ -41,10 +41,11 @@
 
 ;; Jump to recent files
 (use-feature recentf
+  :defer 1
+  :config (recentf-mode)
   :custom
-  (recentf-max-menu-items 15)
-  (recentf-max-saved-items 100)
-  :hook (after-init . recentf-mode))
+  (recentf-max-menu-items 100 "Offer more recent files in menu")
+  (recentf-max-saved-items 100 "Save more recent files"))
 
 ;; Extra metadata in the minibuffer
 (use-package marginalia

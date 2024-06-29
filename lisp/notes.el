@@ -88,20 +88,45 @@
 
 ;;; BLOGGING
 (defvar pet/blog-directory "~/Developer/Petar/blog")
-(defvar pet/blog-template
+(defvar pet/blog-frontmatter
   "---
 title: \"${title}\"
-description:\"\"
+description: \"\"
 date: ${date}
 template: \"${type}.html\"
-draft: true
+draft: false
 taxonomies:
   ${taxonomies}
 ---
 
 ")
 
-(defun pet/slugify (s)
+(defun pet/write-blog ()
+  "Create a new blog note or post."
+  (interactive)
+  (let* ((is-note (y-or-n-p "Do you want to write a note? "))
+         (title (read-string "What is the title? "))
+         (tags (read-string "Do you want to tag it? "))
+         (filename (concat (pet--slugify title) ".md"))
+         (dir-type (if is-note "note" "post"))
+         (path (expand-file-name
+                filename
+                (expand-file-name
+                 (concat "content/" dir-type "s") pet/blog-directory)))
+         (date (format-time-string "%Y-%m-%d"))
+         (replacements
+          `(("${title}" . ,title)
+            ("${date}" . ,date)
+            ("${type}" . ,dir-type)
+            ("${taxonomies}" . ,(format (if is-note "tags: [%s]" "categories: [%s]") tags))
+            ("${tags}" . ,tags))))
+    (find-file path)
+    (insert pet/blog-frontmatter) ;; insert template for frontmatter
+    (goto-char (point-min)) ;; beginning of buffer, so we can replace the title
+    (pet--replace-strings replacements)
+    (goto-char (point-max))))
+
+(defun pet--slugify (s)
   "Create a slug from string S."
   (let ((str (downcase s)))
     (setq str (replace-regexp-in-string "[^a-z0-9]+" "-" str))
@@ -117,25 +142,6 @@ REPLACE."
   (dolist (rep replacement-list)
     (while (search-forward (car rep) nil t)
       (replace-match (cdr rep) t t))))
-
-(defun pet/write-blog ()
-  "Create a new blog note or post."
-  (interactive)
-  (let* ((is-note (y-or-n-p "Do you want to write a note? "))
-         (title (read-string "What is the title? "))
-         (filename (concat (pet/slugify title) ".md"))
-         (dir-type (if is-note "notes" "posts"))
-         (path (expand-file-name filename (expand-file-name (concat "content/" dir-type) pet/blog-directory)))
-         (date (format-time-string "%Y-%m-%d"))
-         (replacements `(("${title}" . ,title)
-                         ("${date}" . ,date)
-                         ("${type}" . ,dir-type)
-                         ("${taxonomies}" . ,(if is-note "tags: []" "categories: []")))))
-    (find-file path)
-    (insert pet/blog-template) ;; insert template
-    (goto-char (point-min)) ;; beginning of buffer, so we can replace the title
-    (pet--replace-strings replacements)
-    (goto-char (point-max))))
 
 (provide 'notes)
 ;;; notes.el ends here
