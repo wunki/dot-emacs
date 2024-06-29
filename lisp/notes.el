@@ -106,7 +106,7 @@ taxonomies:
   (interactive)
   (let* ((is-note (y-or-n-p "Do you want to write a note? "))
          (title (read-string "What is the title? "))
-         (tags (read-string "Do you want to tag it? "))
+         (tags (read-string "Add tags, leave empty for none: "))
          (filename (concat (pet--slugify title) ".md"))
          (dir-type (if is-note "note" "post"))
          (path (expand-file-name
@@ -139,9 +139,11 @@ taxonomies:
 REPLACEMENT-LIST is an alist where each element is a cons cell (SEARCH
 . REPLACE).  For each pair, all occurrences of SEARCH are replaced with
 REPLACE."
-  (dolist (rep replacement-list)
-    (while (search-forward (car rep) nil t)
-      (replace-match (cdr rep) t t))))
+  (save-excursion
+    (dolist (rep replacement-list)
+      (goto-char (point-min))
+      (while (search-forward (car rep) nil t)
+        (replace-match (cdr rep) t t)))))
 
 (provide 'notes)
 ;;; notes.el ends here
