@@ -227,12 +227,15 @@
 ;; Racket
 (use-package racket-mode)
 
+;; Scheme
+(use-package geiser-guile)
+
 ;; Go
 (use-feature go-ts-mode
- :mode
- ("\\.go\\'" . go-ts-mode)
- ("/go\\.mod\\'" . go-mod-ts-mode)
- :custom (go-ts-mode-indent-offset 4))
+  :mode
+  ("\\.go\\'" . go-ts-mode)
+  ("/go\\.mod\\'" . go-mod-ts-mode)
+  :custom (go-ts-mode-indent-offset 4))
 
 (defun pet/project-find-go-module (dir)
   "Find the root of the project by finding go.mod file in DIR."
