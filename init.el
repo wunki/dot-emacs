@@ -26,6 +26,7 @@
 (require 'notes)
 (require 'language-server)
 (require 'languages)
+(require 'irc)
 (require 'ai)
 
 (provide 'init)
