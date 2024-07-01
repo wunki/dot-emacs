@@ -128,10 +128,9 @@ taxonomies:
 
 (defun pet--slugify (s)
   "Create a slug from string S."
-  (let ((str (downcase s)))
-    (setq str (replace-regexp-in-string "[^a-z0-9]+" "-" str))
-    (setq str (replace-regexp-in-string "^-\\|-$" "" str))
-    str))
+  (replace-regexp-in-string "^-\\|-$" ""
+    (replace-regexp-in-string
+     "[^a-z0-9]+" "-" (downcase s))))
 
 (defun pet--replace-strings (replacement-list)
   "Replace multiple strings in the current buffer.
