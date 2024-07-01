@@ -128,6 +128,8 @@
   (dired-omit-files "^\.?#\|\.DS_Store")
   (dired-omit-verbose nil))
 
+(use-package dired-preview)
+
 ;; Update the buffer when a file changes
 (global-auto-revert-mode 1)
 
