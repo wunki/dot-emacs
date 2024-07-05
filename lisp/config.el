@@ -45,6 +45,9 @@
 ;; No empty line indicators
 (setq indicate-empty-lines nil)
 
+;; Use ripgrep for regex searches
+(setq xref-search-program 'ripgrep)
+
 ;; Improve the performance for loading themes
 (defadvice load-theme (before clear-previous-themes activate)
   "Clear existing theme settings instead of layering them."
