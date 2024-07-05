@@ -71,14 +71,6 @@
           (rename-file filename new-name t)
           (set-visited-file-name new-name t t)))))))
 
-(defun pet/random-theme ()
-  "Randomly change the theme."
-  (interactive)
-  (let* ((themes (custom-available-themes))
-         (random-theme (nth (random (length themes)) themes)))
-    (message "Current theme: %s" random-theme)
-    (load-theme random-theme t)))
-
 (defun pet/eval-and-run-all-tests-in-buffer ()
   "Clear and run all test in the current buffer."
   (interactive)
