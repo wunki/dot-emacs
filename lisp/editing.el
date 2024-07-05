@@ -17,8 +17,10 @@
 
 ;; Go to the last place I visited the file.
 (use-feature saveplace
+  :after no-littering
   :custom
-  (save-place-file "~/.cache/emacs/saveplace")
+  (save-place-file
+   (expand-file-name "saveplace" no-littering-etc-directory))
   :config
   (save-place-mode +1))
 
