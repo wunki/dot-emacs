@@ -75,15 +75,13 @@
   ;; (add-to-list 'default-frame-alist '(undecorated-round . t))
   )
 
-;; Add some more padding
-(use-package spacious-padding
-  :if (pet/is-mac))
-
 (use-package standard-themes
+  :disabled
   :demand)
 
 ;; Theme of choice
 (use-package modus-themes
+  :disabled
   :demand ;; the `bind' below lazy loads the pkg, which we don't want.
   :init
   (setq modus-themes-to-toggle '(modus-vivendi-tinted modus-operandi-tinted))
@@ -98,39 +96,53 @@
         modus-themes-variable-pitch-ui nil
         modus-themes-mixed-fonts t
         modus-themes-prompts '(bold))
-  ;(load-theme 'modus-vivendi-tinted :no-confirm)
+  (load-theme 'modus-vivendi-tinted :no-confirm)
   (set-face-attribute 'bold nil :weight 'semibold))
 
 (use-package ef-themes
+  :disabled
   :demand
   :config
   (load-theme 'ef-autumn :no-confirm))
+
+(use-package doom-themes
+  :custom
+  (doom-themes-enable-bold t)
+  (doom-themes-enable-italic t)
+  :config
+  (load-theme 'doom-ayu-dark t)
+  (doom-themes-org-config))
+
+;; Some buffers should like different than others
+(use-package solaire-mode
+  :config
+  (solaire-global-mode 1))
 
 ;; Ligatures
 (use-package ligature
   :config
   (ligature-set-ligatures
    'prog-mode
-   '(; Group A
+   '(                                   ; Group A
      ".." ".=" "..." "..<" "::" ":::" ":=" "::=" ";;" ";;;" "??" "???"
      ".?" "?." ":?" "?:" "?=" "**" "***" "/*" "*/" "/**"
-     ; Group B
+                                        ; Group B
      "<-" "->" "-<" ">-" "<--" "-->" "<<-" "->>" "-<<" ">>-" "<-<" ">->"
      "<-|" "|->" "-|" "|-" "||-" "<!--" "<#--" "<=" "=>" ">=" "<==" "==>"
      "<<=" "=>>" "=<<" ">>=" "<=<" ">=>" "<=|" "|=>" "<=>" "<==>" "||="
      "|=" "//=" "/="
-     ; Group C
+                                        ; Group C
      "<<" ">>" "<<<" ">>>" "<>" "<$" "$>" "<$>" "<+" "+>" "<+>" "<:" ":<"
      "<:<" ">:" ":>" "<~" "~>" "<~>" "<<~" "<~~" "~~>" "~~" "<|" "|>"
      "<|>" "<||" "||>" "<|||" "|||>" "</" "/>" "</>" "<*" "*>" "<*>" ":?>"
-     ; Group D
+                                        ; Group D
      "#(" "#{" "#[" "]#" "#!" "#?" "#=" "#_" "#_(" "##" "###" "####"
-     ; Group E
+                                        ; Group E
      "[|" "|]" "[<" ">]" "{!!" "!!}" "{|" "|}" "{{" "}}" "{{--" "--}}"
      "{!--" "//" "///" "!!"
-     ; Group F
+                                        ; Group F
      "www" "@_" "&&" "&&&" "&=" "~@" "++" "+++" "/\\" "\\/" "_|_" "||"
-     ; Group G
+                                        ; Group G
      "=:" "=:=" "=!=" "==" "===" "=/=" "=~" "~-" "^=" "__" "!=" "!==" "-~"
      "--" "---"))
   (global-ligature-mode t))
