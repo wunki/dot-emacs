@@ -40,7 +40,7 @@
           :colorProvider
           :inlayHintProvider
           :foldingRangeProvider))
-  (add-to-list 'eglot-server-programs '(elixir-ts-mode "nextls" "--stdio=true"))
+  (add-to-list 'eglot-server-programs '(elixir-ts-mode "~/.local/share/elixir-ls/release/language_server.sh"))
   (add-to-list 'eglot-server-programs '(c-ts-mode "clangd"))
   :hook (((elixir-ts-mode heex-ts-mode c-ts-mode) . eglot-ensure)
          (elixir-ts-mode . pet/eglot-format-buffer-on-save)
@@ -87,6 +87,7 @@
   (setq lsp-lens-enable nil) ;; Hide clutter (reference and test counts)
   (setq lsp-enable-indentation nil) ;; use indentation from the mode itself.
   ;; Don't clutter modeline...
+  (setq lsp-inlay-hint-enable t)
   (setq lsp-modeline-code-actions-enable nil
         lsp-modeline-diagnostics-enable nil)
   (setq lsp-enable-symbol-highlighting nil) ;; Don't highlight current symbol
