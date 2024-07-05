@@ -151,13 +151,13 @@
 (column-number-mode -1)
 
 ;; Show the current line in the modeline
-(line-number-mode -1)
+(line-number-mode 1)
 
 ;; Change the default cursor
-(setq-default cursor-type 'box)
+(setq-default cursor-type 'hbar)
 
-;; Blink the cursor
-(blink-cursor-mode -1)
+;; Blink so I can find you
+(blink-cursor-mode 1)
 
 ;; Highlight the matching paren
 (show-paren-mode 1)
