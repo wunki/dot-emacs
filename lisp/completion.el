@@ -42,7 +42,9 @@
   :defines kind-icon-margin-formatter
   :after corfu
   :config
-  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+  :custom
+  (kind-icon-use-icons nil))
 
 (provide 'completion)
 ;;; completion.el ends here
