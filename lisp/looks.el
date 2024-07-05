@@ -16,14 +16,19 @@
   (setq-default fontaine-presets
         '((regular)
           (geist
-           :default-family "Geist Mono"
-           :default-height 130)
+           :default-family "Geist Mono 1.1"
+           :default-height 120
+           :line-spacing nil)
+          (berkeley
+           :default-family "Berkeley Mono 1.2"
+           :default-height 130
+           :line-spacing nil)
           (lisa
            :default-family "MonoLisa"
-           :default-height 130)
+           :default-height 120)
           (iosevka
            :default-family "Iosevka Comfy Wide"
-           :default-height 130)
+           :default-height 120)
           (lisp
            :default-family "Triplicate A Code"
            :default-height 140)
@@ -46,7 +51,7 @@
            :italic-family nil
            :italic-slant italic
            :line-spacing nil)))
-  (fontaine-set-preset 'iosevka))
+  (fontaine-set-preset 'geist))
 
 ;; Don't show any bars or toolbars.
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
@@ -66,7 +71,7 @@
 (when (memq window-system '(mac ns))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   ;; Enable this to remove the top bar.
-                                        ;(add-to-list 'default-frame-alist '(undecorated-round . t))
+  ;; (add-to-list 'default-frame-alist '(undecorated-round . t))
   )
 
 ;; Add some more padding
@@ -89,11 +94,58 @@
                             ,@modus-themes-preset-overrides-faint))
   (setq modus-themes-bold-constructs t
         modus-themes-italic-constructs t
-        modus-themes-variable-pitch-ui t
+        modus-themes-variable-pitch-ui nil
         modus-themes-mixed-fonts t
         modus-themes-prompts '(bold))
-  (load-theme 'modus-vivendi-tinted :no-confirm)
+  ;(load-theme 'modus-vivendi-tinted :no-confirm)
   (set-face-attribute 'bold nil :weight 'semibold))
+
+(use-package ef-themes
+  :demand
+  :config
+  (load-theme 'ef-autumn :no-confirm))
+
+;; Ligatures
+(use-package ligature
+  :config
+  (ligature-set-ligatures
+   'prog-mode
+   '(; Group A
+     ".." ".=" "..." "..<" "::" ":::" ":=" "::=" ";;" ";;;" "??" "???"
+     ".?" "?." ":?" "?:" "?=" "**" "***" "/*" "*/" "/**"
+     ; Group B
+     "<-" "->" "-<" ">-" "<--" "-->" "<<-" "->>" "-<<" ">>-" "<-<" ">->"
+     "<-|" "|->" "-|" "|-" "||-" "<!--" "<#--" "<=" "=>" ">=" "<==" "==>"
+     "<<=" "=>>" "=<<" ">>=" "<=<" ">=>" "<=|" "|=>" "<=>" "<==>" "||="
+     "|=" "//=" "/="
+     ; Group C
+     "<<" ">>" "<<<" ">>>" "<>" "<$" "$>" "<$>" "<+" "+>" "<+>" "<:" ":<"
+     "<:<" ">:" ":>" "<~" "~>" "<~>" "<<~" "<~~" "~~>" "~~" "<|" "|>"
+     "<|>" "<||" "||>" "<|||" "|||>" "</" "/>" "</>" "<*" "*>" "<*>" ":?>"
+     ; Group D
+     "#(" "#{" "#[" "]#" "#!" "#?" "#=" "#_" "#_(" "##" "###" "####"
+     ; Group E
+     "[|" "|]" "[<" ">]" "{!!" "!!}" "{|" "|}" "{{" "}}" "{{--" "--}}"
+     "{!--" "//" "///" "!!"
+     ; Group F
+     "www" "@_" "&&" "&&&" "&=" "~@" "++" "+++" "/\\" "\\/" "_|_" "||"
+     ; Group G
+     "=:" "=:=" "=!=" "==" "===" "=/=" "=~" "~-" "^=" "__" "!=" "!==" "-~"
+     "--" "---"))
+  (global-ligature-mode t))
+
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+(use-package nerd-icons
+  :if (display-graphic-p))
+
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :custom
+  (doom-modeline-major-mode-icon nil)
+  (doom-modeline-check-simple-format 1))
 
 ;; Toggle the modeline on and off
 (use-package hide-mode-line
