@@ -69,8 +69,8 @@
   (global-treesit-auto-mode))
 
 ;; Colorful parenthesis
-(use-package
-  rainbow-delimiters
+(use-package rainbow-delimiters
+  :disabled
   :commands rainbow-delimiters-mode
   :hook
   ((emacs-lisp-mode
@@ -82,6 +82,10 @@
     clojure-ts-mode
     racket-mode)
    . rainbow-delimiters-mode))
+
+(use-package paren-face
+  :config
+  (global-paren-face-mode))
 
 ;; The web
 (use-package web-mode
