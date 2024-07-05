@@ -21,7 +21,7 @@
            :line-spacing nil)
           (berkeley
            :default-family "Berkeley Mono 1.2"
-           :default-height 130
+           :default-height 120
            :line-spacing nil)
           (lisa
            :default-family "MonoLisa"
@@ -51,7 +51,8 @@
            :italic-family nil
            :italic-slant italic
            :line-spacing nil)))
-  (fontaine-set-preset 'geist))
+  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'geist))
+  (fontaine-mode))
 
 ;; Don't show any bars or toolbars.
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
