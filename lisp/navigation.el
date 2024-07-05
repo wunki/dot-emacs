@@ -80,7 +80,8 @@
 (use-package ace-window
   :custom
   (aw-keys '(?a ?o ?e ?u ?h ?t ?t ?n ?l))
-  :bind (("M-o" . ace-window)))
+  :bind (("M-o" . ace-window)
+         ("C-x o" . ace-window)))
 
 ;; Helper functions to manage projects.
 (use-package project-x
