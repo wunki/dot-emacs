@@ -68,6 +68,10 @@
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
 
+(use-feature ielm
+  :config
+  (setq ielm-prompt "λ "))
+
 ;; Colorful parenthesis
 (use-package rainbow-delimiters
   :disabled
