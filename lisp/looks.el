@@ -110,7 +110,7 @@
   (doom-themes-enable-bold t)
   (doom-themes-enable-italic t)
   :config
-  (load-theme 'doom-ayu-dark t)
+  (load-theme 'doom-meltbus t)
   (doom-themes-org-config))
 
 ;; Some buffers should like different than others
