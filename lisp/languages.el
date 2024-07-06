@@ -125,7 +125,7 @@
   (cider-save-file-on-load t)
 
   ;; specify the history file
-  (cider-history-file "~/.config/emacs/nrepl-history")
+  (cider-history-file "~/.config/emacs/var/nrepl-history")
 
   ;; auto-select the error buffer when it's displayed
   (cider-auto-select-error-buffer t)
