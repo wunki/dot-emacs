@@ -24,7 +24,7 @@
 (defun pet/edit-emacs-configuration ()
   "Edit a file in my Emacs configuration."
   (interactive)
-  (let ((project-root "~/.config/emacs"))
+  (let ((project-root "~/Developer/Configurations/dot-emacs"))
     (if (and project-root (file-directory-p project-root))
         (let ((default-directory project-root))
           (call-interactively 'project-find-file))
