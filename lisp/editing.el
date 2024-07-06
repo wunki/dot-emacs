@@ -20,7 +20,7 @@
   :after no-littering
   :custom
   (save-place-file
-   (expand-file-name "saveplace" no-littering-etc-directory))
+   (no-littering-expand-var-file-name "save-place.el"))
   :config
   (save-place-mode +1))
 
