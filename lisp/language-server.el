@@ -32,14 +32,7 @@
         eglot-extend-to-xref t
         eglot-send-changes-idle-time 0.5
         eglot-ignored-server-capabilities
-        '(:hoverProvider
-          :documentHighlightProvider
-          :documentFormattingProvider
-          :documentRangeFormattingProvider
-          :documentOnTypeFormattingProvider
-          :colorProvider
-          :inlayHintProvider
-          :foldingRangeProvider))
+        '(:foldingRangeProvider))
   (add-to-list 'eglot-server-programs '(elixir-ts-mode "~/.local/share/elixir-ls/release/language_server.sh"))
   (add-to-list 'eglot-server-programs '(c-ts-mode "clangd"))
   :hook (((elixir-ts-mode heex-ts-mode c-ts-mode) . eglot-ensure)
