@@ -35,6 +35,43 @@
   ;; Tidy shadowed file names
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 
+;; Extra metadata in the minibuffer
+(use-package marginalia
+  :after vertico
+  :commands marginalia-mode
+  :init (marginalia-mode))
+
+;; The `orderless' package lets the minibuffer use an out-of-order
+;; pattern matching algorithm.  It matches space-separated words or
+;; regular expressions in any order.  In its simplest form, something
+;; like "ins pac" matches `package-menu-mark-install' as well as
+;; `package-install'.  This is a powerful tool because we no longer
+;; need to remember exactly how something is named.
+(use-package orderless
+  :ensure t
+  :config
+  (setq completion-styles '(orderless basic)))
+
+;; The `consult' package provides lots of commands that are enhanced
+;; variants of basic, built-in functionality.  One of the headline
+;; features of `consult' is its preview facility, where it shows in
+;; another Emacs window the context of what is currently matched in
+;; the minibuffer.
+;; TODO find the right key bindings.
+(use-package consult
+  :ensure t
+  :bind (;; A recursive grep
+         ("M-s M-g" . consult-grep)
+         ;; Search for files names recursively
+         ("M-s M-f" . consult-find)
+         ;; Search through the outline (headings) of the file
+         ("M-s M-o" . consult-outline)
+         ;; Search the current buffer
+         ("M-s M-l" . consult-line)
+         ;; Switch to another buffer, or bookmarked file, or recently
+         ;; opened file.
+         ("M-s M-b" . consult-buffer)))
+
 ;; Store recent commands and completions
 (use-feature savehist
   :init (savehist-mode))
@@ -46,16 +83,6 @@
   :custom
   (recentf-max-menu-items 100 "Offer more recent files in menu")
   (recentf-max-saved-items 100 "Save more recent files"))
-
-;; Extra metadata in the minibuffer
-(use-package marginalia
-  :after vertico
-  :commands marginalia-mode
-  :init (marginalia-mode))
-
-;; Enhanced version of isearch
-(use-package swiper
-  :bind (("C-s" . swiper)))
 
 ;; Suggests the next key, depending on the pressed key
 (use-package which-key

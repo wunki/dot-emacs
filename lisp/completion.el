@@ -29,13 +29,6 @@
         ("C-n" . corfu-next)
         ("C-p" . corfu-previous)))
 
-;; Improve the completions by removing order?
-(use-package orderless
-  :defer 1
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles partial-completion)))))
-
 ;; Pretty icons for corfu
 (use-package kind-icon
   :if window-system
