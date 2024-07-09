@@ -1,4 +1,4 @@
-;;; lib.el --- my utility functions -*- lexical-binding: t -*-
+;;; pet-lib.el --- my utility functions -*- lexical-binding: t -*-
 ;;
 ;;; Commentary:
 ;;
@@ -8,7 +8,7 @@
 ;;; Code:
 ;;
 
-(require 'packages)
+(require 'pet-packages)
 (require 'ert)
 
 (use-package s
@@ -84,5 +84,5 @@
   (let ((enable-local-variables :all))
     (hack-dir-local-variables-non-file-buffer)))
 
-(provide 'lib)
-;;; lib.el ends here
+(provide 'pet-lib)
+;;; pet-lib.el ends here

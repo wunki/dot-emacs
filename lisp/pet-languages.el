@@ -1,4 +1,4 @@
-;;; languages.el --- setup differeng languages -*- lexical-binding: t -*-
+;;; pet-languages.el --- setup programming languages -*- lexical-binding: t -*-
 ;;
 ;;; Commentary:
 ;;
@@ -6,7 +6,8 @@
 ;;
 ;;; Code:
 ;;
-(require 'lib)
+(require 'pet-lib)
+
 (require 'project)
 
 ;; Display Emacs lisp results inline.
@@ -273,5 +274,5 @@
   (setq sqlformat-command 'sqlfluff)
   (setq sqlformat-args '("--dialect" "postgres")))
 
-(provide 'languages)
-;;; languages.el ends here
+(provide 'pet-languages)
+;;; pet-languages.el ends here

@@ -1,4 +1,4 @@
-;;; packages.el --- package management with elpaca and use-package -*- lexical-binding: t -*-
+;;; pet-packages.el --- package management with elpaca and use-package -*- lexical-binding: t -*-
 ;;
 ;;; Commentary:
 ;;
@@ -71,5 +71,5 @@
 (use-package delight)
 (use-package diminish)
 
-(provide 'packages)
-;;; packages.el ends here
+(provide 'pet-packages)
+;;; pet-packages.el ends here

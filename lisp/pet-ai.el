@@ -1,4 +1,4 @@
-;;; ai.el --- pairing up with an AI -*- lexical-binding: t -*-
+;;; pet-ai.el --- pairing up with an AI -*- lexical-binding: t -*-
 ;;
 ;;; Commentary:
 ;;
@@ -8,7 +8,7 @@
 ;;
 
 ;; An up-to-date required for copilot.
-(load-library "~/.config/emacs/lisp/secrets.el.gpg")
+(load-library "~/.config/emacs/lisp/pet-secrets.el.gpg")
 
 (use-package jsonrpc)
 
@@ -46,5 +46,5 @@
  :bind
  ("C-c a" . gptel))
 
-(provide 'ai)
-;;; ai.el ends here
+(provide 'pet-ai)
+;;; pet-ai.el ends here

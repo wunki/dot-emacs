@@ -1,4 +1,4 @@
-;;; bindings.el --- key bindings -*- lexical-binding: t -*-
+;;; pet-bindings.el --- key bindings -*- lexical-binding: t -*-
 ;;
 ;;; Commentary:
 ;;
@@ -9,7 +9,7 @@
 ;;; Code:
 ;;
 
-(require 'lib)
+(require 'pet-lib)
 
 ;;; Code:
 
@@ -34,5 +34,5 @@
 (global-set-key (kbd "C-x C-0") 'global-text-scale-adjust)
 (global-set-key (kbd "C-x C--") 'global-text-scale-adjust)
 
-(provide 'bindings)
-;;; bindings.el ends here
+(provide 'pet-bindings)
+;;; pet-bindings.el ends here

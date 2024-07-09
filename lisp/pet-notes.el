@@ -1,4 +1,4 @@
-;;; notes.el --- configure note taking with org mode -*- lexical-binding: t -*-
+;;; pet-notes.el --- configure note taking with org mode -*- lexical-binding: t -*-
 ;;
 ;;; Commentary:
 ;;
@@ -6,7 +6,7 @@
 ;; 
 ;;; Code:
 ;;
-(require 'lib)
+(require 'pet-lib)
 
 (defvar pet/notes-directory "~/Notes")
 
@@ -150,5 +150,5 @@ REPLACE."
       (while (search-forward (car rep) nil t)
         (replace-match (cdr rep) t t)))))
 
-(provide 'notes)
-;;; notes.el ends here
+(provide 'pet-notes)
+;;; pet-notes.el ends here

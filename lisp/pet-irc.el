@@ -1,4 +1,4 @@
-;;; irc.el --- chat the old fashioned way  -*- lexical-binding: t -*-
+;;; pet-irc.el --- chat the old fashioned way  -*- lexical-binding: t -*-
 ;;
 ;;; Commentary:
 ;;
@@ -6,7 +6,7 @@
 ;;
 ;;; Code:
 ;;
-(load-library "~/.config/emacs/lisp/secrets.el.gpg")
+(load-library "~/.config/emacs/lisp/pet-secrets.el.gpg")
 
 (use-package erc
   :commands erc
@@ -27,5 +27,5 @@
   (setq erc-image-inline-rescale 300)
   (add-to-list 'erc-modules 'image))
 
-(provide 'irc)
-;;; irc.el ends here
+(provide 'pet-irc)
+;;; pet-irc.el ends here

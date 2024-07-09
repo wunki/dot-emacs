@@ -1,9 +1,8 @@
-;;; completion.el --- read my mind please -*- lexical-binding: t -*-
+;;; pet-completion.el --- read my mind please -*- lexical-binding: t -*-
 ;;
 ;;; Commentary:
 ;;
 ;; Useful packages to read my mind and complete my sentences.
-;; 
 ;; 
 ;;; Code:
 ;;
@@ -29,15 +28,5 @@
         ("C-n" . corfu-next)
         ("C-p" . corfu-previous)))
 
-;; Pretty icons for corfu
-(use-package kind-icon
-  :if window-system
-  :defines kind-icon-margin-formatter
-  :after corfu
-  :config
-  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
-  :custom
-  (kind-icon-use-icons nil))
-
-(provide 'completion)
-;;; completion.el ends here
+(provide 'pet-completion)
+;;; pet-completion.el ends here

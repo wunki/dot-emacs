@@ -1,4 +1,4 @@
-;;; editing.el --- frictionless text editing -*- lexical-binding: t -*-
+;;; pet-editing.el --- frictionless text editing -*- lexical-binding: t -*-
 ;;
 ;;; Commentary:
 ;;
@@ -8,7 +8,7 @@
 ;;; Code:
 ;;
 
-(require 'lib)
+(require 'pet-lib)
 
 ;; Easily select larger chunks of text
 (use-package expand-region
@@ -98,5 +98,5 @@
   ;; Use yasnippet everywhere
   (yas-global-mode 1))
 
-(provide 'editing)
-;;; editing.el ends here
+(provide 'pet-editing)
+;;; pet-editing.el ends here

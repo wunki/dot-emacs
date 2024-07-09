@@ -1,4 +1,4 @@
-;;; looks.el --- make Emacs look pretty -*- lexical-binding: t -*-
+;;; pet-looks.el --- make Emacs look pretty -*- lexical-binding: t -*-
 ;;
 ;;; Commentary:
 ;;
@@ -6,7 +6,7 @@
 ;; 
 ;;; Code:
 ;;
-(require 'lib)
+(require 'pet-lib)
 
 ;; Set the font.
 (use-package fontaine
@@ -150,9 +150,6 @@
 (use-package all-the-icons
   :if (display-graphic-p))
 
-(use-package nerd-icons
-  :if (display-graphic-p))
-
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
@@ -171,5 +168,5 @@
   :hook ((web-mode . rainbow-mode)
          (css-mode . rainbow-mode)))
 
-(provide 'looks)
-;;; looks.el ends here
+(provide 'pet-looks)
+;;; pet-looks.el ends here

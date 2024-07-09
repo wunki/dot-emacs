@@ -1,4 +1,4 @@
-;;; navigation.el --- moving around in Emacs -*- lexical-binding: t -*-
+;;; pet-navigation.el --- moving around in Emacs -*- lexical-binding: t -*-
 ;;
 ;;; Commentary:
 ;;
@@ -8,7 +8,7 @@
 ;;; Code:
 ;;
 
-(require 'lib)
+(require 'pet-lib)
 
 ;; Swap command and option on a mac
 (use-feature emacs
@@ -135,5 +135,5 @@
   (popper-mode +1)
   (popper-echo-mode +1))
 
-(provide 'navigation)
-;;; navigation.el ends here
+(provide 'pet-navigation)
+;;; pet-navigation.el ends here

@@ -1,4 +1,4 @@
-;;; config.el --- emacs internal configuration -*- lexical-binding: t -*-
+;;; pet-config.el --- emacs internal configuration -*- lexical-binding: t -*-
 ;;
 ;;; Commentary:
 ;;
@@ -6,7 +6,7 @@
 ;;
 ;;; Code:
 ;;
-(require 'lib)
+(require 'pet-lib)
 
 ;; Buffer encoding
 (prefer-coding-system 'utf-8)
@@ -287,5 +287,5 @@
 (when (pet/is-mac)
   (setq ns-pop-up-frames nil))
 
-(provide 'config)
-;;; config.el ends here
+(provide 'pet-config)
+;;; pet-config.el ends here
