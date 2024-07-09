@@ -8,8 +8,7 @@
 ;;
 (require 'lib)
 
-(defvar pet/notes-directory
-  (if (pet/is-mac) "~/Notes" "~/notes"))
+(defvar pet/notes-directory "~/Notes")
 
 (defun pet/current-project-root ()
   "Return the root directory of the current project."
@@ -53,6 +52,7 @@
   (:map project-prefix-map (("N" . pet/insert-project-note)
                             ("n" . pet/find-project-note))))
 
+;; Manage my notes.
 (use-package denote
   :custom
   (denote-directory pet/notes-directory)
@@ -60,6 +60,7 @@
   :bind (("C-c N" . denote-create-note)
          ("C-c n" . denote-open-or-create)))
 
+;; Easily access my notes through consult.
 (use-package consult-denote
   :after (consult denote)
   :config
