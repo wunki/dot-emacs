@@ -60,6 +60,11 @@
   :bind (("C-c N" . denote-create-note)
          ("C-c n" . denote-open-or-create)))
 
+(use-package consult-denote
+  :after (consult denote)
+  :config
+  (consult-denote-mode))
+
 ;; Distraction-free screen for writing
 (use-package olivetti
   :demand
