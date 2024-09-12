@@ -40,34 +40,6 @@
 (use-package goto-last-change
   :bind (("C-;" . goto-last-change)))
 
-;; Required for Magit menu's
-(use-package transient)
-
-;; Magical Git GUI
-(use-package magit
-  :after transient
-  :preface
-  (defun pet/git-commit-auto-fill-everywhere ()
-    "Ensures that the commit body does not exceed 72 characters."
-    (setq fill-column 72)
-    (setq-local comment-auto-fill-only-comments nil))
-
-  :custom (git-commit-summary-max-length 50)
-  :bind ("C-c g" . magit-status)
-  :hook (git-commit-mode . pet/git-commit-auto-fill-everywhere))
-
-(use-package forge
-  :after magit
-  :bind ("C-c C-g" . forge-dispatch))
-
-;; Create .gitignore files
-(use-package gitignore-templates
-  :commands (gitignore-templates-insert
-             gitignore-templates-new-file))
-
-;; Easy copy links to open files
-(use-package git-link)
-
 ;; Structural editing
 (use-package paredit
   :diminish " ()"

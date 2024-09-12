@@ -93,11 +93,14 @@
 ;; Don't create lockfiles, the files starting with .#
 (setq create-lockfiles nil)
 
+(use-feature project
+  :demand)
+
 ;; Whitespace mode, only enabled manually when needed.
 (use-feature whitespace
   :commands whitespace-mode
   :config
-  ; When we run the `whitespace-cleanup' command
+                                        ; When we run the `whitespace-cleanup' command
   (setq-default whitespace-action
                 '(cleanup auto-cleanup))
   (setq-default whitespace-style
@@ -257,7 +260,9 @@
     (setq goto-address-mail-face 'link)
     (setq goto-address-mail-mouse-face 'highlight)))
 
+;; Terminal
 (use-package eat
+  :after project
   :commands eat
   :ensure (eat
            :type git

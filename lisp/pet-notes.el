@@ -58,7 +58,8 @@
   (denote-directory pet/notes-directory)
   (denote-known-keywords '("journal" "projects" "ideas" "people" "posts" "interviews"))
   :bind (("C-c N" . denote-create-note)
-         ("C-c n" . denote-open-or-create)))
+         ("C-c n" . denote-open-or-create)
+         ("C-c j" . denote-journal-extras-new-or-existing-entry)))
 
 ;; Easily access my notes through consult.
 (use-package consult-denote

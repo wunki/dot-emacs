@@ -24,6 +24,7 @@
 (require 'pet-completion)
 (require 'pet-icons)
 (require 'pet-editing)
+(require 'pet-git)
 (require 'pet-notes)
 (require 'pet-language-server)
 (require 'pet-languages)

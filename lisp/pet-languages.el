@@ -8,8 +8,6 @@
 ;;
 (require 'pet-lib)
 
-(require 'project)
-
 ;; Display Emacs lisp results inline.
 (use-package eros
   :demand
@@ -232,6 +230,11 @@
   (inferior-lisp-program "sbcl")
   (sly-symbol-completion-mode nil)
   :hook (sly-mrepl-mode . electric-pair-mode))
+
+(use-package sly-asdf
+  :after sly
+  :config
+  (add-to-list 'sly-contribs 'sly-asdf 'append))
 
 ;; Racket
 (use-package racket-mode)

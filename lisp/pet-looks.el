@@ -19,6 +19,10 @@
            :default-family "Geist Mono 1.1"
            :default-height 120
            :line-spacing nil)
+          (anonymous
+           :default-family "Anonymous Pro"
+           :default-height 120
+           :line-spacing nil)
           (berkeley
            :default-family "Berkeley Mono 1.2"
            :default-height 120
@@ -51,7 +55,7 @@
            :italic-family nil
            :italic-slant italic
            :line-spacing nil)))
-  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'geist))
+  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'anonymous))
   (fontaine-mode))
 
 ;; Don't show any bars or toolbars.

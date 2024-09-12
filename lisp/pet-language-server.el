@@ -9,7 +9,63 @@
 ;;
 (require 'pet-lib)
 
+;; LSP-mode
+(use-package lsp-mode
+  :preface
+  (defun pet/lsp-mode-setup-completion ()
+    "Set up Corfu and orderless for completions."
+    (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+          '(orderless)))
+  
+  (defun pet/format-and-clean-imports-save-hooks ()
+    "Set up before-save hooks to format and clean imports."
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+
+  (defun pet/lsp-mode-setup-clojure ()
+    "Set up Clojure, removing Cider for completions, but enabling it for eldoc."
+    (remove-hook 'completion-at-point-functions #'cider-complete-at-point t)
+    (setq-local lsp-eldoc-enable-hover nil))
+  
+  :hook (((clojure-ts-mode clojurescript-mode clojurec-mode zig-mode go-ts-mode elixir-ts-mode) . lsp-deferred)
+         (lsp-mode . lsp-enable-which-key-integration)
+         (lsp-completion-mode . pet/lsp-mode-setup-completion)
+         (clojure-ts-mode . pet/format-and-clean-imports-save-hooks)
+         (go-ts-mode . pet/format-and-clean-imports-save-hooks))
+  :init
+  ;; Configure LSP itself
+  (setq lsp-keymap-prefix "C-c C-l")
+  (setq lsp-completion-provider :none) ;; we use Corfu for completions
+  (setq lsp-headerline-breadcrumb-enable nil) ;; Don't need file path in my buffer
+  (setq lsp-lens-enable nil) ;; Hide clutter (reference and test counts)
+  (setq lsp-enable-indentation nil) ;; use indentation from the mode itself.
+  (setq lsp-inlay-hint-enable t)
+  (setq lsp-semantic-tokens-enable t) ;; show semantic tokens
+  ;; Don't clutter the modeline
+  (setq lsp-modeline-code-actions-enable nil
+        lsp-modeline-diagnostics-enable nil)
+  (setq lsp-enable-symbol-highlighting nil) ;; Don't highlight current symbol
+  ;; Configure Elixir
+  (with-eval-after-load 'lsp-mode
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection '("nextls" "--stdio" ))
+          :multi-root t
+          :initialization-options '(:experimental (:completions (:enable t))) ;; Enable the experimental completion mode
+          :activation-fn (lsp-activate-on "elixir")
+          :server-id 'next-ls))))
+
+(use-package lsp-grammarly
+  :after lsp-mode
+  :hook (org-mode . (lambda ()
+                      (require 'lsp-grammarly)
+                      (lsp-deferred))))
+
+;;
+;; Eglot -- disabled for now because of bug with project.
+;;
+
 (use-feature eglot
+  :disabled
   :preface
   (defun pet/eglot-organize-imports ()
     "Organizes the imports."
@@ -45,6 +101,7 @@
 
 ;; Use flycheck instead of flymake in eglot
 (use-package flycheck-eglot
+  :disabled
   :after (flycheck eglot)
   :custom (flycheck-eglot-exclusive nil)
   :config
