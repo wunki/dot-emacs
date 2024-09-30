@@ -46,13 +46,8 @@
         lsp-modeline-diagnostics-enable nil)
   (setq lsp-enable-symbol-highlighting nil) ;; Don't highlight current symbol
   ;; Configure Elixir
-  (with-eval-after-load 'lsp-mode
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-stdio-connection '("nextls" "--stdio" ))
-          :multi-root t
-          :initialization-options '(:experimental (:completions (:enable t))) ;; Enable the experimental completion mode
-          :activation-fn (lsp-activate-on "elixir")
-          :server-id 'next-ls))))
+  (setq lsp-elixir-server-command '("~/.local/share/elixir-ls/release/language_server.sh"))
+)
 
 (use-package lsp-grammarly
   :after lsp-mode
