@@ -160,7 +160,7 @@
 (line-number-mode 1)
 
 ;; Change the default cursor
-(setq-default cursor-type 'hbar)
+(setq-default cursor-type 'box)
 
 ;; Blink so I can find you
 (blink-cursor-mode 1)
