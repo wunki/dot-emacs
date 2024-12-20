@@ -15,31 +15,12 @@
   (setq-default text-scale-remap-header-line t)
   (setq-default fontaine-presets
         '((regular)
-          (commit-mono
-           :default-family "CommitMonoPetar"
-           :default-height 130
-           :line-spacing nil)
-          (cartograph
-           :default-family "Cartograph CF"
-           :default-height 130
-           :line-spacing nil)
-          (berkeley
-           :default-family "Berkeley Mono 1.2"
+          (maple-mono
+           :default-family "Maple Mono NF"
            :default-height 120
            :line-spacing nil)
-          (lisa
-           :default-family "MonoLisa Nerd Font Mono"
-           :default-height 120)
-          (iosevka
-           :default-family "Iosevka Comfy Wide"
-           :default-height 120)
-          (lisp
-           :default-family "Triplicate A Code"
-           :default-height 140)
-          (presentation
-           :default-height 160)
           (t
-           :default-family "Dank Mono"
+           :default-family "Maple Mono NF"
            :default-weight regular
            :default-height 140
            ;; nil means it falls back to the default value above
@@ -56,7 +37,7 @@
            :italic-slant italic
            :line-spacing nil)))
   
-  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'cartograph))
+  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'maple-mono))
   (fontaine-mode))
 
 ;; Don't show any bars or toolbars.
@@ -115,7 +96,7 @@
   (doom-themes-enable-bold t)
   (doom-themes-enable-italic t)
   :config
-  (load-theme 'doom-ayu-mirage t)
+  (load-theme 'doom-ayu-dark t)
   (doom-themes-org-config))
 
 ;; Some buffers should like different than others
