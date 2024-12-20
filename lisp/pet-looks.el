@@ -15,20 +15,20 @@
   (setq-default text-scale-remap-header-line t)
   (setq-default fontaine-presets
         '((regular)
-          (geist
-           :default-family "Geist Mono 1.1"
-           :default-height 120
+          (commit-mono
+           :default-family "CommitMonoPetar"
+           :default-height 130
            :line-spacing nil)
-          (anonymous
-           :default-family "Anonymous Pro"
-           :default-height 120
+          (cartograph
+           :default-family "Cartograph CF"
+           :default-height 130
            :line-spacing nil)
           (berkeley
            :default-family "Berkeley Mono 1.2"
            :default-height 120
            :line-spacing nil)
           (lisa
-           :default-family "MonoLisa"
+           :default-family "MonoLisa Nerd Font Mono"
            :default-height 120)
           (iosevka
            :default-family "Iosevka Comfy Wide"
@@ -55,7 +55,8 @@
            :italic-family nil
            :italic-slant italic
            :line-spacing nil)))
-  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'anonymous))
+  
+  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'cartograph))
   (fontaine-mode))
 
 ;; Don't show any bars or toolbars.
