@@ -86,7 +86,11 @@
         '(:foldingRangeProvider))
   (add-to-list 'eglot-server-programs '(elixir-ts-mode "~/.local/share/elixir-ls/release/language_server.sh"))
   (add-to-list 'eglot-server-programs '(c-ts-mode "clangd"))
-  :hook (((elixir-ts-mode heex-ts-mode c-ts-mode) . eglot-ensure)
+  (add-to-list 'eglot-server-programs
+               '(astro-mode . ("astro-ls" "--stdio"
+                               :initializationOptions
+                               (:typescript (:tsdk "./node_modules/typescript/lib")))))
+  :hook (((elixir-ts-mode heex-ts-mode c-ts-mode astro-mode) . eglot-ensure)
          (elixir-ts-mode . pet/eglot-format-buffer-on-save)
          (c-ts-mode . pet/eglot-format-buffer-on-save))
   :bind (:map eglot-mode-map

@@ -92,9 +92,13 @@
 
 ;; The web
 (use-package web-mode
-  :mode (".html?$")
-  :custom
-  (web-mode-engines-alist '(("django" . "\\.djhtml\\'"))))
+  :mode (".html?$"))
+
+;; Create a new astro mode
+(define-derived-mode astro-mode web-mode "astro")
+(setq auto-mode-alist
+      (append '((".*\\.astro\\'" . astro-mode))
+              auto-mode-alist))
 
 ;; Clojure
 (use-package clojure-ts-mode
