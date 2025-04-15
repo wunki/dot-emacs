@@ -244,13 +244,14 @@
 
 ;; Configure shell environment
 (defvar shell-name (if (pet/is-mac)
-                       "/opt/homebrew/bin/fish"
+                       "/opt/homebrew/bin/zsh"
                      "/usr/bin/fish"))
 
 (use-package exec-path-from-shell
   :commands (exec-path-from-shell-initialize exec-path-from-shell-copy-env)
   :custom
   (exec-path-from-shell-shell-name shell-name)
+
   :init
   (exec-path-from-shell-initialize)
   :config
