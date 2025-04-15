@@ -16,7 +16,7 @@
   (setq-default fontaine-presets
         '((regular)
           (maple-mono
-           :default-family "Maple Mono NF"
+           :default-family "TX-02"
            :default-height 120
            :line-spacing nil)
           (t
