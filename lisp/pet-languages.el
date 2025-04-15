@@ -60,13 +60,6 @@
   (flycheck-emacs-lisp-load-path 'inherit "inherit the load path so it can find all libraries")
   (flycheck-check-syntax-automatically '(mode-enabled save) "only check on save"))
 
-(use-package treesit-auto
-  :custom
-  (treesit-auto-install 'prompt)
-  :config
-  (treesit-auto-add-to-auto-mode-alist 'all)
-  (global-treesit-auto-mode))
-
 (use-feature ielm
   :config
   (setq ielm-prompt "λ "))
