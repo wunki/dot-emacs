@@ -15,9 +15,9 @@
   (setq-default text-scale-remap-header-line t)
   (setq-default fontaine-presets
         '((regular)
-          (maple-mono
-           :default-family "TX-02"
-           :default-height 120
+          (default
+           :default-family "Cartograph CF"
+           :default-height 130
            :line-spacing nil)
           (t
            :default-family "Maple Mono NF"
@@ -37,7 +37,7 @@
            :italic-slant italic
            :line-spacing nil)))
   
-  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'maple-mono))
+  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'default))
   (fontaine-mode))
 
 ;; Don't show any bars or toolbars.
@@ -56,10 +56,8 @@
 
 ;; On the Mac, use dark mode and hide the top bar.
 (when (memq window-system '(mac ns))
-  (add-to-list 'default-frame-alist '(ns-appearance . dark))
-  ;; Enable this to remove the top bar.
-  ;; (add-to-list 'default-frame-alist '(undecorated-round . t))
-  )
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
 (use-package standard-themes
   :disabled
