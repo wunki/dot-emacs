@@ -65,7 +65,6 @@
 
 ;; Theme of choice
 (use-package modus-themes
-  :disabled
   :demand ;; the `bind' below lazy loads the pkg, which we don't want.
   :init
   (setq modus-themes-to-toggle '(modus-vivendi-tinted modus-operandi-tinted))
@@ -80,7 +79,7 @@
         modus-themes-variable-pitch-ui nil
         modus-themes-mixed-fonts t
         modus-themes-prompts '(bold))
-  (load-theme 'modus-vivendi-tinted :no-confirm)
+  (load-theme 'modus-vivendi-tritanopia :no-confirm)
   (set-face-attribute 'bold nil :weight 'semibold))
 
 (use-package ef-themes
@@ -90,6 +89,7 @@
   (load-theme 'ef-autumn :no-confirm))
 
 (use-package doom-themes
+  :disabled
   :custom
   (doom-themes-enable-bold t)
   (doom-themes-enable-italic t)
