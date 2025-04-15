@@ -183,7 +183,8 @@
 (require 'epa-file)
 (setenv "GPG_AGENT_INFO" nil)
 
-(custom-set-variables '(epg-gpg-program  "/opt/homebrew/bin/gpg"))
+(when (pet/is-mac)
+  (custom-set-variables '(epg-gpg-program  "/opt/homebrew/bin/gpg")))
 (epa-file-enable)
 
 (use-package no-littering
@@ -242,10 +243,14 @@
          ("C-c C-d" . #'helpful-at-point)))
 
 ;; Configure shell environment
+(defvar shell-name (if (pet/is-mac)
+                       "/opt/homebrew/bin/fish"
+                     "/usr/bin/fish"))
+
 (use-package exec-path-from-shell
   :commands (exec-path-from-shell-initialize exec-path-from-shell-copy-env)
   :custom
-  (exec-path-from-shell-shell-name "/opt/homebrew/bin/fish")
+  (exec-path-from-shell-shell-name shell-name)
   :init
   (exec-path-from-shell-initialize)
   :config
