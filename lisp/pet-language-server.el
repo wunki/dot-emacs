@@ -11,6 +11,7 @@
 
 ;; LSP-mode
 (use-package lsp-mode
+  :disabled
   :preface
   (defun pet/lsp-mode-setup-completion ()
     "Set up Corfu and orderless for completions."
@@ -46,7 +47,7 @@
         lsp-modeline-diagnostics-enable nil)
   (setq lsp-enable-symbol-highlighting nil) ;; Don't highlight current symbol
   ;; Configure Elixir
-  (setq lsp-elixir-server-command '("~/.local/share/elixir-ls/release/language_server.sh"))
+  (setq lsp-elixir-server-command '("~/.local/share/elixir-ls/language_server.sh"))
 )
 
 (use-package lsp-grammarly
@@ -60,7 +61,7 @@
 ;;
 
 (use-feature eglot
-  :disabled
+  ;:disabled
   :preface
   (defun pet/eglot-organize-imports ()
     "Organizes the imports."
@@ -84,12 +85,8 @@
         eglot-send-changes-idle-time 0.5
         eglot-ignored-server-capabilities
         '(:foldingRangeProvider))
-  (add-to-list 'eglot-server-programs '(elixir-ts-mode "~/.local/share/elixir-ls/release/language_server.sh"))
+  (add-to-list 'eglot-server-programs '(elixir-ts-mode "~/.local/share/elixir-ls/language_server.sh"))
   (add-to-list 'eglot-server-programs '(c-ts-mode "clangd"))
-  (add-to-list 'eglot-server-programs
-               '(astro-mode . ("astro-ls" "--stdio"
-                               :initializationOptions
-                               (:typescript (:tsdk "./node_modules/typescript/lib")))))
   :hook (((elixir-ts-mode heex-ts-mode c-ts-mode astro-mode) . eglot-ensure)
          (elixir-ts-mode . pet/eglot-format-buffer-on-save)
          (c-ts-mode . pet/eglot-format-buffer-on-save))
@@ -100,7 +97,7 @@
 
 ;; Use flycheck instead of flymake in eglot
 (use-package flycheck-eglot
-  :disabled
+  ;:disabled
   :after (flycheck eglot)
   :custom (flycheck-eglot-exclusive nil)
   :config
