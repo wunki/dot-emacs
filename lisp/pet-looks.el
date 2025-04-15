@@ -17,8 +17,8 @@
         '((regular)
           (default
            :default-family "Cartograph CF"
-           :default-height 130
-           :line-spacing nil)
+           :default-height 120
+           :line-spacing 0.2)
           (t
            :default-family "Maple Mono NF"
            :default-weight regular
