@@ -1,13 +1,8 @@
-;;; pet-git.el --- source code management they call it -*- lexical-binding: t -*-
-;;
+;;; pet-git.el --- source code management -*- lexical-binding: t -*-
 ;;; Commentary:
-;;
-;;  This is where I introduce you to the magic of Magit.
-;;
 ;;; Code:
-;;
 
-;; Required for Magit menu's
+;; Transient is built-in since Emacs 29, but Magit may need a newer version
 (use-package transient)
 
 ;; Magical Git GUI
@@ -18,12 +13,11 @@
     "Ensures that the commit body does not exceed 72 characters."
     (setq fill-column 72)
     (setq-local comment-auto-fill-only-comments nil))
-
   :custom (git-commit-summary-max-length 72)
   :bind ("C-c g" . magit-status)
   :hook (git-commit-mode . pet/git-commit-auto-fill-everywhere))
 
-;; Connection to Github
+;; GitHub/GitLab integration
 (use-package forge
   :after magit
   :bind ("C-c C-g" . forge-dispatch))
@@ -33,8 +27,15 @@
   :commands (gitignore-templates-insert
              gitignore-templates-new-file))
 
-;; Easy copy links to open files
+;; Copy links to files on forge
 (use-package git-link)
+
+;; Git diff in the fringe
+(use-package diff-hl
+  :hook ((magit-pre-refresh . diff-hl-magit-pre-refresh)
+         (magit-post-refresh . diff-hl-magit-post-refresh))
+  :config
+  (global-diff-hl-mode))
 
 (provide 'pet-git)
 ;;; pet-git.el ends here

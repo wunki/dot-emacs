@@ -1,31 +1,26 @@
-;;; pet-notes.el --- configure note taking with org mode -*- lexical-binding: t -*-
-;;
+;;; pet-notes.el --- note taking with org mode and denote -*- lexical-binding: t -*-
 ;;; Commentary:
-;;
-;; This is where we configure org mode.
-;; 
 ;;; Code:
-;;
+
 (require 'pet-lib)
 
 (defvar pet/notes-directory "~/Notes")
 
 (defun pet/current-project-root ()
   "Return the root directory of the current project."
-  (when-let ((project (project-current)))
-    (nth 2 project)))
+  (when-let* ((project (project-current)))
+    (project-root project)))
 
 (use-feature org
   :preface
-
   (defun pet/find-project-note ()
-    "Find and open the current project note"
+    "Find and open the current project note."
     (interactive)
     (let* ((project-root (pet/current-project-root))
            (notes-file (concat project-root "NOTES.org")))
       (find-file notes-file)
       (goto-char (point-min))))
-  
+
   (defun pet/insert-project-note ()
     "Insert a note for the current project in the NOTES.org file."
     (interactive)
@@ -45,6 +40,7 @@
           (beginning-of-line)
           (org-insert-heading)
           (insert today-header)))))
+
   :custom
   (org-startup-indented t)
   (org-pretty-entities t)
@@ -52,7 +48,7 @@
   (:map project-prefix-map (("N" . pet/insert-project-note)
                             ("n" . pet/find-project-note))))
 
-;; Manage my notes.
+;; Notes with Denote
 (use-package denote
   :custom
   (denote-directory pet/notes-directory)
@@ -61,18 +57,17 @@
          ("C-c n" . denote-open-or-create)
          ("C-c j" . denote-journal-extras-new-or-existing-entry)))
 
-;; Easily access my notes through consult.
 (use-package consult-denote
   :after (consult denote)
   :config
   (consult-denote-mode))
 
-;; Distraction-free screen for writing
+;; Distraction-free writing
 (use-package olivetti
   :demand
   :preface
   (defun pet/writing-mode ()
-    "Distraction-free writing environment"
+    "Distraction-free writing environment."
     (interactive)
     (if (equal olivetti-mode nil)
         (progn
@@ -88,7 +83,6 @@
   (setq olivetti-body-width .6)
   :hook
   (org-mode . visual-line-mode)
-  ;; (org-mode . pet/writing-mode)
   :bind
   (("<f9>" . pet/writing-mode)))
 
@@ -128,8 +122,8 @@ taxonomies:
             ("${taxonomies}" . ,(format (if is-note "tags: [%s]" "categories: [%s]") tags))
             ("${tags}" . ,tags))))
     (find-file path)
-    (insert pet/blog-frontmatter) ;; insert template for frontmatter
-    (goto-char (point-min)) ;; beginning of buffer, so we can replace the title
+    (insert pet/blog-frontmatter)
+    (goto-char (point-min))
     (pet--replace-strings replacements)
     (goto-char (point-max))))
 
@@ -140,11 +134,7 @@ taxonomies:
      "[^a-z0-9]+" "-" (downcase s))))
 
 (defun pet--replace-strings (replacement-list)
-  "Replace multiple strings in the current buffer.
-
-REPLACEMENT-LIST is an alist where each element is a cons cell (SEARCH
-. REPLACE).  For each pair, all occurrences of SEARCH are replaced with
-REPLACE."
+  "Replace strings in the current buffer per REPLACEMENT-LIST alist."
   (save-excursion
     (dolist (rep replacement-list)
       (goto-char (point-min))

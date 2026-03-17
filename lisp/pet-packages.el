@@ -1,74 +1,36 @@
-;;; pet-packages.el --- package management with elpaca and use-package -*- lexical-binding: t -*-
-;;
+;;; pet-packages.el --- package management -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;
-;; This is where we setup our package management by using elpaca
-;; and the excellent use-package library.
+;; Emacs 30 ships with package.el and use-package built-in.
+;; No external package manager needed.
 ;;
 ;;; Code:
-;;
 
-;; Setup alpaca for package management
-(defvar elpaca-installer-version 0.11)
-(defvar elpaca-directory (expand-file-name "var/elpaca/" user-emacs-directory))
-(defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
-(defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
-(defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
-                              :ref nil :depth 1 :inherit ignore
-                              :files (:defaults "elpaca-test.el" (:exclude "extensions"))
-                              :build (:not elpaca--activate-package)))
-(let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
-       (build (expand-file-name "elpaca/" elpaca-builds-directory))
-       (order (cdr elpaca-order))
-       (default-directory repo))
-  (add-to-list 'load-path (if (file-exists-p build) build repo))
-  (unless (file-exists-p repo)
-    (make-directory repo t)
-(when (<= emacs-major-version 28) (require 'subr-x))
-    (condition-case-unless-debug err
-        (if-let* ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
-                  ((zerop (apply #'call-process `("git" nil ,buffer t "clone"
-                                                  ,@(when-let* ((depth (plist-get order :depth)))
-                                                      (list (format "--depth=%d" depth) "--no-single-branch"))
-                                                  ,(plist-get order :repo) ,repo))))
-                  ((zerop (call-process "git" nil buffer t "checkout"
-                                        (or (plist-get order :ref) "--"))))
-                  (emacs (concat invocation-directory invocation-name))
-                  ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
-                                        "--eval" "(byte-recompile-directory \".\" 0 'force)")))
-                  ((require 'elpaca))
-                  ((elpaca-generate-autoloads "elpaca" repo)))
-            (progn (message "%s" (buffer-string)) (kill-buffer buffer))
-          (error "%s" (with-current-buffer buffer (buffer-string))))
-      ((error) (warn "%s" err) (delete-directory repo 'recursive))))
-  (unless (require 'elpaca-autoloads nil t)
-    (require 'elpaca)
-    (elpaca-generate-autoloads "elpaca" repo)
-    (let ((load-source-file-function nil)) (load "./elpaca-autoloads"))))
-(add-hook 'after-init-hook #'elpaca-process-queues)
-(elpaca `(,@elpaca-order))
+(require 'package)
+;; HTTPS protects transport. MELPA is unsigned anyway.
+(setq package-check-signature nil)
+(setq package-archives
+      '(("melpa" . "https://melpa.org/packages/")
+        ("gnu" . "https://elpa.gnu.org/packages/")
+        ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
+(package-initialize)
 
-;; Install use-package support
-(elpaca elpaca-use-package
-  ;; Enable :elpaca use-package keyword.
-  (elpaca-use-package-mode)
-  ;; Assume :elpaca t unless otherwise specified.
-  (setq use-package-always-ensure t))
+;; On first launch, refresh archives so packages can be installed.
+(unless package-archive-contents
+  (package-refresh-contents))
 
-;; Block to make sure use-package is available.
-(elpaca-wait)
+;; use-package: auto-install missing packages
+(setq use-package-always-ensure t)
 
-;; Configuring features in Emacs
+;; Convenience macro for built-in features
 (defmacro use-feature (name &rest args)
-  "Like `use-package' but accounting for asynchronous installation.
-  NAME and ARGS are in `use-package'."
+  "Like `use-package' but for built-in features.
+NAME and ARGS are passed to `use-package'."
   (declare (indent defun))
   `(use-package ,name
      :ensure nil
      ,@args))
 
-;; Clean up the modeline
-(use-package delight)
 (use-package diminish)
 
 (provide 'pet-packages)

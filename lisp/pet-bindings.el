@@ -1,17 +1,8 @@
 ;;; pet-bindings.el --- key bindings -*- lexical-binding: t -*-
-;;
 ;;; Commentary:
-;;
-;; Setup key bindings for either Emacs or our own functions.
-;; Package specific bindings should be done in `use-package'
-;; declarations.
-;; 
 ;;; Code:
-;;
 
 (require 'pet-lib)
-
-;;; Code:
 
 ;; Kill region, or when nothing selected, the word
 (global-set-key (kbd "C-w") 'pet/kill-region-or-backward-word)
@@ -28,7 +19,7 @@
 ;; Rename file and buffer
 (global-set-key (kbd "C-c r") 'pet/rename-file-and-buffer)
 
-;; I want my text size to be global, not local, so changing the default
+;; Global text scaling
 (global-set-key (kbd "C-x C-=") 'global-text-scale-adjust)
 (global-set-key (kbd "C-x C-+") 'global-text-scale-adjust)
 (global-set-key (kbd "C-x C-0") 'global-text-scale-adjust)

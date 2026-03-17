@@ -1,13 +1,9 @@
 ;;; init.el --- initialize all modules -*- lexical-binding: t -*-
-;;
 ;;; Commentary:
 ;;
-;; This is where it all starts, we start by setting up our packages
-;; where we use the excellent straight package manager, combined with
-;; the use-package to declare the packages we want to use.
-;; 
-;;; Code:
+;; Emacs 30 configuration using built-in package.el and use-package.
 ;;
+;;; Code:
 
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
@@ -16,6 +12,16 @@
   (server-start))
 
 (require 'pet-packages)
+
+;; Load secrets (API keys, passwords). Fails gracefully if GPG key
+;; is unavailable, so the rest of the config still loads.
+(let ((secrets-file (expand-file-name "lisp/pet-secrets.el.gpg"
+                                      user-emacs-directory)))
+  (condition-case err
+      (when (file-exists-p secrets-file)
+        (load-library secrets-file))
+    (error (message "Could not load secrets: %s" (error-message-string err)))))
+
 (require 'pet-config)
 (require 'pet-lib)
 (require 'pet-bindings)
@@ -32,5 +38,4 @@
 (require 'pet-ai)
 
 (provide 'init)
-
 ;;; init.el ends here
