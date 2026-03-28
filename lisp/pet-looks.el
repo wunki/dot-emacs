@@ -18,7 +18,7 @@
                   (t
                    :default-family "Maple Mono NF"
                    :default-weight regular
-                   :default-height 130
+                   :default-height 140
                    :fixed-pitch-family nil
                    :fixed-pitch-weight nil
                    :fixed-pitch-height 1.0
@@ -53,25 +53,43 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
-;; Theme
-(use-package modus-themes
-  :demand
+;; Themes
+(use-package ef-themes
+  :defer t
   :init
-  (setq modus-themes-to-toggle '(modus-vivendi-tinted modus-operandi-tinted))
-  :bind ("<f5>" . modus-themes-toggle)
+  (setq ef-themes-to-toggle '(ef-duo-dark ef-duo-light))
+  :bind ("<f5>" . ef-themes-toggle)
   :config
-  (setq modus-themes-bold-constructs t
+  (setq ef-themes-variable-pitch-ui nil
+        ef-themes-mixed-fonts t
+        ef-themes-headings
+        '((0 variable-pitch 1.5)
+          (1 variable-pitch 1.3)
+          (2 variable-pitch 1.2)
+          (agenda-date 1.3)
+          (agenda-structure variable-pitch light 1.8)
+          (t variable-pitch))))
+
+(use-package modus-themes
+  :defer t
+  :config
+  (setq modus-themes-to-toggle '(modus-vivendi-tinted modus-operandi-tinted)
+        modus-themes-bold-constructs t
         modus-themes-italic-constructs t
         modus-themes-variable-pitch-ui nil
         modus-themes-mixed-fonts t
         modus-themes-prompts '(bold)
         modus-themes-common-palette-overrides
         '((bg-region bg-lavender)
-          (fg-region unspecified)))
-  (load-theme 'modus-vivendi-tritanopia :no-confirm)
-  ;; SpaceMono only has Regular/Bold. Map bold to regular weight
-  ;; so syntax highlighting uses color only, not heavy strokes.
-  (set-face-attribute 'bold nil :weight 'regular))
+          (fg-region unspecified))))
+
+(use-package doom-themes
+  :config
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (doom-themes-visual-bell-config)
+  (doom-themes-org-config)
+  (load-theme 'doom-homage-white :no-confirm))
 
 ;; Ligatures
 (use-package ligature
@@ -99,8 +117,7 @@
 (use-package doom-modeline
   :init (doom-modeline-mode 1)
   :custom
-  (doom-modeline-major-mode-icon nil)
-  (doom-modeline-check-simple-format t))
+  (doom-modeline-major-mode-icon nil))
 
 ;; Toggle modeline
 (use-package hide-mode-line
