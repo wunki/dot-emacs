@@ -15,12 +15,12 @@
 
 ;; Load secrets (API keys, passwords). Fails gracefully if GPG key
 ;; is unavailable, so the rest of the config still loads.
-(let ((secrets-file (expand-file-name "lisp/pet-secrets.el.gpg"
-                                      user-emacs-directory)))
-  (condition-case err
-      (when (file-exists-p secrets-file)
-        (load-library secrets-file))
-    (error (message "Could not load secrets: %s" (error-message-string err)))))
+;; (let ((secrets-file (expand-file-name "lisp/pet-secrets.el.gpg"
+;;                                       user-emacs-directory)))
+;;   (condition-case err
+;;       (when (file-exists-p secrets-file)
+;;         (load-library secrets-file))
+;;     (error (message "Could not load secrets: %s" (error-message-string err)))))
 
 (require 'pet-config)
 (require 'pet-lib)
