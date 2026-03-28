@@ -2,21 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package copilot
-  :vc (:url "https://github.com/copilot-emacs/copilot.el"
-       :rev :newest)
-  :preface
-  (defun pet/copilot-tab ()
-    (interactive)
-    (or (copilot-accept-completion)
-        (indent-for-tab-command)))
-  :bind (:map copilot-mode-map
-              ("<tab>" . pet/copilot-tab)
-              ("s-n" . copilot-next-completion)
-              ("s-p" . copilot-previous-completion)
-              ("s-w" . copilot-accept-completion-by-word)
-              ("s-l" . copilot-accept-completion-by-line)))
-
 ;; Claude Code CLI integration
 (use-package claude-code
   :vc (:url "https://github.com/stevemolitor/claude-code.el"
