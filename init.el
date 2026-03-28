@@ -25,7 +25,6 @@
 (require 'pet-notes)
 (require 'pet-language-server)
 (require 'pet-languages)
-(require 'pet-irc)
 (require 'pet-ai)
 
 (provide 'init)

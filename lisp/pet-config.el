@@ -111,13 +111,6 @@
 (setq temp-buffer-max-height 8)
 (setq window-min-height 1)
 
-;; PGP
-(require 'epa-file)
-(setenv "GPG_AGENT_INFO" nil)
-(when (pet/is-mac)
-  (setq epg-gpg-program "/opt/homebrew/bin/gpg"))
-(epa-file-enable)
-
 ;; No littering
 (use-package no-littering
   :demand t
