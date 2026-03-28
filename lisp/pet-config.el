@@ -150,7 +150,8 @@
 ;; Shell environment (needed on macOS)
 (use-package exec-path-from-shell
   :if (pet/is-mac)
-  :hook (after-init . exec-path-from-shell-initialize)
+  :init
+  (exec-path-from-shell-initialize)
   :config
   (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
 
