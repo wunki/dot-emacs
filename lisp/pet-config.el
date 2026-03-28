@@ -219,7 +219,9 @@
          :map project-prefix-map
          ("t" . eat-project))
   :custom
-  (eat-kill-buffer-on-exit t))
+  (eat-kill-buffer-on-exit t)
+  :config
+  (setq explicit-shell-file-name "/opt/homebrew/bin/zsh"))
 
 ;; Hide Emacs on Mac
 (when (pet/is-mac)
