@@ -7,7 +7,6 @@
   :config
   (setq erc-server "irc.libera.chat"
         erc-nick "wunki"
-        erc-password pet/erc-password
         erc-user-full-name "Petar Radosevic"
         erc-track-shorten-start 8
         erc-autojoin-channels-alist '(("irc.libera.chat" "#systemcrafters" "#emacs" "#zig"))

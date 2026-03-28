@@ -6,7 +6,6 @@
 
 ;; Buffer encoding
 (prefer-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
 (set-language-environment 'utf-8)
 
 ;; No startup noise
@@ -40,11 +39,6 @@
 (advice-add 'load-theme :before
             (lambda (&rest _) (mapc #'disable-theme custom-enabled-themes)))
 
-;; GC tuning
-(setq gc-cons-threshold (* 100 1024 1024))
-(add-function :after after-focus-change-function
-              (lambda () (unless (frame-focus-state) (garbage-collect))))
-
 ;; Larger read buffer for LSP/subprocess performance
 (setq read-process-output-max (* 1024 1024))
 
@@ -60,9 +54,6 @@
 ;; No confirmation for visiting non-existent files
 (setq confirm-nonexistent-file-or-buffer nil)
 
-;; Completion styles (overridden by orderless later)
-(setq completion-styles '(basic substring))
-
 ;; Follow symlinks
 (setq vc-follow-symlinks t)
 
@@ -74,9 +65,6 @@
 
 ;; No lockfiles
 (setq create-lockfiles nil)
-
-(use-feature project
-  :demand)
 
 ;; Whitespace mode
 (use-feature whitespace
@@ -101,8 +89,6 @@
   (dired-omit-files "^\.?#\|\.DS_Store")
   (dired-omit-verbose nil))
 
-(use-package dired-preview)
-
 ;; Auto-revert
 (global-auto-revert-mode 1)
 
@@ -112,19 +98,9 @@
 ;; Shift + direction to switch windows
 (windmove-default-keybindings)
 
-;; Variable pitch for text modes
-(add-hook 'text-mode-hook #'variable-pitch-mode)
-
-;; Modeline
-(column-number-mode -1)
-(line-number-mode 1)
-
 ;; Cursor
 (setq-default cursor-type 'box)
 (blink-cursor-mode 1)
-
-;; Parens
-(show-paren-mode 1)
 
 ;; Indentation
 (setq-default indent-tabs-mode nil)
@@ -181,8 +157,7 @@
 ;; Shell environment (needed on macOS)
 (use-package exec-path-from-shell
   :if (pet/is-mac)
-  :init
-  (exec-path-from-shell-initialize)
+  :hook (after-init . exec-path-from-shell-initialize)
   :config
   (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
 

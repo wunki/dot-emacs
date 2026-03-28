@@ -10,9 +10,6 @@
 
 ;; Remember cursor position
 (use-feature saveplace
-  :after no-littering
-  :custom
-  (save-place-file (no-littering-expand-var-file-name "save-place.el"))
   :config
   (save-place-mode +1))
 
@@ -21,9 +18,7 @@
 (setq auto-save-visited-interval 1)
 
 ;; Smart beginning of line
-(use-package crux
-  :bind (("C-a" . crux-move-beginning-of-line)
-         ("C-c f" . crux-recentf-find-file)))
+(global-set-key (kbd "C-a") 'pet/move-beginning-of-line)
 
 ;; Jump to last change
 (use-package goto-last-change
@@ -31,7 +26,6 @@
 
 ;; Structural editing for Lisp
 (use-package paredit
-  :diminish " ()"
   :hook ((clojure-mode . paredit-mode)
          (clojure-ts-mode . paredit-mode)
          (cider-repl-mode . paredit-mode)

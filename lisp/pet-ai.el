@@ -8,22 +8,8 @@
        :rev :newest)
   :config
   (claude-code-mode)
-  :bind-keymap ("C-c C" . claude-code-command-map))
-
-(use-package gptel
-  :custom
-  (gptel-stream t)
-  (gptel-default-mode 'org-mode)
-  (gptel-model "claude-sonnet-4-20250514")
-  :config
-  (setq gptel-backend (gptel-make-anthropic "Claude"
-                        :stream t
-                        :key #'get-anthropic-api-key))
-  :hook
-  (gptel-post-stream . gptel-auto-scroll)
-  (gptel-post-response-functions . gptel-end-of-response)
-  :bind
-  ("C-c a" . gptel))
+  :bind-keymap ("C-c C" . claude-code-command-map)
+  :bind (:map project-prefix-map ("C" . claude-code)))
 
 (provide 'pet-ai)
 ;;; pet-ai.el ends here

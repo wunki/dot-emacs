@@ -12,13 +12,13 @@
   (setq-default fontaine-presets
                 '((regular)
                   (default
-                   :default-family "Space Mono"
+                   :default-family "BlexMono Nerd Font"
                    :default-height 120
-                   :line-spacing 0.1)
+                   :line-spacing 0.2)
                   (t
                    :default-family "Maple Mono NF"
                    :default-weight regular
-                   :default-height 140
+                   :default-height 130
                    :fixed-pitch-family nil
                    :fixed-pitch-weight nil
                    :fixed-pitch-height 1.0
@@ -34,6 +34,9 @@
   (fontaine-set-preset (or (fontaine-restore-latest-preset) 'default))
   (fontaine-mode))
 
+;; Variable pitch for text modes
+(add-hook 'text-mode-hook #'variable-pitch-mode)
+
 ;; No chrome
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
   (when (fboundp mode)
@@ -45,13 +48,12 @@
       default-frame-alist (append (list
                                    '(vertical-scroll-bars . nil)
                                    '(internal-border-width . 10)
-                                   '(right-fringe . 0)
+                                   '(right-fringe . 8)
                                    '(tool-bar-lines . 0))))
 
-;; macOS dark mode
+;; macOS titlebar
 (when (memq window-system '(mac ns))
-  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-  (add-to-list 'default-frame-alist '(ns-appearance . dark)))
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
 
 ;; Themes
 (use-package ef-themes
@@ -88,8 +90,8 @@
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
   (doom-themes-visual-bell-config)
-  (doom-themes-org-config)
-  (load-theme 'doom-homage-white :no-confirm))
+  (with-eval-after-load 'org (doom-themes-org-config))
+  (load-theme 'doom-pine :no-confirm))
 
 ;; Ligatures
 (use-package ligature
@@ -117,6 +119,7 @@
 (use-package doom-modeline
   :init (doom-modeline-mode 1)
   :custom
+  (doom-modeline-icon t)
   (doom-modeline-major-mode-icon nil))
 
 ;; Toggle modeline

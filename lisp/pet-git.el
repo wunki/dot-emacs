@@ -2,12 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Transient is built-in since Emacs 29, but Magit may need a newer version
-(use-package transient)
-
 ;; Magical Git GUI
 (use-package magit
-  :after transient
   :preface
   (defun pet/git-commit-auto-fill-everywhere ()
     "Ensures that the commit body does not exceed 72 characters."

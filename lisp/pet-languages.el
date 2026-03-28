@@ -26,12 +26,14 @@
     (treesit-install-language-grammar lang)
     (message "Installed tree-sitter grammar for %s" lang)))
 
-(mapc #'pet/ensure-treesit-grammar (mapcar #'car treesit-language-source-alist))
+(add-hook 'after-init-hook
+          (lambda ()
+            (mapc #'pet/ensure-treesit-grammar
+                  (mapcar #'car treesit-language-source-alist))))
 
 ;; Inline Emacs Lisp evaluation
 (use-package eros
-  :demand
-  :config (eros-mode t))
+  :hook (emacs-lisp-mode . eros-mode))
 
 ;; Elisp formatter
 (use-package elisp-autofmt
@@ -83,7 +85,7 @@
   (cider-eldoc-display-for-symbol-at-point nil)
   (cider-repl-display-help-banner nil)
   (cider-save-file-on-load t)
-  (cider-history-file "~/.config/emacs/var/nrepl-history")
+  (cider-history-file (no-littering-expand-var-file-name "nrepl-history"))
   (cider-auto-select-error-buffer t)
   (cider-repl-use-pretty-printing t)
   (nrepl-hide-special-buffers t)
@@ -100,7 +102,6 @@
 
 ;; Documentation
 (use-feature eldoc
-  :diminish eldoc-mode
   :hook (prog-mode . eldoc-mode))
 
 (use-package eldoc-box
@@ -111,11 +112,7 @@
 
 ;; Rust (built-in tree-sitter mode)
 (use-feature rust-ts-mode
-  :mode "\\.rs\\'"
-  :config
-  (let ((cargo-bin (expand-file-name "~/.cargo/bin")))
-    (setenv "PATH" (concat (getenv "PATH") ":" cargo-bin))
-    (add-to-list 'exec-path cargo-bin)))
+  :mode "\\.rs\\'")
 
 ;; Go (built-in tree-sitter mode)
 (use-feature go-ts-mode

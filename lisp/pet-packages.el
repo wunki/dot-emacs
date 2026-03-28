@@ -31,7 +31,8 @@ NAME and ARGS are passed to `use-package'."
      :ensure nil
      ,@args))
 
-(use-package diminish)
+(use-package gcmh
+  :config (gcmh-mode 1))
 
 (provide 'pet-packages)
 ;;; pet-packages.el ends here

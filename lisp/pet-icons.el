@@ -2,8 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package nerd-icons
-  :if (display-graphic-p))
+(use-package nerd-icons)
 
 (use-package nerd-icons-corfu
   :after (nerd-icons corfu)

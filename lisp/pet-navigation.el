@@ -56,7 +56,6 @@
 
 ;; which-key is built-in since Emacs 30
 (use-feature which-key
-  :diminish which-key-mode
   :custom
   (which-key-idle-delay 0.5)
   (which-key-sort-order 'which-key-description-order)
