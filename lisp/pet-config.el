@@ -66,6 +66,9 @@
 ;; No lockfiles
 (setq create-lockfiles nil)
 
+(use-feature project
+  :demand)
+
 ;; Whitespace mode
 (use-feature whitespace
   :commands whitespace-mode
