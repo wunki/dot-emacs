@@ -13,7 +13,7 @@
   :bind-keymap ("C-c C" . claude-code-command-map)
   :bind (:map project-prefix-map ("C" . claude-code))
   :init
-  ;; Auto-switch to Claude buffer on start (default only does this with C-u)
+  ;; auto-switch to Claude buffer on start (default only does this with C-u)
   (advice-add 'claude-code :around
               (lambda (orig-fn &optional arg)
                 (funcall orig-fn (or arg '(4))))))
