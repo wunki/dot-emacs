@@ -35,7 +35,7 @@
   (add-to-list 'eglot-server-programs '(elixir-ts-mode "~/.local/share/elixir-ls/language_server.sh"))
   (add-to-list 'eglot-server-programs '(c-ts-mode "clangd"))
 
-  :hook (((clojure-mode clojure-ts-mode elixir-ts-mode heex-ts-mode c-ts-mode go-ts-mode rust-ts-mode) . eglot-ensure)
+  :hook (((clojure-mode clojure-ts-mode elixir-ts-mode heex-ts-mode c-ts-mode go-ts-mode go-mod-ts-mode rust-ts-mode) . eglot-ensure)
          (elixir-ts-mode . pet/eglot-format-buffer-on-save)
          (go-ts-mode . pet/eglot-format-buffer-on-save)
          (go-ts-mode . pet/eglot-organize-imports-on-save)
