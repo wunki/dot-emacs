@@ -53,9 +53,16 @@
   :custom
   (denote-directory pet/notes-directory)
   (denote-known-keywords '("journal" "projects" "ideas" "people" "posts" "interviews"))
-  :bind (("C-c N" . denote-create-note)
-         ("C-c n" . denote-open-or-create)
-         ("C-c j" . denote-journal-extras-new-or-existing-entry)))
+  :hook
+  ((text-mode . denote-fontify-links-mode)
+   (dired-mode . denote-dired-mode))
+  :bind (("C-c N" . denote)
+         ("C-c n" . denote-open-or-create))
+  :config
+  (denote-rename-buffer-mode 1))
+
+(use-package denote-journal
+  :bind (("C-c j" . denote-journal-new-or-existing-entry)))
 
 (use-package consult-denote
   :after (consult denote)
