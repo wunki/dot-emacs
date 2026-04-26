@@ -99,24 +99,30 @@
   :mode ("\\.html?$" "\\.astro$"))
 
 ;; Clojure
-(use-package clojure-ts-mode
+(use-package clojure-mode
   :custom
-  (clojure-ts-auto-remap t)
   (clojure-toplevel-inside-comment-form t)
   (clojure-indent-style 'align-arguments)
-  :mode (("\\.clj\\'" . clojure-ts-mode)
-         ("\\.cljs\\'" . clojure-ts-clojurescript-mode)
-         ("\\.cljc\\'" . clojure-ts-clojurec-mode)
-         ("\\.cljd\\'" . clojure-ts-clojuredart-mode)
-         ("\\.edn\\'" . clojure-mode))
-  :hook (clojure-ts-mode . subword-mode)
-  :bind (:map clojure-ts-mode-map
+  :mode (("\\.clj\\'" . clojure-mode)
+         ("\\.cljs\\'" . clojurescript-mode)
+         ("\\.cljc\\'" . clojurec-mode)
+         ("\\.cljd\\'" . clojuredart-mode)
+         ("\\.edn\\'" . edn-mode))
+  :hook ((clojure-mode
+          clojurescript-mode
+          clojurec-mode
+          clojuredart-mode
+          edn-mode) . subword-mode)
+  :bind (:map clojure-mode-map
               ([remap paredit-forward] . clojure-forward-logical-sexp)
               ([remap paredit-backward] . clojure-backward-logical-sexp)))
 
 (use-package cider
-  :after clojure-ts-mode
-  :hook (clojure-ts-mode . cider-mode)
+  :after clojure-mode
+  :hook ((clojure-mode
+          clojurescript-mode
+          clojurec-mode
+          clojuredart-mode) . cider-mode)
   :custom
   (cider-eldoc-display-for-symbol-at-point nil)
   (cider-repl-display-help-banner nil)

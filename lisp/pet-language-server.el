@@ -31,7 +31,9 @@
   ;; Let orderless work with eglot completions
   (add-to-list 'completion-category-overrides '(eglot (styles orderless basic)))
   (add-to-list 'eglot-server-programs
-               '((clojure-mode clojure-ts-mode) "clojure-lsp"))
+               '((clojure-mode clojurescript-mode clojurec-mode
+                  clojuredart-mode clojure-ts-mode)
+                 "clojure-lsp"))
   (add-to-list 'eglot-server-programs
                '((elixir-ts-mode heex-ts-mode) "~/.local/bin/expert_darwin_arm64"))
   (add-to-list 'eglot-server-programs '(c-ts-mode "clangd"))
@@ -42,8 +44,12 @@
   (add-to-list 'eglot-server-programs
                '(svelte-mode . ("svelteserver" "--stdio")))
 
-  :hook (((clojure-mode clojure-ts-mode elixir-ts-mode heex-ts-mode c-ts-mode go-ts-mode go-mod-ts-mode rust-ts-mode odin-ts-mode typescript-ts-mode tsx-ts-mode js-ts-mode svelte-mode) . eglot-ensure)
-         (clojure-ts-mode . pet/eglot-format-buffer-on-save)
+  :hook (((clojure-mode clojurescript-mode clojurec-mode clojuredart-mode
+           clojure-ts-mode elixir-ts-mode heex-ts-mode c-ts-mode go-ts-mode
+           go-mod-ts-mode rust-ts-mode odin-ts-mode typescript-ts-mode
+           tsx-ts-mode js-ts-mode svelte-mode) . eglot-ensure)
+         ((clojure-mode clojurescript-mode clojurec-mode clojuredart-mode
+           clojure-ts-mode) . pet/eglot-format-buffer-on-save)
          (elixir-ts-mode . pet/eglot-format-buffer-on-save)
          (go-ts-mode . pet/eglot-format-buffer-on-save)
          (go-ts-mode . pet/eglot-organize-imports-on-save)
