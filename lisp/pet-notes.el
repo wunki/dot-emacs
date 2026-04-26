@@ -30,16 +30,18 @@
            (today-header (concat "<" today ">")))
       (find-file notes-file)
       (goto-char (point-min))
-      (if (search-forward today-header nil t)
-          (progn
-            (org-end-of-subtree)
-            (org-end-of-item))
-        (progn
-          (goto-char (point-min))
-          (search-forward-regexp "^\\*\\* ")
-          (beginning-of-line)
-          (org-insert-heading)
-          (insert today-header)))))
+      (cond
+       ((search-forward today-header nil t)
+        (org-end-of-subtree)
+        (org-end-of-item))
+       ((search-forward-regexp "^\\*\\* " nil t)
+        (beginning-of-line)
+        (insert "** " today-header "\n\n")
+        (forward-line -2))
+       (t
+        (goto-char (point-max))
+        (unless (bolp) (insert "\n"))
+        (insert "** " today-header "\n\n")))))
 
   :custom
   (org-startup-indented t)
