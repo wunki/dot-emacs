@@ -12,9 +12,9 @@
   (setq-default fontaine-presets
                 '((regular)
                   (default
-                   :default-family "BlexMono Nerd Font"
+                   :default-family "Space Mono"
                    :default-height 120
-                   :line-spacing 0.2)
+                   :line-spacing 0.1)
                   (t
                    :default-family "Maple Mono NF"
                    :default-weight regular
