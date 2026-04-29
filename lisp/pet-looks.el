@@ -12,9 +12,9 @@
   (setq-default fontaine-presets
                 '((regular)
                   (default
-                   :default-family "Space Mono"
+                   :default-family "CommitMono"
                    :default-height 120
-                   :line-spacing 0.1)
+                   :line-spacing 0.3)
                   (t
                    :default-family "Maple Mono NF"
                    :default-weight regular
