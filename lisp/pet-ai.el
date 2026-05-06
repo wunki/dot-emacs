@@ -10,7 +10,14 @@
   (setq gptel-backend
         (gptel-make-openai "OpenAI"
           :key 'gptel-api-key
-          :stream t)))
+          :stream t))
+  ;; disable the ugly background when things are added
+  ;; to the context
+  (with-eval-after-load 'gptel-context
+    (custom-theme-set-faces
+     'user
+     '(gptel-context-highlight-face
+       ((t (:background unspecified :extend nil)))))))
 
 (provide 'pet-ai)
 ;;; pet-ai.el ends here
