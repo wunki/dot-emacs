@@ -56,7 +56,7 @@
   (denote-directory pet/notes-directory)
   (denote-known-keywords '("journal" "projects" "ideas" "people" "posts" "interviews"))
   :hook
-  ((text-mode . denote-fontify-links-mode)
+  ((text-mode . denote-fontify-links-mode-maybe)
    (dired-mode . denote-dired-mode))
   :bind (("C-c N" . denote)
          ("C-c n" . denote-open-or-create))
