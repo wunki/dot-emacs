@@ -120,7 +120,8 @@
   :init (doom-modeline-mode 1)
   :custom
   (doom-modeline-icon t)
-  (doom-modeline-major-mode-icon nil))
+  (doom-modeline-major-mode-icon nil)
+  (doom-modeline-check-icon nil))
 
 ;; Toggle modeline
 (use-package hide-mode-line
