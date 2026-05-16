@@ -3,7 +3,9 @@
 ;;; Code:
 
 (use-package gptel
-  :commands (gptel gptel-send gptel-menu gptel-rewrite)
+  :commands (gptel gptel-send gptel-menu gptel-rewrite gptel-add)
+  :bind (("C-c a" . gptel-add)
+         ("C-c i" . gptel-menu))
   :init
   (setq gptel-model 'gpt-5.5)
   :config
