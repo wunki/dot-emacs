@@ -286,10 +286,7 @@
   :custom
   (inferior-lisp-program "sbcl")
   (sly-symbol-completion-mode nil)
-  :hook (sly-mrepl-mode . electric-pair-mode)
   :bind (:map sly-mode-map
-              ("C-c C-z" . pet/sly-mrepl-toggle)
-         :map sly-mrepl-mode-map
               ("C-c C-z" . pet/sly-mrepl-toggle))
   :preface
   (defvar pet/sly-source-buffer nil
@@ -303,6 +300,13 @@
           (message "No source buffer remembered"))
       (setq pet/sly-source-buffer (current-buffer))
       (call-interactively #'sly-mrepl))))
+
+(use-package sly-mrepl
+  :ensure nil
+  :after sly
+  :hook (sly-mrepl-mode . electric-pair-mode)
+  :bind (:map sly-mrepl-mode-map
+              ("C-c C-z" . pet/sly-mrepl-toggle)))
 
 (use-package sly-asdf
   :after sly
