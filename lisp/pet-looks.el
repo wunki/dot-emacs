@@ -13,8 +13,7 @@
                 '((regular)
                   (default
                    :default-family "Space Mono"
-                   :default-height 120
-                   :line-spacing 0.1)
+                   :default-height 100)
                   (t
                    :default-family "Maple Mono NF"
                    :default-weight regular
