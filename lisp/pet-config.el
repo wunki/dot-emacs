@@ -195,6 +195,11 @@
   :config
   (setq explicit-shell-file-name "/opt/homebrew/bin/zsh"))
 
+;; Make Emacs work from the terminal
+(use-package kkp
+  :ensure t
+  :hook (tty-setup . global-kkp-mode))
+
 ;; Hide Emacs on Mac
 (when (pet/is-mac)
   (global-set-key (kbd "M-h") 'ns-do-hide-emacs)
