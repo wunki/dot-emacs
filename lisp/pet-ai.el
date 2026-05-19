@@ -9,10 +9,7 @@
   :init
   (setq gptel-model 'gpt-5.5)
   :config
-  (setq gptel-backend
-        (gptel-make-openai "OpenAI"
-          :key 'gptel-api-key
-          :stream t))
+  (setq gptel-backend (gptel-make-openai-oauth "OpenAI-subscription"))
   ;; disable the ugly background when things are added
   ;; to the context
   (with-eval-after-load 'gptel-context
