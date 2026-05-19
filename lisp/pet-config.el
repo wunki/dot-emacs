@@ -193,7 +193,7 @@
   :custom
   (eat-kill-buffer-on-exit t)
   :config
-  (setq explicit-shell-file-name "/opt/homebrew/bin/zsh"))
+  (setq explicit-shell-file-name "/usr/bin/zsh"))
 
 ;; Make Emacs work from the terminal
 (use-package kkp
