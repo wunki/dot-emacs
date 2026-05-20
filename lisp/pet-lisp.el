@@ -40,7 +40,6 @@
   (inferior-lisp-program "sbcl")
   (sly-lisp-implementations '((sbcl ("sbcl"))))
   :bind (:map sly-mode-map
-              ("C-c C-z" . pet/sly-mrepl-toggle)
               ("C-c C-k" . sly-compile-and-load-file)
               ("C-c C-r" . sly-compile-region)
               ("C-c C-d d" . sly-describe-symbol)
@@ -48,15 +47,17 @@
   :preface
   (defvar pet/sly-source-buffer nil
     "Buffer to return to from the SLY REPL.")
-  (defun pet/sly-mrepl-toggle ()
-    "Toggle between source buffer and the SLY REPL."
-    (interactive)
+
+  (defun pet/sly-mrepl-toggle-around (fn &rest args)
+    "Make `sly-mrepl' toggle back to the last source buffer.
+FN and ARGS are the original `sly-mrepl' function and arguments."
     (if (derived-mode-p 'sly-mrepl-mode)
         (if (buffer-live-p pet/sly-source-buffer)
             (pop-to-buffer pet/sly-source-buffer)
-          (message "No source buffer remembered"))
-      (setq pet/sly-source-buffer (current-buffer))
-      (call-interactively #'sly-mrepl))))
+          (apply fn args))
+      (when (bound-and-true-p sly-mode)
+        (setq pet/sly-source-buffer (current-buffer)))
+      (apply fn args))))
 
 (use-package sly-mrepl
   :ensure nil
@@ -65,8 +66,10 @@
   (sly-mrepl-history-file-name
    (no-littering-expand-var-file-name "sly/mrepl-history"))
   (sly-mrepl-prevent-duplicate-history 'move)
-  :bind (:map sly-mrepl-mode-map
-              ("C-c C-z" . pet/sly-mrepl-toggle)))
+  :hook (sly-mrepl-mode . electric-pair-mode)
+  :config
+  ;; Keep SLY's own C-c C-z binding, but make repeated use toggle back.
+  (advice-add 'sly-mrepl :around #'pet/sly-mrepl-toggle-around))
 
 (use-package sly-asdf
   :after sly
