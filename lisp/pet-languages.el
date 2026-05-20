@@ -64,6 +64,13 @@
   :config
   (global-paren-face-mode))
 
+(use-package rainbow-delimiters
+  :hook ((lisp-mode
+          emacs-lisp-mode
+          clojure-mode
+          clojure-ts-mode
+          cider-repl-mode) . rainbow-delimiters-mode))
+
 ;; TypeScript / JavaScript (built-in tree-sitter modes)
 (use-feature typescript-ts-mode
   :mode "\\.ts\\'")
