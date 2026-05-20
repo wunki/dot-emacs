@@ -28,6 +28,7 @@
 
 ;; Git diff in the fringe
 (use-package diff-hl
+  :demand t
   :hook ((magit-post-refresh . diff-hl-magit-post-refresh)
          (after-revert . diff-hl-update)
          (dired-mode . diff-hl-dired-mode))
