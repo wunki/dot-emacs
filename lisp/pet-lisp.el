@@ -40,6 +40,7 @@
   (inferior-lisp-program "sbcl")
   (sly-lisp-implementations '((sbcl ("sbcl"))))
   :bind (:map sly-mode-map
+              ("C-c C-z" . pet/sly-mrepl-dwim)
               ("C-c C-k" . sly-compile-and-load-file)
               ("C-c C-r" . sly-compile-region)
               ("C-c C-d d" . sly-describe-symbol)
@@ -48,16 +49,39 @@
   (defvar pet/sly-source-buffer nil
     "Buffer to return to from the SLY REPL.")
 
-  (defun pet/sly-mrepl-toggle-around (fn &rest args)
-    "Make `sly-mrepl' toggle back to the last source buffer.
-FN and ARGS are the original `sly-mrepl' function and arguments."
-    (if (derived-mode-p 'sly-mrepl-mode)
-        (if (buffer-live-p pet/sly-source-buffer)
-            (pop-to-buffer pet/sly-source-buffer)
-          (apply fn args))
-      (when (bound-and-true-p sly-mode)
-        (setq pet/sly-source-buffer (current-buffer)))
-      (apply fn args))))
+  (defun pet/sly-remember-source-buffer ()
+    "Remember the current SLY source buffer for REPL toggling."
+    (when (bound-and-true-p sly-mode)
+      (setq pet/sly-source-buffer (current-buffer))))
+
+  (defun pet/sly-pop-to-mrepl ()
+    "Pop to the current SLY MREPL."
+    (sly-mrepl 'pop-to-buffer))
+
+  (defun pet/sly-pop-to-source-buffer ()
+    "Pop to the source buffer remembered by `pet/sly-mrepl-dwim'."
+    (when (buffer-live-p pet/sly-source-buffer)
+      (pop-to-buffer pet/sly-source-buffer)))
+
+  (defun pet/sly-mrepl-dwim ()
+    "Start SLY, switch to the MREPL, or toggle back to source."
+    (interactive)
+    (cond
+     ((derived-mode-p 'sly-mrepl-mode)
+      (or (pet/sly-pop-to-source-buffer)
+          (pet/sly-pop-to-mrepl)))
+     ((not (sly-connected-p))
+      (pet/sly-remember-source-buffer)
+      (call-interactively #'sly))
+     (t
+      (pet/sly-remember-source-buffer)
+      (pet/sly-pop-to-mrepl))))
+
+  (defun pet/sly-bind-mrepl-dwim ()
+    "Bind `pet/sly-mrepl-dwim' after SLY contribs have touched keymaps."
+    (define-key sly-editing-mode-map (kbd "C-c C-z") #'pet/sly-mrepl-dwim)
+    (define-key sly-mode-map (kbd "C-c C-z") #'pet/sly-mrepl-dwim)
+    (define-key sly-mrepl-mode-map (kbd "C-c C-z") #'pet/sly-mrepl-dwim)))
 
 (use-package sly-mrepl
   :ensure nil
@@ -68,8 +92,8 @@ FN and ARGS are the original `sly-mrepl' function and arguments."
   (sly-mrepl-prevent-duplicate-history 'move)
   :hook (sly-mrepl-mode . electric-pair-mode)
   :config
-  ;; Keep SLY's own C-c C-z binding, but make repeated use toggle back.
-  (advice-add 'sly-mrepl :around #'pet/sly-mrepl-toggle-around))
+  (pet/sly-bind-mrepl-dwim)
+  (add-hook 'sly-connected-hook #'pet/sly-bind-mrepl-dwim))
 
 (use-package sly-asdf
   :after sly
