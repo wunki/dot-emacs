@@ -28,10 +28,12 @@
 
 ;; Git diff in the fringe
 (use-package diff-hl
-  :hook ((magit-pre-refresh . diff-hl-magit-pre-refresh)
-         (magit-post-refresh . diff-hl-magit-post-refresh))
+  :hook ((magit-post-refresh . diff-hl-magit-post-refresh)
+         (after-revert . diff-hl-update)
+         (dired-mode . diff-hl-dired-mode))
   :config
-  (global-diff-hl-mode))
+  (global-diff-hl-mode)
+  (diff-hl-flydiff-mode))
 
 (provide 'pet-git)
 ;;; pet-git.el ends here
