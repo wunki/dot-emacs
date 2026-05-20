@@ -93,6 +93,7 @@
   (dired-omit-verbose nil))
 
 ;; Auto-revert
+(setq auto-revert-verbose nil)
 (global-auto-revert-mode 1)
 
 ;; Delete selection
