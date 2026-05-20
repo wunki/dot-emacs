@@ -281,38 +281,6 @@
   :mode ("\\.md\\'" "\\.markdown\\'")
   :custom (markdown-command "multimarkdown"))
 
-;; Common Lisp
-(use-package sly
-  :custom
-  (inferior-lisp-program "sbcl")
-  (sly-symbol-completion-mode nil)
-  :bind (:map sly-mode-map
-              ("C-c C-z" . pet/sly-mrepl-toggle))
-  :preface
-  (defvar pet/sly-source-buffer nil
-    "Buffer to return to from the SLY REPL.")
-  (defun pet/sly-mrepl-toggle ()
-    "Toggle between source buffer and the SLY REPL."
-    (interactive)
-    (if (derived-mode-p 'sly-mrepl-mode)
-        (if (buffer-live-p pet/sly-source-buffer)
-            (pop-to-buffer pet/sly-source-buffer)
-          (message "No source buffer remembered"))
-      (setq pet/sly-source-buffer (current-buffer))
-      (call-interactively #'sly-mrepl))))
-
-(use-package sly-mrepl
-  :ensure nil
-  :after sly
-  :hook (sly-mrepl-mode . electric-pair-mode)
-  :bind (:map sly-mrepl-mode-map
-              ("C-c C-z" . pet/sly-mrepl-toggle)))
-
-(use-package sly-asdf
-  :after sly
-  :config
-  (add-to-list 'sly-contribs 'sly-asdf 'append))
-
 ;; Docker (built-in tree-sitter mode)
 (use-feature dockerfile-ts-mode
   :mode "Dockerfile\\'")

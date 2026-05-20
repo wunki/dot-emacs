@@ -23,6 +23,7 @@
 (require 'pet-editing)
 (require 'pet-git)
 (require 'pet-notes)
+(require 'pet-lisp)
 (require 'pet-language-server)
 (require 'pet-languages)
 (require 'pet-ai)
