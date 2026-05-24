@@ -14,6 +14,10 @@
                   (default
                    :default-family "Space Mono"
                    :default-height 100)
+                  (ibm
+                   :default-family "IBM Plex Mono"
+                   :default-height 100
+                   )
                   (t
                    :default-family "Maple Mono NF"
                    :default-weight regular
