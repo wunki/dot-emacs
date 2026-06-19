@@ -14,6 +14,12 @@
   "Return non-nil if running on macOS."
   (eq system-type 'darwin))
 
+(defun pet/is-gui ()
+  "Return non-nil if running in a graphical window-system.
+GUI Emacs (launched from a desktop entry or app bundle) inherits a
+minimal environment, unlike a terminal Emacs started from a shell."
+  (memq window-system '(mac ns x pgtk w32)))
+
 (defun pet/rename-file-and-buffer ()
   "Rename the current buffer and file it is visiting."
   (interactive)
