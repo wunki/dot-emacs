@@ -115,6 +115,14 @@
         '("\\*Messages\\*"
           "Output\\*$"
           "\\*Async Shell Command\\*"
+          "\\*sly-mrepl"
+          "\\*sly-db"
+          "\\*sly-inspector"
+          "\\*sly-xref"
+          "\\*sly-traces"
+          "\\*sly-compilation"
+          "\\*sly-macroexpansion"
+          "\\*sly-description"
           help-mode
           compilation-mode))
   (popper-mode +1)

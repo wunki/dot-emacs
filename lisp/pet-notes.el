@@ -3,6 +3,7 @@
 ;;; Code:
 
 (require 'pet-lib)
+(require 'project)
 
 (defvar pet/notes-directory "~/Notes")
 
@@ -11,37 +12,54 @@
   (when-let* ((project (project-current)))
     (project-root project)))
 
+(defun pet/project-notes-file ()
+  "Return the NOTES.org file for the current project."
+  (if-let* ((project-root (pet/current-project-root)))
+      (expand-file-name "NOTES.org" project-root)
+    (user-error "Not in a project")))
+
+(defun pet/project-note-title (notes-file)
+  "Return a title for NOTES-FILE based on its project directory."
+  (file-name-nondirectory
+   (directory-file-name
+    (file-name-directory notes-file))))
+
+(defun pet/ensure-project-note ()
+  "Open and initialize the current project's NOTES.org file."
+  (let ((notes-file (pet/project-notes-file)))
+    (find-file notes-file)
+    (when (= (point-min) (point-max))
+      (insert "* " (pet/project-note-title notes-file) "\n\n"))
+    (goto-char (point-min))))
+
 (use-feature org
   :preface
   (defun pet/find-project-note ()
     "Find and open the current project note."
     (interactive)
-    (let* ((project-root (pet/current-project-root))
-           (notes-file (concat project-root "NOTES.org")))
-      (find-file notes-file)
-      (goto-char (point-min))))
+    (pet/ensure-project-note))
 
   (defun pet/insert-project-note ()
-    "Insert a note for the current project in the NOTES.org file."
+    "Insert a note under today's heading in the current project note."
     (interactive)
-    (let* ((project-root (pet/current-project-root))
-           (notes-file (concat project-root "NOTES.org"))
-           (today (format-time-string "%Y-%m-%d %a"))
-           (today-header (concat "<" today ">")))
-      (find-file notes-file)
-      (goto-char (point-min))
+    (let* ((today-header (format-time-string "<%Y-%m-%d %a>"))
+           (today-heading-regexp
+            (concat "^\\*\\* " (regexp-quote today-header) "\\s-*$")))
+      (pet/ensure-project-note)
       (cond
-       ((search-forward today-header nil t)
-        (org-end-of-subtree)
-        (org-end-of-item))
-       ((search-forward-regexp "^\\*\\* " nil t)
-        (beginning-of-line)
-        (insert "** " today-header "\n\n")
-        (forward-line -2))
+       ((re-search-forward today-heading-regexp nil t)
+        (org-end-of-subtree t t)
+        (unless (bolp) (insert "\n"))
+        (unless (looking-back "\n\n" nil) (insert "\n")))
+       ((re-search-forward "^\\*\\s-+" nil t)
+        (forward-line 1)
+        (insert "\n** " today-header "\n\n")
+        (forward-line -1))
        (t
         (goto-char (point-max))
         (unless (bolp) (insert "\n"))
-        (insert "** " today-header "\n\n")))))
+        (insert "\n** " today-header "\n\n")
+        (forward-line -1)))))
 
   :custom
   (org-startup-indented t)

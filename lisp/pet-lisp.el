@@ -22,6 +22,10 @@
 (use-package paredit
   :hook (lisp-mode . paredit-mode))
 
+(use-feature lisp-mode
+  :custom
+  (lisp-indent-function 'common-lisp-indent-function))
+
 ;; open up Hyperspec urls in Emacs itself
 (use-feature browse-url
   :config
@@ -39,15 +43,74 @@
   :custom
   (inferior-lisp-program "sbcl")
   (sly-lisp-implementations '((sbcl ("sbcl"))))
+  (sly-complete-symbol-function 'sly-flex-completions)
+  :hook (lisp-mode . sly-editing-mode)
   :bind (:map sly-mode-map
               ("C-c C-z" . pet/sly-mrepl-dwim)
               ("C-c C-k" . sly-compile-and-load-file)
               ("C-c C-r" . sly-compile-region)
+              ("C-c C-a l" . pet/sly-asdf-load-system)
+              ("C-c C-a t" . pet/sly-asdf-test-system)
+              ("C-c C-a r" . pet/sly-asdf-reload-system)
               ("C-c C-d d" . sly-describe-symbol)
               ("C-c C-d h" . sly-hyperspec-lookup))
   :preface
   (defvar pet/sly-source-buffer nil
     "Buffer to return to from the SLY REPL.")
+
+  (defun pet/sly-project-root ()
+    "Return the current project root, preferring Emacs project metadata."
+    (when-let* ((project (project-current nil)))
+      (project-root project)))
+
+  (defun pet/sly-project-asdf-systems ()
+    "Return ASDF system names in the current project root."
+    (when-let* ((root (pet/sly-project-root)))
+      (mapcar (lambda (file)
+                (file-name-base file))
+              (directory-files root nil "\\.asd\\'"))))
+
+  (defun pet/sly-read-asdf-system ()
+    "Read an ASDF system name, defaulting to the current project."
+    (let* ((systems (pet/sly-project-asdf-systems))
+           (default (car systems)))
+      (cond
+       ((null systems)
+        (read-string "ASDF system: "))
+       ((cdr systems)
+        (completing-read "ASDF system: " systems nil t nil nil default))
+       (t default))))
+
+  (defun pet/sly-eval-string (form)
+    "Evaluate FORM through SLY, starting SLY first if needed."
+    (if (sly-connected-p)
+        (sly-interactive-eval form)
+      (call-interactively #'sly)
+      (message "Started SLY; rerun the command once the REPL is connected.")))
+
+  (defun pet/sly-asdf-form (operator system &optional keys)
+    "Build an ASDF OPERATOR form for SYSTEM and KEYS."
+    (format "(asdf:%s %S%s)"
+            operator
+            system
+            (if keys
+                (concat " " keys)
+              "")))
+
+  (defun pet/sly-asdf-load-system (system)
+    "Load the current ASDF SYSTEM."
+    (interactive (list (pet/sly-read-asdf-system)))
+    (pet/sly-eval-string (pet/sly-asdf-form "load-system" system)))
+
+  (defun pet/sly-asdf-test-system (system)
+    "Run ASDF tests for the current SYSTEM."
+    (interactive (list (pet/sly-read-asdf-system)))
+    (pet/sly-eval-string (pet/sly-asdf-form "test-system" system)))
+
+  (defun pet/sly-asdf-reload-system (system)
+    "Force-reload the current ASDF SYSTEM."
+    (interactive (list (pet/sly-read-asdf-system)))
+    (pet/sly-eval-string (pet/sly-asdf-form "load-system" system ":force t")))
 
   (defun pet/sly-remember-source-buffer ()
     "Remember the current SLY source buffer for REPL toggling."
