@@ -34,6 +34,12 @@
   :config
   (setq completion-styles '(orderless basic)))
 
+;; Refresh the completion UI eagerly as you type, and walk visible
+;; candidates with the arrow keys.
+(setopt completion-eager-update t
+        completion-eager-display 'auto
+        minibuffer-visible-completions 'up-down)
+
 ;; Enhanced search and navigation commands
 (use-package consult
   :bind (("M-s M-g" . consult-ripgrep)
@@ -91,6 +97,13 @@
 (use-package wgrep
   :custom
   (wgrep-auto-save-buffer t))
+
+;; Speedbar now docks in a side window instead of a separate frame.
+(use-feature speedbar
+  :bind ("M-I" . speedbar-window)
+  :custom
+  (speedbar-window-default-width 25)
+  (speedbar-window-max-width 25))
 
 ;; Popup buffer management
 (use-package popper

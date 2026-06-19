@@ -27,7 +27,12 @@
         eglot-autoreconnect t
         eglot-extend-to-xref t
         eglot-send-changes-idle-time 0.5
-        eglot-ignored-server-capabilities '(:foldingRangeProvider))
+        eglot-ignored-server-capabilities '(:foldingRangeProvider)
+        ;; Render LSP hover docs with the built-in markdown-ts viewer
+        ;; (experimental) instead of falling back to plain text.
+        eglot-documentation-renderer 'markdown-ts-view-mode
+        ;; Some servers make the inline "code action here" hints noisy.
+        eglot-code-action-indications nil)
   ;; Let orderless work with eglot completions
   (add-to-list 'completion-category-overrides '(eglot (styles orderless basic)))
   (add-to-list 'eglot-server-programs

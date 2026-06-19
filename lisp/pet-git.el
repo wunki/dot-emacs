@@ -2,6 +2,14 @@
 ;;; Commentary:
 ;;; Code:
 
+(use-feature vc
+  :custom
+  (vc-auto-revert-mode t)
+  ;; vc-dir now hides up-to-date files on refresh by itself.
+  (vc-dir-auto-hide-up-to-date 'revert)
+  ;; Allow rewriting already-pushed history (jj, force-pushed branches).
+  (vc-allow-rewriting-published-history t))
+
 ;; Magical Git GUI
 (use-package magit
   :preface

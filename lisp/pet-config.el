@@ -66,6 +66,18 @@
 ;; No lockfiles
 (setq create-lockfiles nil)
 
+;; C-w with no active region kills the previous word instead of erroring.
+(setq kill-region-dwim 'emacs-word)
+
+;; After delete-pair, push a mark so C-x C-x reselects what was inside.
+(setq delete-pair-push-mark t)
+
+;; Keep C-h l (view-lossage) live-updating.
+(setq view-lossage-auto-refresh t)
+
+;; Re-uniquify buffer names after a buffer is killed.
+(setq uniquify-after-kill-buffer-flag t)
+
 (use-feature project
   :demand)
 
@@ -90,7 +102,13 @@
                         (dired-hide-details-mode 1)))
   :custom
   (dired-omit-files "^\.?#\|\.DS_Store")
-  (dired-omit-verbose nil))
+  (dired-omit-verbose nil)
+  ;; Hide the absolute directory path in dired-hide-details-mode.
+  (dired-hide-details-hide-absolute-location t))
+
+;; Human-readable sizes (KB/MB) in ibuffer.
+(use-feature ibuffer
+  :custom (ibuffer-human-readable-size t))
 
 ;; Auto-revert
 (setq auto-revert-verbose nil)
@@ -200,6 +218,9 @@
 (use-package kkp
   :ensure t
   :hook (tty-setup . global-kkp-mode))
+
+;; Tooltips in the terminal too.
+(add-hook 'tty-setup-hook #'tty-tip-mode)
 
 ;; Hide Emacs on Mac
 (when (pet/is-mac)

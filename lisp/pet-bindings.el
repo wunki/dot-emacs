@@ -4,9 +4,6 @@
 
 (require 'pet-lib)
 
-;; Kill region, or when nothing selected, the word
-(global-set-key (kbd "C-w") 'pet/kill-region-or-backward-word)
-
 ;; Always indent after a newline
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
@@ -24,6 +21,12 @@
 (global-set-key (kbd "C-x C-+") 'global-text-scale-adjust)
 (global-set-key (kbd "C-x C-0") 'global-text-scale-adjust)
 (global-set-key (kbd "C-x C--") 'global-text-scale-adjust)
+
+;; Rearrange the window layout without manual split/kill
+(global-set-key (kbd "C-x w t")   'window-layout-transpose)
+(global-set-key (kbd "C-x w r")   'window-layout-rotate-clockwise)
+(global-set-key (kbd "C-x w f h") 'window-layout-flip-leftright)
+(global-set-key (kbd "C-x w f v") 'window-layout-flip-topdown)
 
 (provide 'pet-bindings)
 ;;; pet-bindings.el ends here

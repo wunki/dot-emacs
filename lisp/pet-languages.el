@@ -3,39 +3,18 @@
 ;;; Code:
 
 (require 'pet-lib)
+(require 'treesit)
 
-;; Tree-sitter grammar sources
+;; The built-in modes now ship their own grammar sources and Emacs
+;; fetches+builds them on demand, so the old source list and install hook
+;; are gone. Only Odin (the custom mode below) and Clojure (third-party
+;; mode) ship no source of their own, so they still need spelling out.
 (setq treesit-language-source-alist
-      '((elixir "https://github.com/elixir-lang/tree-sitter-elixir")
-        (heex "https://github.com/phoenixframework/tree-sitter-heex")
-        (go "https://github.com/tree-sitter/tree-sitter-go")
-        (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
-        (rust "https://github.com/tree-sitter/tree-sitter-rust")
-        (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
-        (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
-        (javascript "https://github.com/tree-sitter/tree-sitter-javascript")
-        (css "https://github.com/tree-sitter/tree-sitter-css")
-        (json "https://github.com/tree-sitter/tree-sitter-json")
-        (yaml "https://github.com/tree-sitter-grammars/tree-sitter-yaml")
-        (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
-        (c "https://github.com/tree-sitter/tree-sitter-c")
-        (odin "https://github.com/tree-sitter-grammars/tree-sitter-odin")
-        (clojure "https://github.com/sogaiu/tree-sitter-clojure")
-        (markdown "https://github.com/tree-sitter-grammars/tree-sitter-markdown" "split_parser" "tree-sitter-markdown/src")))
+      '((odin "https://github.com/tree-sitter-grammars/tree-sitter-odin")
+        (clojure "https://github.com/sogaiu/tree-sitter-clojure")))
 
-;; Auto-install missing tree-sitter grammars
-(defun pet/ensure-treesit-grammar (lang)
-  "Install tree-sitter grammar for LANG if missing and source is known."
-  (when (and (not (treesit-language-available-p lang))
-             (assq lang treesit-language-source-alist))
-    (message "Installing tree-sitter grammar for %s..." lang)
-    (treesit-install-language-grammar lang)
-    (message "Installed tree-sitter grammar for %s" lang)))
-
-(add-hook 'after-init-hook
-          (lambda ()
-            (mapc #'pet/ensure-treesit-grammar
-                  (mapcar #'car treesit-language-source-alist))))
+(setopt treesit-auto-install-grammar 'always ; install missing grammars on demand
+        treesit-enabled-modes t)             ; prefer the *-ts-mode variant everywhere
 
 ;; Inline Emacs Lisp evaluation
 (use-package eros
@@ -56,6 +35,9 @@
               ("C-c ! l" . flymake-show-buffer-diagnostics)))
 
 (use-feature ielm
+  :custom
+  ;; IELM input history is now persisted across sessions.
+  (ielm-history-file-name (no-littering-expand-var-file-name "ielm-history.eld"))
   :config
   (setq ielm-prompt "λ "))
 
@@ -151,7 +133,10 @@
 
 ;; Documentation
 (use-feature eldoc
-  :hook (prog-mode . eldoc-mode))
+  :hook (prog-mode . eldoc-mode)
+  :custom
+  (eldoc-help-at-pt t)                    ; show help for the symbol under point
+  (eldoc-echo-area-prefer-doc-buffer t))
 
 (use-package eldoc-box
   :bind ("C-c d" . eldoc-box-help-at-point))
@@ -283,10 +268,10 @@
 (use-feature yaml-ts-mode
   :mode "\\.ya?ml\\'")
 
-;; Markdown
-(use-package markdown-mode
-  :mode ("\\.md\\'" "\\.markdown\\'")
-  :custom (markdown-command "multimarkdown"))
+;; Markdown (built-in tree-sitter mode, still experimental: live-fontified
+;; code blocks, inline images, Org-like heading editing)
+(use-feature markdown-ts-mode
+  :mode ("\\.md\\'" "\\.markdown\\'"))
 
 ;; Docker (built-in tree-sitter mode)
 (use-feature dockerfile-ts-mode

@@ -4,13 +4,6 @@
 
 (require 'pet-packages)
 
-(defun pet/kill-region-or-backward-word ()
-  "Kill the active region or the word backwards."
-  (interactive)
-  (if (region-active-p)
-      (kill-region (region-beginning) (region-end))
-    (backward-kill-word 1)))
-
 (defun pet/edit-emacs-configuration ()
   "Edit a file in the Emacs configuration."
   (interactive)
