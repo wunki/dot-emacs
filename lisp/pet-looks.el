@@ -13,7 +13,7 @@
                 '((regular)
                   (default
                    :default-family "Space Mono"
-                   :default-height 100)
+                   :default-height 90)
                   (ibm
                    :default-family "IBM Plex Mono"
                    :default-height 100
