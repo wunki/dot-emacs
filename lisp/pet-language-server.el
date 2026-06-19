@@ -40,7 +40,7 @@
                   clojuredart-mode clojure-ts-mode)
                  "clojure-lsp"))
   (add-to-list 'eglot-server-programs
-               '((elixir-ts-mode heex-ts-mode) "~/.local/bin/expert" "--stdio"))
+               '((elixir-ts-mode heex-ts-mode) "expert" "--stdio"))
   (add-to-list 'eglot-server-programs '(c-ts-mode "clangd"))
   (add-to-list 'eglot-server-programs '(odin-ts-mode "ols"))
   (add-to-list 'eglot-server-programs

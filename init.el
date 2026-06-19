@@ -22,6 +22,7 @@
 (require 'pet-completion)
 (require 'pet-editing)
 (require 'pet-git)
+(require 'pet-tramp)
 (require 'pet-notes)
 (require 'pet-lisp)
 (require 'pet-language-server)
