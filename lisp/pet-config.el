@@ -169,9 +169,11 @@
          ("C-h x" . helpful-command)
          ("C-c C-d" . helpful-at-point)))
 
-;; Shell environment (needed on macOS)
+;; Shell environment. GUI Emacs (macOS, or Linux launched from a desktop
+;; entry) inherits a minimal PATH, so subprocesses like LSP servers can't be
+;; found. In a terminal the shell PATH is already inherited, so skip it there.
 (use-package exec-path-from-shell
-  :if (pet/is-mac)
+  :if (pet/is-gui)
   :init
   (exec-path-from-shell-initialize)
   :config
