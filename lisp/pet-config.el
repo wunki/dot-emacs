@@ -208,11 +208,18 @@
 (use-package eat
   :after project
   :commands eat
+  :preface
+  (defun pet-eat-display-tweaks ()
+    "Make eat render full-screen TUIs (Pi, Claude Code, apt) correctly.
+Stop recentering, which corrupts in-place redraws like progress bars
+\(see emacs-eat issue #145)."
+    (setq-local scroll-conservatively 10000))
   :bind (("C-c t" . eat)
          :map project-prefix-map
          ("t" . eat-project))
   :custom
   (eat-kill-buffer-on-exit t)
+  :hook (eat-mode . pet-eat-display-tweaks)
   :config
   (setq explicit-shell-file-name "/usr/bin/zsh"))
 

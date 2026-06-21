@@ -12,7 +12,7 @@
   (setq-default fontaine-presets
                 '((regular)
                   (default
-                   :default-family "Space Mono"
+                   :default-family "IBM Plex Mono"
                    :default-height 90)
                   (ibm
                    :default-family "IBM Plex Mono"
@@ -46,7 +46,6 @@
     (funcall mode 0)))
 
 ;; Frame defaults
-(setq-default line-spacing 2)
 (setq frame-resize-pixelwise t
       default-frame-alist (append (list
                                    '(vertical-scroll-bars . nil)
