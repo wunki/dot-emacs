@@ -43,6 +43,7 @@
                '((elixir-ts-mode heex-ts-mode) "expert" "--stdio"))
   (add-to-list 'eglot-server-programs '(c-ts-mode "clangd"))
   (add-to-list 'eglot-server-programs '(odin-ts-mode "ols"))
+  (add-to-list 'eglot-server-programs '(zig-ts-mode "zls"))
   (add-to-list 'eglot-server-programs
                '((typescript-ts-mode tsx-ts-mode js-ts-mode) .
                  ("typescript-language-server" "--stdio")))
@@ -51,8 +52,8 @@
 
   :hook (((clojure-mode clojurescript-mode clojurec-mode clojuredart-mode
            clojure-ts-mode elixir-ts-mode heex-ts-mode c-ts-mode go-ts-mode
-           go-mod-ts-mode rust-ts-mode odin-ts-mode typescript-ts-mode
-           tsx-ts-mode js-ts-mode svelte-mode) . eglot-ensure)
+           go-mod-ts-mode rust-ts-mode odin-ts-mode zig-ts-mode
+           typescript-ts-mode tsx-ts-mode js-ts-mode svelte-mode) . eglot-ensure)
          ((clojure-mode clojurescript-mode clojurec-mode clojuredart-mode
            clojure-ts-mode) . pet/eglot-format-buffer-on-save)
          (elixir-ts-mode . pet/eglot-format-buffer-on-save)
@@ -60,6 +61,7 @@
          (go-ts-mode . pet/eglot-organize-imports-on-save)
          (c-ts-mode . pet/eglot-format-buffer-on-save)
          (odin-ts-mode . pet/eglot-format-buffer-on-save)
+         (zig-ts-mode . pet/eglot-format-buffer-on-save)
          (typescript-ts-mode . pet/eglot-format-buffer-on-save)
          (tsx-ts-mode . pet/eglot-format-buffer-on-save)
          (js-ts-mode . pet/eglot-format-buffer-on-save)

@@ -11,7 +11,8 @@
 ;; mode) ship no source of their own, so they still need spelling out.
 (setq treesit-language-source-alist
       '((odin "https://github.com/tree-sitter-grammars/tree-sitter-odin")
-        (clojure "https://github.com/sogaiu/tree-sitter-clojure")))
+        (clojure "https://github.com/sogaiu/tree-sitter-clojure")
+        (zig "https://github.com/tree-sitter-grammars/tree-sitter-zig")))
 
 (setopt treesit-auto-install-grammar 'always ; install missing grammars on demand
         treesit-enabled-modes t)             ; prefer the *-ts-mode variant everywhere
@@ -135,7 +136,7 @@
 (use-feature eldoc
   :hook (prog-mode . eldoc-mode)
   :custom
-  (eldoc-help-at-pt t)                    ; show help for the symbol under point
+  (eldoc-help-at-pt nil)                  ; avoid duplicating flymake/eglot eldoc output
   (eldoc-echo-area-prefer-doc-buffer t))
 
 (use-package eldoc-box
@@ -253,12 +254,26 @@
     (setq-local comment-start "// ")
     (setq-local comment-end "")
     (setq-local comment-start-skip "//+\\s-*")
+    (setq-local compile-command "odin run .")
     (treesit-major-mode-setup)))
 
 (add-to-list 'auto-mode-alist '("\\.odin\\'" . odin-ts-mode))
 
-;; Zig
-(use-package zig-mode
+(defun pet/project-find-odin (dir)
+  "Find Odin project root for DIR, marked by ols.json."
+  (when-let* ((root (locate-dominating-file dir "ols.json")))
+    (cons 'odin-project root)))
+
+(cl-defmethod project-root ((project (head odin-project)))
+  "Return root of Odin PROJECT."
+  (cdr project))
+
+(add-hook 'project-find-functions #'pet/project-find-odin)
+
+;; Zig (tree-sitter mode; LSP via zls wired up in pet-language-server.el).
+;; Not on MELPA/NonGNU ELPA, so fetched via use-package :vc (Emacs 30+).
+(use-package zig-ts-mode
+  :vc (:url "https://codeberg.org/meow_king/zig-ts-mode")
   :mode "\\.zig\\'")
 
 ;; Fish shell
