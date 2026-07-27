@@ -221,7 +221,7 @@ Stop recentering, which corrupts in-place redraws like progress bars
   (eat-kill-buffer-on-exit t)
   :hook (eat-mode . pet-eat-display-tweaks)
   :config
-  (setq explicit-shell-file-name "/usr/bin/zsh"))
+  (setq explicit-shell-file-name "/opt/homebrew/bin/fish"))
 
 ;; Make Emacs work from the terminal
 (use-package kkp

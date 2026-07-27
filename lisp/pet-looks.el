@@ -11,13 +11,16 @@
   (setq-default text-scale-remap-header-line t)
   (setq-default fontaine-presets
                 '((regular)
-                  (default
-                   :default-family "IBM Plex Mono"
-                   :default-height 90)
                   (ibm
                    :default-family "IBM Plex Mono"
-                   :default-height 100
+                   :default-height 110
                    )
+                  (source-code-pro
+                   :default-family "Source Code Pro"
+                   :default-height 120
+                   )
+                  (maple
+                   :default-family "Maple Mono Normal")
                   (t
                    :default-family "Maple Mono NF"
                    :default-weight regular
@@ -34,7 +37,7 @@
                    :italic-family nil
                    :italic-slant italic
                    :line-spacing nil)))
-  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'default))
+  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'ibm))
   (fontaine-mode))
 
 ;; Variable pitch for text modes
