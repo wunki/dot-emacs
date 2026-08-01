@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'pet-packages)
+
 (use-feature vc
   :custom
   ;; vc-dir now hides up-to-date files on refresh by itself.
@@ -35,11 +37,15 @@
 
 ;; Git diff in the fringe
 (use-package diff-hl
+  :functions (global-diff-hl-mode diff-hl-flydiff-mode)
   :demand t
   :hook ((magit-post-refresh . diff-hl-magit-post-refresh)
          (after-revert . diff-hl-update)
          (dired-mode . diff-hl-dired-mode))
   :config
+  ;; `diff-hl' normally fills the whole fringe. Use a centered two-pixel bar.
+  (define-fringe-bitmap 'pet-diff-hl-bmp [#b00110000] 1 8 '(top t))
+  (setq diff-hl-fringe-bmp-function (lambda (&rest _) 'pet-diff-hl-bmp))
   (global-diff-hl-mode)
   (diff-hl-flydiff-mode))
 

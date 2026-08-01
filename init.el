@@ -6,6 +6,8 @@
 ;;; Code:
 
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
+(add-to-list 'elisp-flymake-byte-compile-load-path
+             (expand-file-name "lisp" user-emacs-directory))
 
 ;; Trust the content for my elisp files
 (add-to-list 'trusted-content

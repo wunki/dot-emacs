@@ -3,6 +3,8 @@
 ;;; Code:
 
 (use-package gptel
+  :functions (gptel-make-openai-oauth)
+  :defines (gptel-backend gptel-model)
   :commands (gptel gptel-send gptel-menu gptel-rewrite gptel-add)
   :bind (("C-c a" . gptel-add)
          ("C-c i" . gptel-menu))

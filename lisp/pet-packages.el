@@ -7,6 +7,7 @@
 ;;; Code:
 
 (require 'package)
+(require 'use-package)
 ;; HTTPS protects transport. MELPA is unsigned anyway.
 (setq package-check-signature nil)
 (setq package-archives
@@ -32,6 +33,7 @@ NAME and ARGS are passed to `use-package'."
      ,@args))
 
 (use-package gcmh
+  :functions (gcmh-mode)
   :config (gcmh-mode 1))
 
 (provide 'pet-packages)

@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'cl-lib)
 (require 'pet-lib)
 
 ;; projects don't need to be added to Git to be found
@@ -34,6 +35,8 @@
    '("https://www\\.lispworks\\.com/reference/HyperSpec/" . eww-browse-url)))
 
 (use-package sly
+  :functions (sly-connected-p sly-interactive-eval sly-mrepl)
+  :defines (sly-mrepl-mode-map)
   :init
   (setq sly-contribs '(sly-fancy
                        sly-asdf

@@ -5,11 +5,14 @@
 (use-package nerd-icons)
 
 (use-package nerd-icons-corfu
+  :functions (nerd-icons-corfu-formatter)
+  :defines (corfu-margin-formatters)
   :after (nerd-icons corfu)
   :config
   (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
 (use-package nerd-icons-completion
+  :functions (nerd-icons-completion-mode)
   :after (nerd-icons marginalia)
   :config
   (nerd-icons-completion-mode)

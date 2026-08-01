@@ -88,7 +88,6 @@
         modus-themes-italic-constructs t
         modus-themes-variable-pitch-ui nil
         modus-themes-mixed-fonts t
-        modus-themes-prompts '(bold)
         modus-themes-common-palette-overrides
         '((bg-region bg-lavender)
           (fg-region unspecified))))
@@ -99,7 +98,19 @@
         doom-themes-enable-italic t)
   (doom-themes-visual-bell-config)
   (with-eval-after-load 'org (doom-themes-org-config))
-  (load-theme 'doom-meltbus :no-confirm))
+  (load-theme 'doom-meltbus :no-confirm)
+  ;; Make Corfu's selected candidate and Orderless matches easy to read.
+  (custom-theme-set-faces
+   'doom-meltbus
+   '(corfu-current ((t (:background "#303030" :foreground "#ffffff" :extend t))))
+   ;; Show only diff-hl's thin fringe bitmap, not its colored backdrop.
+   '(diff-hl-insert ((t (:foreground "#448844" :background "black"))))
+   '(diff-hl-change ((t (:foreground "#da8548" :background "black"))))
+   '(diff-hl-delete ((t (:foreground "#f8b0b0" :background "black"))))
+   '(orderless-match-face-0 ((t (:background "#303030" :foreground "#ffffff" :weight bold))))
+   '(orderless-match-face-1 ((t (:background "#303030" :foreground "#ffffff" :weight bold))))
+   '(orderless-match-face-2 ((t (:background "#303030" :foreground "#ffffff" :weight bold))))
+   '(orderless-match-face-3 ((t (:background "#303030" :foreground "#ffffff" :weight bold))))))
 
 ;; Ligatures
 (use-package ligature

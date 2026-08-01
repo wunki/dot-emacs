@@ -33,6 +33,7 @@
     (goto-char (point-min))))
 
 (use-feature org
+  :functions (org-end-of-subtree)
   :preface
   (defun pet/find-project-note ()
     "Find and open the current project note."
@@ -74,7 +75,7 @@
   (denote-directory pet/notes-directory)
   (denote-known-keywords '("journal" "projects" "ideas" "people" "posts" "interviews"))
   :hook
-  ((text-mode . denote-fontify-links-mode-maybe)
+  ((text-mode . denote-fontify-links-mode)
    (dired-mode . denote-dired-mode))
   :bind (("C-c N" . denote)
          ("C-c n" . denote-open-or-create))

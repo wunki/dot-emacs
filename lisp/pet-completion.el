@@ -3,6 +3,8 @@
 ;;; Code:
 
 (use-package corfu
+  :functions (global-corfu-mode)
+  :defines (corfu-map)
   :demand t
   :hook (corfu-mode . corfu-popupinfo-mode)
   :custom
@@ -20,6 +22,7 @@
 
 ;; Extra completion-at-point sources
 (use-package cape
+  :functions (cape-dabbrev cape-file)
   :init
   (add-hook 'completion-at-point-functions #'cape-dabbrev)
   (add-hook 'completion-at-point-functions #'cape-file))

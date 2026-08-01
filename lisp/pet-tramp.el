@@ -10,7 +10,11 @@
 ;;
 ;;; Code:
 
+(require 'autorevert)
+(require 'pet-packages)
+
 (use-feature tramp
+  :defines (tramp-use-connection-share)
   :defer t
   :config
   ;; ssh is quicker to set up than the default scp method and reuses the
@@ -19,7 +23,7 @@
 
   ;; ~/.ssh/config already defines ControlMaster/ControlPath/ControlPersist.
   ;; Tell TRAMP not to inject its own competing -o options and to rely on ours.
-  (setq tramp-use-ssh-controlmaster-options nil)
+  (setq tramp-use-connection-share nil)
 
   ;; Use the remote login shell's own PATH so eglot and compile find language
   ;; servers and tools in ~/.local/bin, mise shims, etc.  This is the single

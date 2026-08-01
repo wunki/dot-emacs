@@ -2,7 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'autorevert)
 (require 'pet-lib)
+(require 'xref)
 
 ;; Buffer encoding
 (prefer-coding-system 'utf-8)
@@ -152,8 +154,12 @@
   (setq-default browse-url-browser-function 'browse-url-generic
                 browse-url-generic-program "xdg-open"))
 
+;; This optional variable is defined only by native-comp-enabled Emacs builds.
+(defvar native-comp-async-report-warnings-errors)
+
 ;; Suppress native-comp warnings
 (when (native-comp-available-p)
+  (require 'comp-run)
   (setq native-comp-async-report-warnings-errors nil))
 
 ;; Smooth scrolling
