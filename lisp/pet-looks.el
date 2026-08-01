@@ -99,15 +99,7 @@
         doom-themes-enable-italic t)
   (doom-themes-visual-bell-config)
   (with-eval-after-load 'org (doom-themes-org-config))
-  ;; Emacs 31 rejects a temporary inheritance cycle while doom-themes
-  ;; applies its Gnus faces. Define the faces first and break the cycle in
-  ;; their base specification; doom-pine then applies its intended values.
-  (when (>= emacs-major-version 31)
-    (require 'gnus)
-    (face-spec-set 'gnus-group-news-low
-                   '((t (:inherit gnus-group-mail-1)))
-                   'face-defface-spec))
-  (load-theme 'doom-pine :no-confirm))
+  (load-theme 'doom-meltbus :no-confirm))
 
 ;; Ligatures
 (use-package ligature
