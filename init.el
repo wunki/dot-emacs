@@ -7,12 +7,17 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
+;; Trust the content for my elisp files
+(add-to-list 'trusted-content
+             (file-name-as-directory
+              (abbreviate-file-name
+               (file-truename user-emacs-directory))))
+
 (require 'server)
 (unless (server-running-p)
   (server-start))
 
 (require 'pet-packages)
-
 (require 'pet-config)
 (require 'pet-lib)
 (require 'pet-bindings)
