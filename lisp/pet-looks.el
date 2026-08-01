@@ -13,18 +13,21 @@
                 '((regular)
                   (ibm
                    :default-family "IBM Plex Mono"
-                   :default-height 110
+                   :line-spacing 0.15
                    )
                   (source-code-pro
                    :default-family "Source Code Pro"
-                   :default-height 120
+                   :line-spacing 0.2
+                   )
+                  (space
+                   :default-family "Space Mono"
                    )
                   (maple
                    :default-family "Maple Mono Normal")
                   (t
-                   :default-family "Maple Mono NF"
+                   :default-family "Maple Mono Normal"
                    :default-weight regular
-                   :default-height 130
+                   :default-height 120
                    :fixed-pitch-family nil
                    :fixed-pitch-weight nil
                    :fixed-pitch-height 1.0
@@ -37,7 +40,7 @@
                    :italic-family nil
                    :italic-slant italic
                    :line-spacing nil)))
-  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'ibm))
+  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'source-code-pro))
   (fontaine-mode))
 
 ;; Variable pitch for text modes
