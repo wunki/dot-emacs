@@ -15,6 +15,10 @@
                    :default-family "IBM Plex Mono"
                    :line-spacing 0.15
                    )
+                  (go
+                   :default-family "GoMono Nerd Font"
+                   :line-spacing 0.2
+                   )
                   (source-code-pro
                    :default-family "Source Code Pro"
                    :line-spacing 0.2
@@ -22,8 +26,13 @@
                   (space
                    :default-family "Space Mono"
                    )
-                  (maple
-                   :default-family "Maple Mono Normal")
+                  (martian
+                   :default-family "Martian Mono"
+                   :default-weight light
+                   :default-width semi-condensed
+                   :line-spacing 0.15)
+                  (intel
+                   :default-family "Intel One Mono")
                   (t
                    :default-family "Maple Mono Normal"
                    :default-weight regular
@@ -40,7 +49,7 @@
                    :italic-family nil
                    :italic-slant italic
                    :line-spacing nil)))
-  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'source-code-pro))
+  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'ibm))
   (fontaine-mode))
 
 ;; Variable pitch for text modes
