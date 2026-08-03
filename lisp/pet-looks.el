@@ -7,6 +7,7 @@
 ;; Fonts
 (use-package fontaine
   :demand
+  :if (pet/is-gui)
   :config
   (setq-default text-scale-remap-header-line t)
   (setq-default fontaine-presets
