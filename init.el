@@ -15,10 +15,6 @@
               (abbreviate-file-name
                (file-truename user-emacs-directory))))
 
-(require 'server)
-(unless (server-running-p)
-  (server-start))
-
 (require 'pet-packages)
 (require 'pet-config)
 (require 'pet-lib)
