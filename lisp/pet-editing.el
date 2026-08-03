@@ -4,6 +4,12 @@
 
 (require 'pet-lib)
 
+;; Send kills through tmux to its paste buffer and the local clipboard via OSC 52
+(use-feature term/tmux
+  :defer t
+  :config
+  (add-to-list 'xterm-tmux-extra-capabilities 'setSelection))
+
 ;; Expand selection
 (use-package expand-region
   :bind ("C-c e" . er/expand-region))

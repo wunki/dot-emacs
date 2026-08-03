@@ -55,12 +55,14 @@
 ;; Recent files
 (use-feature recentf
   :defer 1
-  :config (recentf-mode)
+  :config
+  ;; Hide its startup progress messages, pointless
+  (let ((inhibit-message t))
+    (recentf-mode))
   :custom
   (recentf-max-menu-items 100)
   (recentf-max-saved-items 100))
 
-;; which-key is built-in since Emacs 30
 (use-feature which-key
   :custom
   (which-key-idle-delay 0.5)
