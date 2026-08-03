@@ -234,6 +234,11 @@ Stop recentering, which corrupts in-place redraws like progress bars
   :ensure t
   :hook (tty-setup . global-kkp-mode))
 
+;; Mouse support for terminal frames, including SSH Emacs clients.
+(use-feature xt-mouse
+  :config
+  (xterm-mouse-mode 1))
+
 ;; Tooltips in the terminal too.
 (add-hook 'tty-setup-hook #'tty-tip-mode)
 
