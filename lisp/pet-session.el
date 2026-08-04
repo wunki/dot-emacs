@@ -1,10 +1,12 @@
 ;;; pet-session.el --- preserve state across Emacs clients -*- lexical-binding: t -*-
+
 ;;; Commentary:
 ;;
 ;; Preserve the last terminal client's window layout while the daemon remains
 ;; alive.  State is kept in memory, applies only to terminal frames, and the
 ;; most recently closed terminal frame wins.
 ;;
+
 ;;; Code:
 
 (require 'server)

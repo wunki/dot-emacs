@@ -1,5 +1,12 @@
 ;;; pet-bindings.el --- key bindings -*- lexical-binding: t -*-
+
 ;;; Commentary:
+;;
+;; Global bindings that do not belong to a specific package or feature.
+;; Feature-specific bindings should remain with their `use-package'
+;; declaration in the corresponding module.
+;;
+
 ;;; Code:
 
 (require 'pet-lib)

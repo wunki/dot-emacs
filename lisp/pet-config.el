@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;
 ;; Core Emacs defaults, file behavior, and process environment setup.
-;; Terminal-specific behavior lives in `pet-terminal'.
 ;;
 ;;; Code:
 
