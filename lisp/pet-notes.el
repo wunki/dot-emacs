@@ -1,5 +1,9 @@
 ;;; pet-notes.el --- note taking with org mode and denote -*- lexical-binding: t -*-
 ;;; Commentary:
+;;
+;; Personal knowledge and journal notes use Denote under `pet/notes-directory'.
+;; Project development logs remain regular NOTES.org files in their projects.
+;;
 ;;; Code:
 
 (require 'no-littering)
@@ -7,6 +11,23 @@
 (require 'project)
 
 (defvar pet/notes-directory "~/Notes")
+
+(defvar-keymap pet/notes-map
+  :doc "Keymap for creating, connecting, and retrieving notes."
+  "n" #'denote
+  "f" #'denote-open-or-create
+  "l" #'denote-link-or-create
+  "b" #'denote-backlinks
+  "g" #'denote-grep
+  "d" #'denote-dired
+  "j" #'denote-journal-new-or-existing-entry
+  "r" #'denote-rename-file
+  "x" #'denote-region)
+
+(keymap-global-set "C-c n" pet/notes-map)
+
+(with-eval-after-load 'which-key
+  (which-key-add-key-based-replacements "C-c n" "notes"))
 
 (defun pet/current-project-root ()
   "Return the root directory of the current project."
@@ -74,17 +95,16 @@
 (use-package denote
   :custom
   (denote-directory pet/notes-directory)
-  (denote-known-keywords '("journal" "projects" "ideas" "people" "posts" "interviews"))
+  ;; Build keyword completion from the notes we actually create.
+  (denote-known-keywords nil)
   :hook
-  ((text-mode . denote-fontify-links-mode)
-   (dired-mode . denote-dired-mode))
-  :bind (("C-c N" . denote)
-         ("C-c n" . denote-open-or-create))
+  (dired-mode . denote-dired-mode)
   :config
   (denote-rename-buffer-mode 1))
 
 (use-package denote-journal
-  :bind (("C-c j" . denote-journal-new-or-existing-entry)))
+  :custom
+  (denote-journal-title-format 'day-date-month-year))
 
 (use-package consult-denote
   :after (consult denote)
@@ -93,26 +113,10 @@
 
 ;; Distraction-free writing
 (use-package olivetti
-  :demand
-  :preface
-  (defun pet/writing-mode ()
-    "Distraction-free writing environment."
-    (interactive)
-    (if olivetti-mode
-        (progn
-          (jump-to-register 1)
-          (olivetti-mode -1)
-          (text-scale-decrease 1))
-      (window-configuration-to-register 1)
-      (delete-other-windows)
-      (text-scale-increase 1)
-      (olivetti-mode 1)))
-  :init
-  (setq olivetti-body-width .6)
-  :hook
-  (org-mode . visual-line-mode)
-  :bind
-  (("<f9>" . pet/writing-mode)))
+  :custom
+  (olivetti-body-width 0.6)
+  :hook (org-mode . visual-line-mode)
+  :bind ("<f9>" . olivetti-mode))
 
 (provide 'pet-notes)
 ;;; pet-notes.el ends here
