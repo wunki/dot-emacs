@@ -10,6 +10,9 @@
 
 (defvar ns-pop-up-frames)
 
+(defvar pet/org-typography-font-family "iA Writer Quattro S"
+  "Font family for Org document titles and headings in Doom themes.")
+
 ;; Apply fonts only after a graphical frame exists.  A daemon starts without
 ;; one, while a direct terminal session should never load Fontaine at all.
 (defun pet/setup-fontaine-for-frame (frame)
@@ -91,7 +94,31 @@
   "Disable active themes before a new theme is loaded."
   (mapc #'disable-theme custom-enabled-themes))
 
+(defun pet/apply-doom-org-typography (theme &rest _)
+  "Apply the shared Org typography after Doom THEME is enabled."
+  (when (string-prefix-p "doom-" (symbol-name theme))
+    ;; Some Doom themes use oversized, bold monospace Org faces.  Keep the
+    ;; note typography consistent without changing their colors or UI faces.
+    (custom-theme-set-faces
+     theme
+     `(org-document-title
+       ((t (:family ,pet/org-typography-font-family :height 1.35 :weight regular
+            :foreground "#dddddd"))) t)
+     `(outline-1
+       ((t (:family ,pet/org-typography-font-family :height 1.25 :weight medium
+            :foreground "#dddddd"))) t)
+     `(outline-2
+       ((t (:family ,pet/org-typography-font-family :height 1.15 :weight regular
+            :foreground "#dddddd"))) t)
+     `(outline-3
+       ((t (:family ,pet/org-typography-font-family :height 1.08 :weight regular
+            :foreground "#dddddd"))) t))))
+
 (advice-add 'load-theme :before #'pet/disable-enabled-themes)
+;; `enable-theme-functions` is the standard hook for post-theme face changes.
+;; Remove the previous advice too, so evaluating this file upgrades a live Emacs.
+(advice-remove 'enable-theme #'pet/apply-doom-org-typography)
+(add-hook 'enable-theme-functions #'pet/apply-doom-org-typography)
 
 ;; Themes
 (use-package ef-themes
@@ -128,9 +155,9 @@
         doom-themes-enable-italic t)
   (with-eval-after-load 'org (doom-themes-org-config))
   (load-theme 'doom-meltbus :no-confirm)
-  ;; Make Corfu's selected candidate and Orderless matches easy to read.
   (custom-theme-set-faces
    'doom-meltbus
+   ;; Make Corfu's selected candidate and Orderless matches easy to read.
    '(corfu-current ((t (:background "#303030" :foreground "#ffffff" :extend t))))
    ;; Show only diff-hl's thin fringe bitmap, not its colored backdrop.
    '(diff-hl-insert ((t (:foreground "#448844" :background "black"))))
