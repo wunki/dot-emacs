@@ -2,7 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'pet-lib)
+(require 'no-littering)
+(require 'pet-packages)
 (require 'project)
 
 (defvar pet/notes-directory "~/Notes")
@@ -88,7 +89,7 @@
 (use-package consult-denote
   :after (consult denote)
   :config
-  (consult-denote-mode))
+  (consult-denote-mode 1))
 
 ;; Distraction-free writing
 (use-package olivetti
@@ -97,16 +98,15 @@
   (defun pet/writing-mode ()
     "Distraction-free writing environment."
     (interactive)
-    (if (equal olivetti-mode nil)
+    (if olivetti-mode
         (progn
-          (window-configuration-to-register 1)
-          (delete-other-windows)
-          (text-scale-increase 1)
-          (olivetti-mode t))
-      (progn
-        (jump-to-register 1)
-        (olivetti-mode 0)
-        (text-scale-decrease 1))))
+          (jump-to-register 1)
+          (olivetti-mode -1)
+          (text-scale-decrease 1))
+      (window-configuration-to-register 1)
+      (delete-other-windows)
+      (text-scale-increase 1)
+      (olivetti-mode 1)))
   :init
   (setq olivetti-body-width .6)
   :hook

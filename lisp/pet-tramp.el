@@ -57,10 +57,5 @@
 ;; diff-hl all keep working.
 (setq vc-handled-backends '(Git))
 
-;; global-auto-revert-mode leaves remote files alone by default
-;; (auto-revert-remote-files is nil), so we don't poll the wire on a timer.
-;; Left explicit as a reminder not to flip it on without thinking.
-(setq auto-revert-remote-files nil)
-
 (provide 'pet-tramp)
 ;;; pet-tramp.el ends here

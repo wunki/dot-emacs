@@ -5,7 +5,7 @@
 ;;
 ;;; Code:
 
-(require 'pet-lib)
+(require 'pet-packages)
 
 (use-feature eglot
   :preface
@@ -17,7 +17,6 @@
   (setq eglot-autoshutdown t
         eglot-autoreconnect t
         eglot-extend-to-xref t
-        eglot-send-changes-idle-time 0.5
         eglot-ignored-server-capabilities '(:foldingRangeProvider)
         ;; Render LSP hover docs with the built-in markdown-ts viewer
         ;; (experimental) instead of falling back to plain text.

@@ -3,7 +3,16 @@
 ;;; Code:
 
 (require 'cl-lib)
-(require 'pet-lib)
+(require 'no-littering)
+(require 'pet-packages)
+(require 'project)
+
+;; SLY adds its bundled contrib directory only when a connection starts.  The
+;; MREPL configuration below needs it while this file is loaded and compiled.
+(eval-and-compile
+  (when-let* ((library (locate-library "sly")))
+    (add-to-list 'load-path
+                 (expand-file-name "contrib" (file-name-directory library)))))
 
 ;; projects don't need to be added to Git to be found
 (defun pet/project-find-asdf-system (dir)
@@ -19,9 +28,6 @@
   (cdr project))
 
 (add-hook 'project-find-functions #'pet/project-find-asdf-system)
-
-(use-package paredit
-  :hook (lisp-mode . paredit-mode))
 
 (use-feature lisp-mode
   :custom
@@ -39,15 +45,12 @@
   :defines (sly-mrepl-mode-map)
   :init
   (setq sly-contribs '(sly-fancy
-                       sly-asdf
                        sly-profiler
                        sly-trace-dialog
                        sly-stickers))
   :custom
   (inferior-lisp-program "sbcl")
   (sly-lisp-implementations '((sbcl ("sbcl"))))
-  (sly-complete-symbol-function 'sly-flex-completions)
-  :hook (lisp-mode . sly-editing-mode)
   :bind (:map sly-mode-map
               ("C-c C-z" . pet/sly-mrepl-dwim)
               ("C-c C-k" . sly-compile-and-load-file)
@@ -162,9 +165,7 @@
   (add-hook 'sly-connected-hook #'pet/sly-bind-mrepl-dwim))
 
 (use-package sly-asdf
-  :after sly
-  :config
-  (add-to-list 'sly-contribs 'sly-asdf 'append))
+  :defer t)
 
 (provide 'pet-lisp)
 ;;; pet-lisp.el ends here

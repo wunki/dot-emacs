@@ -1,8 +1,7 @@
 * .emacs
 
-Hi! Are you ready to embrace the power of Emacs? This is my Emacs configuration which makes
-heavy use of =use-package=. It's also highly opinionated and you may find enjoy yourself using
-it if you appreciate the same things as me:
+Hi! Are you ready to embrace the power of Emacs? This configuration makes
+heavy use of =use-package=. It is opinionated and built around two ideas:
 
 - Minimal, have as little distraction as possible, as little packages as possible.
 - Beautiful, I care about aesthetics.
@@ -15,7 +14,52 @@ If you want to use this configuration, all you have to do is clone the repositor
   ln -fns <repository> ~/.config/emacs
 #+end_src
     
-When you start Emacs it will bootstrap itself, have some patience for it will be rewarded.
+The first start refreshes the package archives and installs missing packages.
+
+** Configuration map
+
+=init.el= is a manifest of the modules under =lisp/=. The main boundaries are:
+
+- =pet-config.el=: core defaults, files, and process environment
+- =pet-terminal.el=: terminal, SSH, tmux, mouse, and clipboard support
+- =pet-session.el=: state preserved between daemon client frames
+- =pet-looks.el=: fonts, themes, and frame appearance
+- =pet-navigation.el= and =pet-editing.el=: movement and editing behavior
+- =pet-languages.el=, =pet-language-server.el=, and =pet-lisp.el=: development tools
+- =pet-lib.el=: only small helpers shared by multiple modules
+
+Keep feature-specific functions with their feature rather than collecting them
+in =pet-lib.el=. Comments should explain a constraint or decision, not repeat
+the following setting.
+
+** Persistent terminal workflow
+
+The systemd user service owns the Emacs daemon. Running =es= starts the service
+if necessary and opens a terminal client. =C-x C-c= closes only that client
+frame; the daemon and its buffers remain alive. Opening =es= again restores the
+most recently closed terminal layout while the daemon is still running.
+
+After changing configuration, evaluate a focused definition or module when
+possible. For a full restart, save modified buffers first and run:
+
+#+begin_src shell
+  systemctl --user restart emacs.service
+#+end_src
+
+Startup failures are available with:
+
+#+begin_src shell
+  journalctl --user -u emacs.service
+#+end_src
+
+** Validation
+
+Before restarting the daemon, validate every configuration file and perform a
+clean batch startup:
+
+#+begin_src shell
+  make check
+#+end_src
 
 ** Author
 

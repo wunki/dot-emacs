@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'pet-packages)
+
 (use-package corfu
   :functions (global-corfu-mode)
   :defines (corfu-map)
@@ -9,11 +11,9 @@
   :hook (corfu-mode . corfu-popupinfo-mode)
   :custom
   (corfu-popupinfo-delay '(0.25 . 0.1))
-  (corfu-popupinfo-hide nil)
-  (corfu-auto nil)
   :config
   (setq tab-always-indent 'complete)
-  (global-corfu-mode)
+  (global-corfu-mode 1)
   :bind
   (:map corfu-map
         ("SPC" . corfu-insert-separator)

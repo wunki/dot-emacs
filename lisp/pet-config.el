@@ -1,72 +1,42 @@
 ;;; pet-config.el --- emacs internal configuration -*- lexical-binding: t -*-
 ;;; Commentary:
+;;
+;; Core Emacs defaults, file behavior, and process environment setup.
+;; Terminal-specific behavior lives in `pet-terminal'.
+;;
 ;;; Code:
 
 (require 'autorevert)
-(require 'pet-lib)
+(require 'pet-packages)
 (require 'xref)
 
-;; Buffer encoding
+(defvar ns-use-proxy-icon)
+
+;; Startup and display
 (prefer-coding-system 'utf-8)
 (set-language-environment 'utf-8)
-
-;; No startup noise
 (setq inhibit-startup-screen t
-      inhibit-startup-message t
       inhibit-startup-echo-area-message t)
 
 (defun display-startup-echo-area-message ()
   "Replace the original message with a custom one."
   (message "Home is where your REPL is."))
 
-;; Scratch buffer
-(setq initial-scratch-message ";;;  -*- lexical-binding: t; -*-\n")
-(setq initial-buffer-choice nil)
+(setq initial-scratch-message ";;;  -*- lexical-binding: t; -*-\n"
+      frame-title-format nil
+      ns-use-proxy-icon nil
+      use-file-dialog nil
+      use-dialog-box nil
+      cursor-in-non-selected-windows nil
+      ring-bell-function #'ignore)
 
-;; Frame
-(setq frame-title-format nil
-      ns-use-proxy-icon nil)
-
-;; No dialogs
-(setq use-file-dialog nil
-      use-dialog-box nil)
-
-;; No empty line indicators
-(setq indicate-empty-lines nil)
-
-;; Use ripgrep for xref
-(setq xref-search-program 'ripgrep)
-
-;; Clear previous themes before loading new ones
-(advice-add 'load-theme :before
-            (lambda (&rest _) (mapc #'disable-theme custom-enabled-themes)))
-
-;; Larger read buffer for LSP/subprocess performance
-(setq read-process-output-max (* 1024 1024))
-
-;; Always load newer byte code
-(setq load-prefer-newer t)
-
-;; No cursor in inactive windows
-(setq cursor-in-non-selected-windows nil)
-
-;; Fill column
-(setq fill-column 80)
-
-;; No confirmation for visiting non-existent files
-(setq confirm-nonexistent-file-or-buffer nil)
-
-;; Follow symlinks
-(setq vc-follow-symlinks t)
-
-;; y/n instead of yes/no
-(setq use-short-answers t)
-
-;; No bell
-(setq ring-bell-function 'ignore)
-
-;; No lockfiles
-(setq create-lockfiles nil)
+;; Editing and navigation defaults
+(setq-default fill-column 80)
+(setq xref-search-program 'ripgrep
+      confirm-nonexistent-file-or-buffer nil
+      vc-follow-symlinks t
+      use-short-answers t
+      create-lockfiles nil)
 
 ;; C-w with no active region kills the previous word instead of erroring.
 (setq kill-region-dwim 'emacs-word)
@@ -76,12 +46,6 @@
 
 ;; Keep C-h l (view-lossage) live-updating.
 (setq view-lossage-auto-refresh t)
-
-;; Re-uniquify buffer names after a buffer is killed.
-(setq uniquify-after-kill-buffer-flag t)
-
-(use-feature project
-  :demand)
 
 ;; Whitespace mode
 (use-feature whitespace
@@ -131,7 +95,7 @@
 (setq-default tab-width 4)
 
 ;; Temp buffers
-(temp-buffer-resize-mode)
+(temp-buffer-resize-mode 1)
 (setq temp-buffer-max-height 8)
 (setq window-min-height 1)
 
@@ -154,16 +118,8 @@
   (setq-default browse-url-browser-function 'browse-url-generic
                 browse-url-generic-program "xdg-open"))
 
-;; This optional variable is defined only by native-comp-enabled Emacs builds.
-(defvar native-comp-async-report-warnings-errors)
-
-;; Suppress native-comp warnings
-(when (native-comp-available-p)
-  (require 'comp-run)
-  (setq native-comp-async-report-warnings-errors nil))
-
 ;; Smooth scrolling
-(pixel-scroll-precision-mode)
+(pixel-scroll-precision-mode 1)
 
 (use-package helpful
   :custom
@@ -175,11 +131,11 @@
          ("C-h x" . helpful-command)
          ("C-c C-d" . helpful-at-point)))
 
-;; Shell environment. GUI Emacs (macOS, or Linux launched from a desktop
-;; entry) inherits a minimal PATH, so subprocesses like LSP servers can't be
-;; found. In a terminal the shell PATH is already inherited, so skip it there.
+;; GUI applications and systemd daemons inherit a minimal PATH, so import the
+;; login shell environment for those processes.  A standalone terminal Emacs
+;; already inherits the shell's PATH and needs no adjustment.
 (use-package exec-path-from-shell
-  :if (pet/is-gui)
+  :if (or (daemonp) (display-graphic-p))
   :init
   (exec-path-from-shell-initialize)
   :config
@@ -209,47 +165,6 @@
   :config
   (setq goto-address-mail-face 'link
         goto-address-mail-mouse-face 'highlight))
-
-;; Terminal
-(use-package eat
-  :after project
-  :commands eat
-  :preface
-  (defun pet-eat-display-tweaks ()
-    "Make eat render full-screen TUIs (Pi, Claude Code, apt) correctly.
-Stop recentering, which corrupts in-place redraws like progress bars
-\(see emacs-eat issue #145)."
-    (setq-local scroll-conservatively 10000))
-  :bind (("C-c t" . eat)
-         :map project-prefix-map
-         ("t" . eat-project))
-  :custom
-  (eat-kill-buffer-on-exit t)
-  :hook (eat-mode . pet-eat-display-tweaks)
-  :config
-  (setq explicit-shell-file-name "/opt/homebrew/bin/fish"))
-
-;; Make Emacs work from the terminal
-(use-package kkp
-  :ensure t
-  :hook (tty-setup . global-kkp-mode))
-
-;; Mouse support for terminal frames, including SSH Emacs clients.
-(use-feature xt-mouse
-  :config
-  (xterm-mouse-mode 1))
-
-;; Tooltips in the terminal too.
-(add-hook 'tty-setup-hook #'tty-tip-mode)
-
-;; Hide Emacs on Mac
-(when (pet/is-mac)
-  (global-set-key (kbd "M-h") 'ns-do-hide-emacs)
-  (global-set-key (kbd "s-h") 'mark-paragraph))
-
-;; Open files from Finder in same frame
-(when (pet/is-mac)
-  (setq ns-pop-up-frames nil))
 
 (provide 'pet-config)
 ;;; pet-config.el ends here

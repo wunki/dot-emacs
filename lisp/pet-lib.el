@@ -1,8 +1,12 @@
 ;;; pet-lib.el --- utility functions -*- lexical-binding: t -*-
 ;;; Commentary:
+;;
+;; Small helpers shared by otherwise independent configuration modules.
+;; Feature-specific commands belong with the feature that owns them.
+;;
 ;;; Code:
 
-(require 'pet-packages)
+(require 'project)
 
 (defun pet/edit-emacs-configuration ()
   "Edit a file in the Emacs configuration."
@@ -13,34 +17,6 @@
 (defun pet/is-mac ()
   "Return non-nil if running on macOS."
   (eq system-type 'darwin))
-
-(defun pet/is-gui ()
-  "Return non-nil if running in a graphical window-system.
-GUI Emacs (launched from a desktop entry or app bundle) inherits a
-minimal environment, unlike a terminal Emacs started from a shell."
-  (memq window-system '(mac ns x pgtk w32)))
-
-(defun pet/rename-file-and-buffer ()
-  "Rename the current buffer and file it is visiting."
-  (interactive)
-  (let ((filename (buffer-file-name)))
-    (if (not (and filename (file-exists-p filename)))
-        (message "Buffer is not visiting a file!")
-      (let ((new-name (read-file-name "New name: " filename)))
-        (cond
-         ((vc-backend filename) (vc-rename-file filename new-name))
-         (t
-          (rename-file filename new-name t)
-          (set-visited-file-name new-name t t)))))))
-
-(defun pet/move-beginning-of-line (arg)
-  "Move to first non-whitespace, or beginning of line if already there.
-ARG is passed to `beginning-of-visual-line'."
-  (interactive "^p")
-  (let ((pos (point)))
-    (back-to-indentation)
-    (when (= pos (point))
-      (beginning-of-visual-line arg))))
 
 (provide 'pet-lib)
 ;;; pet-lib.el ends here

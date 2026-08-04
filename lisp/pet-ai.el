@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'pet-packages)
+
 (use-package gptel
   :functions (gptel-make-openai-oauth)
   :defines (gptel-backend gptel-model gptel-openai-oauth-login-method)

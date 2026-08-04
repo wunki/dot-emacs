@@ -1,20 +1,16 @@
 ;;; pet-navigation.el --- moving around -*- lexical-binding: t -*-
 ;;; Commentary:
+;;
+;; Minibuffer completion, search, jumping, and window navigation.
+;;
 ;;; Code:
 
-(require 'pet-lib)
-
-;; Swap command and option on Mac
-(use-feature emacs
-  :init
-  (when (pet/is-mac)
-    (setq mac-command-modifier 'meta
-          mac-option-modifier 'super)))
+(require 'pet-packages)
 
 ;; Minibuffer completion
 (use-package vertico
   :custom (vertico-cycle t)
-  :init (vertico-mode))
+  :init (vertico-mode 1))
 
 (use-feature vertico-directory
   :after vertico
@@ -27,7 +23,7 @@
 ;; Rich annotations in minibuffer
 (use-package marginalia
   :after vertico
-  :init (marginalia-mode))
+  :init (marginalia-mode 1))
 
 ;; Orderless completion
 (use-package orderless
@@ -50,15 +46,15 @@
 
 ;; Persist minibuffer history
 (use-feature savehist
-  :init (savehist-mode))
+  :init (savehist-mode 1))
 
 ;; Recent files
 (use-feature recentf
   :defer 1
   :config
-  ;; Hide its startup progress messages, pointless
+  ;; The cleanup progress message adds noise but no actionable information.
   (let ((inhibit-message t))
-    (recentf-mode))
+    (recentf-mode 1))
   :custom
   (recentf-max-menu-items 100)
   (recentf-max-saved-items 100))
@@ -68,7 +64,7 @@
   (which-key-idle-delay 0.5)
   (which-key-sort-order 'which-key-description-order)
   :config
-  (which-key-mode))
+  (which-key-mode 1))
 
 ;; Jump anywhere with Avy
 (use-package avy
@@ -83,38 +79,6 @@
   (aw-keys '(?a ?o ?e ?u ?h ?t ?n ?l))
   :bind (("M-o" . ace-window)
          ("C-x o" . ace-window)))
-
-;; Recreate the last terminal layout when reconnecting to the daemon.
-(defvar pet/terminal-window-state nil
-  "Window state from the most recently closed terminal frame.")
-
-(defun pet/save-terminal-window-state (frame)
-  "Remember the window layout of terminal FRAME before it is deleted."
-  (when (and (daemonp)
-             (frame-live-p frame)
-             (not (display-graphic-p frame)))
-    (condition-case error
-        (setq pet/terminal-window-state
-              (window-state-get (frame-root-window frame)))
-      (error
-       (message "Could not save terminal window layout: %s"
-                (error-message-string error))))))
-
-(defun pet/restore-terminal-window-state ()
-  "Restore the window layout from the last closed terminal frame."
-  (when (and pet/terminal-window-state
-             (not (display-graphic-p)))
-    (condition-case error
-        (window-state-put pet/terminal-window-state
-                          (frame-root-window)
-                          'safe)
-      (error
-       (message "Could not restore terminal window layout: %s"
-                (error-message-string error))))))
-
-(add-hook 'delete-frame-functions #'pet/save-terminal-window-state)
-(add-hook 'server-after-make-frame-hook
-          #'pet/restore-terminal-window-state)
 
 ;; Context actions on minibuffer candidates
 (use-package embark

@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(provide 'early-init)
-
 ;; Native compiled cache, complies with the `no-littering' package.
 (when (fboundp 'startup-redirect-eln-cache)
   (startup-redirect-eln-cache
@@ -13,4 +11,5 @@
 ;; We use built-in package.el + use-package.
 (setq package-enable-at-startup nil)
 
+(provide 'early-init)
 ;;; early-init.el ends here

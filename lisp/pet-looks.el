@@ -1,32 +1,41 @@
 ;;; pet-looks.el --- make Emacs look pretty -*- lexical-binding: t -*-
 ;;; Commentary:
+;;
+;; Fonts, themes, frame chrome, and other visual presentation.
+;; Graphical-frame setup is deferred when Emacs runs as a daemon.
+;;
 ;;; Code:
 
-(require 'pet-lib)
+(require 'pet-packages)
 
-;; Fonts
+(defvar ns-pop-up-frames)
+
+;; Apply fonts only after a graphical frame exists.  A daemon starts without
+;; one, while a direct terminal session should never load Fontaine at all.
+(defun pet/setup-fontaine-for-frame (frame)
+  "Apply the saved Fontaine preset to graphical FRAME."
+  (when (display-graphic-p frame)
+    (with-selected-frame frame
+      (fontaine-set-preset (or (fontaine-restore-latest-preset) 'ibm))
+      (fontaine-mode 1))))
+
 (use-package fontaine
-  :demand
-  :if (pet/is-gui)
-  :config
+  :commands (fontaine-mode fontaine-restore-latest-preset fontaine-set-preset)
+  :init
   (setq-default text-scale-remap-header-line t)
   (setq-default fontaine-presets
                 '((regular)
                   (ibm
                    :default-family "IBM Plex Mono"
-                   :line-spacing 0.15
-                   )
+                   :line-spacing 0.15)
                   (go
                    :default-family "GoMono Nerd Font"
-                   :line-spacing 0.2
-                   )
+                   :line-spacing 0.2)
                   (source-code-pro
                    :default-family "Source Code Pro"
-                   :line-spacing 0.2
-                   )
+                   :line-spacing 0.2)
                   (space
-                   :default-family "Space Mono"
-                   )
+                   :default-family "Space Mono")
                   (martian
                    :default-family "Martian Mono"
                    :default-weight light
@@ -50,8 +59,9 @@
                    :italic-family nil
                    :italic-slant italic
                    :line-spacing nil)))
-  (fontaine-set-preset (or (fontaine-restore-latest-preset) 'ibm))
-  (fontaine-mode))
+  (if (daemonp)
+      (add-hook 'after-make-frame-functions #'pet/setup-fontaine-for-frame)
+    (pet/setup-fontaine-for-frame (selected-frame))))
 
 ;; Variable pitch for text modes
 (add-hook 'text-mode-hook #'variable-pitch-mode)
@@ -61,17 +71,27 @@
   (when (fboundp mode)
     (funcall mode 0)))
 
-;; Frame defaults
-(setq frame-resize-pixelwise t
-      default-frame-alist (append (list
-                                   '(vertical-scroll-bars . nil)
-                                   '(internal-border-width . 10)
-                                   '(right-fringe . 8)
-                                   '(tool-bar-lines . 0))))
+;; Frame defaults.  Update the settings we own without discarding parameters
+;; installed by Emacs, the daemon, or other packages.
+(setq frame-resize-pixelwise t)
+(dolist (parameter '((vertical-scroll-bars . nil)
+                     (internal-border-width . 10)
+                     (right-fringe . 8)
+                     (tool-bar-lines . 0)))
+  (setf (alist-get (car parameter) default-frame-alist)
+        (cdr parameter)))
 
-;; macOS titlebar
-(when (memq window-system '(mac ns))
-  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
+;; macOS frames may be created only after daemon startup.
+(when (eq system-type 'darwin)
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  ;; Open files from Finder in the current frame.
+  (setq ns-pop-up-frames nil))
+
+(defun pet/disable-enabled-themes (&rest _)
+  "Disable active themes before a new theme is loaded."
+  (mapc #'disable-theme custom-enabled-themes))
+
+(advice-add 'load-theme :before #'pet/disable-enabled-themes)
 
 ;; Themes
 (use-package ef-themes
@@ -106,7 +126,6 @@
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (doom-themes-visual-bell-config)
   (with-eval-after-load 'org (doom-themes-org-config))
   (load-theme 'doom-meltbus :no-confirm)
   ;; Make Corfu's selected candidate and Orderless matches easy to read.

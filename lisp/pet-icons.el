@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'pet-packages)
+
 (use-package nerd-icons)
 
 (use-package nerd-icons-corfu
@@ -15,7 +17,7 @@
   :functions (nerd-icons-completion-mode)
   :after (nerd-icons marginalia)
   :config
-  (nerd-icons-completion-mode)
+  (nerd-icons-completion-mode 1)
   :hook (marginalia-mode . nerd-icons-completion-marginalia-setup))
 
 (use-package nerd-icons-dired

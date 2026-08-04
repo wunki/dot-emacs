@@ -24,18 +24,8 @@ tramp
 # AUCTeX auto folder
 /auto
 
-# cask packages
-.cask
-dist
-
-# Flycheck
-flycheck_*.el
-
 # server auth directory
 /server
-
-# projectiles files
-.projectile
 
 # directory configuration
 .dir-locals.el
@@ -43,19 +33,15 @@ flycheck_*.el
 # network security
 /network-security.data
 
-# gcc emacs cache
-/.lsp-session-v1
 /url
 /bookmarks
 /org-persist
-/org-roam.db
 
 # emojis
 /emojis
 /.stignore
 /forge-database.sqlite
 /elisp-autofmt-cache/
-/racket-mode/
 /project-window-list
 /*.sqlite
 /var/

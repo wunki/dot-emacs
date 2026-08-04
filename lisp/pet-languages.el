@@ -2,7 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'pet-lib)
+(require 'no-littering)
+(require 'pet-packages)
 (require 'treesit)
 
 ;; Built-in modes ship their own grammar sources. Clojure's third-party mode
@@ -41,7 +42,7 @@
 ;; Dim parentheses in Lisp
 (use-package paren-face
   :config
-  (global-paren-face-mode))
+  (global-paren-face-mode 1))
 
 (use-package rainbow-delimiters
   :hook ((lisp-mode
@@ -90,29 +91,24 @@
   (cider-repl-display-help-banner nil)
   (cider-save-file-on-load t)
   (cider-history-file (no-littering-expand-var-file-name "nrepl-history"))
-  (cider-auto-select-error-buffer t)
-  (cider-repl-use-pretty-printing t)
   (nrepl-hide-special-buffers t)
   (cider-repl-display-output-before-window-boundaries t)
-  (cider-prompt-for-symbol nil)
   (cider-use-xref nil)
   (cider-font-lock-dynamically nil)
-  (nrepl-log-messages nil)
   :bind (:map cider-repl-mode-map
               ("C-c C-l" . cider-repl-clear-buffer)))
 
 ;; Documentation
 (use-feature eldoc
-  :hook (prog-mode . eldoc-mode)
   :custom
-  (eldoc-help-at-pt nil)                  ; avoid duplicating flymake/eglot eldoc output
   (eldoc-echo-area-prefer-doc-buffer t))
 
 (use-package eldoc-box
   :bind ("C-c d" . eldoc-box-help-at-point))
 
 ;; Fish shell
-(use-package fish-mode)
+(use-package fish-mode
+  :mode "\\.fish\\'")
 
 ;; YAML (built-in tree-sitter mode)
 (use-feature yaml-ts-mode
@@ -136,6 +132,7 @@
 
 ;; SQL formatting
 (use-package sqlformat
+  :if (executable-find "sqlfluff")
   :hook (sql-mode . sqlformat-on-save-mode)
   :config
   (setq sqlformat-command 'sqlfluff

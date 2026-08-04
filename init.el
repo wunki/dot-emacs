@@ -1,7 +1,7 @@
 ;;; init.el --- initialize all modules -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;
-;; Emacs 30 configuration using built-in package.el and use-package.
+;; Modular configuration using built-in package.el and use-package.
 ;;
 ;;; Code:
 
@@ -15,15 +15,22 @@
               (abbreviate-file-name
                (file-truename user-emacs-directory))))
 
+;; Bootstrap and shared utilities
 (require 'pet-packages)
-(require 'pet-config)
 (require 'pet-lib)
-(require 'pet-bindings)
+
+;; Core environment and interface
+(require 'pet-config)
+(require 'pet-terminal)
+(require 'pet-session)
 (require 'pet-navigation)
-(require 'pet-icons)
 (require 'pet-looks)
 (require 'pet-completion)
+(require 'pet-icons)
 (require 'pet-editing)
+(require 'pet-bindings)
+
+;; Tools and languages
 (require 'pet-git)
 (require 'pet-tramp)
 (require 'pet-notes)

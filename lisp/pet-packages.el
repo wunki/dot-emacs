@@ -1,15 +1,13 @@
 ;;; pet-packages.el --- package management -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;
-;; Emacs 30 ships with package.el and use-package built-in.
+;; Emacs ships with package.el and use-package built in.
 ;; No external package manager needed.
 ;;
 ;;; Code:
 
 (require 'package)
 (require 'use-package)
-;; HTTPS protects transport. MELPA is unsigned anyway.
-(setq package-check-signature nil)
 (setq package-archives
       '(("melpa" . "https://melpa.org/packages/")
         ("gnu" . "https://elpa.gnu.org/packages/")

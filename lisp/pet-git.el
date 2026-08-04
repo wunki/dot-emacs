@@ -15,8 +15,8 @@
 (use-package magit
   :preface
   (defun pet/git-commit-auto-fill-everywhere ()
-    "Ensures that the commit body does not exceed 72 characters."
-    (setq fill-column 72)
+    "Keep Git commit bodies within 72 columns."
+    (setq-local fill-column 72)
     (setq-local comment-auto-fill-only-comments nil))
   :custom (git-commit-summary-max-length 72)
   :bind ("C-c g" . magit-status)
@@ -46,8 +46,8 @@
   ;; `diff-hl' normally fills the whole fringe. Use a centered two-pixel bar.
   (define-fringe-bitmap 'pet-diff-hl-bmp [#b00110000] 1 8 '(top t))
   (setq diff-hl-fringe-bmp-function (lambda (&rest _) 'pet-diff-hl-bmp))
-  (global-diff-hl-mode)
-  (diff-hl-flydiff-mode))
+  (global-diff-hl-mode 1)
+  (diff-hl-flydiff-mode 1))
 
 (provide 'pet-git)
 ;;; pet-git.el ends here
