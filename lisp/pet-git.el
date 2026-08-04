@@ -35,19 +35,23 @@
 ;; Copy links to files on forge
 (use-package git-link)
 
-;; Git diff in the fringe
-(use-package diff-hl
-  :functions (global-diff-hl-mode diff-hl-flydiff-mode)
+;; Git changes in the fringe
+(use-package git-gutter-fringe
+  :functions (global-git-gutter-mode git-gutter:update-all-windows)
   :demand t
-  :hook ((magit-post-refresh . diff-hl-magit-post-refresh)
-         (after-revert . diff-hl-update)
-         (dired-mode . diff-hl-dired-mode))
+  :custom
+  ;; Keep unsaved edits visible without polling as aggressively as the old
+  ;; 20ms configuration did.
+  (git-gutter:update-interval 0.2)
+  :hook (magit-post-refresh . git-gutter:update-all-windows)
   :config
-  ;; `diff-hl' normally fills the whole fringe. Use a centered two-pixel bar.
-  (define-fringe-bitmap 'pet-diff-hl-bmp [#b00110000] 1 8 '(top t))
-  (setq diff-hl-fringe-bmp-function (lambda (&rest _) 'pet-diff-hl-bmp))
-  (global-diff-hl-mode 1)
-  (diff-hl-flydiff-mode 1))
+  ;; `git-gutter-fringe' keeps its bitmap foreground separate from the fringe
+  ;; background, so themes control the change colors without a colored canvas.
+  (dolist (bitmap '(git-gutter-fr:added
+                    git-gutter-fr:modified
+                    git-gutter-fr:deleted))
+    (define-fringe-bitmap bitmap [#b00010000] 1 8 '(top t)))
+  (global-git-gutter-mode 1))
 
 (provide 'pet-git)
 ;;; pet-git.el ends here

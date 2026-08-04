@@ -45,16 +45,16 @@
   (setq tramp-completion-use-auth-sources nil)
 
   ;; VC fires several synchronous git calls on every remote file visit (branch,
-  ;; working revision, mode-line, plus diff-hl's git diff), each a round-trip.
-  ;; Treat remote dirs as non-VC so opens are near-instant.  Magit is unaffected
-  ;; (it doesn't go through VC); local files keep their fringe diffs.
+  ;; working revision, mode-line, plus git-gutter's diff), each a round-trip.
+  ;; Treat remote dirs as non-VC so opens are near-instant. Magit is unaffected
+  ;; (it doesn't go through VC); local files keep their fringe indicators.
   (setq vc-ignore-dir-regexp
         (format "\\(?:%s\\)\\|\\(?:%s\\)"
                 vc-ignore-dir-regexp tramp-file-name-regexp)))
 
 ;; Only Git is in use here.  Probing the other VC backends on every file visit
-;; is pure latency over TRAMP (and wasted work locally).  Magit, Forge and
-;; diff-hl all keep working.
+;; is pure latency over TRAMP (and wasted work locally). Magit, Forge and
+;; git-gutter all keep working.
 (setq vc-handled-backends '(Git))
 
 (provide 'pet-tramp)

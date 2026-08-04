@@ -10,6 +10,9 @@
 
 (defvar ns-pop-up-frames)
 
+(defvar pet/default-theme 'doom-pine
+  "Theme loaded at startup.")
+
 (defvar pet/org-typography-font-family "iA Writer Quattro S"
   "Font family for Org document titles and headings in Doom themes.")
 
@@ -19,7 +22,7 @@
   "Apply the saved Fontaine preset to graphical FRAME."
   (when (display-graphic-p frame)
     (with-selected-frame frame
-      (fontaine-set-preset (or (fontaine-restore-latest-preset) 'ibm))
+      (fontaine-set-preset (or (fontaine-restore-latest-preset) 'jetbrains))
       (fontaine-mode 1))))
 
 (use-package fontaine
@@ -30,6 +33,9 @@
                 '((regular)
                   (ibm
                    :default-family "IBM Plex Mono"
+                   :line-spacing 0.15)
+                  (jetbrains
+                   :default-family "JetBrains Mono"
                    :line-spacing 0.15)
                   (go
                    :default-family "GoMono Nerd Font"
@@ -49,7 +55,7 @@
                   (t
                    :default-family "Maple Mono Normal"
                    :default-weight regular
-                   :default-height 120
+                   :default-height 110
                    :fixed-pitch-family nil
                    :fixed-pitch-weight nil
                    :fixed-pitch-height 1.0
@@ -102,23 +108,40 @@
     (custom-theme-set-faces
      theme
      `(org-document-title
-       ((t (:family ,pet/org-typography-font-family :height 1.35 :weight regular
-            :foreground "#dddddd"))) t)
+       ((t (:family ,pet/org-typography-font-family
+            :height 1.35 :weight regular))) t)
      `(outline-1
-       ((t (:family ,pet/org-typography-font-family :height 1.25 :weight medium
-            :foreground "#dddddd"))) t)
+       ((t (:family ,pet/org-typography-font-family
+            :height 1.25 :weight medium))) t)
      `(outline-2
-       ((t (:family ,pet/org-typography-font-family :height 1.15 :weight regular
-            :foreground "#dddddd"))) t)
+       ((t (:family ,pet/org-typography-font-family
+            :height 1.15 :weight regular))) t)
      `(outline-3
-       ((t (:family ,pet/org-typography-font-family :height 1.08 :weight regular
-            :foreground "#dddddd"))) t))))
+       ((t (:family ,pet/org-typography-font-family
+            :height 1.08 :weight regular))) t))))
+
+(defun pet/apply-doom-meltbus-overrides (theme &rest _)
+  "Apply Meltbus-specific UI face overrides after THEME is enabled."
+  (when (eq theme 'doom-meltbus)
+    (custom-theme-set-faces
+     theme
+     ;; Make Corfu's selected candidate and Orderless matches easy to read.
+     '(corfu-current ((t (:background "#303030" :foreground "#ffffff" :extend t))) t)
+     '(orderless-match-face-0
+       ((t (:background "#303030" :foreground "#ffffff" :weight bold))) t)
+     '(orderless-match-face-1
+       ((t (:background "#303030" :foreground "#ffffff" :weight bold))) t)
+     '(orderless-match-face-2
+       ((t (:background "#303030" :foreground "#ffffff" :weight bold))) t)
+     '(orderless-match-face-3
+       ((t (:background "#303030" :foreground "#ffffff" :weight bold))) t))))
 
 (advice-add 'load-theme :before #'pet/disable-enabled-themes)
 ;; `enable-theme-functions` is the standard hook for post-theme face changes.
 ;; Remove the previous advice too, so evaluating this file upgrades a live Emacs.
 (advice-remove 'enable-theme #'pet/apply-doom-org-typography)
 (add-hook 'enable-theme-functions #'pet/apply-doom-org-typography)
+(add-hook 'enable-theme-functions #'pet/apply-doom-meltbus-overrides)
 
 ;; Themes
 (use-package ef-themes
@@ -154,23 +177,11 @@
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
   (with-eval-after-load 'org (doom-themes-org-config))
-  (load-theme 'doom-meltbus :no-confirm)
-  (custom-theme-set-faces
-   'doom-meltbus
-   ;; Make Corfu's selected candidate and Orderless matches easy to read.
-   '(corfu-current ((t (:background "#303030" :foreground "#ffffff" :extend t))))
-   ;; Show only diff-hl's thin fringe bitmap, not its colored backdrop.
-   '(diff-hl-insert ((t (:foreground "#448844" :background "black"))))
-   '(diff-hl-change ((t (:foreground "#da8548" :background "black"))))
-   '(diff-hl-delete ((t (:foreground "#f8b0b0" :background "black"))))
-   '(orderless-match-face-0 ((t (:background "#303030" :foreground "#ffffff" :weight bold))))
-   '(orderless-match-face-1 ((t (:background "#303030" :foreground "#ffffff" :weight bold))))
-   '(orderless-match-face-2 ((t (:background "#303030" :foreground "#ffffff" :weight bold))))
-   '(orderless-match-face-3 ((t (:background "#303030" :foreground "#ffffff" :weight bold))))))
+  (load-theme pet/default-theme :no-confirm))
 
 ;; Ligatures
 (use-package ligature
-  :config
+    :config
   (ligature-set-ligatures
    'prog-mode
    '(".." ".=" "..." "..<" "::" ":::" ":=" "::=" ";;" ";;;" "??" "???"
