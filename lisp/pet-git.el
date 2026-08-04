@@ -50,7 +50,7 @@
   (dolist (bitmap '(git-gutter-fr:added
                     git-gutter-fr:modified
                     git-gutter-fr:deleted))
-    (define-fringe-bitmap bitmap [#b00010000] 1 8 '(top t)))
+    (define-fringe-bitmap bitmap [#b00110000] 1 8 '(top t)))
   (global-git-gutter-mode 1))
 
 (provide 'pet-git)
