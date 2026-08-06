@@ -37,6 +37,16 @@
       use-short-answers t
       create-lockfiles nil)
 
+;; GUI applications and systemd daemons inherit a minimal PATH, so import the
+;; login shell environment before packages resolve external programs.  A
+;; standalone terminal Emacs already inherits the shell's PATH.
+(use-package exec-path-from-shell
+  :if (or (daemonp) (display-graphic-p))
+  :custom
+  (exec-path-from-shell-variables '("PATH" "MANPATH" "SSH_AUTH_SOCK"))
+  :config
+  (exec-path-from-shell-initialize))
+
 ;; C-w with no active region kills the previous word instead of erroring.
 (setq kill-region-dwim 'emacs-word)
 
@@ -66,6 +76,8 @@
                         (dired-omit-mode 1)
                         (dired-hide-details-mode 1)))
   :custom
+  ;; Recompute this after importing PATH; Emacs caches its default earlier.
+  (insert-directory-program (or (executable-find "gls") "ls"))
   (dired-omit-files "^\.?#\|\.DS_Store")
   (dired-omit-verbose nil)
   ;; Hide the absolute directory path in dired-hide-details-mode.
@@ -129,16 +141,6 @@
          ("C-h k" . helpful-key)
          ("C-h x" . helpful-command)
          ("C-c C-d" . helpful-at-point)))
-
-;; GUI applications and systemd daemons inherit a minimal PATH, so import the
-;; login shell environment for those processes.  A standalone terminal Emacs
-;; already inherits the shell's PATH and needs no adjustment.
-(use-package exec-path-from-shell
-  :if (or (daemonp) (display-graphic-p))
-  :init
-  (exec-path-from-shell-initialize)
-  :config
-  (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
 
 ;; Project-local toolchains via mise
 (use-package mise
