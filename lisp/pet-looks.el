@@ -22,7 +22,7 @@
   "Apply the saved Fontaine preset to graphical FRAME."
   (when (display-graphic-p frame)
     (with-selected-frame frame
-      (fontaine-set-preset (or (fontaine-restore-latest-preset) 'jetbrains))
+      (fontaine-set-preset (or (fontaine-restore-latest-preset) 'ibm))
       (fontaine-mode 1))))
 
 (use-package fontaine
