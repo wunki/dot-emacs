@@ -13,6 +13,18 @@
     "Format the buffer on save."
     (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
 
+  (defun pet/eglot-format-go-buffer ()
+    "Organize imports and format the current Go buffer."
+    (when (eglot-managed-p)
+      (when (derived-mode-p 'go-ts-mode)
+        (eglot-code-action-organize-imports (point-min) (point-max)))
+      (eglot-format-buffer)))
+
+  (defun pet/eglot-go-mode-setup ()
+    "Start Eglot and format the current Go buffer on save."
+    (eglot-ensure)
+    (add-hook 'before-save-hook #'pet/eglot-format-go-buffer -10 t))
+
   :config
   (setq eglot-autoshutdown t
         eglot-autoreconnect t
@@ -30,7 +42,9 @@
                   clojuredart-mode clojure-ts-mode)
                  "clojure-lsp"))
 
-  :hook (((clojure-mode clojurescript-mode clojurec-mode clojuredart-mode
+  :hook (((go-ts-mode go-mod-ts-mode go-work-ts-mode)
+          . pet/eglot-go-mode-setup)
+         ((clojure-mode clojurescript-mode clojurec-mode clojuredart-mode
            clojure-ts-mode) . eglot-ensure)
          ((clojure-mode clojurescript-mode clojurec-mode clojuredart-mode
            clojure-ts-mode) . pet/eglot-format-buffer-on-save))
