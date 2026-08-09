@@ -50,6 +50,9 @@
                    :default-weight light
                    :default-width semi-condensed
                    :line-spacing 0.15)
+                  (argon
+                   :default-family "Monaspace Argon"
+                   :line-spacing 0.2)
                   (intel
                    :default-family "Intel One Mono")
                   (t
