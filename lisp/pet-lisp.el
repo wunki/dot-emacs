@@ -33,6 +33,8 @@
   :custom
   (lisp-indent-function 'common-lisp-indent-function))
 
+(put 'defsystem 'common-lisp-indent-function 1)
+
 ;; open up Hyperspec urls in Emacs itself
 (use-feature browse-url
   :config
@@ -151,6 +153,11 @@
     (define-key sly-editing-mode-map (kbd "C-c C-z") #'pet/sly-mrepl-dwim)
     (define-key sly-mode-map (kbd "C-c C-z") #'pet/sly-mrepl-dwim)
     (define-key sly-mrepl-mode-map (kbd "C-c C-z") #'pet/sly-mrepl-dwim)))
+
+(use-package sly-indentation
+  :ensure nil
+  :after sly
+  :demand t)
 
 (use-package sly-mrepl
   :ensure nil
