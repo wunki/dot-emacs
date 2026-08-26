@@ -6,10 +6,11 @@
 (require 'pet-packages)
 (require 'treesit)
 
-;; Built-in modes ship their own grammar sources. Clojure's third-party mode
-;; does not, so keep its source explicit.
+;; Built-in modes ship their own grammar sources. Keep sources for third-party
+;; modes explicit.
 (setq treesit-language-source-alist
-      '((clojure "https://github.com/sogaiu/tree-sitter-clojure")))
+      '((clojure "https://github.com/sogaiu/tree-sitter-clojure")
+        (odin "https://github.com/tree-sitter-grammars/tree-sitter-odin")))
 
 (setopt treesit-auto-install-grammar 'always ; install missing grammars on demand
         treesit-enabled-modes t)             ; prefer the *-ts-mode variant everywhere
@@ -109,6 +110,13 @@
 ;; Fish shell
 (use-package fish-mode
   :mode "\\.fish\\'")
+
+;; Odin
+(use-package odin-ts-mode
+  :vc (:url "https://github.com/Sampie159/odin-ts-mode.git"
+       :rev :newest)
+  :mode ("\\.odin\\'" . odin-ts-mode)
+  :hook (odin-ts-mode . subword-mode))
 
 ;; YAML (built-in tree-sitter mode)
 (use-feature yaml-ts-mode
