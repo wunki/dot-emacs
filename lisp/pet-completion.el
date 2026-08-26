@@ -12,7 +12,8 @@
   :custom
   (corfu-popupinfo-delay '(0.25 . 0.1))
   :config
-  (setq tab-always-indent 'complete)
+  (setq tab-always-indent 'complete
+        tab-first-completion 'word)
   (global-corfu-mode 1)
   :bind
   (:map corfu-map
