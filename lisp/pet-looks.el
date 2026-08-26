@@ -10,11 +10,11 @@
 
 (defvar ns-pop-up-frames)
 
-(defvar pet/default-theme 'doom-pine
+(defvar pet/default-theme 'cendre
   "Theme loaded at startup.")
 
 (defvar pet/org-typography-font-family "iA Writer Quattro S"
-  "Font family for Org document titles and headings in Doom themes.")
+  "Font family for Org document titles and headings.")
 
 ;; Apply fonts only after a graphical frame exists.  A daemon starts without
 ;; one, while a direct terminal session should never load Fontaine at all.
@@ -103,11 +103,12 @@
   "Disable active themes before a new theme is loaded."
   (mapc #'disable-theme custom-enabled-themes))
 
-(defun pet/apply-doom-org-typography (theme &rest _)
-  "Apply the shared Org typography after Doom THEME is enabled."
-  (when (string-prefix-p "doom-" (symbol-name theme))
-    ;; Some Doom themes use oversized, bold monospace Org faces.  Keep the
-    ;; note typography consistent without changing their colors or UI faces.
+(defun pet/apply-org-typography (theme &rest _)
+  "Apply the shared Org typography after a supported THEME is enabled."
+  (when (or (string-prefix-p "doom-" (symbol-name theme))
+            (memq theme '(cendre cendre-medium cendre-soft)))
+    ;; Keep note typography consistent across theme families without changing
+    ;; their colors or UI faces.
     (custom-theme-set-faces
      theme
      `(org-document-title
@@ -143,7 +144,8 @@
 ;; `enable-theme-functions` is the standard hook for post-theme face changes.
 ;; Remove the previous advice too, so evaluating this file upgrades a live Emacs.
 (advice-remove 'enable-theme #'pet/apply-doom-org-typography)
-(add-hook 'enable-theme-functions #'pet/apply-doom-org-typography)
+(remove-hook 'enable-theme-functions #'pet/apply-doom-org-typography)
+(add-hook 'enable-theme-functions #'pet/apply-org-typography)
 (add-hook 'enable-theme-functions #'pet/apply-doom-meltbus-overrides)
 
 ;; Themes
@@ -175,12 +177,18 @@
         '((bg-region bg-lavender)
           (fg-region unspecified))))
 
+(use-package cendre-themes
+  :ensure nil
+  :load-path "~/Code/tools/cendre-emacs"
+  :demand t)
+
 (use-package doom-themes
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (with-eval-after-load 'org (doom-themes-org-config))
-  (load-theme pet/default-theme :no-confirm))
+  (with-eval-after-load 'org (doom-themes-org-config)))
+
+(load-theme pet/default-theme :no-confirm)
 
 ;; Ligatures
 (use-package ligature
