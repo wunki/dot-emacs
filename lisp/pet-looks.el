@@ -47,7 +47,7 @@
                    :default-family "Space Mono")
                   (comic
                    :default-family "Comic Code"
-                   :line-spacing 0.2)
+                   :line-spacing 0.1)
                   (martian
                    :default-family "Martian Mono"
                    :default-weight light
