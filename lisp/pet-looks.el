@@ -61,7 +61,7 @@
                   (t
                    :default-family "Maple Mono Normal"
                    :default-weight regular
-                   :default-height 110
+                   :default-height 100
                    :fixed-pitch-family nil
                    :fixed-pitch-weight nil
                    :fixed-pitch-height 1.0
